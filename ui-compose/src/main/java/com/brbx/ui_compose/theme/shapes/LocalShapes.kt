@@ -1,0 +1,5 @@
+package com.brbx.ui_compose.theme.shapes
+
+import androidx.compose.runtime.staticCompositionLocalOf
+
+internal val LocalShapes = staticCompositionLocalOf { BRBXShapes() }

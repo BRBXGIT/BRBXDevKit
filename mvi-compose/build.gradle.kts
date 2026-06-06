@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.brbx.ui_compose"
+    namespace = "com.brbx.mvi_compose"
     compileSdk {
         version = release(36) {
             minorApiLevel = 1
@@ -22,11 +22,9 @@ android {
 
 dependencies {
 
+    // Lifecycle
+    api(libs.androidx.lifecycle.runtime.ktx)
     // Compose
     api(platform(libs.androidx.compose.bom))
     api(libs.androidx.compose.ui)
-    api(libs.androidx.compose.ui.graphics)
-    api(libs.androidx.material3.android)
-    implementation(libs.androidx.compose.ui.tooling.preview)
-    debugImplementation(libs.androidx.compose.ui.tooling)
 }
