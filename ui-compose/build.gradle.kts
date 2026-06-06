@@ -1,5 +1,5 @@
 plugins {
-    // Android
+    // Android library
     alias(libs.plugins.android.library)
     // Compose
     alias(libs.plugins.kotlin.compose)
@@ -26,7 +26,12 @@ dependencies {
     api(platform(libs.androidx.compose.bom))
     api(libs.androidx.compose.ui)
     api(libs.androidx.compose.ui.graphics)
-    api(libs.androidx.material3.android)
+    api(libs.androidx.compose.material3)
+    api(libs.androidx.compose.animation.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     debugImplementation(libs.androidx.compose.ui.tooling)
+    // Coil
+    implementation(libs.coil.compose)
+    // Solar icons
+    api(libs.solar)
 }
