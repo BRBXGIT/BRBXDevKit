@@ -17,13 +17,13 @@ import com.brbx.ui_compose.theme.BRBXTheme
 
 @Composable
 fun BRBXAnimatedIcon(
-    @DrawableRes icon: Int,
-    atEnd: Boolean,
     modifier: Modifier = Modifier,
     contentDescription: String? = null,
     colorFilter: ColorFilter? = null,
     alignment: Alignment = Alignment.Center,
     contentScale: ContentScale = ContentScale.Fit,
+    @DrawableRes icon: Int,
+    atEnd: Boolean,
 ) {
     val animatedVector = AnimatedImageVector.animatedVectorResource(icon)
     val painter = rememberAnimatedVectorPainter(
@@ -44,7 +44,7 @@ fun BRBXAnimatedIcon(
 @Preview
 @Composable
 private fun BRBXAnimatedIconPreview() {
-    BRBXTheme(lightColorScheme()) {
+    BRBXTheme(colorScheme = lightColorScheme()) {
         BRBXAnimatedIcon(
             icon = R.drawable.ic_preview_cat_animated_24dp,
             atEnd = false,

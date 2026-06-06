@@ -19,52 +19,18 @@ import coil.compose.SubcomposeAsyncImageScope
 import coil.request.CachePolicy
 import coil.request.ImageRequest
 import com.brbx.ui_compose.theme.BRBXTheme
+import com.brbx.ui_compose.theme.bAnimationTokens
 import com.brbx.ui_compose.theme.bColors
 
-private const val DefaultCrossfadeDuration = 300
-
 @Composable
 fun BRBXRemoteImage(
-    model: String?,
     modifier: Modifier = Modifier,
     contentDescription: String? = null,
     filterQuality: FilterQuality = FilterQuality.Low,
     contentScale: ContentScale = ContentScale.Crop,
-    crossfadeDuration: Int = DefaultCrossfadeDuration,
     onLoading: @Composable (SubcomposeAsyncImageScope.(State.Loading) -> Unit)? = null,
     onError: @Composable (SubcomposeAsyncImageScope.(State.Error) -> Unit)? = null,
-) {
-    val context = LocalContext.current
-    val imageRequest = remember(model) {
-        ImageRequest.Builder(context)
-            .data(model)
-            .crossfade(enable = true)
-            .crossfade(durationMillis = crossfadeDuration)
-            .diskCachePolicy(CachePolicy.ENABLED)
-            .memoryCachePolicy(CachePolicy.ENABLED)
-            .build()
-    }
-
-    SubcomposeAsyncImage(
-        modifier = modifier,
-        contentDescription = contentDescription,
-        model = imageRequest,
-        filterQuality = filterQuality,
-        contentScale = contentScale,
-        loading = onLoading,
-        error = onError,
-    )
-}
-
-@Composable
-fun BRBXRemoteImage(
     model: ImageRequest?,
-    modifier: Modifier = Modifier,
-    contentDescription: String? = null,
-    filterQuality: FilterQuality = FilterQuality.Low,
-    contentScale: ContentScale = ContentScale.Crop,
-    onLoading: @Composable (SubcomposeAsyncImageScope.(State.Loading) -> Unit)? = null,
-    onError: @Composable (SubcomposeAsyncImageScope.(State.Error) -> Unit)? = null,
 ) {
     SubcomposeAsyncImage(
         modifier = modifier,
@@ -77,10 +43,43 @@ fun BRBXRemoteImage(
     )
 }
 
+@Composable
+fun BRBXRemoteImage(
+    modifier: Modifier = Modifier,
+    contentDescription: String? = null,
+    filterQuality: FilterQuality = FilterQuality.Low,
+    contentScale: ContentScale = ContentScale.Crop,
+    crossfadeDuration: Int = bAnimationTokens.duration300.toInt(),
+    onLoading: @Composable (SubcomposeAsyncImageScope.(State.Loading) -> Unit)? = null,
+    onError: @Composable (SubcomposeAsyncImageScope.(State.Error) -> Unit)? = null,
+    model: String?,
+) {
+    val context = LocalContext.current
+    val imageRequest = remember(model) {
+        ImageRequest.Builder(context)
+            .data(model)
+            .crossfade(enable = true)
+            .crossfade(durationMillis = crossfadeDuration)
+            .diskCachePolicy(CachePolicy.ENABLED)
+            .memoryCachePolicy(CachePolicy.ENABLED)
+            .build()
+    }
+
+    BRBXRemoteImage(
+        modifier = modifier,
+        contentDescription = contentDescription,
+        filterQuality = filterQuality,
+        contentScale = contentScale,
+        onLoading = onLoading,
+        onError = onError,
+        model = imageRequest,
+    )
+}
+
 @Preview
 @Composable
 private fun BRBXRemoteImagePreview() {
-    BRBXTheme(lightColorScheme()) {
+    BRBXTheme(colorScheme = lightColorScheme()) {
         BRBXRemoteImage(
             modifier = Modifier.size(100.dp, 100.dp),
             model = "",

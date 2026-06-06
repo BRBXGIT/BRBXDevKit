@@ -9,24 +9,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
 import com.brbx.ui_compose.theme.animation_tokens.BRBXAnimationTokens
-import com.brbx.ui_compose.theme.animation_tokens.BRBXDefaultBRBXAnimationTokens
 import com.brbx.ui_compose.theme.animation_tokens.LocalAnimationTokens
-import com.brbx.ui_compose.theme.dimens.BRBXDefaultDimens
 import com.brbx.ui_compose.theme.dimens.BRBXDimens
 import com.brbx.ui_compose.theme.dimens.LocalDimens
-import com.brbx.ui_compose.theme.shapes.BRBXDefaultShapes
 import com.brbx.ui_compose.theme.shapes.BRBXShapes
 import com.brbx.ui_compose.theme.shapes.LocalShapes
 import com.brbx.ui_compose.theme.typography.brbxDefaultTypography
 
 @Composable
 fun BRBXTheme(
-    colorScheme: ColorScheme,
     typography: Typography = brbxDefaultTypography(),
     motionScheme: MotionScheme= MotionScheme.standard(),
-    shapes: BRBXShapes = BRBXDefaultShapes(),
-    dimens: BRBXDimens = BRBXDefaultDimens(),
-    animationTokens: BRBXAnimationTokens = BRBXDefaultBRBXAnimationTokens(),
+    shapes: BRBXShapes = BRBXShapes(),
+    dimens: BRBXDimens = BRBXDimens(),
+    animationTokens: BRBXAnimationTokens = BRBXAnimationTokens(),
+    colorScheme: ColorScheme,
     content: @Composable () -> Unit,
 ) {
     CompositionLocalProvider(

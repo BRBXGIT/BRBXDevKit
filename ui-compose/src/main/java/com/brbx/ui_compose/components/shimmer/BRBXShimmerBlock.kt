@@ -10,6 +10,7 @@ import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
@@ -35,6 +36,7 @@ fun BRBXShimmerBlock(
     easing: Easing = FastOutSlowInEasing,
     initialStartOffset: StartOffset = StartOffset(0),
     baseColor: Color = bColors.surfaceContainerHigh.copy(alpha = initialValue),
+    content: @Composable BoxScope.() -> Unit = {},
 ) {
     val infiniteTransition = rememberInfiniteTransition(label = "pulse")
 
@@ -50,6 +52,7 @@ fun BRBXShimmerBlock(
     )
 
     Box(
+        content = content,
         modifier = modifier
             .background(baseColor.copy(alpha = alpha))
     )
@@ -61,6 +64,6 @@ private fun BRBXShimmerBlockPreview() {
     BRBXTheme(lightColorScheme()) {
         BRBXShimmerBlock(
             modifier = Modifier.size(100.dp, 100.dp)
-        )
+        ) {}
     }
 }

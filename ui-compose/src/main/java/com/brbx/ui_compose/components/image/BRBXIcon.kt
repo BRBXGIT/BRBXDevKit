@@ -19,10 +19,10 @@ import dev.chiksmedina.solar.outline.weather.Cloud
 
 @Composable
 fun BRBXIcon(
-    @DrawableRes icon: Int,
     modifier: Modifier = Modifier,
     tint: Color = LocalContentColor.current,
     contentDescription: String? = null,
+    @DrawableRes icon: Int,
 ) {
     Icon(
         modifier = modifier,
@@ -34,10 +34,10 @@ fun BRBXIcon(
 
 @Composable
 fun BRBXIcon(
-    imageVector: ImageVector,
     modifier: Modifier = Modifier,
     tint: Color = LocalContentColor.current,
     contentDescription: String? = null,
+    imageVector: ImageVector,
 ) {
     Icon(
         modifier = modifier,
@@ -49,10 +49,10 @@ fun BRBXIcon(
 
 @Composable
 fun BRBXIcon(
-    bitmap: ImageBitmap,
     modifier: Modifier = Modifier,
     tint: Color = LocalContentColor.current,
     contentDescription: String? = null,
+    bitmap: ImageBitmap,
 ) {
     Icon(
         modifier = modifier,
@@ -64,10 +64,10 @@ fun BRBXIcon(
 
 @Composable
 fun BRBXIcon(
-    painter: Painter,
     modifier: Modifier = Modifier,
     tint: Color = LocalContentColor.current,
     contentDescription: String? = null,
+    painter: Painter,
 ) {
     Icon(
         modifier = modifier,
@@ -80,7 +80,7 @@ fun BRBXIcon(
 @Preview
 @Composable
 private fun BRBXIconPreview() {
-    BRBXTheme(lightColorScheme()) {
-        BRBXIcon(OutlineSolar.Weather.Cloud)
+    BRBXTheme(colorScheme = lightColorScheme()) {
+        BRBXIcon(imageVector = OutlineSolar.Weather.Cloud)
     }
 }
