@@ -35,7 +35,7 @@ fun BRBXShimmerBlock(
     repeatMode: RepeatMode = RepeatMode.Reverse,
     easing: Easing = FastOutSlowInEasing,
     initialStartOffset: StartOffset = StartOffset(0),
-    baseColor: Color = bColors.surfaceContainerHigh.copy(alpha = initialValue),
+    baseColor: Color = bColors.surfaceContainer.copy(alpha = initialValue),
     content: @Composable BoxScope.() -> Unit = {},
 ) {
     val infiniteTransition = rememberInfiniteTransition(label = "pulse")
@@ -61,7 +61,7 @@ fun BRBXShimmerBlock(
 @Preview
 @Composable
 private fun BRBXShimmerBlockPreview() {
-    BRBXTheme(lightColorScheme()) {
+    BRBXTheme(colorScheme = lightColorScheme()) {
         BRBXShimmerBlock(
             modifier = Modifier.size(100.dp, 100.dp)
         ) {}

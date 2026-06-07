@@ -22,21 +22,6 @@ fun BRBXIcon(
     modifier: Modifier = Modifier,
     tint: Color = LocalContentColor.current,
     contentDescription: String? = null,
-    @DrawableRes icon: Int,
-) {
-    Icon(
-        modifier = modifier,
-        painter = painterResource(icon),
-        contentDescription = contentDescription,
-        tint = tint,
-    )
-}
-
-@Composable
-fun BRBXIcon(
-    modifier: Modifier = Modifier,
-    tint: Color = LocalContentColor.current,
-    contentDescription: String? = null,
     imageVector: ImageVector,
 ) {
     Icon(
@@ -74,6 +59,21 @@ fun BRBXIcon(
         painter = painter,
         contentDescription = contentDescription,
         tint = tint,
+    )
+}
+
+@Composable
+fun BRBXIcon(
+    modifier: Modifier = Modifier,
+    tint: Color = LocalContentColor.current,
+    contentDescription: String? = null,
+    @DrawableRes icon: Int,
+) {
+    BRBXIcon(
+        modifier = modifier,
+        tint = tint,
+        contentDescription = contentDescription,
+        painter = painterResource(id = icon)
     )
 }
 
