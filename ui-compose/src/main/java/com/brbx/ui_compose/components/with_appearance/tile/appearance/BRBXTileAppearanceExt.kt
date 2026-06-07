@@ -1,4 +1,4 @@
-package com.brbx.ui_compose.components.tile.appearance
+package com.brbx.ui_compose.components.with_appearance.tile.appearance
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -10,7 +10,12 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
-import com.brbx.ui_compose.theme.BRBXTheme
+import com.brbx.ui_compose.components.with_appearance.annotations.UnsafeAppearanceCopy
+import com.brbx.ui_compose.theme.bDimens
+import com.brbx.ui_compose.theme.bElevation
+import com.brbx.ui_compose.theme.bShapes
+import com.brbx.ui_compose.theme.mColors
+import com.brbx.ui_compose.theme.mTypography
 
 /**
  * Creates a new instance of [BRBXTileAppearance] with the provided properties.
@@ -18,40 +23,40 @@ import com.brbx.ui_compose.theme.BRBXTheme
  * inline factory function, it provides a clean way to override default values
  * defined by the application theme.
  */
-inline fun BRBXTileAppearance(
+internal inline fun BRBXTileAppearance(
     // Container
-    crossinline containerShape: @Composable () -> Shape = { BRBXTheme.shapes.dp12 },
-    crossinline containerBrush: @Composable () -> Brush = { SolidColor(BRBXTheme.colorScheme.surface) },
-    crossinline containerContentPadding: @Composable () -> Dp = { BRBXTheme.dimens.dp16 },
-    crossinline elevation: @Composable () -> Dp = { BRBXTheme.elevation.dp0 },
-    crossinline elevationAmbientColor: @Composable () -> Color = { remember { Color.Transparent } },
-    crossinline elevationSpotColor: @Composable () -> Color = { remember { Color.Transparent } },
-    crossinline rippleColor: @Composable () -> Color = { BRBXTheme.colorScheme.onSurface },
+    crossinline containerShape: @Composable () -> Shape = { bShapes.dp12 },
+    crossinline containerBrush: @Composable () -> Brush = { SolidColor(mColors.surface) },
+    crossinline containerContentPadding: @Composable () -> Dp = { bDimens.dp16 },
+    crossinline containerElevation: @Composable () -> Dp = { bElevation.dp0 },
+    crossinline containerElevationAmbientColor: @Composable () -> Color = { remember { Color.Transparent } },
+    crossinline containerElevationSpotColor: @Composable () -> Color = { remember { Color.Transparent } },
+    crossinline containerRippleColor: @Composable () -> Color = { mColors.onSurface },
 
     // Layout & Spacing
-    crossinline horizontalSpacing: @Composable () -> Dp = { BRBXTheme.dimens.dp16 },
-    crossinline verticalSpacing: @Composable () -> Dp = { BRBXTheme.dimens.dp2 },
-    crossinline contentColumnSpacing: @Composable () -> Dp = { BRBXTheme.dimens.dp12 },
+    crossinline horizontalSpacing: @Composable () -> Dp = { bDimens.dp16 },
+    crossinline verticalSpacing: @Composable () -> Dp = { bDimens.dp2 },
+    crossinline contentColumnSpacing: @Composable () -> Dp = { bDimens.dp12 },
 
     // Icon
-    crossinline iconSize: @Composable () -> Dp = { BRBXTheme.dimens.dp24 },
-    crossinline iconShape: @Composable () -> Shape = { BRBXTheme.shapes.circle },
-    crossinline iconBrush: @Composable () -> Brush = { SolidColor(BRBXTheme.colorScheme.primary) },
-    crossinline iconTint: @Composable () -> Color = { BRBXTheme.colorScheme.onPrimary },
-    crossinline iconPadding: @Composable () -> Dp = { BRBXTheme.dimens.dp8 },
+    crossinline iconSize: @Composable () -> Dp = { bDimens.dp24 },
+    crossinline iconShape: @Composable () -> Shape = { bShapes.circle },
+    crossinline iconBrush: @Composable () -> Brush = { SolidColor(mColors.primary) },
+    crossinline iconTint: @Composable () -> Color = { mColors.onPrimary },
+    crossinline iconPadding: @Composable () -> Dp = { bDimens.dp8 },
 
     // Typography
     crossinline titleStyle: @Composable () -> TextStyle = {
-        BRBXTheme.typography.bodyMedium.copy(
-            color = BRBXTheme.colorScheme.onSurface,
+        mTypography.bodyMedium.copy(
+            color = mColors.onSurface,
             fontWeight = FontWeight.W600,
         )
     },
     crossinline titleMaxLines: @Composable () -> Int = { remember { 1 } },
     crossinline titleOverflow: @Composable () -> TextOverflow = { remember { TextOverflow.Ellipsis } },
     crossinline descriptionStyle: @Composable () -> TextStyle = {
-        BRBXTheme.typography.labelMedium.copy(
-            color = BRBXTheme.colorScheme.secondary,
+        mTypography.labelMedium.copy(
+            color = mColors.secondary,
         )
     },
     crossinline descriptionMaxLines: @Composable () -> Int = { remember { 2 } },
@@ -62,10 +67,10 @@ inline fun BRBXTileAppearance(
     @Composable override fun containerShape(): Shape = containerShape()
     @Composable override fun containerBrush(): Brush = containerBrush()
     @Composable override fun containerContentPadding(): Dp = containerContentPadding()
-    @Composable override fun elevation(): Dp = elevation()
-    @Composable override fun elevationAmbientColor(): Color = elevationAmbientColor()
-    @Composable override fun elevationSpotColor(): Color = elevationSpotColor()
-    @Composable override fun rippleColor(): Color = rippleColor()
+    @Composable override fun containerElevation(): Dp = containerElevation()
+    @Composable override fun containerElevationAmbientColor(): Color = containerElevationAmbientColor()
+    @Composable override fun containerElevationSpotColor(): Color = containerElevationSpotColor()
+    @Composable override fun containerRippleColor(): Color = containerRippleColor()
 
     // Layout & Spacing
     @Composable override fun horizontalSpacing(): Dp = horizontalSpacing()
@@ -95,15 +100,16 @@ inline fun BRBXTileAppearance(
  * every call, so it should be used carefully within recomposition loops.
  * * Better use [rememberCopy] instead
  */
+@UnsafeAppearanceCopy
 inline fun BRBXTileAppearance.copy(
     // Container
     crossinline containerShape: @Composable () -> Shape = { this.containerShape() },
     crossinline containerBrush: @Composable () -> Brush = { this.containerBrush() },
     crossinline containerContentPadding: @Composable () -> Dp = { this.containerContentPadding() },
-    crossinline elevation: @Composable () -> Dp = { this.elevation() },
-    crossinline elevationAmbientColor: @Composable () -> Color = { this.elevationAmbientColor() },
-    crossinline elevationSpotColor: @Composable () -> Color = { this.elevationSpotColor() },
-    crossinline rippleColor: @Composable () -> Color = { this.rippleColor() },
+    crossinline containerElevation: @Composable () -> Dp = { this.containerElevation() },
+    crossinline containerElevationAmbientColor: @Composable () -> Color = { this.containerElevationAmbientColor() },
+    crossinline containerElevationSpotColor: @Composable () -> Color = { this.containerElevationSpotColor() },
+    crossinline containerRippleColor: @Composable () -> Color = { this.containerRippleColor() },
 
     // Layout & Spacing
     crossinline horizontalSpacing: @Composable () -> Dp = { this.horizontalSpacing() },
@@ -130,10 +136,10 @@ inline fun BRBXTileAppearance.copy(
     @Composable override fun containerShape(): Shape = containerShape()
     @Composable override fun containerBrush(): Brush = containerBrush()
     @Composable override fun containerContentPadding(): Dp = containerContentPadding()
-    @Composable override fun elevation(): Dp = elevation()
-    @Composable override fun elevationAmbientColor(): Color = elevationAmbientColor()
-    @Composable override fun elevationSpotColor(): Color = elevationSpotColor()
-    @Composable override fun rippleColor(): Color = rippleColor()
+    @Composable override fun containerElevation(): Dp = containerElevation()
+    @Composable override fun containerElevationAmbientColor(): Color = containerElevationAmbientColor()
+    @Composable override fun containerElevationSpotColor(): Color = containerElevationSpotColor()
+    @Composable override fun containerRippleColor(): Color = containerRippleColor()
 
     // Layout & Spacing
     @Composable override fun horizontalSpacing(): Dp = horizontalSpacing()
@@ -153,7 +159,7 @@ inline fun BRBXTileAppearance.copy(
     @Composable override fun titleOverflow(): TextOverflow = titleOverflow()
     @Composable override fun descriptionStyle(): TextStyle = descriptionStyle()
     @Composable override fun descriptionMaxLines(): Int = descriptionMaxLines()
-    @Composable override fun descriptionOverflow(): TextOverflow = titleOverflow()
+    @Composable override fun descriptionOverflow(): TextOverflow = descriptionOverflow()
 }
 
 /**
@@ -174,7 +180,10 @@ inline fun BRBXTileAppearance.rememberCopy(
     crossinline containerShape: @Composable () -> Shape = { this.containerShape() },
     crossinline containerBrush: @Composable () -> Brush = { this.containerBrush() },
     crossinline containerContentPadding: @Composable () -> Dp = { this.containerContentPadding() },
-    crossinline rippleColor: @Composable () -> Color = { this.rippleColor() },
+    crossinline containerElevation: @Composable () -> Dp = { this.containerElevation() },
+    crossinline containerElevationAmbientColor: @Composable () -> Color = { this.containerElevationAmbientColor() },
+    crossinline containerElevationSpotColor: @Composable () -> Color = { this.containerElevationSpotColor() },
+    crossinline containerRippleColor: @Composable () -> Color = { this.containerRippleColor() },
 
     // Layout & Spacing
     crossinline horizontalSpacing: @Composable () -> Dp = { this.horizontalSpacing() },
@@ -201,7 +210,10 @@ inline fun BRBXTileAppearance.rememberCopy(
             containerShape = containerShape,
             containerBrush = containerBrush,
             containerContentPadding = containerContentPadding,
-            rippleColor = rippleColor,
+            containerElevation = containerElevation,
+            containerElevationAmbientColor = containerElevationAmbientColor,
+            containerElevationSpotColor = containerElevationSpotColor,
+            containerRippleColor = containerRippleColor,
             horizontalSpacing = horizontalSpacing,
             verticalSpacing = verticalSpacing,
             contentColumnSpacing = contentColumnSpacing,

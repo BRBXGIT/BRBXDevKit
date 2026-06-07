@@ -1,4 +1,4 @@
-package com.brbx.ui_compose.components.tile
+package com.brbx.ui_compose.components.with_appearance.tile
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -23,9 +23,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.brbx.ui_compose.common.BRBXIcon
 import com.brbx.ui_compose.common.toBRBXIcon
 import com.brbx.ui_compose.components.image.BRBXIcon
-import com.brbx.ui_compose.components.precollection.BRBXPrecollection
-import com.brbx.ui_compose.components.tile.appearance.BRBXTileAppearance
-import com.brbx.ui_compose.components.tile.appearance.BRBXTileAppearances
+import com.brbx.ui_compose.components.with_appearance.precollection.BRBXPrecollection
+import com.brbx.ui_compose.components.with_appearance.tile.appearance.BRBXTileAppearance
+import com.brbx.ui_compose.components.with_appearance.tile.appearance.BRBXTileAppearances
 import com.brbx.ui_compose.containers.image.BRBXIconContainer
 import com.brbx.ui_compose.theme.BRBXTheme
 import com.brbx.ui_compose.theme.bDimens
@@ -54,35 +54,35 @@ fun BRBXTile(
     title: String,
     description: String,
     appearance: BRBXTileAppearance,
-    onClick: () -> Unit,
     modifier: Modifier = Modifier,
+    onClick: () -> Unit = {},
     additionalContent: @Composable () -> Unit = {},
 ) {
     val interactionSource = remember { MutableInteractionSource() }
 
     Box(
         modifier = modifier
-            .padding(vertical = appearance.elevation() * 2)
+            .padding(vertical = appearance.containerElevation() * 2)
             .shadow(
-                elevation = appearance.elevation(),
-                ambientColor = appearance.elevationAmbientColor(),
-                spotColor = appearance.elevationSpotColor(),
+                elevation = appearance.containerElevation(),
+                ambientColor = appearance.containerElevationAmbientColor(),
+                spotColor = appearance.containerElevationSpotColor(),
                 shape = appearance.containerShape(),
                 clip = false,
             )
-            .clip(appearance.containerShape())
-            .background(appearance.containerBrush())
+            .clip(shape = appearance.containerShape())
+            .background(brush = appearance.containerBrush())
             .clickable(
                 interactionSource = interactionSource,
-                indication = ripple(color = appearance.rippleColor()),
-                onClick = onClick
+                indication = ripple(color = appearance.containerRippleColor()),
+                onClick = onClick,
             ),
         contentAlignment = Alignment.Center
     ) {
         Column(
             verticalArrangement = Arrangement.spacedBy(appearance.contentColumnSpacing()),
             modifier = Modifier
-                .padding(appearance.containerContentPadding())
+                .padding(all = appearance.containerContentPadding())
         ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
@@ -125,7 +125,7 @@ fun BRBXTile(
     }
 }
 
-@Preview(showSystemUi = true)
+@Preview
 @Composable
 private fun BRBXTileAppearancePreview() {
     BRBXTheme(colorScheme = lightColorScheme()) {
@@ -140,7 +140,7 @@ private fun BRBXTileAppearancePreview() {
             onClick = {},
         ) {
             BRBXPrecollection(
-                text = "Long text blablabla long text long long bla",
+                text = "Long text blablabla long text long long bla bla",
                 leadingContent = {
                     BRBXIcon(OutlineSolar.Call.CallDropped)
                 },

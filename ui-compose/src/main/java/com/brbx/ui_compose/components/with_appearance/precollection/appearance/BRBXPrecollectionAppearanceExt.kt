@@ -1,4 +1,4 @@
-package com.brbx.ui_compose.components.precollection.appearance
+package com.brbx.ui_compose.components.with_appearance.precollection.appearance
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
@@ -10,42 +10,47 @@ import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
-import com.brbx.ui_compose.components.tile.appearance.rememberCopy
-import com.brbx.ui_compose.theme.BRBXTheme
+import com.brbx.ui_compose.components.with_appearance.annotations.UnsafeAppearanceCopy
+import com.brbx.ui_compose.components.with_appearance.tile.appearance.rememberCopy
+import com.brbx.ui_compose.theme.bDimens
+import com.brbx.ui_compose.theme.bShapes
+import com.brbx.ui_compose.theme.mColors
+import com.brbx.ui_compose.theme.mTypography
 
 /**
  * Creates a new instance of [BRBXPrecollectionAppearance] with the provided properties.
  *
  * This factory provides a flexible way to define the visual configuration of the
- * [com.brbx.ui_compose.components.precollection.BRBXPrecollection] component. All parameters are composable functions, allowing
+ * [com.brbx.ui_compose.components.with_appearance.precollection.BRBXPrecollection] component. All parameters are composable functions, allowing
  * them to react to theme changes or local state updates automatically.
  */
-inline fun BRBXPrecollectionAppearance(
+internal inline fun BRBXPrecollectionAppearance(
     // Container
-    crossinline containerShape: @Composable () -> Shape = { BRBXTheme.shapes.dp12 },
+    crossinline containerShape: @Composable () -> Shape = { bShapes.dp12 },
     crossinline containerBrush: @Composable () -> Brush = {
-        SolidColor(value = BRBXTheme.colorScheme.tertiary.copy(alpha = 0.8f))
+        SolidColor(value = mColors.tertiary.copy(alpha = 0.8f))
     },
+    crossinline containerRippleColor: @Composable () -> Color = { mColors.surface },
     crossinline contentPadding: @Composable () -> PaddingValues = {
-        remember { PaddingValues(horizontal = 10.dp, vertical = 12.dp) }
+        PaddingValues(horizontal = bDimens.dp10, vertical = bDimens.dp12)
     },
 
     // Typography
     crossinline textStyle: @Composable () -> TextStyle = {
-        BRBXTheme.typography.labelLarge.copy(color = BRBXTheme.colorScheme.onTertiary)
+        mTypography.labelLarge.copy(color = mColors.onTertiary.copy(alpha = 0.8f))
     },
     crossinline textMaxLines: @Composable () -> Int = { remember { 2 } },
     crossinline textOverflow: @Composable () -> TextOverflow = { remember { TextOverflow.Ellipsis } },
-    crossinline textEndPadding: @Composable () -> Dp = { remember { 16.dp } },
+    crossinline textEndPadding: @Composable () -> Dp = { bDimens.dp16 },
 
     // Leading content
-    crossinline leadingContentColor: @Composable () -> Color = { BRBXTheme.colorScheme.onTertiary }
+    crossinline leadingContentColor: @Composable () -> Color = { mColors.onTertiary }
 ): BRBXPrecollectionAppearance = object : BRBXPrecollectionAppearance {
 
     // Container
     @Composable override fun containerShape(): Shape = containerShape()
     @Composable override fun containerBrush(): Brush = containerBrush()
+    @Composable override fun containerRippleColor(): Color = containerRippleColor()
     @Composable override fun contentPadding(): PaddingValues = contentPadding()
 
     // Typography
@@ -66,10 +71,12 @@ inline fun BRBXPrecollectionAppearance(
  * composition loops.
  * * Better use [rememberCopy] instead
  */
+@UnsafeAppearanceCopy
 inline fun BRBXPrecollectionAppearance.copy(
     // Container
     crossinline containerShape: @Composable () -> Shape = { this.containerShape() },
     crossinline containerBrush: @Composable () -> Brush = { this.containerBrush() },
+    crossinline containerRippleColor: @Composable () -> Color = { this.containerRippleColor() },
     crossinline contentPadding: @Composable () -> PaddingValues = { this.contentPadding() },
 
     // Typography
@@ -85,6 +92,7 @@ inline fun BRBXPrecollectionAppearance.copy(
     // Container
     @Composable override fun containerShape(): Shape = containerShape()
     @Composable override fun containerBrush(): Brush = containerBrush()
+    @Composable override fun containerRippleColor(): Color = containerRippleColor()
     @Composable override fun contentPadding(): PaddingValues = contentPadding()
 
     // Typography
@@ -109,6 +117,7 @@ inline fun BRBXPrecollectionAppearance.rememberCopy(
     // Container
     crossinline containerShape: @Composable () -> Shape = { this.containerShape() },
     crossinline containerBrush: @Composable () -> Brush = { this.containerBrush() },
+    crossinline containerRippleColor: @Composable () -> Color = { this.containerRippleColor() },
     crossinline contentPadding: @Composable () -> PaddingValues = { this.contentPadding() },
 
     // Typography
@@ -123,6 +132,7 @@ inline fun BRBXPrecollectionAppearance.rememberCopy(
     this.copy(
         containerShape = containerShape,
         containerBrush = containerBrush,
+        containerRippleColor = containerRippleColor,
         contentPadding = contentPadding,
         textStyle = textStyle,
         textMaxLines = textMaxLines,

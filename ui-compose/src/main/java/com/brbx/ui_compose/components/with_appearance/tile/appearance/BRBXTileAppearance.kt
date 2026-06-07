@@ -1,4 +1,4 @@
-package com.brbx.ui_compose.components.tile.appearance
+package com.brbx.ui_compose.components.with_appearance.tile.appearance
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
@@ -10,7 +10,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 
 /**
- * Defines the visual appearance and styling of the [com.brbx.ui_compose.components.tile.BRBXTile] component.
+ * Defines the visual appearance and styling of the [com.brbx.ui_compose.components.with_appearance.tile.BRBXTile] component.
  * Allows flexible configuration of the tile's dimensions, colors, paddings, and typography.
  */
 @Immutable
@@ -43,25 +43,25 @@ interface BRBXTileAppearance {
      * The elevation (depth) of the container, which controls the size and intensity of the shadow.
      */
     @Composable
-    fun elevation(): Dp
+    fun containerElevation(): Dp
 
     /**
      * The color used for the ambient shadow, which simulates diffuse, omnidirectional light.
      */
     @Composable
-    fun elevationAmbientColor(): Color
+    fun containerElevationAmbientColor(): Color
 
     /**
      * The color used for the spot shadow, which simulates light from a specific, directional source.
      */
     @Composable
-    fun elevationSpotColor(): Color
+    fun containerElevationSpotColor(): Color
 
     /**
      * The color of the ripple effect when the tile is pressed or clicked.
      */
     @Composable
-    fun rippleColor(): Color
+    fun containerRippleColor(): Color
 
     // ---------------------------------------------------------------------------
     // Layout & Spacing

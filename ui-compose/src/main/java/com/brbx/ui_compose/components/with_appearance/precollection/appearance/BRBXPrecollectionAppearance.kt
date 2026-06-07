@@ -1,4 +1,4 @@
-package com.brbx.ui_compose.components.precollection.appearance
+package com.brbx.ui_compose.components.with_appearance.precollection.appearance
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
@@ -32,6 +32,12 @@ interface BRBXPrecollectionAppearance {
      */
     @Composable
     fun containerBrush(): Brush
+
+    /**
+     * The ripple color of the container.
+     */
+    @Composable
+    fun containerRippleColor(): Color
 
     /**
      * The internal padding of the container (vertical and horizontal spacing).

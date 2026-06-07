@@ -68,12 +68,15 @@ object BRBXTheme {
         @Composable @ReadOnlyComposable get() = LocalBRBXAnimationTokens.current
 }
 
+// Material tokens
 val mColors: ColorScheme
     @Composable @ReadOnlyComposable get() = BRBXTheme.colorScheme
 val mTypography: Typography
     @Composable @ReadOnlyComposable get() = BRBXTheme.typography
 val mMotionScheme: MotionScheme
     @Composable @ReadOnlyComposable get() = BRBXTheme.motionScheme
+
+// BRBX tokens
 val bShapes: BRBXShapes
     @Composable @ReadOnlyComposable get() = BRBXTheme.shapes
 val bElevation: BRBXElevation

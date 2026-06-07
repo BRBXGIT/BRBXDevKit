@@ -14,15 +14,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.unit.Dp
-import com.brbx.ui_compose.theme.BRBXTheme
+import com.brbx.ui_compose.theme.bDimens
+import com.brbx.ui_compose.theme.bShapes
+import com.brbx.ui_compose.theme.mColors
 
 @Composable
 fun BRBXIconContainer(
     modifier: Modifier = Modifier,
-    shape: Shape = BRBXTheme.shapes.circle,
-    containerBrush: Brush = SolidColor(BRBXTheme.colorScheme.primary),
-    contentColor: Color = BRBXTheme.colorScheme.onPrimary,
-    contentPadding: Dp = BRBXTheme.dimens.dp8,
+    shape: Shape = bShapes.circle,
+    containerBrush: Brush = SolidColor(mColors.primary),
+    contentColor: Color = mColors.onPrimary,
+    contentPadding: Dp = bDimens.dp8,
     content: @Composable BoxScope.() -> Unit,
 ) {
     Box(

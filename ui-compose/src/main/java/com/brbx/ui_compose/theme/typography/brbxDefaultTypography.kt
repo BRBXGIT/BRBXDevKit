@@ -6,7 +6,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
-fun brbxDefaultTypography(fontFamily: FontFamily? = null): Typography =
+internal fun brbxDefaultTypography(fontFamily: FontFamily? = null): Typography =
     Typography(
         displayLarge = TextStyle(
             fontFamily = fontFamily,
