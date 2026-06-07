@@ -4,7 +4,7 @@ import androidx.compose.runtime.Immutable
 import androidx.compose.ui.unit.Dp
 
 @Immutable
-interface BRBXCardWidth {
+sealed interface BRBXCardWidth {
 
     @JvmInline
     value class Fixed(val value: Dp) : BRBXCardWidth

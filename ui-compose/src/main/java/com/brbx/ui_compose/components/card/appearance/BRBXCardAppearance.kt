@@ -11,46 +11,39 @@ import androidx.compose.ui.unit.dp
 import com.brbx.ui_compose.theme.BRBXTheme
 
 @Immutable
-sealed interface BRBXCardAppearance {
+sealed class BRBXCardAppearance {
 
-    val width: BRBXCardWidth
-    val height: Dp
-    val shape: Shape
-        @Composable get
-    val background: Color
-        @Composable get
-    val titleAppearance: TextStyle
-        @Composable get
-    val descriptionAppearance: TextStyle
-        @Composable get
+    abstract val width: BRBXCardWidth
+    abstract val height: Dp
+    abstract val titleMaxLines: Int
+    abstract val descriptionMaxLines: Int
 
-    val titleMaxLines: Int
-    val descriptionMaxLines: Int
+    open val shape: Shape
+        @Composable get() = BRBXTheme.shapes.dp12
+
+    open val background: Color
+        @Composable get() = BRBXTheme.colorScheme.surface
+
+    open val titleAppearance: TextStyle
+        @Composable get() = BRBXTheme.typography.bodyMedium.copy(
+            color = BRBXTheme.colorScheme.onTertiaryContainer,
+            fontWeight = FontWeight.W600,
+        )
+
+    open val descriptionAppearance: TextStyle
+        @Composable get() = BRBXTheme.typography.labelMedium.copy(
+            color = BRBXTheme.colorScheme.secondary,
+        )
 
     data class Medium(
         override val width: BRBXCardWidth.Fixed = BRBXCardWidth.Fixed(value = 150.dp),
         override val height: Dp = 270.dp,
         override val titleMaxLines: Int = 1,
         override val descriptionMaxLines: Int = 1,
-    ) : BRBXCardAppearance {
-
-        override val shape: Shape
-            @Composable get() = BRBXTheme.shapes.dp12
-        override val background: Color
-            @Composable get() = BRBXTheme.colorScheme.surface
-        override val titleAppearance: TextStyle
-            @Composable get() = BRBXTheme.typography.bodyMedium.copy(
-                color = BRBXTheme.colorScheme.onTertiaryContainer,
-                fontWeight = FontWeight.W600,
-            )
-        override val descriptionAppearance: TextStyle
-            @Composable get() = BRBXTheme.typography.labelMedium.copy(
-                color = BRBXTheme.colorScheme.secondary,
-            )
+    ) : BRBXCardAppearance() {
 
         val footerBackground: Color
             @Composable get() = BRBXTheme.colorScheme.tertiaryContainer
-
         val footerPadding: Dp
             @Composable get() = BRBXTheme.dimens.dp8
         val footerSpacedBy: Dp
@@ -62,21 +55,7 @@ sealed interface BRBXCardAppearance {
         override val height: Dp = 74.dp,
         override val titleMaxLines: Int = 1,
         override val descriptionMaxLines: Int = 2,
-    ) : BRBXCardAppearance {
-
-        override val shape: Shape
-            @Composable get() = BRBXTheme.shapes.dp12
-        override val background: Color
-            @Composable get() = BRBXTheme.colorScheme.surface
-        override val titleAppearance: TextStyle
-            @Composable get() = BRBXTheme.typography.bodyMedium.copy(
-                color = BRBXTheme.colorScheme.onTertiaryContainer,
-                fontWeight = FontWeight.W600,
-            )
-        override val descriptionAppearance: TextStyle
-            @Composable get() = BRBXTheme.typography.labelMedium.copy(
-                color = BRBXTheme.colorScheme.secondary,
-            )
+    ) : BRBXCardAppearance() {
 
         val iconBackground: Color
             @Composable get() = BRBXTheme.colorScheme.primary
@@ -90,7 +69,6 @@ sealed interface BRBXCardAppearance {
             @Composable get() = BRBXTheme.dimens.dp16
         val innerPadding: Dp
             @Composable get() = BRBXTheme.dimens.dp16
-
         val rowSpacedBy: Dp
             @Composable get() = BRBXTheme.dimens.dp16
         val columnSpacedBy: Dp

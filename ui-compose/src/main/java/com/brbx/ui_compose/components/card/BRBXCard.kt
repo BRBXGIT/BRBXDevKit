@@ -10,9 +10,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Text
-import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -22,12 +21,12 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.brbx.ui_compose.components.card.appearance.BRBXCardAppearance
+import com.brbx.ui_compose.components.card.appearance.BRBXCardWidth
 import com.brbx.ui_compose.components.image.BRBXIcon
+import com.brbx.ui_compose.components.image.BRBXIconWithBackground
 import com.brbx.ui_compose.components.image.BRBXRemoteImage
 import com.brbx.ui_compose.theme.BRBXTheme
-import com.brbx.ui_compose.theme.bDimens
 import dev.chiksmedina.solar.BoldSolar
 import dev.chiksmedina.solar.bold.Users
 import dev.chiksmedina.solar.bold.users.User
@@ -35,22 +34,28 @@ import dev.chiksmedina.solar.bold.users.User
 @Composable
 fun BRBXCard(
     modifier: Modifier = Modifier,
-    model: String?,
+    model: String? = null,
     title: String,
     description: String,
     onClick: () -> Unit,
     appearance: BRBXCardAppearance,
 ) {
+    val modifierWithSize = when (val width = appearance.width) {
+        is BRBXCardWidth.Fixed -> modifier.width(width.value)
+        is BRBXCardWidth.MaxWidth -> modifier.fillMaxWidth()
+    }
+
     when (appearance) {
         is BRBXCardAppearance.Medium -> {
             BRBXCardMedium(
-                model = model, title = title,
+                model = model,
+                title = title,
                 description = description,
                 appearance = appearance,
-                modifier = modifier
-                    .size(appearance.width.value, appearance.height)
-                    .background(color = appearance.background)
+                modifier = modifierWithSize
+                    .height(appearance.height)
                     .clip(appearance.shape)
+                    .background(color = appearance.background)
                     .clickable(onClick = onClick),
             )
         }
@@ -60,8 +65,7 @@ fun BRBXCard(
                 title = title,
                 description = description,
                 appearance = appearance,
-                modifier = modifier
-                    .fillMaxWidth()
+                modifier = modifierWithSize
                     .height(appearance.height)
                     .padding(horizontal = appearance.horizontalPadding)
                     .clip(appearance.shape)
@@ -87,21 +91,23 @@ private fun BRBXCardMedium(
         )
 
         Column(
-            verticalArrangement = Arrangement.spacedBy(bDimens.dp4),
+            verticalArrangement = Arrangement.spacedBy(appearance.footerSpacedBy),
             modifier = Modifier
                 .align(Alignment.BottomStart)
                 .fillMaxWidth()
                 .background(appearance.footerBackground)
-                .padding(bDimens.dp8)
+                .padding(appearance.footerPadding)
         ) {
             CardText(
                 text = title,
                 style = appearance.titleAppearance,
+                maxLines = appearance.titleMaxLines,
             )
 
             CardText(
                 text = description,
                 style = appearance.descriptionAppearance,
+                maxLines = appearance.descriptionMaxLines,
             )
         }
     }
@@ -121,38 +127,32 @@ private fun BRBXCardSmall(
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(bDimens.dp16),
+            horizontalArrangement = Arrangement.spacedBy(appearance.rowSpacedBy),
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(appearance.innerPadding),
         ) {
-            Box(
-                contentAlignment = Alignment.Center,
-                modifier = Modifier
-                    .background(
-                        color = appearance.iconBackground,
-                        shape = appearance.iconBackgroundShape,
-                    ),
-            ) {
-                BRBXIcon(
-                    imageVector = icon,
-                    modifier = Modifier.padding(appearance.iconPadding),
-                    tint = appearance.iconTint,
-                )
-            }
+            BRBXIconWithBackground(
+                imageVector = icon,
+                containerColor = appearance.iconBackground,
+                iconTint = appearance.iconTint,
+                iconPadding = appearance.iconPadding,
+                shape = appearance.iconBackgroundShape,
+            )
 
             Column(
-                verticalArrangement = Arrangement.spacedBy(bDimens.dp2)
+                verticalArrangement = Arrangement.spacedBy(appearance.columnSpacedBy)
             ) {
                 CardText(
                     text = title,
                     style = appearance.titleAppearance,
+                    maxLines = appearance.titleMaxLines,
                 )
 
                 CardText(
                     text = description,
                     style = appearance.descriptionAppearance,
-                    maxLines = 2,
+                    maxLines = appearance.descriptionMaxLines,
                 )
             }
         }
@@ -161,9 +161,9 @@ private fun BRBXCardSmall(
 
 @Composable
 private fun CardText(
-    maxLines: Int = 1,
     text: String,
     style: TextStyle,
+    maxLines: Int,
 ) {
     Text(
         text = text,
