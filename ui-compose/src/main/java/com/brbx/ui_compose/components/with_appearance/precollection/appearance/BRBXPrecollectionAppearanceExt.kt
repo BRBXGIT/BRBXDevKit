@@ -36,7 +36,7 @@ internal inline fun BRBXPrecollectionAppearance(
     },
 
     // Typography
-    crossinline textStyle: @Composable () -> TextStyle = {
+    crossinline textAppearance: @Composable () -> TextStyle = {
         mTypography.labelLarge.copy(color = mColors.onTertiary.copy(alpha = 0.8f))
     },
     crossinline textMaxLines: @Composable () -> Int = { remember { 2 } },
@@ -54,7 +54,7 @@ internal inline fun BRBXPrecollectionAppearance(
     @Composable override fun contentPadding(): PaddingValues = contentPadding()
 
     // Typography
-    @Composable override fun textStyle(): TextStyle = textStyle()
+    @Composable override fun textAppearance(): TextStyle = textAppearance()
     @Composable override fun textMaxLines(): Int = textMaxLines()
     @Composable override fun textOverflow(): TextOverflow = textOverflow()
     @Composable override fun textEndPadding(): Dp = textEndPadding()
@@ -80,7 +80,7 @@ inline fun BRBXPrecollectionAppearance.copy(
     crossinline contentPadding: @Composable () -> PaddingValues = { this.contentPadding() },
 
     // Typography
-    crossinline textStyle: @Composable () -> TextStyle = { this.textStyle() },
+    crossinline textAppearance: @Composable () -> TextStyle = { this.textAppearance() },
     crossinline textMaxLines: @Composable () -> Int = { this.textMaxLines() },
     crossinline textOverflow: @Composable () -> TextOverflow = { this.textOverflow() },
     crossinline textEndPadding: @Composable () -> Dp = { this.textEndPadding() },
@@ -96,7 +96,7 @@ inline fun BRBXPrecollectionAppearance.copy(
     @Composable override fun contentPadding(): PaddingValues = contentPadding()
 
     // Typography
-    @Composable override fun textStyle(): TextStyle = textStyle()
+    @Composable override fun textAppearance(): TextStyle = textAppearance()
     @Composable override fun textMaxLines(): Int = textMaxLines()
     @Composable override fun textOverflow(): TextOverflow = textOverflow()
     @Composable override fun textEndPadding(): Dp = textEndPadding()
@@ -112,6 +112,7 @@ inline fun BRBXPrecollectionAppearance.copy(
  * It caches the resulting instance, ensuring consistency and performance when
  * applying dynamic runtime changes to the appearance.
  */
+@OptIn(UnsafeAppearanceCopy::class)
 @Composable
 inline fun BRBXPrecollectionAppearance.rememberCopy(
     // Container
@@ -121,7 +122,7 @@ inline fun BRBXPrecollectionAppearance.rememberCopy(
     crossinline contentPadding: @Composable () -> PaddingValues = { this.contentPadding() },
 
     // Typography
-    crossinline textStyle: @Composable () -> TextStyle = { this.textStyle() },
+    crossinline textAppearance: @Composable () -> TextStyle = { this.textAppearance() },
     crossinline textMaxLines: @Composable () -> Int = { this.textMaxLines() },
     crossinline textOverflow: @Composable () -> TextOverflow= { this.textOverflow() },
     crossinline textEndPadding: @Composable () -> Dp = { this.textEndPadding() },
@@ -134,7 +135,7 @@ inline fun BRBXPrecollectionAppearance.rememberCopy(
         containerBrush = containerBrush,
         containerRippleColor = containerRippleColor,
         contentPadding = contentPadding,
-        textStyle = textStyle,
+        textAppearance = textAppearance,
         textMaxLines = textMaxLines,
         textOverflow = textOverflow,
         textEndPadding = textEndPadding,

@@ -26,13 +26,14 @@ import com.brbx.ui_compose.theme.BRBXTheme
 
 @Composable
 fun BRBXContentCard(
-    modifier: Modifier = Modifier,
     imageUrl: String?,
     title: String,
     description: String,
-    badgeText: String,
+    modifier: Modifier = Modifier,
+    appearance: BRBXContentCardAppearance = BRBXContentCardAppearances.default,
+    badgeText: String? = null,
+    enabled: Boolean = true,
     onClick: () -> Unit = {},
-    appearance: BRBXContentCardAppearance,
 ) {
     val interactionSource = remember { MutableInteractionSource() }
 
@@ -48,6 +49,7 @@ fun BRBXContentCard(
                 interactionSource = interactionSource,
                 indication = ripple(color = appearance.containerRippleColor()),
                 onClick = onClick,
+                enabled = enabled,
             ),
     ) {
         BRBXRemoteImage(
@@ -55,22 +57,24 @@ fun BRBXContentCard(
             modifier = Modifier.fillMaxSize(),
         )
 
-        Box(
-            contentAlignment = Alignment.Center,
-            modifier = Modifier
-                .align(alignment = appearance.badgeAlignment())
-                .padding(paddingValues = appearance.badgeContainerPadding())
-                .background(
-                    brush = appearance.badgeContainerBrush(),
-                    shape = appearance.badgeContainerShape(),
+        badgeText?.let {
+            Box(
+                contentAlignment = Alignment.Center,
+                modifier = Modifier
+                    .align(alignment = appearance.badgeAlignment())
+                    .padding(paddingValues = appearance.badgeContainerPadding())
+                    .background(
+                        brush = appearance.badgeContainerBrush(),
+                        shape = appearance.badgeContainerShape(),
+                    )
+                    .padding(paddingValues = appearance.badgePadding())
+            ) {
+                Text(
+                    text = badgeText,
+                    style = appearance.badgeTextAppearance(),
+                    textAlign = appearance.badgeTextAlign(),
                 )
-                .padding(paddingValues = appearance.badgePadding())
-        ) {
-            Text(
-                text = badgeText,
-                style = appearance.badgeTextAppearance(),
-                textAlign = appearance.badgeTextAlign(),
-            )
+            }
         }
 
         Column(

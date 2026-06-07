@@ -53,7 +53,7 @@ interface BRBXPrecollectionAppearance {
      * The text style (font, size, weight) for the component's label.
      */
     @Composable
-    fun textStyle(): TextStyle
+    fun textAppearance(): TextStyle
 
 
     /**

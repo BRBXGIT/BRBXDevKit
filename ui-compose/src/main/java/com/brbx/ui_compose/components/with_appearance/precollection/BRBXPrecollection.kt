@@ -32,6 +32,7 @@ fun BRBXPrecollection(
     text: String,
     modifier: Modifier = Modifier,
     appearance: BRBXPrecollectionAppearance = BRBXPrecollectionAppearances.tertiary,
+    enabled: Boolean = true,
     onClick: () -> Unit = {},
     leadingContent: @Composable () -> Unit = {},
 ) {
@@ -44,7 +45,8 @@ fun BRBXPrecollection(
             .clickable(
                 onClick = onClick,
                 interactionSource = interactionSource,
-                indication = ripple(color = appearance.containerRippleColor())
+                indication = ripple(color = appearance.containerRippleColor()),
+                enabled = enabled,
             )
             .padding(paddingValues = appearance.contentPadding()),
         verticalAlignment = Alignment.CenterVertically,
@@ -53,7 +55,7 @@ fun BRBXPrecollection(
         Text(
             overflow = appearance.textOverflow(),
             maxLines = appearance.textMaxLines(),
-            style = appearance.textStyle(),
+            style = appearance.textAppearance(),
             text = text,
             modifier = Modifier
                 .weight(1f, fill = false)

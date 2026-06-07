@@ -46,6 +46,7 @@ import dev.chiksmedina.solar.outline.call.CallDropped
  * @param description The secondary text content displayed below the title.
  * @param appearance The styling configuration that defines the tile's look and feel.
  * @param onClick Callback triggered when the tile is clicked.
+ * @param enabled is tile enabled for clicking.
  * @param modifier Modifier for styling or positioning the component externally.
  */
 @Composable
@@ -55,6 +56,7 @@ fun BRBXTile(
     description: String,
     appearance: BRBXTileAppearance,
     modifier: Modifier = Modifier,
+    enabled: Boolean = true,
     onClick: () -> Unit = {},
     additionalContent: @Composable () -> Unit = {},
 ) {
@@ -76,6 +78,7 @@ fun BRBXTile(
                 interactionSource = interactionSource,
                 indication = ripple(color = appearance.containerRippleColor()),
                 onClick = onClick,
+                enabled = enabled,
             ),
         contentAlignment = Alignment.Center
     ) {
@@ -106,14 +109,14 @@ fun BRBXTile(
                 ) {
                     Text(
                         text = title,
-                        style = appearance.titleStyle(),
+                        style = appearance.titleAppearance(),
                         maxLines = appearance.titleMaxLines(),
                         overflow = appearance.titleOverflow(),
                     )
 
                     Text(
                         text = description,
-                        style = appearance.descriptionStyle(),
+                        style = appearance.descriptionAppearance(),
                         maxLines = appearance.descriptionMaxLines(),
                         overflow = appearance.descriptionOverflow(),
                     )

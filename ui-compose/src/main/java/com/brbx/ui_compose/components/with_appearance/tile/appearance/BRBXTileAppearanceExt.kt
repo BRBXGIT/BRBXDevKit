@@ -26,7 +26,7 @@ import com.brbx.ui_compose.theme.mTypography
 internal inline fun BRBXTileAppearance(
     // Container
     crossinline containerShape: @Composable () -> Shape = { bShapes.dp12 },
-    crossinline containerBrush: @Composable () -> Brush = { SolidColor(mColors.surface) },
+    crossinline containerBrush: @Composable () -> Brush = { SolidColor(value = mColors.surface) },
     crossinline containerContentPadding: @Composable () -> Dp = { bDimens.dp16 },
     crossinline containerElevation: @Composable () -> Dp = { bElevation.dp0 },
     crossinline containerElevationAmbientColor: @Composable () -> Color = { remember { Color.Transparent } },
@@ -41,21 +41,21 @@ internal inline fun BRBXTileAppearance(
     // Icon
     crossinline iconSize: @Composable () -> Dp = { bDimens.dp24 },
     crossinline iconShape: @Composable () -> Shape = { bShapes.circle },
-    crossinline iconBrush: @Composable () -> Brush = { SolidColor(mColors.primary) },
+    crossinline iconBrush: @Composable () -> Brush = { SolidColor(value = mColors.primary) },
     crossinline iconTint: @Composable () -> Color = { mColors.onPrimary },
     crossinline iconPadding: @Composable () -> Dp = { bDimens.dp8 },
 
     // Typography
-    crossinline titleStyle: @Composable () -> TextStyle = {
-        mTypography.bodyMedium.copy(
+    crossinline titleAppearance: @Composable () -> TextStyle = {
+        mTypography.bodyLarge.copy(
             color = mColors.onSurface,
             fontWeight = FontWeight.W600,
         )
     },
     crossinline titleMaxLines: @Composable () -> Int = { remember { 1 } },
     crossinline titleOverflow: @Composable () -> TextOverflow = { remember { TextOverflow.Ellipsis } },
-    crossinline descriptionStyle: @Composable () -> TextStyle = {
-        mTypography.labelMedium.copy(
+    crossinline descriptionAppearance: @Composable () -> TextStyle = {
+        mTypography.bodyMedium.copy(
             color = mColors.secondary,
         )
     },
@@ -85,10 +85,10 @@ internal inline fun BRBXTileAppearance(
     @Composable override fun iconPadding(): Dp = iconPadding()
 
     // Typography
-    @Composable override fun titleStyle(): TextStyle = titleStyle()
+    @Composable override fun titleAppearance(): TextStyle = titleAppearance()
     @Composable override fun titleMaxLines(): Int = titleMaxLines()
     @Composable override fun titleOverflow(): TextOverflow = titleOverflow()
-    @Composable override fun descriptionStyle(): TextStyle = descriptionStyle()
+    @Composable override fun descriptionAppearance(): TextStyle = descriptionAppearance()
     @Composable override fun descriptionMaxLines(): Int = descriptionMaxLines()
     @Composable override fun descriptionOverflow(): TextOverflow = descriptionOverflow()
 }
@@ -124,10 +124,10 @@ inline fun BRBXTileAppearance.copy(
     crossinline iconPadding: @Composable () -> Dp = { this.iconPadding() },
 
     // Typography
-    crossinline titleStyle: @Composable () -> TextStyle = { this.titleStyle() },
+    crossinline titleAppearance: @Composable () -> TextStyle = { this.titleAppearance() },
     crossinline titleMaxLines: @Composable () -> Int = { this.titleMaxLines() },
     crossinline titleOverflow: @Composable () -> TextOverflow = { this.titleOverflow() },
-    crossinline descriptionStyle: @Composable () -> TextStyle = { this.descriptionStyle() },
+    crossinline descriptionAppearance: @Composable () -> TextStyle = { this.descriptionAppearance() },
     crossinline descriptionMaxLines: @Composable () -> Int = { this.descriptionMaxLines() },
     crossinline descriptionOverflow: @Composable () -> TextOverflow = { this.descriptionOverflow() },
 ): BRBXTileAppearance = object : BRBXTileAppearance {
@@ -154,10 +154,10 @@ inline fun BRBXTileAppearance.copy(
     @Composable override fun iconPadding(): Dp = iconPadding()
 
     // Typography
-    @Composable override fun titleStyle(): TextStyle = titleStyle()
+    @Composable override fun titleAppearance(): TextStyle = titleAppearance()
     @Composable override fun titleMaxLines(): Int = titleMaxLines()
     @Composable override fun titleOverflow(): TextOverflow = titleOverflow()
-    @Composable override fun descriptionStyle(): TextStyle = descriptionStyle()
+    @Composable override fun descriptionAppearance(): TextStyle = descriptionAppearance()
     @Composable override fun descriptionMaxLines(): Int = descriptionMaxLines()
     @Composable override fun descriptionOverflow(): TextOverflow = descriptionOverflow()
 }
@@ -174,6 +174,7 @@ inline fun BRBXTileAppearance.copy(
  * 3. **Consistency:** It is the best practice when applying dynamic runtime
  * changes to the appearance (e.g., changing colors based on interaction states).
  */
+@OptIn(UnsafeAppearanceCopy::class)
 @Composable
 inline fun BRBXTileAppearance.rememberCopy(
     // Container
@@ -198,10 +199,10 @@ inline fun BRBXTileAppearance.rememberCopy(
     crossinline iconPadding: @Composable () -> Dp = { this.iconPadding() },
 
     // Typography
-    crossinline titleStyle: @Composable () -> TextStyle = { this.titleStyle() },
+    crossinline titleAppearance: @Composable () -> TextStyle = { this.titleAppearance() },
     crossinline titleMaxLines: @Composable () -> Int = { this.titleMaxLines() },
     crossinline titleOverflow: @Composable () -> TextOverflow = { this.titleOverflow() },
-    crossinline descriptionStyle: @Composable () -> TextStyle = { this.descriptionStyle() },
+    crossinline descriptionAppearance: @Composable () -> TextStyle = { this.descriptionAppearance() },
     crossinline descriptionMaxLines: @Composable () -> Int = { this.descriptionMaxLines() },
     crossinline descriptionOverflow: @Composable () -> TextOverflow = { this.descriptionOverflow() },
 ): BRBXTileAppearance =
@@ -222,10 +223,10 @@ inline fun BRBXTileAppearance.rememberCopy(
             iconBrush = iconBrush,
             iconTint = iconTint,
             iconPadding = iconPadding,
-            titleStyle = titleStyle,
+            titleAppearance = titleAppearance,
             titleMaxLines = titleMaxLines,
             titleOverflow = titleOverflow,
-            descriptionStyle = descriptionStyle,
+            descriptionAppearance = descriptionAppearance,
             descriptionMaxLines = descriptionMaxLines,
             descriptionOverflow = descriptionOverflow,
         )

@@ -127,7 +127,7 @@ interface BRBXTileAppearance {
      * The text style (font, size, color, weight) for the tile's title.
      */
     @Composable
-    fun titleStyle(): TextStyle
+    fun titleAppearance(): TextStyle
 
     /**
      * The maximum number of lines for the title.
@@ -146,7 +146,7 @@ interface BRBXTileAppearance {
      * The text style (font, size, color, weight) for the tile's description.
      */
     @Composable
-    fun descriptionStyle(): TextStyle
+    fun descriptionAppearance(): TextStyle
 
     /**
      * The maximum number of lines for the description.

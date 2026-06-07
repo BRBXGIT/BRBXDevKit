@@ -38,7 +38,7 @@ internal inline fun BRBXContentCardAppearance(
     crossinline badgeAlignment: @Composable () -> Alignment = { remember { Alignment.TopEnd } },
     crossinline badgeContainerColor: @Composable () -> Brush = { SolidColor(mColors.primary) },
     crossinline badgeContainerPadding: @Composable () -> PaddingValues = { PaddingValues(bDimens.dp8) },
-    crossinline badgeContainerShape: @Composable () -> Shape = { bShapes.circle },
+    crossinline badgeContainerShape: @Composable () -> Shape = { bShapes.softSpikyCircle() },
     crossinline badgePadding: @Composable () -> PaddingValues = { PaddingValues(bDimens.dp8) },
 
     // Info Layout & Background
@@ -189,6 +189,7 @@ inline fun BRBXContentCardAppearance.copy(
  * 3. **Consistency:** It is the best practice when applying dynamic runtime
  * changes to the appearance (e.g., changing colors based on interaction states).
  */
+@OptIn(UnsafeAppearanceCopy::class)
 @Composable
 inline fun BRBXContentCardAppearance.rememberCopy(
     // Container & Interaction
