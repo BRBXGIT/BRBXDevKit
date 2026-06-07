@@ -24,8 +24,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.brbx.ui_compose.components.card.appearance.BRBXCardAppearance
 import com.brbx.ui_compose.components.card.appearance.BRBXCardWidth
 import com.brbx.ui_compose.components.image.BRBXIcon
-import com.brbx.ui_compose.components.image.BRBXIconWithBackground
 import com.brbx.ui_compose.components.image.BRBXRemoteImage
+import com.brbx.ui_compose.containers.BRBXIconContainer
 import com.brbx.ui_compose.theme.BRBXTheme
 import dev.chiksmedina.solar.BoldSolar
 import dev.chiksmedina.solar.bold.Users
@@ -132,13 +132,14 @@ private fun BRBXCardSmall(
                 .fillMaxWidth()
                 .padding(appearance.innerPadding),
         ) {
-            BRBXIconWithBackground(
-                imageVector = icon,
-                containerColor = appearance.iconBackground,
-                iconTint = appearance.iconTint,
-                iconPadding = appearance.iconPadding,
+            BRBXIconContainer(
                 shape = appearance.iconBackgroundShape,
-            )
+                containerColor = appearance.iconBackground,
+                contentColor = appearance.iconTint,
+                contentPadding = appearance.iconPadding,
+            ) {
+                BRBXIcon(imageVector = icon)
+            }
 
             Column(
                 verticalArrangement = Arrangement.spacedBy(appearance.columnSpacedBy)

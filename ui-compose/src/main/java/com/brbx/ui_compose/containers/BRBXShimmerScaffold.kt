@@ -1,4 +1,4 @@
-package com.brbx.ui_compose.components.shimmer
+package com.brbx.ui_compose.containers
 
 import androidx.compose.animation.Crossfade
 import androidx.compose.animation.core.tween
@@ -29,6 +29,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.brbx.ui_compose.components.shimmer.BRBXShimmerBlock
 import com.brbx.ui_compose.theme.BRBXTheme
 import com.brbx.ui_compose.theme.bAnimationTokens
 import com.brbx.ui_compose.theme.bColors
