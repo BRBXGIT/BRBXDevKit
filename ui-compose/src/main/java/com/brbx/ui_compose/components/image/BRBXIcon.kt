@@ -12,19 +12,18 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.brbx.ui_compose.common.BRBXIcon
 import com.brbx.ui_compose.theme.BRBXTheme
 import dev.chiksmedina.solar.OutlineSolar
 import dev.chiksmedina.solar.outline.Users
-import dev.chiksmedina.solar.outline.Weather
 import dev.chiksmedina.solar.outline.users.User
-import dev.chiksmedina.solar.outline.weather.Cloud
 
 @Composable
 fun BRBXIcon(
+    imageVector: ImageVector,
     modifier: Modifier = Modifier,
     tint: Color = LocalContentColor.current,
     contentDescription: String? = null,
-    imageVector: ImageVector,
 ) {
     Icon(
         modifier = modifier,
@@ -36,10 +35,10 @@ fun BRBXIcon(
 
 @Composable
 fun BRBXIcon(
+    bitmap: ImageBitmap,
     modifier: Modifier = Modifier,
     tint: Color = LocalContentColor.current,
     contentDescription: String? = null,
-    bitmap: ImageBitmap,
 ) {
     Icon(
         modifier = modifier,
@@ -51,10 +50,10 @@ fun BRBXIcon(
 
 @Composable
 fun BRBXIcon(
+    painter: Painter,
     modifier: Modifier = Modifier,
     tint: Color = LocalContentColor.current,
     contentDescription: String? = null,
-    painter: Painter,
 ) {
     Icon(
         modifier = modifier,
@@ -66,10 +65,10 @@ fun BRBXIcon(
 
 @Composable
 fun BRBXIcon(
+    @DrawableRes icon: Int,
     modifier: Modifier = Modifier,
     tint: Color = LocalContentColor.current,
     contentDescription: String? = null,
-    @DrawableRes icon: Int,
 ) {
     BRBXIcon(
         modifier = modifier,
@@ -77,6 +76,49 @@ fun BRBXIcon(
         contentDescription = contentDescription,
         painter = painterResource(id = icon)
     )
+}
+
+@Composable
+fun BRBXIcon(
+    brbxIcon: BRBXIcon,
+    modifier: Modifier = Modifier,
+    tint: Color = LocalContentColor.current,
+    contentDescription: String? = null,
+) {
+    when (brbxIcon) {
+        is BRBXIcon.Bitmap -> {
+            BRBXIcon(
+                bitmap = brbxIcon.bitmap,
+                modifier = modifier,
+                tint = tint,
+                contentDescription = contentDescription,
+            )
+        }
+        is BRBXIcon.Painter -> {
+            Icon(
+                painter = brbxIcon.painter,
+                modifier = modifier,
+                tint = tint,
+                contentDescription = contentDescription,
+            )
+        }
+        is BRBXIcon.Res -> {
+            Icon(
+                painter = painterResource(id = brbxIcon.resId),
+                modifier = modifier,
+                tint = tint,
+                contentDescription = contentDescription,
+            )
+        }
+        is BRBXIcon.Vector -> {
+            Icon(
+                imageVector = brbxIcon.imageVector,
+                modifier = modifier,
+                tint = tint,
+                contentDescription = contentDescription,
+            )
+        }
+    }
 }
 
 @Preview

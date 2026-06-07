@@ -6,6 +6,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 
 /**
@@ -18,12 +19,6 @@ interface BRBXTileAppearance {
     // ---------------------------------------------------------------------------
     // Container
     // ---------------------------------------------------------------------------
-
-    /**
-     * The fixed total height of the tile container.
-     */
-    @Composable
-    fun containerHeight(): Dp
 
     /**
      * The shape of the container's bounds (e.g., rounded corners).
@@ -84,6 +79,12 @@ interface BRBXTileAppearance {
     @Composable
     fun verticalSpacing(): Dp
 
+    /**
+     * The vertical spacing between the tile content and additional content.
+     */
+    @Composable
+    fun contentColumnSpacing(): Dp
+
     // ---------------------------------------------------------------------------
     // Icon
     // ---------------------------------------------------------------------------
@@ -136,6 +137,12 @@ interface BRBXTileAppearance {
     fun titleMaxLines(): Int
 
     /**
+     * The text overflow style.
+     */
+    @Composable
+    fun titleOverflow(): TextOverflow
+
+    /**
      * The text style (font, size, color, weight) for the tile's description.
      */
     @Composable
@@ -147,4 +154,10 @@ interface BRBXTileAppearance {
      */
     @Composable
     fun descriptionMaxLines(): Int
+
+    /**
+     * The text overflow style.
+     */
+    @Composable
+    fun descriptionOverflow(): TextOverflow
 }

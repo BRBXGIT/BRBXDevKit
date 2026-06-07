@@ -20,13 +20,13 @@ import com.brbx.ui_compose.theme.typography.brbxDefaultTypography
 
 @Composable
 fun BRBXTheme(
+    colorScheme: ColorScheme,
     typography: Typography = brbxDefaultTypography(),
     motionScheme: MotionScheme= MotionScheme.standard(),
     shapes: BRBXShapes = BRBXShapes(),
     dimens: BRBXDimens = BRBXDimens(),
     elevation: BRBXElevation = BRBXElevation(),
     animationTokens: BRBXAnimationTokens = BRBXAnimationTokens(),
-    colorScheme: ColorScheme,
     content: @Composable () -> Unit,
 ) {
     CompositionLocalProvider(

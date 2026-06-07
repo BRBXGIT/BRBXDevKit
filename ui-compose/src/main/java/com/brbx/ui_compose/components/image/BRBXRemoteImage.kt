@@ -24,13 +24,13 @@ import com.brbx.ui_compose.theme.mColors
 
 @Composable
 fun BRBXRemoteImage(
+    model: ImageRequest?,
     modifier: Modifier = Modifier,
     contentDescription: String? = null,
     filterQuality: FilterQuality = FilterQuality.Low,
     contentScale: ContentScale = ContentScale.Crop,
     onLoading: @Composable (SubcomposeAsyncImageScope.(State.Loading) -> Unit)? = null,
     onError: @Composable (SubcomposeAsyncImageScope.(State.Error) -> Unit)? = null,
-    model: ImageRequest?,
 ) {
     SubcomposeAsyncImage(
         modifier = modifier,
@@ -45,6 +45,7 @@ fun BRBXRemoteImage(
 
 @Composable
 fun BRBXRemoteImage(
+    model: String?,
     modifier: Modifier = Modifier,
     contentDescription: String? = null,
     filterQuality: FilterQuality = FilterQuality.Low,
@@ -52,7 +53,6 @@ fun BRBXRemoteImage(
     crossfadeDuration: Int = bAnimationTokens.duration300.toInt(),
     onLoading: @Composable (SubcomposeAsyncImageScope.(State.Loading) -> Unit)? = null,
     onError: @Composable (SubcomposeAsyncImageScope.(State.Error) -> Unit)? = null,
-    model: String?,
 ) {
     val context = LocalContext.current
     val imageRequest = remember(model) {

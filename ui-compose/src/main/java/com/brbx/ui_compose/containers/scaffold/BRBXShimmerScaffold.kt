@@ -38,6 +38,7 @@ import kotlinx.coroutines.delay
 
 @Composable
 fun BRBXShimmerScaffold(
+    isShimmering: Boolean,
     modifier: Modifier = Modifier,
     topBar: @Composable () -> Unit = {},
     bottomBar: @Composable () -> Unit = {},
@@ -48,7 +49,6 @@ fun BRBXShimmerScaffold(
     contentColor: Color = contentColorFor(containerColor),
     contentWindowInsets: WindowInsets = ScaffoldDefaults.contentWindowInsets,
     crossfadeDuration: Int = bAnimationTokens.duration500.toInt(),
-    isShimmering: Boolean,
     shimmerContent: @Composable (PaddingValues) -> Unit,
     content: @Composable (PaddingValues) -> Unit,
 ) {
