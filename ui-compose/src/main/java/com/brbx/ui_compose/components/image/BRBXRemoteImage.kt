@@ -20,7 +20,7 @@ import coil.request.CachePolicy
 import coil.request.ImageRequest
 import com.brbx.ui_compose.theme.BRBXTheme
 import com.brbx.ui_compose.theme.bAnimationTokens
-import com.brbx.ui_compose.theme.bColors
+import com.brbx.ui_compose.theme.mColors
 
 @Composable
 fun BRBXRemoteImage(
@@ -84,7 +84,7 @@ private fun BRBXRemoteImagePreview() {
             modifier = Modifier.size(100.dp, 100.dp),
             model = "",
             onError = {
-                Box(modifier = Modifier.fillMaxSize().background(bColors.surface))
+                Box(modifier = Modifier.fillMaxSize().background(mColors.surface))
             },
         )
     }

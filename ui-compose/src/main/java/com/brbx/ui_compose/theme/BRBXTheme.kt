@@ -9,11 +9,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
 import com.brbx.ui_compose.theme.animation_tokens.BRBXAnimationTokens
-import com.brbx.ui_compose.theme.animation_tokens.LocalAnimationTokens
+import com.brbx.ui_compose.theme.animation_tokens.LocalBRBXAnimationTokens
 import com.brbx.ui_compose.theme.dimens.BRBXDimens
-import com.brbx.ui_compose.theme.dimens.LocalDimens
+import com.brbx.ui_compose.theme.dimens.LocalBRBXDimens
+import com.brbx.ui_compose.theme.elevation.BRBXElevation
+import com.brbx.ui_compose.theme.elevation.LocalBRBXElevation
 import com.brbx.ui_compose.theme.shapes.BRBXShapes
-import com.brbx.ui_compose.theme.shapes.LocalShapes
+import com.brbx.ui_compose.theme.shapes.LocalBRBXShapes
 import com.brbx.ui_compose.theme.typography.brbxDefaultTypography
 
 @Composable
@@ -22,14 +24,16 @@ fun BRBXTheme(
     motionScheme: MotionScheme= MotionScheme.standard(),
     shapes: BRBXShapes = BRBXShapes(),
     dimens: BRBXDimens = BRBXDimens(),
+    elevation: BRBXElevation = BRBXElevation(),
     animationTokens: BRBXAnimationTokens = BRBXAnimationTokens(),
     colorScheme: ColorScheme,
     content: @Composable () -> Unit,
 ) {
     CompositionLocalProvider(
-        LocalDimens provides dimens,
-        LocalAnimationTokens provides animationTokens,
-        LocalShapes provides shapes,
+        LocalBRBXDimens provides dimens,
+        LocalBRBXAnimationTokens provides animationTokens,
+        LocalBRBXShapes provides shapes,
+        LocalBRBXElevation provides elevation,
     ) {
         MaterialTheme(
             colorScheme = colorScheme,
@@ -52,23 +56,28 @@ object BRBXTheme {
         @Composable @ReadOnlyComposable get() = LocalMaterialTheme.current.motionScheme
 
     val shapes: BRBXShapes
-        @Composable @ReadOnlyComposable get() = LocalShapes.current
+        @Composable @ReadOnlyComposable get() = LocalBRBXShapes.current
+
+    val elevation: BRBXElevation
+        @Composable @ReadOnlyComposable get() = LocalBRBXElevation.current
 
     val dimens: BRBXDimens
-        @Composable @ReadOnlyComposable get() = LocalDimens.current
+        @Composable @ReadOnlyComposable get() = LocalBRBXDimens.current
 
     val animationTokens: BRBXAnimationTokens
-        @Composable @ReadOnlyComposable get() = LocalAnimationTokens.current
+        @Composable @ReadOnlyComposable get() = LocalBRBXAnimationTokens.current
 }
 
-val bColors: ColorScheme
+val mColors: ColorScheme
     @Composable @ReadOnlyComposable get() = BRBXTheme.colorScheme
-val bTypography: Typography
+val mTypography: Typography
     @Composable @ReadOnlyComposable get() = BRBXTheme.typography
-val bMotionScheme: MotionScheme
+val mMotionScheme: MotionScheme
     @Composable @ReadOnlyComposable get() = BRBXTheme.motionScheme
 val bShapes: BRBXShapes
     @Composable @ReadOnlyComposable get() = BRBXTheme.shapes
+val bElevation: BRBXElevation
+    @Composable @ReadOnlyComposable get() = BRBXTheme.elevation
 val bDimens: BRBXDimens
     @Composable @ReadOnlyComposable get() = BRBXTheme.dimens
 val bAnimationTokens: BRBXAnimationTokens

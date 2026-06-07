@@ -20,9 +20,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.brbx.ui_compose.theme.BRBXTheme
-import com.brbx.ui_compose.theme.bColors
+import com.brbx.ui_compose.theme.bAnimationTokens
+import com.brbx.ui_compose.theme.mColors
 
-private const val DefaultShimmerDurationMillis = 750
 private const val DefaultShimmerInitialValue = 0.6f
 private const val DefaultShimmerTargetValue = 1.0f
 
@@ -31,11 +31,11 @@ fun BRBXShimmerBlock(
     modifier: Modifier = Modifier,
     initialValue: Float = DefaultShimmerInitialValue,
     targetValue: Float = DefaultShimmerTargetValue,
-    durationMillis: Int = DefaultShimmerDurationMillis,
+    durationMillis: Int = bAnimationTokens.duration700.toInt(),
     repeatMode: RepeatMode = RepeatMode.Reverse,
     easing: Easing = FastOutSlowInEasing,
     initialStartOffset: StartOffset = StartOffset(0),
-    baseColor: Color = bColors.surfaceContainer.copy(alpha = initialValue),
+    baseColor: Color = mColors.surfaceContainer.copy(alpha = initialValue),
     content: @Composable BoxScope.() -> Unit = {},
 ) {
     val infiniteTransition = rememberInfiniteTransition(label = "pulse")

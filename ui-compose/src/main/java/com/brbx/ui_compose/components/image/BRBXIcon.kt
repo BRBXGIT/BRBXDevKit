@@ -14,7 +14,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.brbx.ui_compose.theme.BRBXTheme
 import dev.chiksmedina.solar.OutlineSolar
+import dev.chiksmedina.solar.outline.Users
 import dev.chiksmedina.solar.outline.Weather
+import dev.chiksmedina.solar.outline.users.User
 import dev.chiksmedina.solar.outline.weather.Cloud
 
 @Composable
@@ -81,6 +83,6 @@ fun BRBXIcon(
 @Composable
 private fun BRBXIconPreview() {
     BRBXTheme(colorScheme = lightColorScheme()) {
-        BRBXIcon(imageVector = OutlineSolar.Weather.Cloud)
+        BRBXIcon(imageVector = OutlineSolar.Users.User)
     }
 }

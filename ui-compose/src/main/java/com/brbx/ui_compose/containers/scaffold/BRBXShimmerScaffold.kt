@@ -1,4 +1,4 @@
-package com.brbx.ui_compose.containers
+package com.brbx.ui_compose.containers.scaffold
 
 import androidx.compose.animation.Crossfade
 import androidx.compose.animation.core.tween
@@ -32,7 +32,7 @@ import androidx.compose.ui.unit.dp
 import com.brbx.ui_compose.components.shimmer.BRBXShimmerBlock
 import com.brbx.ui_compose.theme.BRBXTheme
 import com.brbx.ui_compose.theme.bAnimationTokens
-import com.brbx.ui_compose.theme.bColors
+import com.brbx.ui_compose.theme.mColors
 import com.brbx.ui_compose.theme.bDimens
 import kotlinx.coroutines.delay
 
@@ -93,7 +93,7 @@ private fun BRBXShimmerScaffoldPreview() {
             .padding(horizontal = bDimens.dp16)
             .clip(RoundedCornerShape(bDimens.dp20))
         BRBXShimmerScaffold(
-            containerColor = bColors.background,
+            containerColor = mColors.background,
             isShimmering = isShimmering,
             shimmerContent = {
                 Column(verticalArrangement = Arrangement.spacedBy(bDimens.dp12)) {
@@ -106,11 +106,11 @@ private fun BRBXShimmerScaffoldPreview() {
             },
             content = {
                 Column(verticalArrangement = Arrangement.spacedBy(bDimens.dp12)) {
-                    Box(modifier.background(bColors.primary))
+                    Box(modifier.background(mColors.primary))
 
-                    Box(modifier.background(bColors.primary))
+                    Box(modifier.background(mColors.primary))
 
-                    Box(modifier.background(bColors.primary))
+                    Box(modifier.background(mColors.primary))
                 }
             },
         )
