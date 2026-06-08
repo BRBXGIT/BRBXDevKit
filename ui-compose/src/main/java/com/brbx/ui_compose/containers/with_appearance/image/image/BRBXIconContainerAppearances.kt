@@ -1,4 +1,4 @@
-package com.brbx.ui_compose.containers.with_appearance.image.appearance
+package com.brbx.ui_compose.containers.with_appearance.image.image
 
 import androidx.compose.runtime.remember
 

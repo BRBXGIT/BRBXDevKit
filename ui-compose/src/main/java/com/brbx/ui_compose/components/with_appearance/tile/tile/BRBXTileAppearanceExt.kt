@@ -1,4 +1,4 @@
-package com.brbx.ui_compose.components.with_appearance.tile.appearance
+package com.brbx.ui_compose.components.with_appearance.tile.tile
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -18,7 +18,7 @@ import com.brbx.ui_compose.theme.mColors
 import com.brbx.ui_compose.theme.mTypography
 
 /**
- * Creates a new instance of [com.brbx.ui_compose.components.with_appearance.tile.appearance.BRBXTileAppearance] with the provided properties.
+ * Creates a new instance of [com.brbx.ui_compose.components.with_appearance.tile.tile.BRBXTileAppearance] with the provided properties.
  * * Use this function to initialize a base appearance configuration. Since this is an
  * inline factory function, it provides a clean way to override default values
  * defined by the application theme.

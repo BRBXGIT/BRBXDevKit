@@ -1,4 +1,4 @@
-package com.brbx.ui_compose.components.with_appearance.card.appearance
+package com.brbx.ui_compose.components.with_appearance.card.card
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
@@ -13,7 +13,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 
 /**
- * Defines the visual appearance and styling of the [com.brbx.ui_compose.components.with_appearance.card.BRBXContentCard] component.
+ * Defines the visual appearance and styling of the [BRBXContentCard] component.
  * Allows flexible configuration of the card's dimensions, colors, paddings, and typography.
  */
 @Immutable

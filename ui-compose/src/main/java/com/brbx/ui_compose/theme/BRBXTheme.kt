@@ -14,6 +14,8 @@ import com.brbx.ui_compose.theme.dimens.BRBXDimens
 import com.brbx.ui_compose.theme.dimens.LocalBRBXDimens
 import com.brbx.ui_compose.theme.elevation.BRBXElevation
 import com.brbx.ui_compose.theme.elevation.LocalBRBXElevation
+import com.brbx.ui_compose.theme.intensity_tokens.BRBXIntensityTokens
+import com.brbx.ui_compose.theme.intensity_tokens.LocalBRBXIntensityTokens
 import com.brbx.ui_compose.theme.shapes.BRBXShapes
 import com.brbx.ui_compose.theme.shapes.LocalBRBXShapes
 import com.brbx.ui_compose.theme.typography.brbxDefaultTypography
@@ -27,6 +29,7 @@ fun BRBXTheme(
     dimens: BRBXDimens = BRBXDimens(),
     elevation: BRBXElevation = BRBXElevation(),
     animationTokens: BRBXAnimationTokens = BRBXAnimationTokens(),
+    intensityTokens: BRBXIntensityTokens = BRBXIntensityTokens(),
     content: @Composable () -> Unit,
 ) {
     CompositionLocalProvider(
@@ -34,6 +37,7 @@ fun BRBXTheme(
         LocalBRBXAnimationTokens provides animationTokens,
         LocalBRBXShapes provides shapes,
         LocalBRBXElevation provides elevation,
+        LocalBRBXIntensityTokens provides intensityTokens,
     ) {
         MaterialTheme(
             colorScheme = colorScheme,
@@ -66,6 +70,9 @@ object BRBXTheme {
 
     val animationTokens: BRBXAnimationTokens
         @Composable @ReadOnlyComposable get() = LocalBRBXAnimationTokens.current
+
+    val intensityTokens: BRBXIntensityTokens
+        @Composable @ReadOnlyComposable get() = LocalBRBXIntensityTokens.current
 }
 
 // Material tokens
@@ -85,3 +92,5 @@ val bDimens: BRBXDimens
     @Composable @ReadOnlyComposable get() = BRBXTheme.dimens
 val bAnimationTokens: BRBXAnimationTokens
     @Composable @ReadOnlyComposable get() = BRBXTheme.animationTokens
+val bIntensityTokens: BRBXIntensityTokens
+    @Composable @ReadOnlyComposable get() = BRBXTheme.intensityTokens

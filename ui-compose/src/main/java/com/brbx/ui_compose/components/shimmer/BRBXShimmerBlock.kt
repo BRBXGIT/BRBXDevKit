@@ -21,10 +21,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.brbx.ui_compose.theme.BRBXTheme
 import com.brbx.ui_compose.theme.bAnimationTokens
+import com.brbx.ui_compose.theme.bIntensityTokens
 import com.brbx.ui_compose.theme.mColors
-
-private const val DefaultShimmerInitialValue = 0.6f
-private const val DefaultShimmerTargetValue = 1.0f
 
 /**
  * A reusable, animated shimmer component for the BRBX design system.
@@ -44,8 +42,8 @@ private const val DefaultShimmerTargetValue = 1.0f
 @Composable
 fun BRBXShimmerBlock(
     modifier: Modifier = Modifier,
-    initialValue: Float = DefaultShimmerInitialValue,
-    targetValue: Float = DefaultShimmerTargetValue,
+    initialValue: Float = bIntensityTokens.intensity06,
+    targetValue: Float = bIntensityTokens.intensity10,
     durationMillis: Int = bAnimationTokens.duration700.toInt(),
     repeatMode: RepeatMode = RepeatMode.Reverse,
     easing: Easing = FastOutSlowInEasing,

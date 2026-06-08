@@ -1,4 +1,4 @@
-package com.brbx.ui_compose.containers.with_appearance.image.appearance
+package com.brbx.ui_compose.containers.with_appearance.image.image
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
@@ -9,7 +9,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 
 /**
- * Defines the visual appearance and styling of the [com.brbx.ui_compose.containers.with_appearance.image.BRBXIconContainer] component.
+ * Defines the visual appearance and styling of the [BRBXIconContainer] component.
  * Allows flexible configuration of the container's shapes, brushes, paddings, alignments, and badge properties.
  */
 @Immutable

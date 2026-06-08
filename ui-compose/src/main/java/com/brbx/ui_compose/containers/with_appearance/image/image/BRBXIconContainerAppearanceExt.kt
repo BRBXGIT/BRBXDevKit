@@ -1,4 +1,4 @@
-package com.brbx.ui_compose.containers.with_appearance.image.appearance
+package com.brbx.ui_compose.containers.with_appearance.image.image
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
@@ -8,14 +8,13 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.SolidColor
-import androidx.compose.ui.unit.dp
 import com.brbx.ui_compose.common.UnsafeAppearanceCopy
 import com.brbx.ui_compose.theme.bDimens
 import com.brbx.ui_compose.theme.bShapes
 import com.brbx.ui_compose.theme.mColors
 
 /**
- * Creates a new instance of [com.brbx.ui_compose.containers.with_appearance.image.appearance.BRBXIconContainerAppearance] with the provided properties.
+ * Creates a new instance of [com.brbx.ui_compose.containers.with_appearance.image.image.BRBXIconContainerAppearance] with the provided properties.
  * * Use this function to initialize a base appearance configuration. Since this is an
  * inline factory function, it provides a clean way to override default values
  * defined by the application theme.

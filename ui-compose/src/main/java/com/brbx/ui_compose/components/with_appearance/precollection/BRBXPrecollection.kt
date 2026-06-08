@@ -19,8 +19,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import com.brbx.ui_compose.components.image.BRBXIcon
-import com.brbx.ui_compose.components.with_appearance.precollection.appearance.BRBXPrecollectionAppearance
-import com.brbx.ui_compose.components.with_appearance.precollection.appearance.BRBXPrecollectionAppearances
 import com.brbx.ui_compose.theme.BRBXTheme
 import com.brbx.ui_compose.theme.bDimens
 import dev.chiksmedina.solar.OutlineSolar

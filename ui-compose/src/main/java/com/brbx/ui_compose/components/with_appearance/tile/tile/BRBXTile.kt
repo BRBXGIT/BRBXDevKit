@@ -1,4 +1,4 @@
-package com.brbx.ui_compose.components.with_appearance.tile
+package com.brbx.ui_compose.components.with_appearance.tile.tile
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -26,11 +26,9 @@ import com.brbx.ui_compose.common.BRBXIcon
 import com.brbx.ui_compose.common.toBRBXIcon
 import com.brbx.ui_compose.components.image.BRBXIcon
 import com.brbx.ui_compose.components.with_appearance.precollection.BRBXPrecollection
-import com.brbx.ui_compose.components.with_appearance.tile.appearance.BRBXTileAppearance
-import com.brbx.ui_compose.components.with_appearance.tile.appearance.BRBXTileAppearances
-import com.brbx.ui_compose.containers.with_appearance.image.BRBXIconContainer
-import com.brbx.ui_compose.containers.with_appearance.image.appearance.BRBXIconContainerAppearance
-import com.brbx.ui_compose.containers.with_appearance.image.appearance.BRBXIconContainerAppearances
+import com.brbx.ui_compose.containers.with_appearance.image.image.BRBXIconContainer
+import com.brbx.ui_compose.containers.with_appearance.image.image.BRBXIconContainerAppearance
+import com.brbx.ui_compose.containers.with_appearance.image.image.BRBXIconContainerAppearances
 import com.brbx.ui_compose.theme.BRBXTheme
 import com.brbx.ui_compose.theme.bDimens
 import com.brbx.ui_compose.theme.mTypography

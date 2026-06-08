@@ -1,4 +1,4 @@
-package com.brbx.ui_compose.components.with_appearance.precollection.appearance
+package com.brbx.ui_compose.components.with_appearance.precollection
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
@@ -11,7 +11,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import com.brbx.ui_compose.common.UnsafeAppearanceCopy
-import com.brbx.ui_compose.components.with_appearance.tile.appearance.rememberCopy
+import com.brbx.ui_compose.components.with_appearance.tile.tile.rememberCopy
 import com.brbx.ui_compose.theme.bDimens
 import com.brbx.ui_compose.theme.bShapes
 import com.brbx.ui_compose.theme.mColors
@@ -21,7 +21,7 @@ import com.brbx.ui_compose.theme.mTypography
  * Creates a new instance of [BRBXPrecollectionAppearance] with the provided properties.
  *
  * This factory provides a flexible way to define the visual configuration of the
- * [com.brbx.ui_compose.components.with_appearance.precollection.BRBXPrecollection] component. All parameters are composable functions, allowing
+ * [BRBXPrecollection] component. All parameters are composable functions, allowing
  * them to react to theme changes or local state updates automatically.
  */
 internal inline fun BRBXPrecollectionAppearance(

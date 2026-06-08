@@ -1,4 +1,4 @@
-package com.brbx.ui_compose.components.with_appearance.tile.appearance
+package com.brbx.ui_compose.components.with_appearance.tile.tile
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
@@ -10,7 +10,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 
 /**
- * Defines the visual appearance and styling of the [com.brbx.ui_compose.components.with_appearance.tile.BRBXTile] component.
+ * Defines the visual appearance and styling of the [BRBXTile] component.
  * Allows flexible configuration of the tile's dimensions, colors, paddings, and typography.
  */
 @Immutable

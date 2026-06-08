@@ -1,11 +1,11 @@
-package com.brbx.ui_compose.components.with_appearance.precollection.appearance
+package com.brbx.ui_compose.components.with_appearance.precollection
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.SolidColor
 import com.brbx.ui_compose.theme.mColors
 
 /**
- * A collection of predefined [com.brbx.ui_compose.components.with_appearance.precollection.BRBXPrecollection] styles.
+ * A collection of predefined [BRBXPrecollection] styles.
  * * This object serves as a centralized theme repository for precollection variations.
  * Using these constants ensures design consistency across the application
  * and simplifies the implementation of common UI patterns.

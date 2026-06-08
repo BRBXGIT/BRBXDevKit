@@ -1,4 +1,4 @@
-package com.brbx.ui_compose.components.with_appearance.tile.appearance
+package com.brbx.ui_compose.components.with_appearance.tile.tile
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.Color

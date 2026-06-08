@@ -1,4 +1,4 @@
-package com.brbx.ui_compose.containers.with_appearance.image
+package com.brbx.ui_compose.containers.with_appearance.image.image
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -16,8 +16,6 @@ import androidx.compose.ui.layout.layout
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.brbx.ui_compose.components.image.BRBXIcon
-import com.brbx.ui_compose.containers.with_appearance.image.appearance.BRBXIconContainerAppearance
-import com.brbx.ui_compose.containers.with_appearance.image.appearance.BRBXIconContainerAppearances
 import com.brbx.ui_compose.theme.BRBXTheme
 import com.brbx.ui_compose.theme.mTypography
 import dev.chiksmedina.solar.BoldSolar
