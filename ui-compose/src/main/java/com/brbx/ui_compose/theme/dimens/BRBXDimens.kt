@@ -6,6 +6,7 @@ import androidx.compose.ui.unit.dp
 
 @Immutable
 data class BRBXDimens(
+    val dp0: Dp = 0.dp,
     val dp2: Dp = 2.dp,
     val dp4: Dp = 4.dp,
     val dp6: Dp = 6.dp,

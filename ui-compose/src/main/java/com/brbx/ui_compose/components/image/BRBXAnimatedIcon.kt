@@ -15,6 +15,18 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.brbx.ui_compose.R
 import com.brbx.ui_compose.theme.BRBXTheme
 
+/**
+ * A Composable component that renders an animated vector icon and manages its animation state.
+ * * This component utilizes [AnimatedImageVector] to play an animation based on the provided [atEnd] state.
+ *
+ * @param icon The resource ID of the [AnimatedImageVector].
+ * @param atEnd If true, the animation plays to the end state; otherwise, it plays to the start state.
+ * @param modifier The modifier to be applied to the layout.
+ * @param contentDescription Text used by accessibility services to describe what this icon represents.
+ * @param colorFilter An optional [ColorFilter] to apply to the icon (e.g., for tinting).
+ * @param alignment The alignment of the icon within the bounds of the composable.
+ * @param contentScale Defines how the icon should be scaled to fit its bounds.
+ */
 @Composable
 fun BRBXAnimatedIcon(
     @DrawableRes icon: Int,

@@ -3,18 +3,18 @@
 kotlin = "2.3.21"
 
 # Agp
-agp = "9.0.1"
+agp = "9.1.0"
 
 # Core
-coreKtx = "1.19.0"
+coreKtx = "1.18.0"
 
 # Lifecycle
 lifecycleRuntimeKtx = "2.10.0"
 
 # Compose
-composeBom = "2026.05.01"
+composeBom = "2026.03.00"
 activityCompose = "1.13.0"
-material3Android = "1.5.0-alpha21"
+material3Android = "1.5.0-alpha15"
 animationGraphics = "1.11.2"
 
 # Coil

@@ -124,7 +124,7 @@ interface BRBXContentCardAppearance {
      * The text style (font, size, color, weight, etc.) for the card's title.
      */
     @Composable
-    fun titleAppearance(): TextStyle
+    fun titleStyle(): TextStyle
 
     /**
      * The maximum number of lines for the title.
@@ -143,7 +143,7 @@ interface BRBXContentCardAppearance {
      * The text style (font, size, color, weight, etc.) for the card's description.
      */
     @Composable
-    fun descriptionAppearance(): TextStyle
+    fun descriptionStyle(): TextStyle
 
     /**
      * Description overflow style.
@@ -162,7 +162,7 @@ interface BRBXContentCardAppearance {
      * The text style for the badge label.
      */
     @Composable
-    fun badgeTextAppearance(): TextStyle
+    fun badgeTextStyle(): TextStyle
 
     /**
      * The maximum number of lines for the badge.

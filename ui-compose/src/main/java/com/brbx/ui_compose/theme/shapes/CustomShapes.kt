@@ -119,27 +119,6 @@ class Clover(
 }
 
 @Immutable
-class Slanted(
-    private val slant: Dp = 12.dp
-) : Shape {
-    override fun createOutline(
-        size: Size,
-        layoutDirection: LayoutDirection,
-        density: Density
-    ): Outline {
-        val slantPx = with(density) { slant.toPx() }
-        val path = Path().apply {
-            moveTo(slantPx, 0f)
-            lineTo(size.width, 0f)
-            lineTo(size.width - slantPx, size.height)
-            lineTo(0f, size.height)
-            close()
-        }
-        return Outline.Generic(path)
-    }
-}
-
-@Immutable
 class Ticket(
     private val cutoutRadius: Dp = 12.dp
 ) : Shape {

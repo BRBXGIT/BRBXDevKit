@@ -30,6 +30,8 @@ android {
 
 dependencies {
 
+    implementation(project(":ui-compose"))
+
     // Core
     implementation(libs.androidx.core.ktx)
 

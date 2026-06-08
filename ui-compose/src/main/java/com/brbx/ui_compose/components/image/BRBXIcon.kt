@@ -18,6 +18,17 @@ import dev.chiksmedina.solar.OutlineSolar
 import dev.chiksmedina.solar.outline.Users
 import dev.chiksmedina.solar.outline.users.User
 
+/**
+ * A collection of overloaded Composable functions providing a unified interface for rendering icons
+ * within the BRBX design system.
+ * * These functions abstract the underlying Compose [Icon] implementation, supporting various input
+ * types such as [ImageVector], [ImageBitmap], [Painter], resource IDs, and the custom
+ * [BRBXIcon] sealed interface.
+ */
+
+/**
+ * Renders an icon from an [ImageVector].
+ */
 @Composable
 fun BRBXIcon(
     imageVector: ImageVector,
@@ -33,6 +44,9 @@ fun BRBXIcon(
     )
 }
 
+/**
+ * Renders an icon from an [ImageBitmap].
+ */
 @Composable
 fun BRBXIcon(
     bitmap: ImageBitmap,
@@ -48,6 +62,9 @@ fun BRBXIcon(
     )
 }
 
+/**
+ * Renders an icon from a [Painter].
+ */
 @Composable
 fun BRBXIcon(
     painter: Painter,
@@ -63,6 +80,9 @@ fun BRBXIcon(
     )
 }
 
+/**
+ * Renders an icon from a drawable resource ID.
+ */
 @Composable
 fun BRBXIcon(
     @DrawableRes icon: Int,
@@ -78,6 +98,11 @@ fun BRBXIcon(
     )
 }
 
+/**
+ * Renders an icon using the [com.brbx.ui_compose.common.BRBXIcon] sealed interface.
+ * * This function delegates the rendering logic based on the specific type of [BRBXIcon] provided,
+ * ensuring a consistent API for components consuming generic icon inputs.
+ */
 @Composable
 fun BRBXIcon(
     brbxIcon: BRBXIcon,

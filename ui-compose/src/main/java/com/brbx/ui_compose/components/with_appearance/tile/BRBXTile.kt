@@ -5,6 +5,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -20,15 +21,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.sp
 import com.brbx.ui_compose.common.BRBXIcon
 import com.brbx.ui_compose.common.toBRBXIcon
 import com.brbx.ui_compose.components.image.BRBXIcon
 import com.brbx.ui_compose.components.with_appearance.precollection.BRBXPrecollection
 import com.brbx.ui_compose.components.with_appearance.tile.appearance.BRBXTileAppearance
 import com.brbx.ui_compose.components.with_appearance.tile.appearance.BRBXTileAppearances
-import com.brbx.ui_compose.containers.image.BRBXIconContainer
+import com.brbx.ui_compose.containers.with_appearance.image.BRBXIconContainer
+import com.brbx.ui_compose.containers.with_appearance.image.appearance.BRBXIconContainerAppearance
+import com.brbx.ui_compose.containers.with_appearance.image.appearance.BRBXIconContainerAppearances
 import com.brbx.ui_compose.theme.BRBXTheme
 import com.brbx.ui_compose.theme.bDimens
+import com.brbx.ui_compose.theme.mTypography
 import dev.chiksmedina.solar.BoldSolar
 import dev.chiksmedina.solar.OutlineSolar
 import dev.chiksmedina.solar.bold.Users
@@ -37,28 +42,60 @@ import dev.chiksmedina.solar.outline.Call
 import dev.chiksmedina.solar.outline.call.CallDropped
 
 /**
- * A reusable tile component displaying an icon, title, and description.
- * * It uses a [BRBXTileAppearance] interface to allow for flexible customization of its
- * visual properties, including dimensions, typography, colors, shadows, etc.
+ * A reusable, elevation-based tile component for the BRBX design system.
+ * * [BRBXTile] is designed to display a prominent icon, title, and description, with support
+ * for secondary actions via [additionalContent].
+ * * It utilizes [BRBXTileAppearance] to manage visual properties such as shadows, shapes,
+ * and spacing, ensuring a consistent elevated card aesthetic.
  *
- * @param icon The [BRBXIcon] to be displayed on the left side of the tile.
- * @param title The main text content of the tile.
- * @param description The secondary text content displayed below the title.
- * @param appearance The styling configuration that defines the tile's look and feel.
- * @param onClick Callback triggered when the tile is clicked.
- * @param enabled is tile enabled for clicking.
- * @param modifier Modifier for styling or positioning the component externally.
+ * @param icon The [BRBXIcon] to display in the tile's header.
+ * @param title The primary text headline.
+ * @param description The secondary descriptive text.
+ * @param appearance The theme configuration defining the visual styling.
+ * @param modifier The modifier to be applied to the outer container.
+ * @param enabled Whether the tile is clickable.
+ * @param onClick The callback triggered when the tile is clicked.
+ * @param additionalContent Optional content to render below the main tile info (e.g., [BRBXPrecollection]).
  */
 @Composable
 fun BRBXTile(
     icon: BRBXIcon,
     title: String,
     description: String,
-    appearance: BRBXTileAppearance,
     modifier: Modifier = Modifier,
+    appearance: BRBXTileAppearance = BRBXTileAppearances.default,
+    iconContainerAppearance: BRBXIconContainerAppearance = BRBXIconContainerAppearances.withoutBadge,
     enabled: Boolean = true,
     onClick: () -> Unit = {},
+    badgeContent: @Composable BoxScope.() -> Unit = {},
     additionalContent: @Composable () -> Unit = {},
+) {
+    BRBXTileImpl(
+        icon = icon,
+        title = title,
+        description = description,
+        appearance = appearance,
+        modifier = modifier,
+        enabled = enabled,
+        onClick = onClick,
+        iconContainerAppearance = iconContainerAppearance,
+        badgeContent = badgeContent,
+        additionalContent = additionalContent,
+    )
+}
+
+@Composable
+private fun BRBXTileImpl(
+    icon: BRBXIcon,
+    title: String,
+    description: String,
+    appearance: BRBXTileAppearance,
+    iconContainerAppearance: BRBXIconContainerAppearance,
+    modifier: Modifier,
+    enabled: Boolean,
+    onClick: () -> Unit,
+    badgeContent: @Composable BoxScope.() -> Unit,
+    additionalContent: @Composable () -> Unit,
 ) {
     val interactionSource = remember { MutableInteractionSource() }
 
@@ -93,10 +130,8 @@ fun BRBXTile(
                 modifier = Modifier.fillMaxWidth()
             ) {
                 BRBXIconContainer(
-                    shape = appearance.iconShape(),
-                    containerBrush = appearance.iconBrush(),
-                    contentColor = appearance.iconTint(),
-                    contentPadding = appearance.iconPadding(),
+                    badgeContent = badgeContent,
+                    appearance = iconContainerAppearance,
                 ) {
                     BRBXIcon(
                         brbxIcon = icon,
@@ -109,14 +144,14 @@ fun BRBXTile(
                 ) {
                     Text(
                         text = title,
-                        style = appearance.titleAppearance(),
+                        style = appearance.titleStyle(),
                         maxLines = appearance.titleMaxLines(),
                         overflow = appearance.titleOverflow(),
                     )
 
                     Text(
                         text = description,
-                        style = appearance.descriptionAppearance(),
+                        style = appearance.descriptionStyle(),
                         maxLines = appearance.descriptionMaxLines(),
                         overflow = appearance.descriptionOverflow(),
                     )
@@ -128,7 +163,7 @@ fun BRBXTile(
     }
 }
 
-@Preview
+@Preview(showSystemUi = true)
 @Composable
 private fun BRBXTileAppearancePreview() {
     BRBXTheme(colorScheme = lightColorScheme()) {
@@ -140,7 +175,16 @@ private fun BRBXTileAppearancePreview() {
             title = "Title",
             description = "Description",
             appearance = BRBXTileAppearances.elevated,
+            iconContainerAppearance = BRBXIconContainerAppearances.withBadge,
             onClick = {},
+            badgeContent = {
+                Text(
+                    text = "4",
+                    style = mTypography.labelSmall.copy(
+                        fontSize = 7.sp,
+                    )
+                )
+            }
         ) {
             BRBXPrecollection(
                 text = "Long text blablabla long text long long bla bla",

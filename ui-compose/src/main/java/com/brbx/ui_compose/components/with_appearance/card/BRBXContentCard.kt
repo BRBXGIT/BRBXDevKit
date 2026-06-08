@@ -24,6 +24,21 @@ import com.brbx.ui_compose.components.with_appearance.card.appearance.BRBXConten
 import com.brbx.ui_compose.components.image.BRBXRemoteImage
 import com.brbx.ui_compose.theme.BRBXTheme
 
+/**
+ * A reusable, highly customizable content card component for the BRBX design system.
+ * * This component displays an image, a title, a description, and an optional badge.
+ * * It supports custom appearances via the [BRBXContentCardAppearance] interface, allowing
+ * for consistent styling across different contexts.
+ *
+ * @param imageUrl The URL of the image to display.
+ * @param title The primary text content of the card.
+ * @param description The secondary text content of the card.
+ * @param modifier The modifier to be applied to the card container.
+ * @param appearance The [BRBXContentCardAppearance] configuration for the card's layout and style.
+ * @param badgeText An optional text label to display as a badge on the card.
+ * @param enabled Whether the card is clickable.
+ * @param onClick The callback triggered when the card is clicked.
+ */
 @Composable
 fun BRBXContentCard(
     imageUrl: String?,
@@ -34,6 +49,29 @@ fun BRBXContentCard(
     badgeText: String? = null,
     enabled: Boolean = true,
     onClick: () -> Unit = {},
+) {
+    BRBXContentCardImpl(
+        imageUrl = imageUrl,
+        title = title,
+        description = description,
+        modifier = modifier,
+        appearance = appearance,
+        badgeText = badgeText,
+        enabled = enabled,
+        onClick = onClick,
+    )
+}
+
+@Composable
+private fun BRBXContentCardImpl(
+    imageUrl: String?,
+    title: String,
+    description: String,
+    modifier: Modifier,
+    appearance: BRBXContentCardAppearance,
+    badgeText: String?,
+    enabled: Boolean,
+    onClick: () -> Unit,
 ) {
     val interactionSource = remember { MutableInteractionSource() }
 
@@ -71,7 +109,7 @@ fun BRBXContentCard(
             ) {
                 Text(
                     text = badgeText,
-                    style = appearance.badgeTextAppearance(),
+                    style = appearance.badgeTextStyle(),
                     textAlign = appearance.badgeTextAlign(),
                 )
             }
@@ -87,14 +125,14 @@ fun BRBXContentCard(
         ) {
             Text(
                 text = title,
-                style = appearance.titleAppearance(),
+                style = appearance.titleStyle(),
                 maxLines = appearance.titleMaxLines(),
                 overflow = appearance.titleOverflow(),
             )
 
             Text(
                 text = description,
-                style = appearance.descriptionAppearance(),
+                style = appearance.descriptionStyle(),
                 maxLines = appearance.descriptionMaxLines(),
                 overflow = appearance.descriptionOverflow(),
             )

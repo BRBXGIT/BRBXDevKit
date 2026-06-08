@@ -40,6 +40,5 @@ data class BRBXShapes(
         petals: Int = 4,
         depthPercentage: Float = 0.25f
     ): Clover = Clover(petals, depthPercentage)
-    fun slanted(slant: Dp = 12.dp): Slanted = Slanted(slant)
     fun ticket(cutoutRadius: Dp = 12.dp): Ticket = Ticket(cutoutRadius)
 }

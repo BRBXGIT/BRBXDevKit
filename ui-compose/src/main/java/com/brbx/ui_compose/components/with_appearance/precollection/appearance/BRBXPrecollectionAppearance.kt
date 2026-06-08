@@ -11,7 +11,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 
 /**
- * Defines the visual appearance and styling of the [BRBXPrecollection] component.
+ * Defines the visual appearance and styling of the [com.brbx.ui_compose.components.with_appearance.precollection.BRBXPrecollection] component.
  * Allows flexible configuration of the component's shape, colors, paddings, and typography.
  */
 @Immutable
@@ -53,7 +53,7 @@ interface BRBXPrecollectionAppearance {
      * The text style (font, size, weight) for the component's label.
      */
     @Composable
-    fun textAppearance(): TextStyle
+    fun textStyle(): TextStyle
 
 
     /**

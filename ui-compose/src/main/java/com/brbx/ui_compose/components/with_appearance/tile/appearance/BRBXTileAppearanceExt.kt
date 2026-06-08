@@ -10,7 +10,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
-import com.brbx.ui_compose.components.with_appearance.annotations.UnsafeAppearanceCopy
+import com.brbx.ui_compose.common.UnsafeAppearanceCopy
 import com.brbx.ui_compose.theme.bDimens
 import com.brbx.ui_compose.theme.bElevation
 import com.brbx.ui_compose.theme.bShapes
@@ -18,7 +18,7 @@ import com.brbx.ui_compose.theme.mColors
 import com.brbx.ui_compose.theme.mTypography
 
 /**
- * Creates a new instance of [BRBXTileAppearance] with the provided properties.
+ * Creates a new instance of [com.brbx.ui_compose.components.with_appearance.tile.appearance.BRBXTileAppearance] with the provided properties.
  * * Use this function to initialize a base appearance configuration. Since this is an
  * inline factory function, it provides a clean way to override default values
  * defined by the application theme.
@@ -26,7 +26,7 @@ import com.brbx.ui_compose.theme.mTypography
 internal inline fun BRBXTileAppearance(
     // Container
     crossinline containerShape: @Composable () -> Shape = { bShapes.dp12 },
-    crossinline containerBrush: @Composable () -> Brush = { SolidColor(value = mColors.surface) },
+    crossinline containerBrush: @Composable () -> Brush = { SolidColor(mColors.surfaceContainerHigh) },
     crossinline containerContentPadding: @Composable () -> Dp = { bDimens.dp16 },
     crossinline containerElevation: @Composable () -> Dp = { bElevation.dp0 },
     crossinline containerElevationAmbientColor: @Composable () -> Color = { remember { Color.Transparent } },
@@ -46,7 +46,7 @@ internal inline fun BRBXTileAppearance(
     crossinline iconPadding: @Composable () -> Dp = { bDimens.dp8 },
 
     // Typography
-    crossinline titleAppearance: @Composable () -> TextStyle = {
+    crossinline titleStyle: @Composable () -> TextStyle = {
         mTypography.bodyLarge.copy(
             color = mColors.onSurface,
             fontWeight = FontWeight.W600,
@@ -54,7 +54,7 @@ internal inline fun BRBXTileAppearance(
     },
     crossinline titleMaxLines: @Composable () -> Int = { remember { 1 } },
     crossinline titleOverflow: @Composable () -> TextOverflow = { remember { TextOverflow.Ellipsis } },
-    crossinline descriptionAppearance: @Composable () -> TextStyle = {
+    crossinline descriptionStyle: @Composable () -> TextStyle = {
         mTypography.bodyMedium.copy(
             color = mColors.secondary,
         )
@@ -85,10 +85,10 @@ internal inline fun BRBXTileAppearance(
     @Composable override fun iconPadding(): Dp = iconPadding()
 
     // Typography
-    @Composable override fun titleAppearance(): TextStyle = titleAppearance()
+    @Composable override fun titleStyle(): TextStyle = titleStyle()
     @Composable override fun titleMaxLines(): Int = titleMaxLines()
     @Composable override fun titleOverflow(): TextOverflow = titleOverflow()
-    @Composable override fun descriptionAppearance(): TextStyle = descriptionAppearance()
+    @Composable override fun descriptionStyle(): TextStyle = descriptionStyle()
     @Composable override fun descriptionMaxLines(): Int = descriptionMaxLines()
     @Composable override fun descriptionOverflow(): TextOverflow = descriptionOverflow()
 }
@@ -124,10 +124,10 @@ inline fun BRBXTileAppearance.copy(
     crossinline iconPadding: @Composable () -> Dp = { this.iconPadding() },
 
     // Typography
-    crossinline titleAppearance: @Composable () -> TextStyle = { this.titleAppearance() },
+    crossinline titleStyle: @Composable () -> TextStyle = { this.titleStyle() },
     crossinline titleMaxLines: @Composable () -> Int = { this.titleMaxLines() },
     crossinline titleOverflow: @Composable () -> TextOverflow = { this.titleOverflow() },
-    crossinline descriptionAppearance: @Composable () -> TextStyle = { this.descriptionAppearance() },
+    crossinline descriptionStyle: @Composable () -> TextStyle = { this.descriptionStyle() },
     crossinline descriptionMaxLines: @Composable () -> Int = { this.descriptionMaxLines() },
     crossinline descriptionOverflow: @Composable () -> TextOverflow = { this.descriptionOverflow() },
 ): BRBXTileAppearance = object : BRBXTileAppearance {
@@ -154,10 +154,10 @@ inline fun BRBXTileAppearance.copy(
     @Composable override fun iconPadding(): Dp = iconPadding()
 
     // Typography
-    @Composable override fun titleAppearance(): TextStyle = titleAppearance()
+    @Composable override fun titleStyle(): TextStyle = titleStyle()
     @Composable override fun titleMaxLines(): Int = titleMaxLines()
     @Composable override fun titleOverflow(): TextOverflow = titleOverflow()
-    @Composable override fun descriptionAppearance(): TextStyle = descriptionAppearance()
+    @Composable override fun descriptionStyle(): TextStyle = descriptionStyle()
     @Composable override fun descriptionMaxLines(): Int = descriptionMaxLines()
     @Composable override fun descriptionOverflow(): TextOverflow = descriptionOverflow()
 }
@@ -199,10 +199,10 @@ inline fun BRBXTileAppearance.rememberCopy(
     crossinline iconPadding: @Composable () -> Dp = { this.iconPadding() },
 
     // Typography
-    crossinline titleAppearance: @Composable () -> TextStyle = { this.titleAppearance() },
+    crossinline titleStyle: @Composable () -> TextStyle = { this.titleStyle() },
     crossinline titleMaxLines: @Composable () -> Int = { this.titleMaxLines() },
     crossinline titleOverflow: @Composable () -> TextOverflow = { this.titleOverflow() },
-    crossinline descriptionAppearance: @Composable () -> TextStyle = { this.descriptionAppearance() },
+    crossinline descriptionStyle: @Composable () -> TextStyle = { this.descriptionStyle() },
     crossinline descriptionMaxLines: @Composable () -> Int = { this.descriptionMaxLines() },
     crossinline descriptionOverflow: @Composable () -> TextOverflow = { this.descriptionOverflow() },
 ): BRBXTileAppearance =
@@ -223,10 +223,10 @@ inline fun BRBXTileAppearance.rememberCopy(
             iconBrush = iconBrush,
             iconTint = iconTint,
             iconPadding = iconPadding,
-            titleAppearance = titleAppearance,
+            titleStyle = titleStyle,
             titleMaxLines = titleMaxLines,
             titleOverflow = titleOverflow,
-            descriptionAppearance = descriptionAppearance,
+            descriptionStyle = descriptionStyle,
             descriptionMaxLines = descriptionMaxLines,
             descriptionOverflow = descriptionOverflow,
         )

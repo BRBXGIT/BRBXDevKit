@@ -27,6 +27,19 @@ import dev.chiksmedina.solar.OutlineSolar
 import dev.chiksmedina.solar.outline.Users
 import dev.chiksmedina.solar.outline.users.User
 
+/**
+ * A reusable, interactive pre-collection component for the BRBX design system.
+ * * This component typically serves as a list item or selection trigger, featuring
+ * a text label and customizable leading content (e.g., an icon).
+ * * It supports custom appearances via the [BRBXPrecollectionAppearance] interface.
+ *
+ * @param text The primary label text displayed in the component.
+ * @param modifier The modifier to be applied to the outer container.
+ * @param appearance The theme configuration for the component's shape, colors, and typography.
+ * @param enabled Whether the component is clickable.
+ * @param onClick The callback triggered when the component is clicked.
+ * @param leadingContent An optional Composable to render alongside the text (e.g., an icon).
+ */
 @Composable
 fun BRBXPrecollection(
     text: String,
@@ -35,6 +48,25 @@ fun BRBXPrecollection(
     enabled: Boolean = true,
     onClick: () -> Unit = {},
     leadingContent: @Composable () -> Unit = {},
+) {
+    BRBXPrecollectionImpl(
+        text = text,
+        modifier = modifier,
+        appearance = appearance,
+        enabled = enabled,
+        onClick = onClick,
+        leadingContent = leadingContent,
+    )
+}
+
+@Composable
+private fun BRBXPrecollectionImpl(
+    text: String,
+    modifier: Modifier = Modifier,
+    appearance: BRBXPrecollectionAppearance,
+    enabled: Boolean,
+    onClick: () -> Unit,
+    leadingContent: @Composable () -> Unit,
 ) {
     val interactionSource = remember { MutableInteractionSource() }
 
@@ -55,7 +87,7 @@ fun BRBXPrecollection(
         Text(
             overflow = appearance.textOverflow(),
             maxLines = appearance.textMaxLines(),
-            style = appearance.textAppearance(),
+            style = appearance.textStyle(),
             text = text,
             modifier = Modifier
                 .weight(1f, fill = false)

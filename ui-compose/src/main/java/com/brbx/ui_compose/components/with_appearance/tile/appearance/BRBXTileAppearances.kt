@@ -2,7 +2,7 @@ package com.brbx.ui_compose.components.with_appearance.tile.appearance
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.Color
-import com.brbx.ui_compose.theme.bElevation
+import com.brbx.ui_compose.theme.BRBXTheme
 
 /**
  * A collection of predefined [BRBXTileAppearance] styles.
@@ -16,7 +16,7 @@ object BRBXTileAppearances {
     val default = BRBXTileAppearance()
 
     val elevated = BRBXTileAppearance(
-        containerElevation = { bElevation.dp6 },
+        containerElevation = { BRBXTheme.elevation.dp6 },
         containerElevationAmbientColor = { Color.Black },
         containerElevationSpotColor = { Color.Black },
     )

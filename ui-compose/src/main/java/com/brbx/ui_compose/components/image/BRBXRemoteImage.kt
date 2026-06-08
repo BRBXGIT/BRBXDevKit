@@ -22,6 +22,16 @@ import com.brbx.ui_compose.theme.BRBXTheme
 import com.brbx.ui_compose.theme.bAnimationTokens
 import com.brbx.ui_compose.theme.mColors
 
+/**
+ * Renders a remote image using a pre-configured [ImageRequest].
+ * @param model The [ImageRequest] configuration.
+ * @param modifier The modifier to be applied to the layout.
+ * @param contentDescription Text used by accessibility services.
+ * @param filterQuality The [FilterQuality] for bitmap scaling.
+ * @param contentScale Defines how the image should be scaled to fit its bounds.
+ * @param onLoading Composable content to display while the image is loading.
+ * @param onError Composable content to display if the image request fails.
+ */
 @Composable
 fun BRBXRemoteImage(
     model: ImageRequest?,
@@ -43,6 +53,19 @@ fun BRBXRemoteImage(
     )
 }
 
+/**
+ * Renders a remote image from a URL [String].
+ * * This overload automatically constructs an [ImageRequest] with default
+ * caching policies (disk and memory) and a crossfade animation.
+ * @param model The image URL string.
+ * @param modifier The modifier to be applied to the layout.
+ * @param contentDescription Text used by accessibility services.
+ * @param filterQuality The [FilterQuality] for bitmap scaling.
+ * @param contentScale Defines how the image should be scaled to fit its bounds.
+ * @param crossfadeDuration The duration of the crossfade animation in milliseconds.
+ * @param onLoading Composable content to display while the image is loading.
+ * @param onError Composable content to display if the image request fails.
+ */
 @Composable
 fun BRBXRemoteImage(
     model: String?,

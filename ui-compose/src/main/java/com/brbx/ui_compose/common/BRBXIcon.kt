@@ -6,6 +6,13 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.painter.Painter as ComposePainter
 
+/**
+ * A sealed interface representing a flexible icon type for the BRBX design system.
+ *
+ * [com.brbx.ui_compose.components.image.BRBXIcon] abstracts different ways of providing icon assets to UI components,
+ * allowing for seamless usage of resource IDs, [ImageVector]s, [ImageBitmap]s,
+ * or custom [ComposePainter]s.
+ */
 @Immutable
 sealed interface BRBXIcon {
 

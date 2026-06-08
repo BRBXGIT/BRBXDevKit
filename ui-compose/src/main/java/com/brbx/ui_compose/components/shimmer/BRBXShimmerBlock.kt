@@ -26,6 +26,21 @@ import com.brbx.ui_compose.theme.mColors
 private const val DefaultShimmerInitialValue = 0.6f
 private const val DefaultShimmerTargetValue = 1.0f
 
+/**
+ * A reusable, animated shimmer component for the BRBX design system.
+ * * This component applies a pulsing alpha animation to the background of a [Box],
+ * * commonly used as a placeholder for content that is still loading.
+ *
+ * @param modifier The modifier to be applied to the container.
+ * @param initialValue The starting alpha value of the shimmer (default is 0.6f).
+ * @param targetValue The target alpha value for the pulse animation (default is 1.0f).
+ * @param durationMillis The duration of one pulse cycle.
+ * @param repeatMode The animation [RepeatMode] (e.g., [RepeatMode.Reverse] for a smooth pulse).
+ * @param easing The [Easing] curve for the animation.
+ * @param initialStartOffset The [StartOffset] to delay the beginning of the animation.
+ * @param baseColor The base color applied to the background.
+ * @param content The composable content to be displayed within the shimmer block.
+ */
 @Composable
 fun BRBXShimmerBlock(
     modifier: Modifier = Modifier,
