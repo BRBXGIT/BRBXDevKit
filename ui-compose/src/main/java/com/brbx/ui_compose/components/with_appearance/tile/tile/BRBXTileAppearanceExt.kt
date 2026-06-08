@@ -38,13 +38,6 @@ internal inline fun BRBXTileAppearance(
     crossinline verticalSpacing: @Composable () -> Dp = { bDimens.dp2 },
     crossinline contentColumnSpacing: @Composable () -> Dp = { bDimens.dp12 },
 
-    // Icon
-    crossinline iconSize: @Composable () -> Dp = { bDimens.dp24 },
-    crossinline iconShape: @Composable () -> Shape = { bShapes.circle },
-    crossinline iconBrush: @Composable () -> Brush = { SolidColor(value = mColors.primary) },
-    crossinline iconTint: @Composable () -> Color = { mColors.onPrimary },
-    crossinline iconPadding: @Composable () -> Dp = { bDimens.dp8 },
-
     // Typography
     crossinline titleStyle: @Composable () -> TextStyle = {
         mTypography.bodyLarge.copy(
@@ -74,13 +67,6 @@ internal inline fun BRBXTileAppearance(
     @Composable override fun horizontalSpacing(): Dp = horizontalSpacing()
     @Composable override fun verticalSpacing(): Dp = verticalSpacing()
     @Composable override fun contentColumnSpacing(): Dp = contentColumnSpacing()
-
-    // Icon
-    @Composable override fun iconSize(): Dp = iconSize()
-    @Composable override fun iconShape(): Shape = iconShape()
-    @Composable override fun iconBrush(): Brush = iconBrush()
-    @Composable override fun iconTint(): Color = iconTint()
-    @Composable override fun iconPadding(): Dp = iconPadding()
 
     // Typography
     @Composable override fun titleStyle(): TextStyle = titleStyle()
@@ -114,13 +100,6 @@ inline fun BRBXTileAppearance.copy(
     crossinline verticalSpacing: @Composable () -> Dp = { this.verticalSpacing() },
     crossinline contentColumnSpacing: @Composable () -> Dp = { this.contentColumnSpacing() },
 
-    // Icon
-    crossinline iconSize: @Composable () -> Dp = { this.iconSize() },
-    crossinline iconShape: @Composable () -> Shape = { this.iconShape() },
-    crossinline iconBrush: @Composable () -> Brush = { this.iconBrush() },
-    crossinline iconTint: @Composable () -> Color = { this.iconTint() },
-    crossinline iconPadding: @Composable () -> Dp = { this.iconPadding() },
-
     // Typography
     crossinline titleStyle: @Composable () -> TextStyle = { this.titleStyle() },
     crossinline titleMaxLines: @Composable () -> Int = { this.titleMaxLines() },
@@ -143,13 +122,6 @@ inline fun BRBXTileAppearance.copy(
     @Composable override fun horizontalSpacing(): Dp = horizontalSpacing()
     @Composable override fun verticalSpacing(): Dp = verticalSpacing()
     @Composable override fun contentColumnSpacing(): Dp = contentColumnSpacing()
-
-    // Icon
-    @Composable override fun iconSize(): Dp = iconSize()
-    @Composable override fun iconShape(): Shape = iconShape()
-    @Composable override fun iconBrush(): Brush = iconBrush()
-    @Composable override fun iconTint(): Color = iconTint()
-    @Composable override fun iconPadding(): Dp = iconPadding()
 
     // Typography
     @Composable override fun titleStyle(): TextStyle = titleStyle()
@@ -189,13 +161,6 @@ inline fun BRBXTileAppearance.rememberCopy(
     crossinline verticalSpacing: @Composable () -> Dp = { this.verticalSpacing() },
     crossinline contentColumnSpacing: @Composable () -> Dp = { this.contentColumnSpacing() },
 
-    // Icon
-    crossinline iconSize: @Composable () -> Dp = { this.iconSize() },
-    crossinline iconShape: @Composable () -> Shape = { this.iconShape() },
-    crossinline iconBrush: @Composable () -> Brush = { this.iconBrush() },
-    crossinline iconTint: @Composable () -> Color = { this.iconTint() },
-    crossinline iconPadding: @Composable () -> Dp = { this.iconPadding() },
-
     // Typography
     crossinline titleStyle: @Composable () -> TextStyle = { this.titleStyle() },
     crossinline titleMaxLines: @Composable () -> Int = { this.titleMaxLines() },
@@ -216,11 +181,6 @@ inline fun BRBXTileAppearance.rememberCopy(
             horizontalSpacing = horizontalSpacing,
             verticalSpacing = verticalSpacing,
             contentColumnSpacing = contentColumnSpacing,
-            iconSize = iconSize,
-            iconShape = iconShape,
-            iconBrush = iconBrush,
-            iconTint = iconTint,
-            iconPadding = iconPadding,
             titleStyle = titleStyle,
             titleMaxLines = titleMaxLines,
             titleOverflow = titleOverflow,

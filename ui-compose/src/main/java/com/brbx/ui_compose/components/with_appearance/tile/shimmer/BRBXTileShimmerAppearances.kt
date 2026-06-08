@@ -10,5 +10,6 @@ import androidx.compose.runtime.Immutable
  */
 @Immutable
 object BRBXTileShimmerAppearances {
+
     val default = BRBXTileShimmerAppearance()
 }

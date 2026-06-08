@@ -7,6 +7,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.unit.Dp
 
 /**
  * Defines the visual appearance and styling of the [BRBXIconContainer] component.
@@ -32,11 +33,21 @@ interface BRBXIconContainerAppearance {
     @Composable
     fun containerBrush(): Brush
 
+    // ---------------------------------------------------------------------------
+    // Container
+    // ---------------------------------------------------------------------------
+
     /**
      * The default color for the content (e.g., icon) hosted inside the container.
      */
     @Composable
     fun contentColor(): Color
+
+    /**
+     * The default color for icon in the container.
+     */
+    @Composable
+    fun iconSize(): Dp
 
     // ---------------------------------------------------------------------------
     // Layout & Spacing

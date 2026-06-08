@@ -8,6 +8,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.unit.Dp
 import com.brbx.ui_compose.common.UnsafeAppearanceCopy
 import com.brbx.ui_compose.theme.bDimens
 import com.brbx.ui_compose.theme.bShapes
@@ -23,7 +24,10 @@ internal inline fun BRBXIconContainerAppearance(
     // Container
     crossinline containerShape: @Composable () -> Shape = { bShapes.circle },
     crossinline containerBrush: @Composable () -> Brush = { SolidColor(mColors.primary) },
+
+    // Icon
     crossinline contentColor: @Composable () -> Color = { mColors.onPrimary },
+    crossinline iconSize: @Composable () -> Dp = { bDimens.dp24 },
 
     // Layout & Spacing
     crossinline contentAlignment: @Composable () -> Alignment = { remember { Alignment.Center } },
@@ -42,7 +46,10 @@ internal inline fun BRBXIconContainerAppearance(
     // Container
     @Composable override fun containerShape(): Shape = containerShape()
     @Composable override fun containerBrush(): Brush = containerBrush()
+
+    // Icon
     @Composable override fun contentColor(): Color = contentColor()
+    @Composable override fun iconSize(): Dp = iconSize()
 
     // Layout & Spacing
     @Composable override fun contentAlignment(): Alignment = contentAlignment()
@@ -70,7 +77,10 @@ inline fun BRBXIconContainerAppearance.copy(
     // Container
     crossinline containerShape: @Composable () -> Shape = { this.containerShape() },
     crossinline containerBrush: @Composable () -> Brush = { this.containerBrush() },
+
+    // Icon
     crossinline contentColor: @Composable () -> Color = { this.contentColor() },
+    crossinline iconSize: @Composable () -> Dp = { this.iconSize() },
 
     // Layout & Spacing
     crossinline contentAlignment: @Composable () -> Alignment = { this.contentAlignment() },
@@ -89,7 +99,10 @@ inline fun BRBXIconContainerAppearance.copy(
     // Container
     @Composable override fun containerShape(): Shape = containerShape()
     @Composable override fun containerBrush(): Brush = containerBrush()
+
+    // Icon
     @Composable override fun contentColor(): Color = contentColor()
+    @Composable override fun iconSize(): Dp = iconSize()
 
     // Layout & Spacing
     @Composable override fun contentAlignment(): Alignment = contentAlignment()
@@ -123,6 +136,9 @@ inline fun BRBXIconContainerAppearance.rememberCopy(
     // Container
     crossinline containerShape: @Composable () -> Shape = { this.containerShape() },
     crossinline containerBrush: @Composable () -> Brush = { this.containerBrush() },
+
+    // Icon
+    crossinline iconSize: @Composable () -> Dp = { this.iconSize() },
     crossinline contentColor: @Composable () -> Color = { this.contentColor() },
 
     // Layout & Spacing
@@ -142,6 +158,7 @@ inline fun BRBXIconContainerAppearance.rememberCopy(
         this.copy(
             containerShape = containerShape,
             containerBrush = containerBrush,
+            iconSize = iconSize,
             contentColor = contentColor,
             contentAlignment = contentAlignment,
             contentPadding = contentPadding,

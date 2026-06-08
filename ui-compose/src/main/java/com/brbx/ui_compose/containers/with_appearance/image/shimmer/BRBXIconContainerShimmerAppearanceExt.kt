@@ -6,8 +6,7 @@ import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.StartOffset
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.graphics.Color
 import com.brbx.ui_compose.common.UnsafeAppearanceCopy
 import com.brbx.ui_compose.theme.bAnimationTokens
 import com.brbx.ui_compose.theme.bIntensityTokens
@@ -29,7 +28,7 @@ internal inline fun BRBXIconContainerShimmerAppearance(
     crossinline initialStartOffset: @Composable () -> StartOffset = { remember { StartOffset(0) } },
 
     // Colors
-    crossinline containerBrus: @Composable () -> Brush = { SolidColor(mColors.surfaceContainerHigh) },
+    crossinline baseColor: @Composable () -> Color = { mColors.surfaceContainerHigh },
 ): BRBXIconContainerShimmerAppearance = object : BRBXIconContainerShimmerAppearance {
 
     // Animation
@@ -41,7 +40,7 @@ internal inline fun BRBXIconContainerShimmerAppearance(
     @Composable override fun initialStartOffset(): StartOffset = initialStartOffset()
 
     // Colors
-    @Composable override fun containerBrush(): Brush = containerBrus()
+    @Composable override fun baseColor(): Color = baseColor()
 }
 
 /**
@@ -62,7 +61,7 @@ inline fun BRBXIconContainerShimmerAppearance.copy(
     crossinline initialStartOffset: @Composable () -> StartOffset = { this.initialStartOffset() },
 
     // Colors
-    crossinline containerBrush: @Composable () -> Brush = { this.containerBrush() },
+    crossinline baseColor: @Composable () -> Color = { this.baseColor() },
 ): BRBXIconContainerShimmerAppearance = object : BRBXIconContainerShimmerAppearance {
     @Composable override fun initialValue(): Float = initialValue()
     @Composable override fun targetValue(): Float = targetValue()
@@ -70,7 +69,7 @@ inline fun BRBXIconContainerShimmerAppearance.copy(
     @Composable override fun repeatMode(): RepeatMode = repeatMode()
     @Composable override fun easing(): Easing = easing()
     @Composable override fun initialStartOffset(): StartOffset = initialStartOffset()
-    @Composable override fun containerBrush(): Brush = containerBrush()
+    @Composable override fun baseColor(): Color = baseColor()
 }
 
 /**
@@ -97,7 +96,7 @@ inline fun BRBXIconContainerShimmerAppearance.rememberCopy(
     crossinline initialStartOffset: @Composable () -> StartOffset = { this.initialStartOffset() },
 
     // Colors
-    crossinline containerBrush: @Composable () -> Brush = { this.containerBrush() },
+    crossinline baseColor: @Composable () -> Color = { this.baseColor() },
 ): BRBXIconContainerShimmerAppearance = remember {
     this.copy(
         initialValue = initialValue,
@@ -106,6 +105,6 @@ inline fun BRBXIconContainerShimmerAppearance.rememberCopy(
         repeatMode = repeatMode,
         easing = easing,
         initialStartOffset = initialStartOffset,
-        containerBrush = containerBrush,
+        baseColor = baseColor,
     )
 }

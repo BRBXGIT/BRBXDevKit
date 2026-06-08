@@ -5,7 +5,7 @@ import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.StartOffset
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
-import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 
 /**
  * Defines the animation parameters and visual styling of the [BRBXIconContainerShimmer] component.
@@ -55,7 +55,7 @@ interface BRBXIconContainerShimmerAppearance {
     // ---------------------------------------------------------------------------
 
     /**
-     * The background brush (solid color or gradient) of the shimmer container.
+     * The background icon shimmer color.
      */
-    @Composable fun containerBrush(): Brush
+    @Composable fun baseColor(): Color
 }

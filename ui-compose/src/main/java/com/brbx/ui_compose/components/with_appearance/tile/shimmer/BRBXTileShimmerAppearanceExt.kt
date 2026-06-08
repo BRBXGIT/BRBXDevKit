@@ -32,7 +32,6 @@ internal inline fun BRBXTileShimmerAppearance(
 
     // Colors
     crossinline containerBrush: @Composable () -> Brush = { SolidColor(mColors.surfaceContainer) },
-    crossinline iconBaseColor: @Composable () -> Color = { mColors.surfaceContainerHigh },
     crossinline titleBaseColor: @Composable () -> Color = { mColors.surfaceContainerHigh },
     crossinline descriptionBaseColor: @Composable () -> Color = { mColors.surfaceContainerHighest },
 ): BRBXTileShimmerAppearance = object : BRBXTileShimmerAppearance {
@@ -47,7 +46,6 @@ internal inline fun BRBXTileShimmerAppearance(
 
     // Colors
     @Composable override fun containerBrush(): Brush = containerBrush()
-    @Composable override fun iconBaseColor(): Color = iconBaseColor()
     @Composable override fun titleBaseColor(): Color = titleBaseColor()
     @Composable override fun descriptionBaseColor(): Color = descriptionBaseColor()
 }
@@ -71,7 +69,6 @@ inline fun BRBXTileShimmerAppearance.copy(
 
     // Colors
     crossinline containerBrush: @Composable () -> Brush = { this.containerBrush() },
-    crossinline iconBaseColor: @Composable () -> Color = { this.iconBaseColor() },
     crossinline titleBaseColor: @Composable () -> Color = { this.titleBaseColor() },
     crossinline descriptionBaseColor: @Composable () -> Color = { this.descriptionBaseColor() },
 ): BRBXTileShimmerAppearance = object : BRBXTileShimmerAppearance {
@@ -86,7 +83,6 @@ inline fun BRBXTileShimmerAppearance.copy(
 
     // Colors
     @Composable override fun containerBrush(): Brush = containerBrush()
-    @Composable override fun iconBaseColor(): Color = iconBaseColor()
     @Composable override fun titleBaseColor(): Color = titleBaseColor()
     @Composable override fun descriptionBaseColor(): Color = descriptionBaseColor()
 }
@@ -116,7 +112,6 @@ inline fun BRBXTileShimmerAppearance.rememberCopy(
 
     // Colors
     crossinline containerBrush: @Composable () -> Brush = { this.containerBrush() },
-    crossinline iconBaseColor: @Composable () -> Color = { this.iconBaseColor() },
     crossinline titleBaseColor: @Composable () -> Color = { this.titleBaseColor() },
     crossinline descriptionBaseColor: @Composable () -> Color = { this.descriptionBaseColor() },
 ): BRBXTileShimmerAppearance =
@@ -129,7 +124,6 @@ inline fun BRBXTileShimmerAppearance.rememberCopy(
             easing = easing,
             initialStartOffset = initialStartOffset,
             containerBrush = containerBrush,
-            iconBaseColor = iconBaseColor,
             titleBaseColor = titleBaseColor,
             descriptionBaseColor = descriptionBaseColor,
         )

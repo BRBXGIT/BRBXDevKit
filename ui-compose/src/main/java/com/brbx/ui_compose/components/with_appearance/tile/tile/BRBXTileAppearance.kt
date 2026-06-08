@@ -86,40 +86,6 @@ interface BRBXTileAppearance {
     fun contentColumnSpacing(): Dp
 
     // ---------------------------------------------------------------------------
-    // Icon
-    // ---------------------------------------------------------------------------
-
-    /**
-     * The overall size (width and height) of the background container for the icon.
-     */
-    @Composable
-    fun iconSize(): Dp
-
-    /**
-     * The shape of the icon's background container (e.g., circle or rounded rectangle).
-     */
-    @Composable
-    fun iconShape(): Shape
-
-    /**
-     * The background behind the icon (solid color or gradient).
-     */
-    @Composable
-    fun iconBrush(): Brush
-
-    /**
-     * The tint color of the vector image (icon) itself.
-     */
-    @Composable
-    fun iconTint(): Color
-
-    /**
-     * The internal padding from the icon's background container bounds to the vector image itself.
-     */
-    @Composable
-    fun iconPadding(): Dp
-
-    // ---------------------------------------------------------------------------
     // Typography
     // ---------------------------------------------------------------------------
 

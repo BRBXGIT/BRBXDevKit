@@ -133,7 +133,7 @@ private fun BRBXTileImpl(
                 ) {
                     BRBXIcon(
                         brbxIcon = icon,
-                        modifier = Modifier.size(appearance.iconSize()),
+                        modifier = Modifier.size(iconContainerAppearance.iconSize()),
                     )
                 }
 

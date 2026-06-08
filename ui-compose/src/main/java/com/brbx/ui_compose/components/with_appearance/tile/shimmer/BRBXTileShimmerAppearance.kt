@@ -49,12 +49,6 @@ interface BRBXTileShimmerAppearance {
     fun containerBrush(): Brush
 
     /**
-     * Base color for the shimmering icon placeholder.
-     */
-    @Composable
-    fun iconBaseColor(): Color
-
-    /**
      * Base color for the shimmering title placeholder.
      */
     @Composable
