@@ -18,12 +18,13 @@ import com.brbx.ui_compose.theme.mColors
 import com.brbx.ui_compose.theme.mTypography
 
 /**
- * Creates a new instance of [com.brbx.ui_compose.components.with_appearance.tile.tile.BRBXTileAppearance] with the provided properties.
- * * Use this function to initialize a base appearance configuration. Since this is an
+ * Creates a new instance of [com.brbx.ui_compose.components.with_appearance.tile.tile.BrbxTileAppearance] with the provided properties.
+ *
+ * Use this function to initialize a base appearance configuration. Since this is an
  * inline factory function, it provides a clean way to override default values
  * defined by the application theme.
  */
-internal inline fun BRBXTileAppearance(
+internal inline fun BrbxTileAppearance(
     // Container
     crossinline containerShape: @Composable () -> Shape = { bShapes.dp12 },
     crossinline containerBrush: @Composable () -> Brush = { SolidColor(mColors.surfaceContainer) },
@@ -52,7 +53,7 @@ internal inline fun BRBXTileAppearance(
     },
     crossinline descriptionMaxLines: @Composable () -> Int = { remember { 2 } },
     crossinline descriptionOverflow: @Composable () -> TextOverflow = { remember { TextOverflow.Ellipsis } },
-): BRBXTileAppearance = object : BRBXTileAppearance {
+): BrbxTileAppearance = object : BrbxTileAppearance {
 
     // Container
     @Composable override fun containerShape(): Shape = containerShape()
@@ -78,14 +79,15 @@ internal inline fun BRBXTileAppearance(
 }
 
 /**
- * Creates a new [BRBXTileAppearance] by copying properties from the current instance.
- * * This function is useful for creating a modified version of an existing appearance
+ * Creates a new [BrbxTileAppearance] by copying properties from the current instance.
+ *
+ * This function is useful for creating a modified version of an existing appearance
  * object without mutating the original. Note that this creates a new object on
  * every call, so it should be used carefully within recomposition loops.
- * * Better use [rememberCopy] instead
+ * Better use [rememberCopy] instead.
  */
 @UnsafeAppearanceCopy
-inline fun BRBXTileAppearance.copy(
+inline fun BrbxTileAppearance.copy(
     // Container
     crossinline containerShape: @Composable () -> Shape = { this.containerShape() },
     crossinline containerBrush: @Composable () -> Brush = { this.containerBrush() },
@@ -107,7 +109,7 @@ inline fun BRBXTileAppearance.copy(
     crossinline descriptionStyle: @Composable () -> TextStyle = { this.descriptionStyle() },
     crossinline descriptionMaxLines: @Composable () -> Int = { this.descriptionMaxLines() },
     crossinline descriptionOverflow: @Composable () -> TextOverflow = { this.descriptionOverflow() },
-): BRBXTileAppearance = object : BRBXTileAppearance {
+): BrbxTileAppearance = object : BrbxTileAppearance {
 
     // Container
     @Composable override fun containerShape(): Shape = containerShape()
@@ -133,10 +135,11 @@ inline fun BRBXTileAppearance.copy(
 }
 
 /**
- * Creates a memoized copy of the [BRBXTileAppearance] with specified overrides.
- * * **Why you should use [rememberCopy]?**
+ * Creates a memoized copy of the [BrbxTileAppearance] with specified overrides.
+ *
+ * **Why you should use [rememberCopy]?**
  * 1. **Performance:** Recomposition can happen frequently. [remember] ensures that
- * a new [BRBXTileAppearance] object is not instantiated on every frame,
+ * a new [BrbxTileAppearance] object is not instantiated on every frame,
  * preventing unnecessary object allocations.
  * 2. **Stability:** It preserves the instance across recompositions as long as
  * the inputs (parameters) remain the same, which helps Jetpack Compose skip
@@ -146,7 +149,7 @@ inline fun BRBXTileAppearance.copy(
  */
 @OptIn(UnsafeAppearanceCopy::class)
 @Composable
-inline fun BRBXTileAppearance.rememberCopy(
+inline fun BrbxTileAppearance.rememberCopy(
     // Container
     crossinline containerShape: @Composable () -> Shape = { this.containerShape() },
     crossinline containerBrush: @Composable () -> Brush = { this.containerBrush() },
@@ -168,24 +171,23 @@ inline fun BRBXTileAppearance.rememberCopy(
     crossinline descriptionStyle: @Composable () -> TextStyle = { this.descriptionStyle() },
     crossinline descriptionMaxLines: @Composable () -> Int = { this.descriptionMaxLines() },
     crossinline descriptionOverflow: @Composable () -> TextOverflow = { this.descriptionOverflow() },
-): BRBXTileAppearance =
-    remember {
-        this.copy(
-            containerShape = containerShape,
-            containerBrush = containerBrush,
-            containerContentPadding = containerContentPadding,
-            containerElevation = containerElevation,
-            containerElevationAmbientColor = containerElevationAmbientColor,
-            containerElevationSpotColor = containerElevationSpotColor,
-            containerRippleColor = containerRippleColor,
-            horizontalSpacing = horizontalSpacing,
-            verticalSpacing = verticalSpacing,
-            contentColumnSpacing = contentColumnSpacing,
-            titleStyle = titleStyle,
-            titleMaxLines = titleMaxLines,
-            titleOverflow = titleOverflow,
-            descriptionStyle = descriptionStyle,
-            descriptionMaxLines = descriptionMaxLines,
-            descriptionOverflow = descriptionOverflow,
-        )
-    }
+): BrbxTileAppearance = remember {
+    this.copy(
+        containerShape = containerShape,
+        containerBrush = containerBrush,
+        containerContentPadding = containerContentPadding,
+        containerElevation = containerElevation,
+        containerElevationAmbientColor = containerElevationAmbientColor,
+        containerElevationSpotColor = containerElevationSpotColor,
+        containerRippleColor = containerRippleColor,
+        horizontalSpacing = horizontalSpacing,
+        verticalSpacing = verticalSpacing,
+        contentColumnSpacing = contentColumnSpacing,
+        titleStyle = titleStyle,
+        titleMaxLines = titleMaxLines,
+        titleOverflow = titleOverflow,
+        descriptionStyle = descriptionStyle,
+        descriptionMaxLines = descriptionMaxLines,
+        descriptionOverflow = descriptionOverflow,
+    )
+}

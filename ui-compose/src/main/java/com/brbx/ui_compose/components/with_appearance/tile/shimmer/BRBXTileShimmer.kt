@@ -16,28 +16,28 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.brbx.ui_compose.components.shimmer.BRBXShimmerBlock
-import com.brbx.ui_compose.components.with_appearance.tile.tile.BRBXTileAppearance
-import com.brbx.ui_compose.components.with_appearance.tile.tile.BRBXTileAppearances
-import com.brbx.ui_compose.containers.with_appearance.image.image.BRBXIconContainerAppearance
-import com.brbx.ui_compose.containers.with_appearance.image.image.BRBXIconContainerAppearances
+import com.brbx.ui_compose.components.shimmer.BrbxShimmerBlock
+import com.brbx.ui_compose.components.with_appearance.tile.tile.BrbxTileAppearance
+import com.brbx.ui_compose.components.with_appearance.tile.tile.BrbxTileAppearances
+import com.brbx.ui_compose.containers.with_appearance.image.image.BrbxIconContainerAppearance
+import com.brbx.ui_compose.containers.with_appearance.image.image.BrbxIconContainerAppearances
 import com.brbx.ui_compose.containers.with_appearance.image.shimmer.BRBXIconContainerShimmer
 import com.brbx.ui_compose.containers.with_appearance.image.shimmer.BRBXIconContainerShimmerAppearance
 import com.brbx.ui_compose.containers.with_appearance.image.shimmer.BRBXIconContainerShimmerAppearances
-import com.brbx.ui_compose.theme.BRBXTheme
+import com.brbx.ui_compose.theme.BrbxTheme
 import com.brbx.ui_compose.theme.bShapes
 
 /**
  * A loading skeleton placeholder for the BRBXTile component.
- * It reuses dimensions from [BRBXTileAppearance] to ensure a perfect structural match,
+ * It reuses dimensions from [BrbxTileAppearance] to ensure a perfect structural match,
  * while applying animations and skeleton colors from [BRBXTileShimmerAppearance].
  */
 @Composable
 fun BRBXTileShimmer(
     modifier: Modifier = Modifier,
-    iconContainerAppearance: BRBXIconContainerAppearance = BRBXIconContainerAppearances.withoutBadge,
+    iconContainerAppearance: BrbxIconContainerAppearance = BrbxIconContainerAppearances.withoutBadge,
     iconContainerShimmerAppearance: BRBXIconContainerShimmerAppearance = BRBXIconContainerShimmerAppearances.default,
-    tileAppearance: BRBXTileAppearance = BRBXTileAppearances.default,
+    tileAppearance: BrbxTileAppearance = BrbxTileAppearances.default,
     tileShimmerAppearance: BRBXTileShimmerAppearance = BRBXTileShimmerAppearances.default,
 ) {
     BRBXTileShimmerImpl(
@@ -52,9 +52,9 @@ fun BRBXTileShimmer(
 @Composable
 private fun BRBXTileShimmerImpl(
     modifier: Modifier,
-    iconContainerAppearance: BRBXIconContainerAppearance,
+    iconContainerAppearance: BrbxIconContainerAppearance,
     iconContainerShimmerAppearance: BRBXIconContainerShimmerAppearance,
-    tileAppearance: BRBXTileAppearance,
+    tileAppearance: BrbxTileAppearance,
     tileShimmerAppearance: BRBXTileShimmerAppearance,
 ) {
     Box(
@@ -89,7 +89,7 @@ private fun BRBXTileShimmerImpl(
                     verticalArrangement = Arrangement.spacedBy(tileAppearance.verticalSpacing()),
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    BRBXShimmerBlock(
+                    BrbxShimmerBlock(
                         modifier = Modifier
                             .fillMaxWidth(0.6f)
                             .height(16.dp)
@@ -103,7 +103,7 @@ private fun BRBXTileShimmerImpl(
                         baseColor = tileShimmerAppearance.titleBaseColor()
                     )
 
-                    BRBXShimmerBlock(
+                    BrbxShimmerBlock(
                         modifier = Modifier
                             .fillMaxWidth(0.85f)
                             .height(12.dp)
@@ -124,8 +124,8 @@ private fun BRBXTileShimmerImpl(
 
 @Preview
 @Composable
-private fun BRBXTileShimmerPreview() {
-    BRBXTheme(darkColorScheme()) {
+private fun BrbxTileShimmerPreview() {
+    BrbxTheme(darkColorScheme()) {
         BRBXTileShimmer()
     }
 }

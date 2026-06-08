@@ -11,7 +11,7 @@ import androidx.compose.ui.graphics.Color
 /**
  * Defines the visual appearance and animation parameters for the [BRBXTileShimmer] component.
  * It strictly contains only animation tokens and colors, while layout dimensions are inherited
- * from the standard [com.brbx.ui_compose.components.with_appearance.tile.tile.BRBXTileAppearance].
+ * from the standard [com.brbx.ui_compose.components.with_appearance.tile.tile.BrbxTileAppearance].
  */
 @Immutable
 interface BRBXTileShimmerAppearance {

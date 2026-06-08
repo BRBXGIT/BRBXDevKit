@@ -8,15 +8,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
-import com.brbx.ui_compose.components.shimmer.BRBXShimmerBlock
-import com.brbx.ui_compose.containers.with_appearance.image.image.BRBXIconContainerAppearance
-import com.brbx.ui_compose.containers.with_appearance.image.image.BRBXIconContainerAppearances
-import com.brbx.ui_compose.theme.BRBXTheme
+import com.brbx.ui_compose.components.shimmer.BrbxShimmerBlock
+import com.brbx.ui_compose.containers.with_appearance.image.image.BrbxIconContainerAppearance
+import com.brbx.ui_compose.containers.with_appearance.image.image.BrbxIconContainerAppearances
+import com.brbx.ui_compose.theme.BrbxTheme
 
 /**
- * A loading skeleton placeholder for [com.brbx.ui_compose.containers.with_appearance.image.image.BRBXIconContainer].
+ * A loading skeleton placeholder for [com.brbx.ui_compose.containers.with_appearance.image.image.BrbxIconContainer].
  * * It mimics the shape and dimensions of the actual container to provide a seamless
- * loading state. The shape is defined by [BRBXIconContainerAppearance], while the
+ * loading state. The shape is defined by [BrbxIconContainerAppearance], while the
  * animation parameters and colors are configured via [BRBXIconContainerShimmerAppearance].
  *
  * @param modifier The modifier to be applied to the shimmer container.
@@ -26,7 +26,7 @@ import com.brbx.ui_compose.theme.BRBXTheme
 @Composable
 fun BRBXIconContainerShimmer(
     modifier: Modifier = Modifier,
-    iconAppearance: BRBXIconContainerAppearance = BRBXIconContainerAppearances.withoutBadge,
+    iconAppearance: BrbxIconContainerAppearance = BrbxIconContainerAppearances.withoutBadge,
     shimmerAppearance: BRBXIconContainerShimmerAppearance = BRBXIconContainerShimmerAppearances.default,
 ) {
     BRBXIconContainerShimmerImpl(
@@ -39,10 +39,10 @@ fun BRBXIconContainerShimmer(
 @Composable
 private fun BRBXIconContainerShimmerImpl(
     modifier: Modifier = Modifier,
-    iconAppearance: BRBXIconContainerAppearance,
+    iconAppearance: BrbxIconContainerAppearance,
     shimmerAppearance: BRBXIconContainerShimmerAppearance,
 ) {
-    BRBXShimmerBlock(
+    BrbxShimmerBlock(
         modifier = modifier.clip(iconAppearance.containerShape()),
         baseColor = shimmerAppearance.baseColor(),
         initialValue = shimmerAppearance.initialValue(),
@@ -62,8 +62,8 @@ private fun BRBXIconContainerShimmerImpl(
 
 @Preview
 @Composable
-private fun BRBXIconContainerShimmerPreview() {
-    BRBXTheme(darkColorScheme()) {
+private fun BrbxIconContainerShimmerPreview() {
+    BrbxTheme(darkColorScheme()) {
         BRBXIconContainerShimmer()
     }
 }
