@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -22,8 +23,10 @@ import com.brbx.ui_compose.components.with_appearance.precollection.BRBXPrecolle
 import com.brbx.ui_compose.components.with_appearance.tile.BRBXTile
 import com.brbx.ui_compose.components.with_appearance.tile.appearance.BRBXTileAppearances
 import com.brbx.ui_compose.containers.with_appearance.image.appearance.BRBXIconContainerAppearances
+import com.brbx.ui_compose.containers.with_appearance.image.appearance.rememberCopy
 import com.brbx.ui_compose.theme.BRBXTheme
 import com.brbx.ui_compose.theme.bDimens
+import com.brbx.ui_compose.theme.bShapes
 import com.brbx.ui_compose.theme.mTypography
 import dev.chiksmedina.solar.BoldSolar
 import dev.chiksmedina.solar.bold.Call
@@ -34,7 +37,12 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            BRBXTheme(darkColorScheme()) {
+            val theme = if (isSystemInDarkTheme()) {
+                darkColorScheme()
+            } else {
+                lightColorScheme()
+            }
+            BRBXTheme(theme) {
                 Scaffold(
                     modifier = Modifier.fillMaxSize()
                 ) { padding ->
@@ -53,9 +61,7 @@ class MainActivity : ComponentActivity() {
                             badgeContent = {
                                 Text(
                                     text = "3",
-                                    style = mTypography.labelSmall.copy(
-                                        fontSize = 6.sp
-                                    )
+                                    style = mTypography.labelSmall
                                 )
                             },
                             additionalContent = {

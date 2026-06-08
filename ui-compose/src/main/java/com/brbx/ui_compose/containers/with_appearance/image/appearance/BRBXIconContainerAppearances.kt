@@ -10,9 +10,9 @@ import androidx.compose.runtime.remember
  */
 object BRBXIconContainerAppearances {
 
-    val withBadge = BRBXIconContainerAppearance()
+    val withBadge: BRBXIconContainerAppearance = BRBXIconContainerAppearance()
 
-    val withoutBadge = BRBXIconContainerAppearance(
+    val withoutBadge: BRBXIconContainerAppearance = BRBXIconContainerAppearance(
         isBadgeVisible = { remember { false } },
     )
 }

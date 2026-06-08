@@ -77,7 +77,7 @@ interface BRBXIconContainerAppearance {
      * The background behind the badge content (solid color or gradient).
      */
     @Composable
-    fun badgeBrush(): Brush
+    fun badgeContainerBrush(): Brush
 
     /**
      * The alignment of the badge relative to the root layout bounds.

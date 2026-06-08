@@ -26,7 +26,7 @@ import com.brbx.ui_compose.theme.mTypography
 internal inline fun BRBXTileAppearance(
     // Container
     crossinline containerShape: @Composable () -> Shape = { bShapes.dp12 },
-    crossinline containerBrush: @Composable () -> Brush = { SolidColor(mColors.surfaceContainerHigh) },
+    crossinline containerBrush: @Composable () -> Brush = { SolidColor(mColors.surfaceContainer) },
     crossinline containerContentPadding: @Composable () -> Dp = { bDimens.dp16 },
     crossinline containerElevation: @Composable () -> Dp = { bElevation.dp0 },
     crossinline containerElevationAmbientColor: @Composable () -> Color = { remember { Color.Transparent } },
@@ -55,9 +55,7 @@ internal inline fun BRBXTileAppearance(
     crossinline titleMaxLines: @Composable () -> Int = { remember { 1 } },
     crossinline titleOverflow: @Composable () -> TextOverflow = { remember { TextOverflow.Ellipsis } },
     crossinline descriptionStyle: @Composable () -> TextStyle = {
-        mTypography.bodyMedium.copy(
-            color = mColors.secondary,
-        )
+        mTypography.bodyMedium.copy(color = mColors.secondary)
     },
     crossinline descriptionMaxLines: @Composable () -> Int = { remember { 2 } },
     crossinline descriptionOverflow: @Composable () -> TextOverflow = { remember { TextOverflow.Ellipsis } },

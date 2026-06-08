@@ -12,6 +12,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.layout
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.brbx.ui_compose.components.image.BRBXIcon
@@ -36,7 +37,7 @@ import dev.chiksmedina.solar.bold.users.User
 @Composable
 fun BRBXIconContainer(
     modifier: Modifier = Modifier,
-    appearance: BRBXIconContainerAppearance = BRBXIconContainerAppearances.withBadge,
+    appearance: BRBXIconContainerAppearance = BRBXIconContainerAppearances.withoutBadge,
     badgeContent: @Composable BoxScope.() -> Unit = {},
     content: @Composable BoxScope.() -> Unit,
 ) {
@@ -75,8 +76,17 @@ private fun BRBXIconContainerImpl(
                 contentAlignment = appearance.badgeContentAlignment(),
                 modifier = Modifier
                     .align(alignment = appearance.badgeAlignment())
+                    .layout { measurable, constraints ->
+                        val placeable = measurable.measure(constraints)
+                        layout(placeable.width, placeable.height) {
+                            placeable.placeRelative(
+                                x = placeable.width / 4,
+                                y = placeable.height / 4,
+                            )
+                        }
+                    }
                     .clip(shape = appearance.badgeShape())
-                    .background(brush = appearance.badgeBrush())
+                    .background(brush = appearance.badgeContainerBrush())
                     .padding(paddingValues = appearance.badgeContentPadding())
             ) {
                 CompositionLocalProvider(

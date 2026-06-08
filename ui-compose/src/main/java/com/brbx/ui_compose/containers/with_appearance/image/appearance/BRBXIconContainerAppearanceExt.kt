@@ -34,10 +34,10 @@ internal inline fun BRBXIconContainerAppearance(
     crossinline isBadgeVisible: @Composable () -> Boolean = { remember { true } },
     crossinline badgeContentAlignment: @Composable () -> Alignment = { remember { Alignment.Center } },
     crossinline badgeShape: @Composable () -> Shape = { bShapes.softSpikyCircle() },
-    crossinline badgeBrush: @Composable () -> Brush = { SolidColor(value = mColors.secondary) },
+    crossinline badgeContainerBrush: @Composable () -> Brush = { SolidColor(value = mColors.error) },
     crossinline badgeAlignment: @Composable () -> Alignment = { remember { Alignment.BottomEnd } },
-    crossinline badgeContentPadding: @Composable () -> PaddingValues = { remember { PaddingValues(all = 5.dp) } },
-    crossinline badgeContentColor: @Composable () -> Color = { mColors.onSecondary },
+    crossinline badgeContentPadding: @Composable () -> PaddingValues = { PaddingValues(all = bDimens.dp6) },
+    crossinline badgeContentColor: @Composable () -> Color = { mColors.onError },
 ): BRBXIconContainerAppearance = object : BRBXIconContainerAppearance {
 
     // Container
@@ -53,7 +53,7 @@ internal inline fun BRBXIconContainerAppearance(
     @Composable override fun isBadgeVisible(): Boolean = isBadgeVisible()
     @Composable override fun badgeContentAlignment(): Alignment = badgeContentAlignment()
     @Composable override fun badgeShape(): Shape = badgeShape()
-    @Composable override fun badgeBrush(): Brush = badgeBrush()
+    @Composable override fun badgeContainerBrush(): Brush = badgeContainerBrush()
     @Composable override fun badgeAlignment(): Alignment = badgeAlignment()
     @Composable override fun badgeContentPadding(): PaddingValues = badgeContentPadding()
     @Composable override fun badgeContentColor(): Color = badgeContentColor()
@@ -81,7 +81,7 @@ inline fun BRBXIconContainerAppearance.copy(
     crossinline isBadgeVisible: @Composable () -> Boolean = { this.isBadgeVisible() },
     crossinline badgeContentAlignment: @Composable () -> Alignment = { this.badgeContentAlignment() },
     crossinline badgeShape: @Composable () -> Shape = { this.badgeShape() },
-    crossinline badgeBrush: @Composable () -> Brush = { this.badgeBrush() },
+    crossinline badgeContainerBrush: @Composable () -> Brush = { this.badgeContainerBrush() },
     crossinline badgeAlignment: @Composable () -> Alignment = { this.badgeAlignment() },
     crossinline badgeContentPadding: @Composable () -> PaddingValues = { this.badgeContentPadding() },
     crossinline badgeContentColor: @Composable () -> Color = { this.badgeContentColor() },
@@ -100,7 +100,7 @@ inline fun BRBXIconContainerAppearance.copy(
     @Composable override fun isBadgeVisible(): Boolean = isBadgeVisible()
     @Composable override fun badgeContentAlignment(): Alignment = badgeContentAlignment()
     @Composable override fun badgeShape(): Shape = badgeShape()
-    @Composable override fun badgeBrush(): Brush = badgeBrush()
+    @Composable override fun badgeContainerBrush(): Brush = badgeContainerBrush()
     @Composable override fun badgeAlignment(): Alignment = badgeAlignment()
     @Composable override fun badgeContentPadding(): PaddingValues = badgeContentPadding()
     @Composable override fun badgeContentColor(): Color = badgeContentColor()
@@ -134,7 +134,7 @@ inline fun BRBXIconContainerAppearance.rememberCopy(
     crossinline isBadgeVisible: @Composable () -> Boolean = { this.isBadgeVisible() },
     crossinline badgeContentAlignment: @Composable () -> Alignment = { this.badgeContentAlignment() },
     crossinline badgeShape: @Composable () -> Shape = { this.badgeShape() },
-    crossinline badgeBrush: @Composable () -> Brush = { this.badgeBrush() },
+    crossinline badgeContainerBrush: @Composable () -> Brush = { this.badgeContainerBrush() },
     crossinline badgeAlignment: @Composable () -> Alignment = { this.badgeAlignment() },
     crossinline badgeContentPadding: @Composable () -> PaddingValues = { this.badgeContentPadding() },
     crossinline badgeContentColor: @Composable () -> Color = { this.badgeContentColor() },
@@ -149,7 +149,7 @@ inline fun BRBXIconContainerAppearance.rememberCopy(
             isBadgeVisible = isBadgeVisible,
             badgeContentAlignment = badgeContentAlignment,
             badgeShape = badgeShape,
-            badgeBrush = badgeBrush,
+            badgeContainerBrush = badgeContainerBrush,
             badgeAlignment = badgeAlignment,
             badgeContentPadding = badgeContentPadding,
             badgeContentColor = badgeContentColor,
