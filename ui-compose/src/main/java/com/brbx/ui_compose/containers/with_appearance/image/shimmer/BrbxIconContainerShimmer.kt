@@ -16,12 +16,12 @@ import com.brbx.ui_compose.containers.with_appearance.image.image.BrbxIconContai
 import com.brbx.ui_compose.theme.BrbxTheme
 
 @Composable
-fun BRBXIconContainerShimmer(
+fun BrbxIconContainerShimmer(
     modifier: Modifier = Modifier,
     iconAppearance: BrbxIconContainerAppearance = BrbxIconContainerAppearances.withoutBadge,
     shimmerAppearance: BrbxShimmerAppearance = BrbxShimmerAppearances.default,
 ) {
-    BRBXIconContainerShimmerImpl(
+    BrbxIconContainerShimmerImpl(
         modifier = modifier,
         iconAppearance = iconAppearance,
         shimmerAppearance = shimmerAppearance,
@@ -29,7 +29,7 @@ fun BRBXIconContainerShimmer(
 }
 
 @Composable
-private fun BRBXIconContainerShimmerImpl(
+private fun BrbxIconContainerShimmerImpl(
     modifier: Modifier = Modifier,
     iconAppearance: BrbxIconContainerAppearance,
     shimmerAppearance: BrbxShimmerAppearance,
@@ -50,6 +50,6 @@ private fun BRBXIconContainerShimmerImpl(
 @Composable
 private fun BrbxIconContainerShimmerPreview() {
     BrbxTheme(darkColorScheme()) {
-        BRBXIconContainerShimmer()
+        BrbxIconContainerShimmer()
     }
 }

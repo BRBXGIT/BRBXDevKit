@@ -74,6 +74,39 @@ fun BrbxShimmerScaffold(
     shimmerContent: @Composable (PaddingValues) -> Unit,
     content: @Composable (PaddingValues) -> Unit,
 ) {
+    BrbxShimmerScaffoldImpl(
+        isShimmering = isShimmering,
+        modifier = modifier,
+        topBar = topBar,
+        bottomBar = bottomBar,
+        snackbarHost = snackbarHost,
+        floatingActionButton = floatingActionButton,
+        floatingActionButtonPosition = floatingActionButtonPosition,
+        containerColor = containerColor,
+        contentColor = contentColor,
+        contentWindowInsets = contentWindowInsets,
+        crossfadeDuration = crossfadeDuration,
+        content = content,
+        shimmerContent = shimmerContent,
+    )
+}
+
+@Composable
+fun BrbxShimmerScaffoldImpl(
+    isShimmering: Boolean,
+    modifier: Modifier,
+    topBar: @Composable () -> Unit,
+    bottomBar: @Composable () -> Unit,
+    snackbarHost: @Composable () -> Unit,
+    floatingActionButton: @Composable () -> Unit,
+    floatingActionButtonPosition: FabPosition,
+    containerColor: Color,
+    contentColor: Color,
+    contentWindowInsets: WindowInsets,
+    crossfadeDuration: Int,
+    shimmerContent: @Composable (PaddingValues) -> Unit,
+    content: @Composable (PaddingValues) -> Unit,
+) {
     Scaffold(
         modifier = modifier,
         topBar = topBar,
@@ -88,7 +121,7 @@ fun BrbxShimmerScaffold(
         Crossfade(
             targetState = isShimmering,
             animationSpec = tween(crossfadeDuration),
-            label = "ShimmerCrossfade",
+            label = "Shimmer crossfade",
         ) { targetIsShimmering ->
             if (targetIsShimmering) {
                 shimmerContent(paddingValues)
@@ -113,7 +146,7 @@ private fun BrbxShimmerScaffoldPreview() {
             .fillMaxWidth()
             .height(50.dp)
             .padding(horizontal = bDimens.dp16)
-            .clip(RoundedCornerShape(bDimens.dp20))
+            .clip(shape = RoundedCornerShape(size = bDimens.dp20))
         BrbxShimmerScaffold(
             containerColor = mColors.background,
             isShimmering = isShimmering,
@@ -128,11 +161,11 @@ private fun BrbxShimmerScaffoldPreview() {
             },
             content = {
                 Column(verticalArrangement = Arrangement.spacedBy(bDimens.dp12)) {
-                    Box(modifier.background(mColors.primary))
+                    Box(modifier.background(color = mColors.primary))
 
-                    Box(modifier.background(mColors.primary))
+                    Box(modifier.background(color = mColors.primary))
 
-                    Box(modifier.background(mColors.primary))
+                    Box(modifier.background(color = mColors.primary))
                 }
             },
         )

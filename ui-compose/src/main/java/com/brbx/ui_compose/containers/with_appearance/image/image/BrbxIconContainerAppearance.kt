@@ -97,6 +97,18 @@ interface BrbxIconContainerAppearance {
     fun badgeAlignment(): Alignment
 
     /**
+     * Divide the badge Y position, the less divider is, the higher badge is.
+     */
+    @Composable
+    fun badgePositionYDivider(): Int
+
+    /**
+     * Divide the badge X position, the less divider is, the further to the left badge is.
+     */
+    @Composable
+    fun badgePositionXDivider(): Int
+
+    /**
      * The internal padding from the badge container's bounds to its content.
      */
     @Composable

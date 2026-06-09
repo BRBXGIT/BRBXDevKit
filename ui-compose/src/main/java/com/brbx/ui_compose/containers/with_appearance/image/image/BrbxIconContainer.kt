@@ -70,6 +70,8 @@ private fun BRBXIconContainerImpl(
         }
 
         if (appearance.isBadgeVisible()) {
+            val badgePositionXDivider = appearance.badgePositionXDivider()
+            val badgePositionYDivider = appearance.badgePositionYDivider()
             Box(
                 contentAlignment = appearance.badgeContentAlignment(),
                 modifier = Modifier
@@ -78,8 +80,8 @@ private fun BRBXIconContainerImpl(
                         val placeable = measurable.measure(constraints)
                         layout(placeable.width, placeable.height) {
                             placeable.placeRelative(
-                                x = placeable.width / 4,
-                                y = placeable.height / 4,
+                                x = placeable.width / badgePositionXDivider,
+                                y = placeable.height / badgePositionYDivider,
                             )
                         }
                     }

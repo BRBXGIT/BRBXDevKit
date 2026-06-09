@@ -12,6 +12,13 @@ import com.brbx.ui_compose.theme.bAnimationTokens
 import com.brbx.ui_compose.theme.bIntensityTokens
 import com.brbx.ui_compose.theme.mColors
 
+/**
+ * Creates a new instance of [BrbxShimmerAppearance] with the provided properties.
+ *
+ * Use this function to initialize a base appearance configuration. Since this is an
+ * inline factory function, it provides a clean way to override default values
+ * defined by the application theme.
+ */
 internal inline fun BrbxShimmerAppearance(
     // Animation
     crossinline initialValue: @Composable () -> Float = { bIntensityTokens.intensity06 },
@@ -19,7 +26,7 @@ internal inline fun BrbxShimmerAppearance(
     crossinline durationMillis: @Composable () -> Int = { bAnimationTokens.duration700.toInt() },
     crossinline repeatMode: @Composable () -> RepeatMode = { remember { RepeatMode.Reverse } },
     crossinline easing: @Composable () -> Easing = { remember { FastOutSlowInEasing } },
-    crossinline initialStartOffset: @Composable () -> StartOffset = { remember { StartOffset(0) } },
+    crossinline initialStartOffset: @Composable () -> StartOffset = { remember { StartOffset(offsetMillis = 0) } },
 
     // Colors
     crossinline containerColor: @Composable () -> Color = { mColors.surfaceContainer },
@@ -37,6 +44,14 @@ internal inline fun BrbxShimmerAppearance(
     @Composable override fun containerColor(): Color = containerColor()
 }
 
+/**
+ * Creates a new [BrbxShimmerAppearance] by copying properties from the current instance.
+ *
+ * This function is useful for creating a modified version of an existing appearance
+ * object without mutating the original. Note that this creates a new object on
+ * every call, so it should be used carefully within recomposition loops.
+ * Better use [rememberCopy] instead.
+ */
 @UnsafeAppearanceCopy
 inline fun BrbxShimmerAppearance.copy(
     // Animation
@@ -63,6 +78,19 @@ inline fun BrbxShimmerAppearance.copy(
     @Composable override fun containerColor(): Color = containerColor()
 }
 
+/**
+ * Creates a memoized copy of the [BrbxShimmerAppearance] with specified overrides.
+ *
+ * **Why you should use [rememberCopy]?**
+ * 1. **Performance:** Recomposition can happen frequently. [remember] ensures that
+ * a new [BrbxShimmerAppearance] object is not instantiated on every frame,
+ * preventing unnecessary object allocations.
+ * 2. **Stability:** It preserves the instance across recompositions as long as
+ * the inputs (parameters) remain the same, which helps Jetpack Compose skip
+ * unnecessary updates for child components.
+ * 3. **Consistency:** It is the best practice when applying dynamic runtime
+ * changes to the appearance (e.g., changing colors based on interaction states).
+ */
 @OptIn(UnsafeAppearanceCopy::class)
 @Composable
 inline fun BrbxShimmerAppearance.rememberCopy(

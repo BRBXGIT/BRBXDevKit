@@ -39,6 +39,8 @@ internal inline fun BrbxIconContainerAppearance(
     crossinline badgeShape: @Composable () -> Shape = { bShapes.softSpikyCircle() },
     crossinline badgeContainerBrush: @Composable () -> Brush = { SolidColor(value = mColors.error) },
     crossinline badgeAlignment: @Composable () -> Alignment = { remember { Alignment.BottomEnd } },
+    crossinline badgePositionYDivider: @Composable () -> Int = { remember { 4 } },
+    crossinline badgePositionXDivider: @Composable () -> Int = { remember { 4 } },
     crossinline badgeContentPadding: @Composable () -> PaddingValues = { PaddingValues(all = bDimens.dp6) },
     crossinline badgeContentColor: @Composable () -> Color = { mColors.onError },
 ): BrbxIconContainerAppearance = object : BrbxIconContainerAppearance {
@@ -61,6 +63,8 @@ internal inline fun BrbxIconContainerAppearance(
     @Composable override fun badgeShape(): Shape = badgeShape()
     @Composable override fun badgeContainerBrush(): Brush = badgeContainerBrush()
     @Composable override fun badgeAlignment(): Alignment = badgeAlignment()
+    @Composable override fun badgePositionYDivider(): Int = badgePositionYDivider()
+    @Composable override fun badgePositionXDivider(): Int = badgePositionXDivider()
     @Composable override fun badgeContentPadding(): PaddingValues = badgeContentPadding()
     @Composable override fun badgeContentColor(): Color = badgeContentColor()
 }
@@ -92,6 +96,8 @@ inline fun BrbxIconContainerAppearance.copy(
     crossinline badgeShape: @Composable () -> Shape = { this.badgeShape() },
     crossinline badgeContainerBrush: @Composable () -> Brush = { this.badgeContainerBrush() },
     crossinline badgeAlignment: @Composable () -> Alignment = { this.badgeAlignment() },
+    crossinline badgePositionYDivider: @Composable () -> Int = { this.badgePositionYDivider() },
+    crossinline badgePositionXDivider: @Composable () -> Int = { this.badgePositionXDivider() },
     crossinline badgeContentPadding: @Composable () -> PaddingValues = { this.badgeContentPadding() },
     crossinline badgeContentColor: @Composable () -> Color = { this.badgeContentColor() },
 ): BrbxIconContainerAppearance = object : BrbxIconContainerAppearance {
@@ -114,6 +120,8 @@ inline fun BrbxIconContainerAppearance.copy(
     @Composable override fun badgeShape(): Shape = badgeShape()
     @Composable override fun badgeContainerBrush(): Brush = badgeContainerBrush()
     @Composable override fun badgeAlignment(): Alignment = badgeAlignment()
+    @Composable override fun badgePositionYDivider(): Int = badgePositionYDivider()
+    @Composable override fun badgePositionXDivider(): Int = badgePositionXDivider()
     @Composable override fun badgeContentPadding(): PaddingValues = badgeContentPadding()
     @Composable override fun badgeContentColor(): Color = badgeContentColor()
 }
@@ -151,6 +159,8 @@ inline fun BrbxIconContainerAppearance.rememberCopy(
     crossinline badgeShape: @Composable () -> Shape = { this.badgeShape() },
     crossinline badgeContainerBrush: @Composable () -> Brush = { this.badgeContainerBrush() },
     crossinline badgeAlignment: @Composable () -> Alignment = { this.badgeAlignment() },
+    crossinline badgePositionYDivider: @Composable () -> Int = { this.badgePositionYDivider() },
+    crossinline badgePositionXDivider: @Composable () -> Int = { this.badgePositionXDivider() },
     crossinline badgeContentPadding: @Composable () -> PaddingValues = { this.badgeContentPadding() },
     crossinline badgeContentColor: @Composable () -> Color = { this.badgeContentColor() },
 ): BrbxIconContainerAppearance =
@@ -167,6 +177,8 @@ inline fun BrbxIconContainerAppearance.rememberCopy(
             badgeShape = badgeShape,
             badgeContainerBrush = badgeContainerBrush,
             badgeAlignment = badgeAlignment,
+            badgePositionYDivider = badgePositionYDivider,
+            badgePositionXDivider = badgePositionXDivider,
             badgeContentPadding = badgeContentPadding,
             badgeContentColor = badgeContentColor,
         )

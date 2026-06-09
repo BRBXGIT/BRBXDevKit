@@ -25,7 +25,7 @@ import com.brbx.ui_compose.components.with_appearance.tile.tile.BrbxTileAppearan
 import com.brbx.ui_compose.components.with_appearance.tile.tile.BrbxTileAppearances
 import com.brbx.ui_compose.containers.with_appearance.image.image.BrbxIconContainerAppearance
 import com.brbx.ui_compose.containers.with_appearance.image.image.BrbxIconContainerAppearances
-import com.brbx.ui_compose.containers.with_appearance.image.shimmer.BRBXIconContainerShimmer
+import com.brbx.ui_compose.containers.with_appearance.image.shimmer.BrbxIconContainerShimmer
 import com.brbx.ui_compose.theme.BrbxTheme
 import com.brbx.ui_compose.theme.bShapes
 import com.brbx.ui_compose.theme.mColors
@@ -39,6 +39,7 @@ fun BrbxTileShimmer(
     iconContainerShimmerAppearance: BrbxShimmerAppearance = BrbxShimmerAppearances.default,
     titleShimmerAppearance: BrbxShimmerAppearance = BrbxShimmerAppearances.default,
     descriptionShimmerAppearance: BrbxShimmerAppearance = BrbxShimmerAppearances.default,
+    additionalContent: @Composable () -> Unit = {},
 ) {
     BrbxTileShimmerImpl(
         shimmerContainerBrush = shimmerContainerBrush,
@@ -48,6 +49,7 @@ fun BrbxTileShimmer(
         iconContainerShimmerAppearance = iconContainerShimmerAppearance,
         titleShimmerAppearance = titleShimmerAppearance,
         descriptionShimmerAppearance = descriptionShimmerAppearance,
+        additionalContent = additionalContent,
     )
 }
 
@@ -55,11 +57,12 @@ fun BrbxTileShimmer(
 private fun BrbxTileShimmerImpl(
     shimmerContainerBrush: Brush,
     modifier: Modifier = Modifier,
-    tileAppearance: BrbxTileAppearance = BrbxTileAppearances.default,
-    iconContainerAppearance: BrbxIconContainerAppearance = BrbxIconContainerAppearances.withoutBadge,
-    iconContainerShimmerAppearance: BrbxShimmerAppearance = BrbxShimmerAppearances.default,
-    titleShimmerAppearance: BrbxShimmerAppearance = BrbxShimmerAppearances.default,
-    descriptionShimmerAppearance: BrbxShimmerAppearance = BrbxShimmerAppearances.default,
+    tileAppearance: BrbxTileAppearance,
+    iconContainerAppearance: BrbxIconContainerAppearance,
+    iconContainerShimmerAppearance: BrbxShimmerAppearance,
+    titleShimmerAppearance: BrbxShimmerAppearance,
+    descriptionShimmerAppearance: BrbxShimmerAppearance,
+    additionalContent: @Composable () -> Unit,
 ) {
     Box(
         modifier = modifier
@@ -84,7 +87,7 @@ private fun BrbxTileShimmerImpl(
                 horizontalArrangement = Arrangement.spacedBy(tileAppearance.horizontalSpacing()),
                 modifier = Modifier.fillMaxWidth()
             ) {
-                BRBXIconContainerShimmer(
+                BrbxIconContainerShimmer(
                     iconAppearance = iconContainerAppearance,
                     shimmerAppearance = iconContainerShimmerAppearance,
                 )
@@ -110,6 +113,8 @@ private fun BrbxTileShimmerImpl(
                     )
                 }
             }
+
+            additionalContent()
         }
     }
 }

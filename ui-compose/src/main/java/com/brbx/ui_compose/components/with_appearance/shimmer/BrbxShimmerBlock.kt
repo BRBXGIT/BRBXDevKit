@@ -16,6 +16,21 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.brbx.ui_compose.theme.BrbxTheme
 
+
+/**
+ * A composable component that displays a pulsing "shimmer" or skeleton loading effect.
+ *
+ * This block is typically used as a placeholder to indicate to the user that content
+ * is currently fetching or rendering. It utilizes an infinite transition to smoothly
+ * animate the alpha (opacity) of its background color based on the provided configuration.
+ *
+ * @param modifier The [Modifier] to be applied to the container, typically used to set
+ * the size, shape, or padding of the loading placeholder.
+ * @param appearance The configuration object defining the animation's behavior (e.g.,
+ * duration, easing, initial/target alpha values) and the base container color.
+ * Defaults to [BrbxShimmerAppearances.default].
+ * @param content Optional composable content to be layered inside the shimmer block.
+ */
 @Composable
 fun BrbxShimmerBlock(
     modifier: Modifier = Modifier,
@@ -45,12 +60,13 @@ fun BrbxShimmerBlock(
         content = content,
     )
 }
+
 @Preview
 @Composable
 private fun BrbxShimmerBlockPreview() {
     BrbxTheme(colorScheme = lightColorScheme()) {
         BrbxShimmerBlock(
-            modifier = Modifier.size(100.dp, 100.dp)
+            modifier = Modifier.size(100.dp)
         ) {}
     }
 }
