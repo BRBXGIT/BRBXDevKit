@@ -65,7 +65,8 @@ fun BrbxTile(
     description: String,
     modifier: Modifier = Modifier,
     appearance: BrbxTileAppearance = BrbxTileAppearances.default,
-    iconContainerAppearance: BrbxIconContainerAppearance = BrbxIconContainerAppearances.withoutBadge,
+    iconContainerAppearance: BrbxIconContainerAppearance =
+        BrbxIconContainerAppearances.withoutBadge,
     enabled: Boolean = true,
     onClick: () -> Unit = {},
     badgeContent: @Composable BoxScope.() -> Unit = {},

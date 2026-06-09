@@ -1,7 +1,9 @@
 package com.brbx.ui_compose.common
 
 @RequiresOptIn(
-    message = "Using copy directly in Compose without remember can lead to unnecessary allocations during recomposition. Use rememberCopy instead.",
+    message = "Using copy directly in Compose without remember can lead " +
+            "to unnecessary allocations during recomposition. Use " +
+            "rememberCopy instead.",
     level = RequiresOptIn.Level.WARNING,
 )
 @Retention(AnnotationRetention.BINARY)

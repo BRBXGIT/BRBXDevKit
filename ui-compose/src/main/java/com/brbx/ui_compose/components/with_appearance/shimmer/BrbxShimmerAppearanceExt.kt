@@ -21,12 +21,18 @@ import com.brbx.ui_compose.theme.mColors
  */
 internal inline fun BrbxShimmerAppearance(
     // Animation
-    crossinline initialValue: @Composable () -> Float = { bIntensityTokens.intensity06 },
-    crossinline targetValue: @Composable () -> Float = { bIntensityTokens.intensity10 },
-    crossinline durationMillis: @Composable () -> Int = { bAnimationTokens.duration700.toInt() },
-    crossinline repeatMode: @Composable () -> RepeatMode = { remember { RepeatMode.Reverse } },
-    crossinline easing: @Composable () -> Easing = { remember { FastOutSlowInEasing } },
-    crossinline initialStartOffset: @Composable () -> StartOffset = { remember { StartOffset(offsetMillis = 0) } },
+    crossinline initialValue: @Composable () -> Float =
+        { bIntensityTokens.intensity06 },
+    crossinline targetValue: @Composable () -> Float =
+        { bIntensityTokens.intensity10 },
+    crossinline durationMillis: @Composable () -> Int =
+        { bAnimationTokens.duration700.toInt() },
+    crossinline repeatMode: @Composable () -> RepeatMode =
+        { remember { RepeatMode.Reverse } },
+    crossinline easing: @Composable () -> Easing =
+        { remember { FastOutSlowInEasing } },
+    crossinline initialStartOffset: @Composable () -> StartOffset =
+        { remember { StartOffset(offsetMillis = 0) } },
 
     // Colors
     crossinline containerColor: @Composable () -> Color = { mColors.surfaceContainer },
@@ -95,12 +101,18 @@ inline fun BrbxShimmerAppearance.copy(
 @Composable
 inline fun BrbxShimmerAppearance.rememberCopy(
     // Animation
-    crossinline initialValue: @Composable () -> Float = { this.initialValue() },
-    crossinline targetValue: @Composable () -> Float = { this.targetValue() },
-    crossinline durationMillis: @Composable () -> Int = { this.durationMillis() },
-    crossinline repeatMode: @Composable () -> RepeatMode = { this.repeatMode() },
-    crossinline easing: @Composable () -> Easing = { this.easing() },
-    crossinline initialStartOffset: @Composable () -> StartOffset = { this.initialStartOffset() },
+    crossinline initialValue: @Composable () -> Float =
+        { this.initialValue() },
+    crossinline targetValue: @Composable () -> Float =
+        { this.targetValue() },
+    crossinline durationMillis: @Composable () -> Int =
+        { this.durationMillis() },
+    crossinline repeatMode: @Composable () -> RepeatMode =
+        { this.repeatMode() },
+    crossinline easing: @Composable () -> Easing =
+        { this.easing() },
+    crossinline initialStartOffset: @Composable () -> StartOffset =
+        { this.initialStartOffset() },
 
     // Colors
     crossinline containerColor: @Composable () -> Color = { this.containerColor() },

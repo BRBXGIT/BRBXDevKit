@@ -35,7 +35,8 @@ fun BrbxTileShimmer(
     modifier: Modifier = Modifier,
     shimmerContainerBrush: Brush= SolidColor(mColors.surfaceContainer),
     tileAppearance: BrbxTileAppearance = BrbxTileAppearances.default,
-    iconContainerAppearance: BrbxIconContainerAppearance = BrbxIconContainerAppearances.withoutBadge,
+    iconContainerAppearance: BrbxIconContainerAppearance =
+        BrbxIconContainerAppearances.withoutBadge,
     iconContainerShimmerAppearance: BrbxShimmerAppearance = BrbxShimmerAppearances.default,
     titleShimmerAppearance: BrbxShimmerAppearance = BrbxShimmerAppearances.default,
     descriptionShimmerAppearance: BrbxShimmerAppearance = BrbxShimmerAppearances.default,
