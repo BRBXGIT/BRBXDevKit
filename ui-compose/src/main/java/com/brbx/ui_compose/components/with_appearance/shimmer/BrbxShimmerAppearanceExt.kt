@@ -1,4 +1,4 @@
-package com.brbx.ui_compose.components.with_appearance.tile.shimmer
+package com.brbx.ui_compose.components.with_appearance.shimmer
 
 import androidx.compose.animation.core.Easing
 import androidx.compose.animation.core.FastOutSlowInEasing
@@ -6,22 +6,13 @@ import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.StartOffset
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.SolidColor
 import com.brbx.ui_compose.common.UnsafeAppearanceCopy
-import com.brbx.ui_compose.components.with_appearance.tile.tile.rememberCopy
 import com.brbx.ui_compose.theme.bAnimationTokens
 import com.brbx.ui_compose.theme.bIntensityTokens
 import com.brbx.ui_compose.theme.mColors
 
-/**
- * Creates a new instance of [com.brbx.ui_compose.components.with_appearance.tile.shimmer.BRBXTileShimmerAppearance] with the provided properties.
- * * Use this function to initialize a base appearance configuration. Since this is an
- * inline factory function, it provides a clean way to override default values
- * defined by the application theme.
- */
-internal inline fun BRBXTileShimmerAppearance(
+internal inline fun BrbxShimmerAppearance(
     // Animation
     crossinline initialValue: @Composable () -> Float = { bIntensityTokens.intensity06 },
     crossinline targetValue: @Composable () -> Float = { bIntensityTokens.intensity10 },
@@ -31,10 +22,8 @@ internal inline fun BRBXTileShimmerAppearance(
     crossinline initialStartOffset: @Composable () -> StartOffset = { remember { StartOffset(0) } },
 
     // Colors
-    crossinline containerBrush: @Composable () -> Brush = { SolidColor(mColors.surfaceContainer) },
-    crossinline titleBaseColor: @Composable () -> Color = { mColors.surfaceContainerHigh },
-    crossinline descriptionBaseColor: @Composable () -> Color = { mColors.surfaceContainerHighest },
-): BRBXTileShimmerAppearance = object : BRBXTileShimmerAppearance {
+    crossinline containerColor: @Composable () -> Color = { mColors.surfaceContainer },
+): BrbxShimmerAppearance = object : BrbxShimmerAppearance {
 
     // Animation
     @Composable override fun initialValue(): Float = initialValue()
@@ -45,20 +34,11 @@ internal inline fun BRBXTileShimmerAppearance(
     @Composable override fun initialStartOffset(): StartOffset = initialStartOffset()
 
     // Colors
-    @Composable override fun containerBrush(): Brush = containerBrush()
-    @Composable override fun titleBaseColor(): Color = titleBaseColor()
-    @Composable override fun descriptionBaseColor(): Color = descriptionBaseColor()
+    @Composable override fun containerColor(): Color = containerColor()
 }
 
-/**
- * Creates a new [BRBXTileShimmerAppearance] by copying properties from the current instance.
- * * This function is useful for creating a modified version of an existing appearance
- * object without mutating the original. Note that this creates a new object on
- * every call, so it should be used carefully within recomposition loops.
- * * Better use [rememberCopy] instead
- */
 @UnsafeAppearanceCopy
-inline fun BRBXTileShimmerAppearance.copy(
+inline fun BrbxShimmerAppearance.copy(
     // Animation
     crossinline initialValue: @Composable () -> Float = { this.initialValue() },
     crossinline targetValue: @Composable () -> Float = { this.targetValue() },
@@ -68,10 +48,8 @@ inline fun BRBXTileShimmerAppearance.copy(
     crossinline initialStartOffset: @Composable () -> StartOffset = { this.initialStartOffset() },
 
     // Colors
-    crossinline containerBrush: @Composable () -> Brush = { this.containerBrush() },
-    crossinline titleBaseColor: @Composable () -> Color = { this.titleBaseColor() },
-    crossinline descriptionBaseColor: @Composable () -> Color = { this.descriptionBaseColor() },
-): BRBXTileShimmerAppearance = object : BRBXTileShimmerAppearance {
+    crossinline containerColor: @Composable () -> Color = { this.containerColor() },
+): BrbxShimmerAppearance = object : BrbxShimmerAppearance {
 
     // Animation
     @Composable override fun initialValue(): Float = initialValue()
@@ -82,26 +60,12 @@ inline fun BRBXTileShimmerAppearance.copy(
     @Composable override fun initialStartOffset(): StartOffset = initialStartOffset()
 
     // Colors
-    @Composable override fun containerBrush(): Brush = containerBrush()
-    @Composable override fun titleBaseColor(): Color = titleBaseColor()
-    @Composable override fun descriptionBaseColor(): Color = descriptionBaseColor()
+    @Composable override fun containerColor(): Color = containerColor()
 }
 
-/**
- * Creates a memoized copy of the [BRBXTileShimmerAppearance] with specified overrides.
- * * **Why you should use [rememberCopy]?**
- * 1. **Performance:** Recomposition can happen frequently. [remember] ensures that
- * a new [BRBXTileShimmerAppearance] object is not instantiated on every frame,
- * preventing unnecessary object allocations.
- * 2. **Stability:** It preserves the instance across recompositions as long as
- * the inputs (parameters) remain the same, which helps Jetpack Compose skip
- * unnecessary updates for child components.
- * 3. **Consistency:** It is the best practice when applying dynamic runtime
- * changes to the appearance (e.g., changing colors based on interaction states).
- */
 @OptIn(UnsafeAppearanceCopy::class)
 @Composable
-inline fun BRBXTileShimmerAppearance.rememberCopy(
+inline fun BrbxShimmerAppearance.rememberCopy(
     // Animation
     crossinline initialValue: @Composable () -> Float = { this.initialValue() },
     crossinline targetValue: @Composable () -> Float = { this.targetValue() },
@@ -111,10 +75,8 @@ inline fun BRBXTileShimmerAppearance.rememberCopy(
     crossinline initialStartOffset: @Composable () -> StartOffset = { this.initialStartOffset() },
 
     // Colors
-    crossinline containerBrush: @Composable () -> Brush = { this.containerBrush() },
-    crossinline titleBaseColor: @Composable () -> Color = { this.titleBaseColor() },
-    crossinline descriptionBaseColor: @Composable () -> Color = { this.descriptionBaseColor() },
-): BRBXTileShimmerAppearance =
+    crossinline containerColor: @Composable () -> Color = { this.containerColor() },
+): BrbxShimmerAppearance =
     remember {
         this.copy(
             initialValue = initialValue,
@@ -123,8 +85,6 @@ inline fun BRBXTileShimmerAppearance.rememberCopy(
             repeatMode = repeatMode,
             easing = easing,
             initialStartOffset = initialStartOffset,
-            containerBrush = containerBrush,
-            titleBaseColor = titleBaseColor,
-            descriptionBaseColor = descriptionBaseColor,
+            containerColor = containerColor,
         )
     }

@@ -28,7 +28,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.brbx.ui_compose.components.shimmer.BrbxShimmerBlock
+import com.brbx.ui_compose.components.with_appearance.shimmer.BrbxShimmerBlock
 import com.brbx.ui_compose.theme.BrbxTheme
 import com.brbx.ui_compose.theme.bAnimationTokens
 import com.brbx.ui_compose.theme.mColors

@@ -14,48 +14,52 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.brbx.ui_compose.components.shimmer.BrbxShimmerBlock
+import com.brbx.ui_compose.components.with_appearance.shimmer.BrbxShimmerAppearance
+import com.brbx.ui_compose.components.with_appearance.shimmer.BrbxShimmerAppearances
+import com.brbx.ui_compose.components.with_appearance.shimmer.BrbxShimmerBlock
 import com.brbx.ui_compose.components.with_appearance.tile.tile.BrbxTileAppearance
 import com.brbx.ui_compose.components.with_appearance.tile.tile.BrbxTileAppearances
 import com.brbx.ui_compose.containers.with_appearance.image.image.BrbxIconContainerAppearance
 import com.brbx.ui_compose.containers.with_appearance.image.image.BrbxIconContainerAppearances
 import com.brbx.ui_compose.containers.with_appearance.image.shimmer.BRBXIconContainerShimmer
-import com.brbx.ui_compose.containers.with_appearance.image.shimmer.BRBXIconContainerShimmerAppearance
-import com.brbx.ui_compose.containers.with_appearance.image.shimmer.BRBXIconContainerShimmerAppearances
 import com.brbx.ui_compose.theme.BrbxTheme
 import com.brbx.ui_compose.theme.bShapes
+import com.brbx.ui_compose.theme.mColors
 
-/**
- * A loading skeleton placeholder for the BRBXTile component.
- * It reuses dimensions from [BrbxTileAppearance] to ensure a perfect structural match,
- * while applying animations and skeleton colors from [BRBXTileShimmerAppearance].
- */
 @Composable
-fun BRBXTileShimmer(
+fun BrbxTileShimmer(
     modifier: Modifier = Modifier,
-    iconContainerAppearance: BrbxIconContainerAppearance = BrbxIconContainerAppearances.withoutBadge,
-    iconContainerShimmerAppearance: BRBXIconContainerShimmerAppearance = BRBXIconContainerShimmerAppearances.default,
+    shimmerContainerBrush: Brush= SolidColor(mColors.surfaceContainer),
     tileAppearance: BrbxTileAppearance = BrbxTileAppearances.default,
-    tileShimmerAppearance: BRBXTileShimmerAppearance = BRBXTileShimmerAppearances.default,
+    iconContainerAppearance: BrbxIconContainerAppearance = BrbxIconContainerAppearances.withoutBadge,
+    iconContainerShimmerAppearance: BrbxShimmerAppearance = BrbxShimmerAppearances.default,
+    titleShimmerAppearance: BrbxShimmerAppearance = BrbxShimmerAppearances.default,
+    descriptionShimmerAppearance: BrbxShimmerAppearance = BrbxShimmerAppearances.default,
 ) {
-    BRBXTileShimmerImpl(
+    BrbxTileShimmerImpl(
+        shimmerContainerBrush = shimmerContainerBrush,
         modifier = modifier,
         iconContainerAppearance = iconContainerAppearance,
-        iconContainerShimmerAppearance = iconContainerShimmerAppearance,
         tileAppearance = tileAppearance,
-        tileShimmerAppearance = tileShimmerAppearance,
+        iconContainerShimmerAppearance = iconContainerShimmerAppearance,
+        titleShimmerAppearance = titleShimmerAppearance,
+        descriptionShimmerAppearance = descriptionShimmerAppearance,
     )
 }
 
 @Composable
-private fun BRBXTileShimmerImpl(
-    modifier: Modifier,
-    iconContainerAppearance: BrbxIconContainerAppearance,
-    iconContainerShimmerAppearance: BRBXIconContainerShimmerAppearance,
-    tileAppearance: BrbxTileAppearance,
-    tileShimmerAppearance: BRBXTileShimmerAppearance,
+private fun BrbxTileShimmerImpl(
+    shimmerContainerBrush: Brush,
+    modifier: Modifier = Modifier,
+    tileAppearance: BrbxTileAppearance = BrbxTileAppearances.default,
+    iconContainerAppearance: BrbxIconContainerAppearance = BrbxIconContainerAppearances.withoutBadge,
+    iconContainerShimmerAppearance: BrbxShimmerAppearance = BrbxShimmerAppearances.default,
+    titleShimmerAppearance: BrbxShimmerAppearance = BrbxShimmerAppearances.default,
+    descriptionShimmerAppearance: BrbxShimmerAppearance = BrbxShimmerAppearances.default,
 ) {
     Box(
         modifier = modifier
@@ -68,7 +72,7 @@ private fun BRBXTileShimmerImpl(
                 clip = false,
             )
             .clip(shape = tileAppearance.containerShape())
-            .background(brush = tileShimmerAppearance.containerBrush())
+            .background(brush = shimmerContainerBrush)
     ) {
         Column(
             verticalArrangement = Arrangement.spacedBy(tileAppearance.contentColumnSpacing()),
@@ -90,31 +94,19 @@ private fun BRBXTileShimmerImpl(
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     BrbxShimmerBlock(
+                        appearance = titleShimmerAppearance,
                         modifier = Modifier
                             .fillMaxWidth(0.6f)
                             .height(16.dp)
                             .clip(bShapes.dp4),
-                        initialValue = tileShimmerAppearance.initialValue(),
-                        targetValue = tileShimmerAppearance.targetValue(),
-                        durationMillis = tileShimmerAppearance.durationMillis(),
-                        repeatMode = tileShimmerAppearance.repeatMode(),
-                        easing = tileShimmerAppearance.easing(),
-                        initialStartOffset = tileShimmerAppearance.initialStartOffset(),
-                        baseColor = tileShimmerAppearance.titleBaseColor()
                     )
 
                     BrbxShimmerBlock(
+                        appearance = descriptionShimmerAppearance,
                         modifier = Modifier
                             .fillMaxWidth(0.85f)
                             .height(12.dp)
                             .clip(bShapes.dp4),
-                        initialValue = tileShimmerAppearance.initialValue(),
-                        targetValue = tileShimmerAppearance.targetValue(),
-                        durationMillis = tileShimmerAppearance.durationMillis(),
-                        repeatMode = tileShimmerAppearance.repeatMode(),
-                        easing = tileShimmerAppearance.easing(),
-                        initialStartOffset = tileShimmerAppearance.initialStartOffset(),
-                        baseColor = tileShimmerAppearance.descriptionBaseColor()
                     )
                 }
             }
@@ -126,6 +118,6 @@ private fun BRBXTileShimmerImpl(
 @Composable
 private fun BrbxTileShimmerPreview() {
     BrbxTheme(darkColorScheme()) {
-        BRBXTileShimmer()
+        BrbxTileShimmer()
     }
 }

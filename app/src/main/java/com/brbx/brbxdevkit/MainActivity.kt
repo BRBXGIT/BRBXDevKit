@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -21,12 +23,16 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.brbx.ui_compose.common.toBrbxIcon
-import com.brbx.ui_compose.components.with_appearance.tile.shimmer.BRBXTileShimmer
+import com.brbx.ui_compose.components.with_appearance.precollection.BrbxPrecollection
+import com.brbx.ui_compose.components.with_appearance.shimmer.BrbxShimmerAppearances
+import com.brbx.ui_compose.components.with_appearance.shimmer.rememberCopy
+import com.brbx.ui_compose.components.with_appearance.tile.shimmer.BrbxTileShimmer
 import com.brbx.ui_compose.components.with_appearance.tile.tile.BrbxTile
 import com.brbx.ui_compose.containers.scaffold.BrbxShimmerScaffold
 import com.brbx.ui_compose.containers.with_appearance.image.image.BrbxIconContainerAppearances
 import com.brbx.ui_compose.theme.BrbxTheme
 import com.brbx.ui_compose.theme.bDimens
+import com.brbx.ui_compose.theme.mColors
 import com.brbx.ui_compose.theme.mTypography
 import dev.chiksmedina.solar.BoldSolar
 import dev.chiksmedina.solar.bold.Call
@@ -61,16 +67,49 @@ class MainActivity : ComponentActivity() {
                             verticalArrangement = Arrangement.spacedBy(bDimens.dp16),
                             modifier = Modifier.padding(paddingValues)
                         ) {
-                            BRBXTileShimmer(
+                            BrbxTileShimmer(
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .padding(horizontal = 16.dp)
+                                    .padding(horizontal = 16.dp),
+                                iconContainerShimmerAppearance = BrbxShimmerAppearances.default.rememberCopy(
+                                    containerColor = { mColors.surfaceContainerHigh },
+                                ),
+                                titleShimmerAppearance = BrbxShimmerAppearances.default.rememberCopy(
+                                    containerColor = { mColors.surfaceContainerHigh },
+                                ),
+                                descriptionShimmerAppearance = BrbxShimmerAppearances.default.rememberCopy(
+                                    containerColor = { mColors.surfaceContainerHighest },
+                                ),
                             )
 
-                            BRBXTileShimmer(
+                            BrbxTileShimmer(
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .padding(horizontal = 16.dp)
+                                    .padding(horizontal = 16.dp),
+                                iconContainerShimmerAppearance = BrbxShimmerAppearances.default.rememberCopy(
+                                    containerColor = { mColors.surfaceContainerHigh },
+                                ),
+                                titleShimmerAppearance = BrbxShimmerAppearances.default.rememberCopy(
+                                    containerColor = { mColors.surfaceContainerHigh },
+                                ),
+                                descriptionShimmerAppearance = BrbxShimmerAppearances.default.rememberCopy(
+                                    containerColor = { mColors.surfaceContainerHighest },
+                                ),
+                            )
+
+                            BrbxTileShimmer(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(horizontal = 16.dp),
+                                iconContainerShimmerAppearance = BrbxShimmerAppearances.default.rememberCopy(
+                                    containerColor = { mColors.surfaceContainerHigh },
+                                ),
+                                titleShimmerAppearance = BrbxShimmerAppearances.default.rememberCopy(
+                                    containerColor = { mColors.surfaceContainerHigh },
+                                ),
+                                descriptionShimmerAppearance = BrbxShimmerAppearances.default.rememberCopy(
+                                    containerColor = { mColors.surfaceContainerHighest },
+                                ),
                             )
                         }
                     },
@@ -94,12 +133,31 @@ class MainActivity : ComponentActivity() {
                                 },
                             )
 
+                            var precollectionVisible by remember { mutableStateOf(false) }
                             BrbxTile(
+                                modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp).animateContentSize(),
+                                icon = BoldSolar.Call.CallDropped.toBrbxIcon(),
+                                title = "Call dropped",
+                                description = "The call was dropped by the outgoing",
+                                onClick = { precollectionVisible = !precollectionVisible },
+                                additionalContent = {
+                                    AnimatedVisibility(!isShimmering) {
+                                        BrbxPrecollection(
+                                            text = "Additional content here",
+                                            modifier = Modifier.fillMaxWidth()
+                                        )
+                                    }
+                                }
+                            )
+
+                            BrbxTile(
+                                iconContainerAppearance = BrbxIconContainerAppearances.withBadge,
                                 modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
                                 icon = BoldSolar.Call.CallDropped.toBrbxIcon(),
                                 title = "Call dropped",
                                 description = "The call was dropped by the outgoing",
                                 onClick = {  },
+                                badgeContent = {},
                             )
                         }
                     }

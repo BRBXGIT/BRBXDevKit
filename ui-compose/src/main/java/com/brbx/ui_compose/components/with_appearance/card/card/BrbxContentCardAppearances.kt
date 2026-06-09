@@ -11,5 +11,5 @@ import androidx.compose.runtime.Immutable
 @Immutable
 object BrbxContentCardAppearances {
 
-    val default = BRBXContentCardAppearance()
+    val default = BrbxContentCardAppearance()
 }

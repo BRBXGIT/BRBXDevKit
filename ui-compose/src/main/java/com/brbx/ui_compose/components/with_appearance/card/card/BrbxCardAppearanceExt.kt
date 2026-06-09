@@ -28,7 +28,7 @@ import com.brbx.ui_compose.theme.mTypography
  * inline factory function, it provides a clean way to override default values
  * defined by the application theme.
  */
-internal inline fun BRBXContentCardAppearance(
+internal inline fun BrbxContentCardAppearance(
     // Container & Interaction
     crossinline width: @Composable () -> Dp = { remember { 150.dp } },
     crossinline height: @Composable () -> Dp = { remember { 270.dp } },
