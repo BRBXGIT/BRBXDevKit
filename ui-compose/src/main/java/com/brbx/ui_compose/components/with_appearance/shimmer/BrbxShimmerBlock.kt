@@ -16,7 +16,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.brbx.ui_compose.theme.BrbxTheme
 
-
 /**
  * A composable component that displays a pulsing "shimmer" or skeleton loading effect.
  *

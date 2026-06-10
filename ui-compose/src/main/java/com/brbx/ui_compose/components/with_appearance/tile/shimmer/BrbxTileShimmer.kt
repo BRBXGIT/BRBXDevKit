@@ -30,6 +30,26 @@ import com.brbx.ui_compose.theme.BrbxTheme
 import com.brbx.ui_compose.theme.bShapes
 import com.brbx.ui_compose.theme.mColors
 
+/**
+ * A skeleton loading placeholder (shimmer) component that mimics the structure of a standard
+ * [com.brbx.ui_compose.components.with_appearance.tile.tile.BrbxTile].
+ *
+ * It provides a visual placeholder containing an icon container shimmer and two text line shimmers
+ * (title and description) arranged horizontally, with an optional slot for additional content
+ * at the bottom.
+ *
+ * @param modifier The [Modifier] to be applied to the outermost container of this shimmer tile.
+ * @param shimmerContainerBrush The [Brush] used to draw the background of the tile container.
+ * Defaults to a solid surface container color.
+ * @param tileAppearance The visual styling configuration for the outer tile container, including
+ * padding, shape, elevation, and internal spacings.
+ * @param iconContainerAppearance Specifies the appearance (e.g., shape, size) of the inner icon container.
+ * @param iconContainerShimmerAppearance The shimmer animation/style configuration for the icon placeholder.
+ * @param titleShimmerAppearance The shimmer animation/style configuration for the title line placeholder.
+ * @param descriptionShimmerAppearance The shimmer animation/style configuration for the description line placeholder.
+ * @param additionalContent A trailing composable lambda slot to inject extra placeholder content
+ * (e.g., footers, buttons, or extra lines) below the main row arrangement.
+ */
 @Composable
 fun BrbxTileShimmer(
     modifier: Modifier = Modifier,
