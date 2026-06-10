@@ -5,13 +5,13 @@ import androidx.lifecycle.viewModelScope
 import com.brbx.core.effects.BrbxEffect
 import com.brbx.mvi.coroutines.shareInLazily
 import com.brbx.mvi.coroutines.stateInLazily
-import com.brbx.mvi.reducer.BrbxMviReducer
+import com.brbx.mvi.reducer.BrbxReducer
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-abstract class BrbxMviStore<State, Intent, LocalEffect>(
+abstract class BrbxStore<State, Intent : Any, LocalEffect>(
     initialState: State,
     brbxEffectsReplay: Int = 0,
     localEffectsReplay: Int = 0,
@@ -34,10 +34,10 @@ abstract class BrbxMviStore<State, Intent, LocalEffect>(
     // Reducers
     // ---------------------------------------------------------------------------
 
-    private val reducers = mutableListOf<BrbxMviReducer<State, Intent>>()
+    private val reducers = mutableListOf<BrbxReducer<State, Intent>>()
 
     open fun register(
-        vararg reducers: BrbxMviReducer<State, Intent>
+        vararg reducers: BrbxReducer<State, Intent>
     ) {
         reducers.forEach { reducer ->
             this.reducers += reducer

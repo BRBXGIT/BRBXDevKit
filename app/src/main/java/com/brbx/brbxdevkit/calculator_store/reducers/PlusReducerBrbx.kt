@@ -2,18 +2,18 @@ package com.brbx.brbxdevkit.calculator_store.reducers
 
 import com.brbx.brbxdevkit.calculator_store.CalculatorIntent
 import com.brbx.brbxdevkit.calculator_store.CalculatorState
-import com.brbx.mvi.reducer.BrbxMviReducer
+import com.brbx.mvi.reducer.BrbxScopedReducer
 
-class PlusReducer : BrbxMviReducer<CalculatorState, CalculatorIntent.PlusIntent> {
-
-    override fun reduce(
+class PlusReducerBrbx : BrbxScopedReducer<CalculatorState, CalculatorIntent, CalculatorIntent.PlusIntent>(
+    targetIntentClass = CalculatorIntent.PlusIntent::class,
+) {
+    override fun reduceTarget(
         state: CalculatorState,
         intent: CalculatorIntent.PlusIntent
-    ): CalculatorState {
-        return when (intent) {
+    ): CalculatorState =
+        when (intent) {
             CalculatorIntent.PlusIntent.Plus -> {
                 state.copy(num = state.num + 1)
             }
         }
-    }
 }

@@ -1,16 +1,16 @@
 package com.brbx.brbxdevkit.calculator_store
 
-import com.brbx.brbxdevkit.calculator_store.reducers.MinusReducer
-import com.brbx.brbxdevkit.calculator_store.reducers.PlusReducer
-import com.brbx.mvi.store.BrbxMviStore
+import com.brbx.brbxdevkit.calculator_store.reducers.MinusReducerBrbx
+import com.brbx.brbxdevkit.calculator_store.reducers.PlusReducerBrbx
+import com.brbx.mvi.store.BrbxStore
 
-class CalculatorStore : BrbxMviStore<CalculatorState, CalculatorIntent, Unit>(
+class CalculatorStore : BrbxStore<CalculatorState, CalculatorIntent, Unit>(
     initialState = CalculatorState()
 ) {
     init {
         register(
-            PlusReducer(),
-            MinusReducer(),
+            PlusReducerBrbx(),
+            MinusReducerBrbx(),
         )
     }
 }
