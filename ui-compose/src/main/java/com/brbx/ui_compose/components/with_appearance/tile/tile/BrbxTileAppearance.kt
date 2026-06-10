@@ -46,6 +46,12 @@ interface BrbxTileAppearance {
     fun containerElevation(): Dp
 
     /**
+     * The padding of the container elevation
+     */
+    @Composable
+    fun containerElevationPadding(): Dp
+
+    /**
      * The color used for the ambient shadow, which simulates diffuse, omnidirectional light.
      */
     @Composable

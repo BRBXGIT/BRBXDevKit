@@ -36,6 +36,8 @@ internal inline fun BrbxTileAppearance(
         { bDimens.dp16 },
     crossinline containerElevation: @Composable () -> Dp =
         { bElevation.dp0 },
+    crossinline containerElevationPadding: @Composable () -> Dp =
+        { bDimens.dp0 },
     crossinline containerElevationAmbientColor: @Composable () -> Color =
         { remember { Color.Transparent } },
     crossinline containerElevationSpotColor: @Composable () -> Color =
@@ -79,6 +81,9 @@ internal inline fun BrbxTileAppearance(
 
     @Composable
     override fun containerElevation(): Dp = containerElevation()
+
+    @Composable
+    override fun containerElevationPadding(): Dp = containerElevationPadding()
 
     @Composable
     override fun containerElevationAmbientColor(): Color = containerElevationAmbientColor()
@@ -139,6 +144,8 @@ inline fun BrbxTileAppearance.copy(
         { this.containerContentPadding() },
     crossinline containerElevation: @Composable () -> Dp =
         { this.containerElevation() },
+    crossinline containerElevationPadding: @Composable () -> Dp =
+        { this.containerElevationPadding() },
     crossinline containerElevationAmbientColor: @Composable () -> Color =
         { this.containerElevationAmbientColor() },
     crossinline containerElevationSpotColor: @Composable () -> Color =
@@ -178,6 +185,9 @@ inline fun BrbxTileAppearance.copy(
 
     @Composable
     override fun containerElevation(): Dp = containerElevation()
+
+    @Composable
+    override fun containerElevationPadding(): Dp = containerElevationPadding()
 
     @Composable
     override fun containerElevationAmbientColor(): Color = containerElevationAmbientColor()
@@ -245,6 +255,8 @@ inline fun BrbxTileAppearance.rememberCopy(
         { this.containerContentPadding() },
     crossinline containerElevation: @Composable () -> Dp =
         { this.containerElevation() },
+    crossinline containerElevationPadding: @Composable () -> Dp =
+        { this.containerElevationPadding() },
     crossinline containerElevationAmbientColor: @Composable () -> Color =
         { this.containerElevationAmbientColor() },
     crossinline containerElevationSpotColor: @Composable () -> Color =
@@ -279,6 +291,7 @@ inline fun BrbxTileAppearance.rememberCopy(
         containerBrush = containerBrush,
         containerContentPadding = containerContentPadding,
         containerElevation = containerElevation,
+        containerElevationPadding = containerElevationPadding,
         containerElevationAmbientColor = containerElevationAmbientColor,
         containerElevationSpotColor = containerElevationSpotColor,
         containerRippleColor = containerRippleColor,

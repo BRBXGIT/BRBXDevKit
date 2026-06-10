@@ -21,8 +21,29 @@ import com.brbx.ui_compose.components.with_appearance.shimmer.BrbxShimmerAppeara
 import com.brbx.ui_compose.components.with_appearance.shimmer.BrbxShimmerBlock
 import com.brbx.ui_compose.theme.BrbxTheme
 import com.brbx.ui_compose.theme.bDimens
+import com.brbx.ui_compose.theme.bIntensityTokens
 import com.brbx.ui_compose.theme.bShapes
 
+/**
+ * A shimmer skeleton loading component for the [com.brbx.ui_compose.components.with_appearance.card.card.BrbxContentCard].
+ *
+ * This component provides a visual placeholder while the actual card data is being fetched or rendered.
+ * It mimics the exact dimensions, shapes, and layout of the real content card via [cardAppearance]
+ * to prevent layout shifts once the actual content is displayed.
+ * * By exposing separate [BrbxShimmerAppearance] parameters for the image, title, and description,
+ * it allows for granular control over the loading animations. You can provide identical appearances
+ * for a synchronized pulse, or configure staggered start offsets for a cascading wave effect.
+ *
+ * @param modifier The [Modifier] to be applied to the root card container.
+ * @param cardAppearance The [BrbxContentCardAppearance] configuration used to match the sizing,
+ * background brushes, alignments, and internal padding of the actual content card.
+ * @param imageShimmerAppearance The animation and styling configuration applied to the main
+ * image placeholder.
+ * @param titleShimmerAppearance The animation and styling configuration applied to the primary
+ * title text placeholder.
+ * @param descriptionShimmerAppearance The animation and styling configuration applied to the
+ * secondary description text placeholder.
+ */
 @Composable
 fun BrbxContentCardShimmer(
     modifier: Modifier = Modifier,
@@ -71,7 +92,7 @@ private fun BrbxContentCardShimmerImpl(
         ) {
             BrbxShimmerBlock(
                 modifier = Modifier
-                    .fillMaxWidth(0.75f)
+                    .fillMaxWidth(fraction = bIntensityTokens.intensity075)
                     .height(bDimens.dp20)
                     .clip(shape = bShapes.dp4),
                 appearance = titleShimmerAppearance,
@@ -79,7 +100,7 @@ private fun BrbxContentCardShimmerImpl(
 
             BrbxShimmerBlock(
                 modifier = Modifier
-                    .fillMaxWidth(0.9f)
+                    .fillMaxWidth(fraction = bIntensityTokens.intensity09)
                     .height(bDimens.dp14)
                     .clip(shape = bShapes.dp4),
                 appearance = descriptionShimmerAppearance,

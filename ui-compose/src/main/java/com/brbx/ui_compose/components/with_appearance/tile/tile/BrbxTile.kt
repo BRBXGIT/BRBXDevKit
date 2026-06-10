@@ -103,7 +103,7 @@ private fun BrbxTileImpl(
 
     Box(
         modifier = modifier
-            .padding(vertical = appearance.containerElevation() * 2)
+            .padding(vertical = appearance.containerElevationPadding())
             .shadow(
                 elevation = appearance.containerElevation(),
                 shape = appearance.containerShape(),

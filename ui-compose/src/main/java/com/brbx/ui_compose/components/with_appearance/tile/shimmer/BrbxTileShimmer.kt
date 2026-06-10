@@ -17,7 +17,6 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.brbx.ui_compose.components.with_appearance.shimmer.BrbxShimmerAppearance
 import com.brbx.ui_compose.components.with_appearance.shimmer.BrbxShimmerAppearances
 import com.brbx.ui_compose.components.with_appearance.shimmer.BrbxShimmerBlock
@@ -27,6 +26,8 @@ import com.brbx.ui_compose.containers.with_appearance.image.image.BrbxIconContai
 import com.brbx.ui_compose.containers.with_appearance.image.image.BrbxIconContainerAppearances
 import com.brbx.ui_compose.containers.with_appearance.image.shimmer.BrbxIconContainerShimmer
 import com.brbx.ui_compose.theme.BrbxTheme
+import com.brbx.ui_compose.theme.bDimens
+import com.brbx.ui_compose.theme.bIntensityTokens
 import com.brbx.ui_compose.theme.bShapes
 import com.brbx.ui_compose.theme.mColors
 
@@ -87,7 +88,7 @@ private fun BrbxTileShimmerImpl(
 ) {
     Box(
         modifier = modifier
-            .padding(vertical = tileAppearance.containerElevation() * 2)
+            .padding(vertical = tileAppearance.containerElevationPadding())
             .shadow(
                 elevation = tileAppearance.containerElevation(),
                 ambientColor = tileAppearance.containerElevationAmbientColor(),
@@ -120,17 +121,17 @@ private fun BrbxTileShimmerImpl(
                     BrbxShimmerBlock(
                         appearance = titleShimmerAppearance,
                         modifier = Modifier
-                            .fillMaxWidth(0.6f)
-                            .height(16.dp)
-                            .clip(bShapes.dp4),
+                            .fillMaxWidth(fraction = bIntensityTokens.intensity06)
+                            .height(bDimens.dp16)
+                            .clip(shape = bShapes.dp4),
                     )
 
                     BrbxShimmerBlock(
                         appearance = descriptionShimmerAppearance,
                         modifier = Modifier
-                            .fillMaxWidth(0.85f)
-                            .height(12.dp)
-                            .clip(bShapes.dp4),
+                            .fillMaxWidth(fraction = bIntensityTokens.intensity085)
+                            .height(bDimens.dp12)
+                            .clip(shape = bShapes.dp4),
                     )
                 }
             }

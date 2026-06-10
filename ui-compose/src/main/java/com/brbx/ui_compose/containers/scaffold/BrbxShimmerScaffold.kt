@@ -46,6 +46,7 @@ import kotlin.time.Duration.Companion.milliseconds
  *
  * @param isShimmering Determines whether to show the [shimmerContent] (`true`) or the actual [content] (`false`).
  * @param modifier The modifier to be applied to the scaffold container.
+ * @param isError Parameter that tells scaffold to show error content after shimmer.
  * @param topBar Top app bar of the screen.
  * @param bottomBar Bottom bar of the screen.
  * @param snackbarHost Component to host snackbars.
@@ -55,6 +56,7 @@ import kotlin.time.Duration.Companion.milliseconds
  * @param contentColor The preferred color for content inside this scaffold.
  * @param contentWindowInsets Window insets to be passed to the content slots.
  * @param crossfadeDuration The duration (in milliseconds) of the crossfade animation between states.
+ * @param errorContent The composable representing the error in the something like data fetching.
  * @param shimmerContent The composable representing the loading state (e.g., skeleton UI). Receives the inner padding.
  * @param content The composable representing the main UI when data is loaded. Receives the inner padding.
  */
@@ -62,21 +64,24 @@ import kotlin.time.Duration.Companion.milliseconds
 fun BrbxShimmerScaffold(
     isShimmering: Boolean,
     modifier: Modifier = Modifier,
+    isError: Boolean = false,
     topBar: @Composable () -> Unit = {},
     bottomBar: @Composable () -> Unit = {},
     snackbarHost: @Composable () -> Unit = {},
     floatingActionButton: @Composable () -> Unit = {},
     floatingActionButtonPosition: FabPosition = FabPosition.End,
     containerColor: Color = mColors.background,
-    contentColor: Color = contentColorFor(containerColor),
+    contentColor: Color = contentColorFor(backgroundColor = containerColor),
     contentWindowInsets: WindowInsets = ScaffoldDefaults.contentWindowInsets,
     crossfadeDuration: Int = bAnimationTokens.duration500.toInt(),
+    errorContent: @Composable ((PaddingValues) -> Unit)? = null,
     shimmerContent: @Composable (PaddingValues) -> Unit,
     content: @Composable (PaddingValues) -> Unit,
 ) {
     BrbxShimmerScaffoldImpl(
         isShimmering = isShimmering,
         modifier = modifier,
+        isError = isError,
         topBar = topBar,
         bottomBar = bottomBar,
         snackbarHost = snackbarHost,
@@ -86,15 +91,17 @@ fun BrbxShimmerScaffold(
         contentColor = contentColor,
         contentWindowInsets = contentWindowInsets,
         crossfadeDuration = crossfadeDuration,
+        errorContent = errorContent,
         content = content,
         shimmerContent = shimmerContent,
     )
 }
 
 @Composable
-fun BrbxShimmerScaffoldImpl(
+private fun BrbxShimmerScaffoldImpl(
     isShimmering: Boolean,
     modifier: Modifier,
+    isError: Boolean,
     topBar: @Composable () -> Unit,
     bottomBar: @Composable () -> Unit,
     snackbarHost: @Composable () -> Unit,
@@ -104,6 +111,7 @@ fun BrbxShimmerScaffoldImpl(
     contentColor: Color,
     contentWindowInsets: WindowInsets,
     crossfadeDuration: Int,
+    errorContent: @Composable ((PaddingValues) -> Unit)?,
     shimmerContent: @Composable (PaddingValues) -> Unit,
     content: @Composable (PaddingValues) -> Unit,
 ) {
@@ -126,7 +134,11 @@ fun BrbxShimmerScaffoldImpl(
             if (targetIsShimmering) {
                 shimmerContent(paddingValues)
             } else {
-                content(paddingValues)
+                if (errorContent != null && isError) {
+                    errorContent(paddingValues)
+                } else {
+                    content(paddingValues)
+                }
             }
         }
     }
