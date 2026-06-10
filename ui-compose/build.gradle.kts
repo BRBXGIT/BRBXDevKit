@@ -22,6 +22,7 @@ android {
 
 dependencies {
 
+    // Core
     implementation(project(":core"))
 
     // Compose

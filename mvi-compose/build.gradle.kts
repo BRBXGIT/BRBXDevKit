@@ -28,6 +28,7 @@ android {
 
 dependencies {
 
+    // Core
     implementation(project(":core"))
 
     // ViewModel Lifecycle
