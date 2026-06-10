@@ -26,3 +26,4 @@ rootProject.name = "BRBXDevKit"
 include(":app")
 include(":ui-compose")
 include(":mvi-compose")
+include(":core")

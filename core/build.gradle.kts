@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.brbx.mvi_compose"
+    namespace = "com.brbx.core"
     compileSdk {
         version = release(36) {
             minorApiLevel = 1
@@ -28,8 +28,9 @@ android {
 
 dependencies {
 
-    implementation(project(":core"))
-
-    // ViewModel Lifecycle
-    api(libs.androidx.lifecycle.viewmodel.ktx)
+    // Compose
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.compose.ui)
+    // Lifecycle
+    implementation(libs.androidx.lifecycle.runtime.ktx)
 }

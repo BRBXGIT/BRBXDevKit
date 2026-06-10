@@ -1,4 +1,4 @@
-package com.brbx.ui_compose.common
+package com.brbx.core.common
 
 import androidx.annotation.DrawableRes
 import androidx.compose.runtime.Immutable
@@ -29,10 +29,10 @@ sealed interface BrbxIcon {
     value class Painter(val painter: ComposePainter) : BrbxIcon
 }
 
-fun Int.toBrbxIcon(): BrbxIcon = BrbxIcon.Res(resId = this)
+fun @receiver:DrawableRes Int.toBrbxIcon(): BrbxIcon.Res = BrbxIcon.Res(resId = this)
 
-fun ImageVector.toBrbxIcon(): BrbxIcon = BrbxIcon.Vector(imageVector = this)
+fun ImageVector.toBrbxIcon(): BrbxIcon.Vector = BrbxIcon.Vector(imageVector = this)
 
-fun ImageBitmap.toBrbxIcon(): BrbxIcon = BrbxIcon.Bitmap(this)
+fun ImageBitmap.toBrbxIcon(): BrbxIcon.Bitmap = BrbxIcon.Bitmap(this)
 
-fun ComposePainter.toBrbxIcon(): BrbxIcon = BrbxIcon.Painter(this)
+fun ComposePainter.toBrbxIcon(): BrbxIcon.Painter = BrbxIcon.Painter(this)

@@ -1,6 +1,7 @@
 package com.brbx.brbxdevkit
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -55,6 +56,7 @@ class MainActivity : ComponentActivity() {
             LaunchedEffect(isShimmering) {
                 delay(5000.milliseconds)
                 isShimmering = !isShimmering
+                Toast.LENGTH_SHORT
             }
 
 

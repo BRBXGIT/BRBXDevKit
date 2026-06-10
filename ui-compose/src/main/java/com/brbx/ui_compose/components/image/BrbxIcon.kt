@@ -12,7 +12,7 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.brbx.ui_compose.common.BrbxIcon
+import com.brbx.core.common.BrbxIcon
 import com.brbx.ui_compose.theme.BrbxTheme
 import dev.chiksmedina.solar.OutlineSolar
 import dev.chiksmedina.solar.outline.Users
@@ -100,7 +100,7 @@ fun BrbxIcon(
 }
 
 /**
- * Renders an icon using the [com.brbx.ui_compose.common.BrbxIcon] sealed interface.
+ * Renders an icon using the [com.brbx.core.common.BrbxIcon] sealed interface.
  *
  * This function delegates the rendering logic based on the specific type of [BrbxIcon] provided,
  * ensuring a consistent API for components consuming generic icon inputs.
@@ -139,6 +139,7 @@ fun BrbxIcon(
         )
     }
 }
+
 @Preview
 @Composable
 private fun BrbxIconPreview() {
