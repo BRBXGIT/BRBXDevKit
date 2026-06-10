@@ -11,7 +11,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/core" />
-            <option value="$PROJECT_DIR$/mvi-compose" />
+            <option value="$PROJECT_DIR$/mvi" />
             <option value="$PROJECT_DIR$/ui-compose" />
           </set>
         </option>

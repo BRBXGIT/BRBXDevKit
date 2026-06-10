@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.brbx.mvi_compose"
+    namespace = "com.brbx.mvi"
     compileSdk {
         version = release(36) {
             minorApiLevel = 1

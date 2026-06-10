@@ -30,7 +30,7 @@ android {
 
 dependencies {
 
-    implementation(project(":mvi-compose"))
+    implementation(project(":mvi"))
     implementation(project(":ui-compose"))
 
     // Core
