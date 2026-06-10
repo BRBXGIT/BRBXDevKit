@@ -20,6 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.brbx.ui_compose.components.with_appearance.shimmer.BrbxShimmerAppearance
 import com.brbx.ui_compose.components.with_appearance.shimmer.BrbxShimmerAppearances
 import com.brbx.ui_compose.components.with_appearance.shimmer.BrbxShimmerBlock
+import com.brbx.ui_compose.components.with_appearance.shimmer.rememberCopy
 import com.brbx.ui_compose.components.with_appearance.tile.tile.BrbxTileAppearance
 import com.brbx.ui_compose.components.with_appearance.tile.tile.BrbxTileAppearances
 import com.brbx.ui_compose.containers.with_appearance.image.image.BrbxIconContainerAppearance
@@ -58,9 +59,18 @@ fun BrbxTileShimmer(
     tileAppearance: BrbxTileAppearance = BrbxTileAppearances.default,
     iconContainerAppearance: BrbxIconContainerAppearance =
         BrbxIconContainerAppearances.withoutBadge,
-    iconContainerShimmerAppearance: BrbxShimmerAppearance = BrbxShimmerAppearances.default,
-    titleShimmerAppearance: BrbxShimmerAppearance = BrbxShimmerAppearances.default,
-    descriptionShimmerAppearance: BrbxShimmerAppearance = BrbxShimmerAppearances.default,
+    iconContainerShimmerAppearance: BrbxShimmerAppearance =
+        BrbxShimmerAppearances.default.rememberCopy(
+            containerColor = { mColors.surfaceContainerHigh }
+        ),
+    titleShimmerAppearance: BrbxShimmerAppearance =
+        BrbxShimmerAppearances.default.rememberCopy(
+            containerColor = { mColors.surfaceContainerHigh }
+        ),
+    descriptionShimmerAppearance: BrbxShimmerAppearance =
+        BrbxShimmerAppearances.default.rememberCopy(
+            containerColor = { mColors.surfaceContainerHighest }
+        ),
     additionalContent: @Composable () -> Unit = {},
 ) {
     BrbxTileShimmerImpl(

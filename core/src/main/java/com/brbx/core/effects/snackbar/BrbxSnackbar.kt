@@ -6,8 +6,8 @@ import com.brbx.core.common.BrbxText
 @Immutable
 data class BrbxSnackbar(
     override val text: BrbxText,
-    override val buttonText: BrbxText,
-    override val duration: Long,
-    override val isDismissable: Boolean,
-    override val onButtonClick: () -> Unit,
+    override val duration: Long = Long.MAX_VALUE,
+    override val buttonText: BrbxText? = null,
+    override val isDismissable: Boolean = false,
+    override val onButtonClick: (() -> Unit)? = null,
 ) : BrbxSnackbarConfig

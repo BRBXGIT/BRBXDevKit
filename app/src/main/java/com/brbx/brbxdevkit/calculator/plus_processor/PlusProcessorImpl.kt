@@ -11,8 +11,8 @@ class PlusProcessorImpl : PlusProcessor {
         when (intent) {
             CalculatorIntent.Plus.Add -> {
                 updateState {
-                    it.copy(
-                        currentNum = it.currentNum + 1
+                    copy(
+                        currentNum = currentNum + 1
                     )
                 }
             }
