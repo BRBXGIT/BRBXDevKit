@@ -4,6 +4,7 @@ import androidx.compose.runtime.Immutable
 
 @Immutable
 data class BrbxAnimationTokens(
+    val duration0: Long = 0L,
     val duration100: Long = 100L,
     val duration200: Long = 200L,
     val duration300: Long = 300L,

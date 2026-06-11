@@ -25,7 +25,7 @@ import androidx.compose.ui.unit.sp
 import com.brbx.core.common.BrbxIcon
 import com.brbx.core.common.toBrbxIcon
 import com.brbx.ui_compose.components.image.BrbxIcon
-import com.brbx.ui_compose.components.with_appearance.precollection.BrbxPrecollection
+import com.brbx.ui_compose.components.with_appearance.precollection.precollection.BrbxPrecollection
 import com.brbx.ui_compose.containers.with_appearance.image.image.BrbxIconContainer
 import com.brbx.ui_compose.containers.with_appearance.image.image.BrbxIconContainerAppearance
 import com.brbx.ui_compose.containers.with_appearance.image.image.BrbxIconContainerAppearances

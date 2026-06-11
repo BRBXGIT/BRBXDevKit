@@ -4,6 +4,8 @@ import androidx.compose.runtime.Immutable
 
 @Immutable
 data class BrbxIntensityTokens(
+    val intensity0: Float = 0.0f,
+    val intensity005: Float = 0.05f,
     val intensity01: Float = 0.1f,
     val intensity015: Float = 0.15f,
     val intensity02: Float = 0.2f,

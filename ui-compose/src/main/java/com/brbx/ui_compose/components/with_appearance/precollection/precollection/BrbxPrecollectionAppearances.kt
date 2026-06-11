@@ -1,4 +1,4 @@
-package com.brbx.ui_compose.components.with_appearance.precollection
+package com.brbx.ui_compose.components.with_appearance.precollection.precollection
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.SolidColor

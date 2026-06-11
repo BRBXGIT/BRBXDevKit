@@ -24,7 +24,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.brbx.ui_compose.common.toBrbxIcon
-import com.brbx.ui_compose.components.with_appearance.precollection.BrbxPrecollection
+import com.brbx.ui_compose.components.with_appearance.precollection.precollection.BrbxPrecollection
 import com.brbx.ui_compose.components.with_appearance.shimmer.BrbxShimmerAppearances
 import com.brbx.ui_compose.components.with_appearance.shimmer.rememberCopy
 import com.brbx.ui_compose.components.with_appearance.tile.shimmer.BrbxTileShimmer

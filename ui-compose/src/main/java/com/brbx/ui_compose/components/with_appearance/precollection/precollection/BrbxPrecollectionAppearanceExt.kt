@@ -1,4 +1,4 @@
-package com.brbx.ui_compose.components.with_appearance.precollection
+package com.brbx.ui_compose.components.with_appearance.precollection.precollection
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable

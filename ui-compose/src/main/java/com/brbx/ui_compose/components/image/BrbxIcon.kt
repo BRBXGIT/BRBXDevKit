@@ -19,15 +19,6 @@ import dev.chiksmedina.solar.outline.Users
 import dev.chiksmedina.solar.outline.users.User
 
 /**
- * A collection of overloaded Composable functions providing a unified interface for rendering icons
- * within the BRBX design system.
- *
- * These functions abstract the underlying Compose [Icon] implementation, supporting various input
- * types such as [ImageVector], [ImageBitmap], [Painter], resource IDs, and the custom
- * [BrbxIcon] sealed interface.
- */
-
-/**
  * Renders an icon from an [ImageVector].
  */
 @Composable

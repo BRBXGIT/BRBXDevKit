@@ -4,7 +4,7 @@ import androidx.compose.runtime.Immutable
 
 /**
  * A collection of predefined [BrbxContentCard] styles.
- * * This object serves as a centralized theme repository for precollection variations.
+ * * This object serves as a centralized theme repository for content card variations.
  * Using these constants ensures design consistency across the application
  * and simplifies the implementation of common UI patterns.
  */

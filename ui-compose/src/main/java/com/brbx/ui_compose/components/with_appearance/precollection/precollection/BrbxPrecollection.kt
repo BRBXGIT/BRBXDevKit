@@ -1,4 +1,4 @@
-package com.brbx.ui_compose.components.with_appearance.precollection
+package com.brbx.ui_compose.components.with_appearance.precollection.precollection
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
