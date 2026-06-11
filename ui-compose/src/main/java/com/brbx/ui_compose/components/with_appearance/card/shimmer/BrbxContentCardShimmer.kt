@@ -31,11 +31,11 @@ import com.brbx.ui_compose.theme.bShapes
  *
  * This composable acts as a visual placeholder while the card's data (especially the
  * background image) is being fetched. It uses a full-size [BrbxShimmerBlock] to mock
- * the underlying image layer, while applying the exact same [cardAppearance] to ensure
+ * the underlying image layer, while applying the exact same [appearance] to ensure
  * the size, shape, and text overlay container match the final loaded UI precisely.
  *
  * @param modifier The [Modifier] applied to the outermost container of the shimmer card.
- * @param cardAppearance The visual configuration defining dimensions, shapes, overlay
+ * @param appearance The visual configuration defining dimensions, shapes, overlay
  * backgrounds, and alignments. This should strictly match the appearance of the target
  * [com.brbx.ui_compose.components.with_appearance.card.card.BrbxContentCard] to prevent layout jumps when the data loads. Defaults to
  * [BrbxContentCardAppearances.tertiary].
@@ -50,14 +50,14 @@ import com.brbx.ui_compose.theme.bShapes
 @Composable
 fun BrbxContentCardShimmer(
     modifier: Modifier = Modifier,
-    cardAppearance: BrbxContentCardAppearance = BrbxContentCardAppearances.tertiary,
+    appearance: BrbxContentCardAppearance = BrbxContentCardAppearances.tertiary,
     imageShimmerAppearance: BrbxShimmerBlockAppearance = BrbxShimmerBlockAppearances.default,
     title: @Composable ColumnScope.() -> Unit,
     description: @Composable ColumnScope.() -> Unit,
 ) =
     BrbxContentCardShimmerImpl(
         modifier = modifier,
-        cardAppearance = cardAppearance,
+        appearance = appearance,
         imageShimmerAppearance = imageShimmerAppearance,
         title = title,
         description = description,
@@ -66,7 +66,7 @@ fun BrbxContentCardShimmer(
 @Composable
 private fun BrbxContentCardShimmerImpl(
     modifier: Modifier,
-    cardAppearance: BrbxContentCardAppearance,
+    appearance: BrbxContentCardAppearance,
     imageShimmerAppearance: BrbxShimmerBlockAppearance,
     title: @Composable ColumnScope.() -> Unit,
     description: @Composable ColumnScope.() -> Unit,
@@ -74,10 +74,10 @@ private fun BrbxContentCardShimmerImpl(
     Box(
         modifier = modifier
             .size(
-                width = cardAppearance.containerWidth(),
-                height = cardAppearance.containerHeight(),
+                width = appearance.containerWidth(),
+                height = appearance.containerHeight(),
             )
-            .clip(shape = cardAppearance.containerShape())
+            .clip(shape = appearance.containerShape())
     ) {
         BrbxShimmerBlock(
             modifier = Modifier.fillMaxSize(),
@@ -85,11 +85,12 @@ private fun BrbxContentCardShimmerImpl(
         )
 
         Column(
-            verticalArrangement = Arrangement.spacedBy(cardAppearance.infoSpacedBy()),
+            verticalArrangement = Arrangement.spacedBy(appearance.infoSpacedBy()),
             modifier = Modifier
-                .align(alignment = cardAppearance.infoAlignment())
+                .align(alignment = appearance.infoAlignment())
                 .fillMaxWidth()
-                .background(brush = cardAppearance.infoBackground())
+                .background(brush = appearance.infoBackground())
+                .padding(paddingValues = appearance.infoPadding())
         ) {
             title()
 
@@ -106,11 +107,6 @@ private fun BrbxContentCardShimmerPreview() {
             title = {
                 BrbxShimmerBlock(
                     modifier = Modifier
-                        .padding(
-                            top = bDimens.dp8,
-                            start = bDimens.dp8,
-                            end = bDimens.dp8,
-                        )
                         .height(bDimens.dp14)
                         .width(bDimens.dp80)
                         .clip(shape = bShapes.dp12)
@@ -119,11 +115,6 @@ private fun BrbxContentCardShimmerPreview() {
             description = {
                 BrbxShimmerBlock(
                     modifier = Modifier
-                        .padding(
-                            bottom = bDimens.dp8,
-                            start = bDimens.dp8,
-                            end = bDimens.dp8,
-                        )
                         .height(bDimens.dp12)
                         .width(bDimens.dp100)
                         .clip(shape = bShapes.dp12)

@@ -53,6 +53,8 @@ internal inline fun BrbxContentCardAppearance(
         { bDimens.dp4 },
     crossinline infoBackground: @Composable () -> Brush =
         { SolidColor(mColors.tertiaryContainer) },
+    crossinline infoPadding: @Composable () -> PaddingValues =
+        { PaddingValues(bDimens.dp8) },
 
     // Title & Description
     crossinline titleColor: @Composable () -> Color =
@@ -85,6 +87,7 @@ internal inline fun BrbxContentCardAppearance(
     @Composable override fun infoAlignment(): Alignment = infoAlignment()
     @Composable override fun infoSpacedBy(): Dp = infoSpacedBy()
     @Composable override fun infoBackground(): Brush = infoBackground()
+    @Composable override fun infoPadding(): PaddingValues = infoPadding()
 
     // Title & Description
     @Composable override fun titleColor(): Color = titleColor()
@@ -128,6 +131,7 @@ inline fun BrbxContentCardAppearance.copy(
     crossinline infoAlignment: @Composable () -> Alignment = { this.infoAlignment() },
     crossinline infoSpacedBy: @Composable () -> Dp = { this.infoSpacedBy() },
     crossinline infoBackground: @Composable () -> Brush = { this.infoBackground() },
+    crossinline infoPadding: @Composable () -> PaddingValues = { this.infoPadding() },
 
     // Title & Description
     crossinline titleColor: @Composable () -> Color = { this.titleColor() },
@@ -158,6 +162,7 @@ inline fun BrbxContentCardAppearance.copy(
     @Composable override fun infoAlignment(): Alignment = infoAlignment()
     @Composable override fun infoSpacedBy(): Dp = infoSpacedBy()
     @Composable override fun infoBackground(): Brush = infoBackground()
+    @Composable override fun infoPadding(): PaddingValues = infoPadding()
 
     // Title & Description
     @Composable override fun titleColor(): Color = titleColor()
@@ -206,6 +211,7 @@ inline fun BrbxContentCardAppearance.rememberCopy(
     crossinline infoAlignment: @Composable () -> Alignment = { this.infoAlignment() },
     crossinline infoSpacedBy: @Composable () -> Dp = { this.infoSpacedBy() },
     crossinline infoBackground: @Composable () -> Brush = { this.infoBackground() },
+    crossinline infoPadding: @Composable () -> PaddingValues = { this.infoPadding() },
 
     // Title & Description
     crossinline titleColor: @Composable () -> Color = { this.titleColor() },
@@ -225,6 +231,7 @@ inline fun BrbxContentCardAppearance.rememberCopy(
             infoAlignment = infoAlignment,
             infoSpacedBy = infoSpacedBy,
             infoBackground = infoBackground,
+            infoPadding = infoPadding,
             titleColor = titleColor,
             descriptionColor = descriptionColor,
         )

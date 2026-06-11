@@ -25,7 +25,6 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.tooling.preview.Preview
 import com.brbx.ui_compose.components.image.BrbxRemoteImage
 import com.brbx.ui_compose.theme.BrbxTheme
-import com.brbx.ui_compose.theme.bDimens
 import com.brbx.ui_compose.theme.mTypography
 
 /**
@@ -155,24 +154,12 @@ private fun BrbxContentCardMediumPreview() {
                 Text(
                     text = "Title",
                     style = mTypography.bodyLarge,
-                    modifier = Modifier
-                        .padding(
-                            top = bDimens.dp2,
-                            start = bDimens.dp2,
-                            end = bDimens.dp2,
-                        )
                 )
             },
             description = {
                 Text(
                     text = "Description",
                     style = mTypography.bodyMedium,
-                    modifier = Modifier
-                        .padding(
-                            bottom = bDimens.dp2,
-                            start = bDimens.dp2,
-                            end = bDimens.dp2,
-                        )
                 )
             }
         )

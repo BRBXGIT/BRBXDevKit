@@ -81,7 +81,8 @@ private fun BrbxPrecollectionImpl(
                 indication = ripple(color = appearance.containerRippleColor()),
                 enabled = enabled,
                 onClick = onClick,
-            ),
+            )
+            .padding(paddingValues = appearance.contentPadding()),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween,
     ) {
@@ -103,21 +104,11 @@ private fun BrbxPrecollectionPreview() {
                 style = mTypography.labelLarge,
                 modifier = Modifier
                     .weight(1f, fill = false)
-                    .padding(
-                        top = bDimens.dp8,
-                        start = bDimens.dp16,
-                        end = bDimens.dp16,
-                        bottom = bDimens.dp8,
-                    )
+                    .padding(end = bDimens.dp16)
             )
 
             BrbxIcon(
                 imageVector = OutlineSolar.Users.User,
-                modifier = Modifier.padding(
-                    end = bDimens.dp16,
-                    top = bDimens.dp8,
-                    bottom = bDimens.dp8,
-                ),
             )
         }
     }

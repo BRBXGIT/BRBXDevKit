@@ -16,8 +16,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.brbx.ui_compose.components.with_appearance.shimmer.BrbxShimmerBlock
@@ -35,15 +33,12 @@ import com.brbx.ui_compose.theme.mColors
  * A loading skeleton component that perfectly mirrors the layout and structure of a [com.brbx.ui_compose.components.with_appearance.tile.tile.BrbxTile].
  *
  * This composable is used as a placeholder while the data for a tile is being fetched.
- * By consuming the exact same [tileAppearance], it ensures that the shadows, shapes,
+ * By consuming the exact same [appearance], it ensures that the shadows, shapes,
  * padding, and spacing match the final loaded UI precisely, preventing layout shift.
- * Unlike the standard tile, it removes all interactive elements (like clicks and ripples)
- * and applies a placeholder or animated [shimmerContainerBrush] to the background.
  *
  * @param modifier The [Modifier] applied to the outermost container of the shimmer tile.
- * @param shimmerContainerBrush The [Brush] used for the tile's background. This is typically
  * a solid placeholder color or an animated shimmer gradient. Defaults to a solid surface color.
- * @param tileAppearance The visual configuration defining shadows, shapes, padding, and
+ * @param appearance The visual configuration defining shadows, shapes, padding, and
  * spacing. This should exactly match the appearance of the target [com.brbx.ui_compose.components.with_appearance.tile.tile.BrbxTile]. Defaults to
  * [BrbxTileAppearances.default].
  * @param additionalContent An optional slot placed below the main row. Typically filled
@@ -58,17 +53,15 @@ import com.brbx.ui_compose.theme.mColors
 @Composable
 fun BrbxTileShimmer(
     modifier: Modifier = Modifier,
-    shimmerContainerBrush: Brush= SolidColor(mColors.surfaceContainer),
-    tileAppearance: BrbxTileAppearance = BrbxTileAppearances.default,
+    appearance: BrbxTileAppearance = BrbxTileAppearances.default,
     additionalContent: @Composable () -> Unit = {},
     trailingContent: @Composable () -> Unit,
     title: @Composable () -> Unit,
     description: @Composable () -> Unit,
 ) =
     BrbxTileShimmerImpl(
-        shimmerContainerBrush = shimmerContainerBrush,
         modifier = modifier,
-        tileAppearance = tileAppearance,
+        appearance = appearance,
         additionalContent = additionalContent,
         trailingContent = trailingContent,
         title = title,
@@ -77,9 +70,8 @@ fun BrbxTileShimmer(
 
 @Composable
 private fun BrbxTileShimmerImpl(
-    shimmerContainerBrush: Brush,
     modifier: Modifier = Modifier,
-    tileAppearance: BrbxTileAppearance,
+    appearance: BrbxTileAppearance,
     additionalContent: @Composable () -> Unit,
     trailingContent: @Composable () -> Unit,
     title: @Composable () -> Unit,
@@ -87,31 +79,31 @@ private fun BrbxTileShimmerImpl(
 ) {
     Box(
         modifier = modifier
-            .padding(paddingValues = tileAppearance.containerElevationPadding())
+            .padding(paddingValues = appearance.containerElevationPadding())
             .shadow(
-                elevation = tileAppearance.containerElevation(),
-                ambientColor = tileAppearance.containerElevationAmbientColor(),
-                spotColor = tileAppearance.containerElevationSpotColor(),
-                shape = tileAppearance.containerShape(),
+                elevation = appearance.containerElevation(),
+                ambientColor = appearance.containerElevationAmbientColor(),
+                spotColor = appearance.containerElevationSpotColor(),
+                shape = appearance.containerShape(),
                 clip = false,
             )
-            .clip(shape = tileAppearance.containerShape())
-            .background(brush = shimmerContainerBrush)
+            .clip(shape = appearance.containerShape())
+            .background(brush = appearance.containerBrush())
     ) {
         Column(
-            verticalArrangement = Arrangement.spacedBy(tileAppearance.contentColumnSpacing()),
+            verticalArrangement = Arrangement.spacedBy(appearance.contentColumnSpacing()),
             modifier = Modifier
-                .padding(all = tileAppearance.containerContentPadding())
+                .padding(all = appearance.containerContentPadding())
         ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(tileAppearance.horizontalSpacing()),
+                horizontalArrangement = Arrangement.spacedBy(appearance.horizontalSpacing()),
                 modifier = Modifier.fillMaxWidth()
             ) {
                 trailingContent()
 
                 Column(
-                    verticalArrangement = Arrangement.spacedBy(tileAppearance.verticalSpacing()),
+                    verticalArrangement = Arrangement.spacedBy(appearance.verticalSpacing()),
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     title()

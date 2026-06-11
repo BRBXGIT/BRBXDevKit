@@ -1,5 +1,6 @@
 package com.brbx.ui_compose.components.with_appearance.precollection.precollection
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Brush
@@ -8,6 +9,7 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.SolidColor
 import com.brbx.ui_compose.common.UnsafeAppearanceCopy
 import com.brbx.ui_compose.components.with_appearance.tile.tile.rememberCopy
+import com.brbx.ui_compose.theme.bDimens
 import com.brbx.ui_compose.theme.bShapes
 import com.brbx.ui_compose.theme.mColors
 
@@ -30,22 +32,19 @@ internal inline fun BrbxPrecollectionAppearance(
         { mColors.surface },
 
     // Content
+    crossinline contentPadding: @Composable () -> PaddingValues =
+        { PaddingValues(horizontal = bDimens.dp10, vertical = bDimens.dp12) },
     crossinline leadingContentColor: @Composable () -> Color = { mColors.onTertiary },
 ): BrbxPrecollectionAppearance = object : BrbxPrecollectionAppearance {
 
     // Container
-    @Composable
-    override fun containerShape(): Shape = containerShape()
+    @Composable override fun containerShape(): Shape = containerShape()
+    @Composable override fun containerBrush(): Brush = containerBrush()
+    @Composable override fun containerRippleColor(): Color = containerRippleColor()
 
-    @Composable
-    override fun containerBrush(): Brush = containerBrush()
-
-    @Composable
-    override fun containerRippleColor(): Color = containerRippleColor()
-
-    // Content
-    @Composable
-    override fun contentColor(): Color = leadingContentColor()
+    // Leading content
+    @Composable override fun contentColor(): Color = leadingContentColor()
+    @Composable override fun contentPadding(): PaddingValues = contentPadding()
 }
 
 /**
@@ -68,23 +67,20 @@ inline fun BrbxPrecollectionAppearance.copy(
         { this.containerRippleColor() },
 
     // Content
+    crossinline contentPadding: @Composable () -> PaddingValues =
+        { this.contentPadding() },
     crossinline leadingContentColor: @Composable () -> Color =
         { this.contentColor() },
 ): BrbxPrecollectionAppearance = object : BrbxPrecollectionAppearance {
 
     // Container
-    @Composable
-    override fun containerShape(): Shape = containerShape()
-
-    @Composable
-    override fun containerBrush(): Brush = containerBrush()
-
-    @Composable
-    override fun containerRippleColor(): Color = containerRippleColor()
+    @Composable override fun containerShape(): Shape = containerShape()
+    @Composable override fun containerBrush(): Brush = containerBrush()
+    @Composable override fun containerRippleColor(): Color = containerRippleColor()
 
     // Content
-    @Composable
-    override fun contentColor(): Color = leadingContentColor()
+    @Composable override fun contentPadding(): PaddingValues = contentPadding()
+    @Composable override fun contentColor(): Color = leadingContentColor()
 }
 
 /**
@@ -108,6 +104,8 @@ inline fun BrbxPrecollectionAppearance.rememberCopy(
         { this.containerRippleColor() },
 
     // Content
+    crossinline contentPadding: @Composable () -> PaddingValues =
+        { this.contentPadding() },
     crossinline leadingContentColor: @Composable () -> Color =
         { this.contentColor() },
 ): BrbxPrecollectionAppearance = remember {
@@ -115,6 +113,7 @@ inline fun BrbxPrecollectionAppearance.rememberCopy(
         containerShape = containerShape,
         containerBrush = containerBrush,
         containerRippleColor = containerRippleColor,
+        contentPadding = contentPadding,
         leadingContentColor = leadingContentColor,
     )
 }

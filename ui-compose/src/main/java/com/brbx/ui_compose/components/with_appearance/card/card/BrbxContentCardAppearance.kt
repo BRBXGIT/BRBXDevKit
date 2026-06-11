@@ -97,6 +97,12 @@ interface BrbxContentCardAppearance {
     @Composable
     fun infoBackground(): Brush
 
+    /**
+     * The internal padding of the footer section (distance from the footer bounds to its content).
+     */
+    @Composable
+    fun infoPadding(): PaddingValues
+
     // ---------------------------------------------------------------------------
     // Title & Description
     // ---------------------------------------------------------------------------

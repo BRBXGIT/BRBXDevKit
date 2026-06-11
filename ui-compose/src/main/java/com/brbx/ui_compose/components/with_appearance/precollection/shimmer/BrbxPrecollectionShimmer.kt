@@ -61,6 +61,7 @@ private fun BrbxPrecollectionShimmerImpl(
         modifier = modifier
             .clip(shape = appearance.containerShape())
             .background(brush = appearance.containerBrush())
+            .padding(paddingValues = appearance.contentPadding())
     )
 }
 
@@ -73,7 +74,6 @@ private fun BrbxPrecollectionShimmerPreview() {
         ) {
             BrbxShimmerBlock(
                 modifier = Modifier
-                    .padding(all = bDimens.dp10)
                     .height(bDimens.dp18)
                     .width(240.dp)
                     .clip(shape = bShapes.dp12)

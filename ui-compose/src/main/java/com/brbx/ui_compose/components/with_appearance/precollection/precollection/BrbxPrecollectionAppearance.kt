@@ -6,9 +6,6 @@ import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.unit.Dp
 
 /**
  * Defines the visual appearance and styling of the [BrbxPrecollection] component.
@@ -38,6 +35,12 @@ interface BrbxPrecollectionAppearance {
      */
     @Composable
     fun containerRippleColor(): Color
+
+    /**
+     * The internal padding of the container (vertical and horizontal spacing).
+     */
+    @Composable
+    fun contentPadding(): PaddingValues
 
     // ---------------------------------------------------------------------------
     // Content
