@@ -52,19 +52,33 @@ interface BrbxContentCardAppearance {
     @Composable
     fun containerRippleColor(): Color
 
+    /**
+     * The elevation (depth) of the container, which controls the size and intensity of the shadow.
+     */
+    @Composable
+    fun containerElevation(): Dp
+
+    /**
+     * The padding of the container elevation
+     */
+    @Composable
+    fun containerElevationPadding(): PaddingValues
+
+    /**
+     * The color used for the ambient shadow, which simulates diffuse, omnidirectional light.
+     */
+    @Composable
+    fun containerElevationAmbientColor(): Color
+
+    /**
+     * The color used for the spot shadow, which simulates light from a specific, directional source.
+     */
+    @Composable
+    fun containerElevationSpotColor(): Color
+
     // ---------------------------------------------------------------------------
     // Badge Layout & Background
     // ---------------------------------------------------------------------------
-
-    // ---------------------------------------------------------------------------
-    // Badge Container
-    // ---------------------------------------------------------------------------
-
-    /**
-     * Visibility of badge.
-     */
-    @Composable
-    fun isBadgeVisible(): Boolean
 
     /**
      * Alignment of content in badge.

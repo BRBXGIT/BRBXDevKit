@@ -18,7 +18,7 @@ import com.brbx.ui_compose.theme.BrbxTheme
 @Composable
 fun BrbxIconContainerShimmer(
     modifier: Modifier = Modifier,
-    iconAppearance: BrbxIconContainerAppearance = BrbxIconContainerAppearances.withoutBadge,
+    iconAppearance: BrbxIconContainerAppearance = BrbxIconContainerAppearances.default,
     shimmerAppearance: BrbxShimmerAppearance = BrbxShimmerAppearances.default,
 ) {
     BrbxIconContainerShimmerImpl(

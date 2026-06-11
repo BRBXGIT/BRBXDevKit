@@ -58,7 +58,7 @@ fun BrbxTileShimmer(
     shimmerContainerBrush: Brush= SolidColor(mColors.surfaceContainer),
     tileAppearance: BrbxTileAppearance = BrbxTileAppearances.default,
     iconContainerAppearance: BrbxIconContainerAppearance =
-        BrbxIconContainerAppearances.withoutBadge,
+        BrbxIconContainerAppearances.default,
     iconContainerShimmerAppearance: BrbxShimmerAppearance =
         BrbxShimmerAppearances.default.rememberCopy(
             containerColor = { mColors.surfaceContainerHigh }
@@ -98,7 +98,7 @@ private fun BrbxTileShimmerImpl(
 ) {
     Box(
         modifier = modifier
-            .padding(vertical = tileAppearance.containerElevationPadding())
+            .padding(paddingValues = tileAppearance.containerElevationPadding())
             .shadow(
                 elevation = tileAppearance.containerElevation(),
                 ambientColor = tileAppearance.containerElevationAmbientColor(),

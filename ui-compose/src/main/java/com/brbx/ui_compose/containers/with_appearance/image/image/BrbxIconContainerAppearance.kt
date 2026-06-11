@@ -70,12 +70,6 @@ interface BrbxIconContainerAppearance {
     // ---------------------------------------------------------------------------
 
     /**
-     * Visibility of badge.
-     */
-    @Composable
-    fun isBadgeVisible(): Boolean
-
-    /**
      * The alignment of content in badge.
      */
     @Composable

@@ -1,8 +1,6 @@
 plugins {
     // Android library
     alias(libs.plugins.android.library)
-    // Compose
-    alias(libs.plugins.kotlin.compose)
 }
 
 android {
@@ -17,7 +15,6 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-    buildFeatures { compose = true }
     kotlin {
         compilerOptions {
             jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11)

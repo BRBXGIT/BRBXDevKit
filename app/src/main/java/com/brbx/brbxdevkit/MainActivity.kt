@@ -23,7 +23,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.brbx.ui_compose.common.toBrbxIcon
+import com.brbx.core.common.toBrbxIcon
 import com.brbx.ui_compose.components.with_appearance.precollection.precollection.BrbxPrecollection
 import com.brbx.ui_compose.components.with_appearance.shimmer.BrbxShimmerAppearances
 import com.brbx.ui_compose.components.with_appearance.shimmer.rememberCopy
@@ -121,7 +121,7 @@ class MainActivity : ComponentActivity() {
                             modifier = Modifier.padding(paddingValues)
                         ) {
                             BrbxTile(
-                                iconContainerAppearance = BrbxIconContainerAppearances.withBadge,
+                                iconContainerAppearance = BrbxIconContainerAppearances.default,
                                 modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
                                 icon = BoldSolar.Call.CallDropped.toBrbxIcon(),
                                 title = "Call dropped",
@@ -130,7 +130,8 @@ class MainActivity : ComponentActivity() {
                                 badgeContent = {
                                     Text(
                                         text = "3",
-                                        style = mTypography.labelSmall
+                                        style = mTypography.labelSmall,
+                                        modifier = Modifier.padding(bDimens.dp6)
                                     )
                                 },
                             )
@@ -153,7 +154,7 @@ class MainActivity : ComponentActivity() {
                             )
 
                             BrbxTile(
-                                iconContainerAppearance = BrbxIconContainerAppearances.withBadge,
+                                iconContainerAppearance = BrbxIconContainerAppearances.default,
                                 modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
                                 icon = BoldSolar.Call.CallDropped.toBrbxIcon(),
                                 title = "Call dropped",

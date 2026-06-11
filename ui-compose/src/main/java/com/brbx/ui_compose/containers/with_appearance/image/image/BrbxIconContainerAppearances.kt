@@ -1,7 +1,5 @@
 package com.brbx.ui_compose.containers.with_appearance.image.image
 
-import androidx.compose.runtime.remember
-
 /**
  * A collection of predefined [BrbxIconContainerAppearance] styles.
  * * This object serves as a centralized theme repository for icon container variations.
@@ -10,9 +8,5 @@ import androidx.compose.runtime.remember
  */
 object BrbxIconContainerAppearances {
 
-    val withBadge: BrbxIconContainerAppearance = BrbxIconContainerAppearance()
-
-    val withoutBadge: BrbxIconContainerAppearance = BrbxIconContainerAppearance(
-        isBadgeVisible = { remember { false } },
-    )
+    val default: BrbxIconContainerAppearance = BrbxIconContainerAppearance()
 }

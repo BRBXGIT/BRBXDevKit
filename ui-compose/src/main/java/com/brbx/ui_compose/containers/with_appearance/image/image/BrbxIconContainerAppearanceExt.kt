@@ -43,8 +43,6 @@ internal inline fun BrbxIconContainerAppearance(
         { PaddingValues(bDimens.dp8) },
 
     // Badge Container
-    crossinline isBadgeVisible: @Composable () -> Boolean =
-        { remember { true } },
     crossinline badgeContentAlignment: @Composable () -> Alignment =
         { remember { Alignment.Center } },
     crossinline badgeShape: @Composable () -> Shape =
@@ -83,9 +81,6 @@ internal inline fun BrbxIconContainerAppearance(
     override fun contentPadding(): PaddingValues = contentPadding()
 
     // Badge Container
-    @Composable
-    override fun isBadgeVisible(): Boolean = isBadgeVisible()
-
     @Composable
     override fun badgeContentAlignment(): Alignment = badgeContentAlignment()
 
@@ -140,8 +135,6 @@ inline fun BrbxIconContainerAppearance.copy(
         { this.contentPadding() },
 
     // Badge Container
-    crossinline isBadgeVisible: @Composable () -> Boolean =
-        { this.isBadgeVisible() },
     crossinline badgeContentAlignment: @Composable () -> Alignment =
         { this.badgeContentAlignment() },
     crossinline badgeShape: @Composable () -> Shape =
@@ -180,9 +173,6 @@ inline fun BrbxIconContainerAppearance.copy(
     override fun contentPadding(): PaddingValues = contentPadding()
 
     // Badge Container
-    @Composable
-    override fun isBadgeVisible(): Boolean = isBadgeVisible()
-
     @Composable
     override fun badgeContentAlignment(): Alignment = badgeContentAlignment()
 
@@ -243,8 +233,6 @@ inline fun BrbxIconContainerAppearance.rememberCopy(
         { this.contentPadding() },
 
     // Badge Container
-    crossinline isBadgeVisible: @Composable () -> Boolean =
-        { this.isBadgeVisible() },
     crossinline badgeContentAlignment: @Composable () -> Alignment =
         { this.badgeContentAlignment() },
     crossinline badgeShape: @Composable () -> Shape =
@@ -268,7 +256,6 @@ inline fun BrbxIconContainerAppearance.rememberCopy(
             contentColor = contentColor,
             contentAlignment = contentAlignment,
             contentPadding = contentPadding,
-            isBadgeVisible = isBadgeVisible,
             badgeContentAlignment = badgeContentAlignment,
             badgeShape = badgeShape,
             badgeContainerBrush = badgeContainerBrush,

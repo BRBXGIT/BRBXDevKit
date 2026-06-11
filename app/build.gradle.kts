@@ -30,6 +30,8 @@ android {
 
 dependencies {
 
+    // Modules
+    implementation(project(":core"))
     implementation(project(":mvi"))
     implementation(project(":ui-compose"))
 

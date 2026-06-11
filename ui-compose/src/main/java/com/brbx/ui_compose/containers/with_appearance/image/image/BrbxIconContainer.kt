@@ -36,7 +36,7 @@ import dev.chiksmedina.solar.bold.users.User
 @Composable
 fun BrbxIconContainer(
     modifier: Modifier = Modifier,
-    appearance: BrbxIconContainerAppearance = BrbxIconContainerAppearances.withoutBadge,
+    appearance: BrbxIconContainerAppearance = BrbxIconContainerAppearances.default,
     badgeContent: @Composable BoxScope.() -> Unit = {},
     content: @Composable BoxScope.() -> Unit,
 ) {
@@ -70,7 +70,7 @@ private fun BRBXIconContainerImpl(
             }
         }
 
-        if (appearance.isBadgeVisible()) {
+        if (badgeContent != {}) {
             val badgePositionXDivider = appearance.badgePositionXDivider()
             val badgePositionYDivider = appearance.badgePositionYDivider()
             Box(
@@ -104,7 +104,7 @@ private fun BRBXIconContainerImpl(
 private fun BrbxIconContainerPreview() {
     BrbxTheme(colorScheme = lightColorScheme()) {
         BrbxIconContainer(
-            appearance = BrbxIconContainerAppearances.withBadge,
+            appearance = BrbxIconContainerAppearances.default,
             badgeContent = {
                 Text(
                     text = "3",

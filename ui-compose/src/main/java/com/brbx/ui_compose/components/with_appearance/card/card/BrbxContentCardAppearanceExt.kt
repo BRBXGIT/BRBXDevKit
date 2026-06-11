@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.brbx.ui_compose.common.UnsafeAppearanceCopy
 import com.brbx.ui_compose.theme.bDimens
+import com.brbx.ui_compose.theme.bElevation
 import com.brbx.ui_compose.theme.bShapes
 import com.brbx.ui_compose.theme.mColors
 import com.brbx.ui_compose.theme.mTypography
@@ -40,10 +41,16 @@ internal inline fun BrbxContentCardAppearance(
         { SolidColor(mColors.surface) },
     crossinline containerRippleColor: @Composable () -> Color =
         { mColors.surface },
+    crossinline containerElevation: @Composable () -> Dp =
+        { bElevation.dp0 },
+    crossinline containerElevationPadding: @Composable () -> PaddingValues =
+        { PaddingValues(all = bDimens.dp0) },
+    crossinline containerElevationAmbientColor: @Composable () -> Color =
+        { remember { Color.Transparent } },
+    crossinline containerElevationSpotColor: @Composable () -> Color =
+        { remember { Color.Transparent } },
 
     // Badge Layout & Background
-    crossinline isBadgeVisible: @Composable () -> Boolean =
-        { remember { true } },
     crossinline badgeContentAlignment: @Composable () -> Alignment =
         { remember { Alignment.Center } },
     crossinline badgeContainerPadding: @Composable () -> PaddingValues =
@@ -87,14 +94,26 @@ internal inline fun BrbxContentCardAppearance(
 ): BrbxContentCardAppearance = object : BrbxContentCardAppearance {
 
     // Container & Interaction
-    @Composable override fun containerWidth(): Dp = width()
-    @Composable override fun containerHeight(): Dp = height()
-    @Composable override fun containerShape(): Shape = containerShape()
-    @Composable override fun containerBackground(): Brush = containerBackground()
-    @Composable override fun containerRippleColor(): Color = containerRippleColor()
+    @Composable override fun containerWidth(): Dp =
+        width()
+    @Composable override fun containerHeight(): Dp =
+        height()
+    @Composable override fun containerShape(): Shape =
+        containerShape()
+    @Composable override fun containerBackground(): Brush =
+        containerBackground()
+    @Composable override fun containerRippleColor(): Color =
+        containerRippleColor()
+    @Composable override fun containerElevation(): Dp =
+        containerElevation()
+    @Composable override fun containerElevationPadding(): PaddingValues =
+        containerElevationPadding()
+    @Composable override fun containerElevationAmbientColor(): Color =
+        containerElevationAmbientColor()
+    @Composable override fun containerElevationSpotColor(): Color =
+        containerElevationSpotColor()
 
     // Badge Layout & Background
-    @Composable override fun isBadgeVisible(): Boolean = isBadgeVisible()
     @Composable override fun badgeContentAlignment(): Alignment = badgeContentAlignment()
     @Composable override fun badgeContainerPadding(): PaddingValues = badgeContainerPadding()
     @Composable override fun badgeContainerShape(): Shape = badgeContainerShape()
@@ -131,15 +150,26 @@ internal inline fun BrbxContentCardAppearance(
 @UnsafeAppearanceCopy
 inline fun BrbxContentCardAppearance.copy(
     // Container & Interaction
-    crossinline width: @Composable () -> Dp = { this.containerWidth() },
-    crossinline height: @Composable () -> Dp = { this.containerHeight() },
-    crossinline containerShape: @Composable () -> Shape = { this.containerShape() },
-    crossinline containerBackground: @Composable () -> Brush = { this.containerBackground() },
-    crossinline containerRippleColor: @Composable () -> Color = { this.containerRippleColor() },
+    crossinline width: @Composable () -> Dp =
+        { this.containerWidth() },
+    crossinline height: @Composable () -> Dp =
+        { this.containerHeight() },
+    crossinline containerShape: @Composable () -> Shape =
+        { this.containerShape() },
+    crossinline containerBackground: @Composable () -> Brush =
+        { this.containerBackground() },
+    crossinline containerRippleColor: @Composable () -> Color =
+        { this.containerRippleColor() },
+    crossinline containerElevation: @Composable () -> Dp =
+        { this.containerElevation() },
+    crossinline containerElevationPadding: @Composable () -> PaddingValues =
+        { this.containerElevationPadding() },
+    crossinline containerElevationAmbientColor: @Composable () -> Color =
+        { this.containerElevationAmbientColor() },
+    crossinline containerElevationSpotColor: @Composable () -> Color =
+        { this.containerElevationSpotColor() },
 
     // Badge Layout & Background
-    crossinline isBadgeVisible: @Composable () -> Boolean =
-        { this.isBadgeVisible() },
     crossinline badgeContentAlignment: @Composable () -> Alignment =
         { this.badgeContentAlignment() },
     crossinline badgeContainerPadding: @Composable () -> PaddingValues =
@@ -169,14 +199,26 @@ inline fun BrbxContentCardAppearance.copy(
 ): BrbxContentCardAppearance = object : BrbxContentCardAppearance {
 
     // Container & Interaction
-    @Composable override fun containerWidth(): Dp = width()
-    @Composable override fun containerHeight(): Dp = height()
-    @Composable override fun containerShape(): Shape = containerShape()
-    @Composable override fun containerBackground(): Brush = containerBackground()
-    @Composable override fun containerRippleColor(): Color = containerRippleColor()
+    @Composable override fun containerWidth(): Dp =
+        width()
+    @Composable override fun containerHeight(): Dp =
+        height()
+    @Composable override fun containerShape(): Shape =
+        containerShape()
+    @Composable override fun containerBackground(): Brush =
+        containerBackground()
+    @Composable override fun containerRippleColor(): Color =
+        containerRippleColor()
+    @Composable override fun containerElevation(): Dp =
+        containerElevation()
+    @Composable override fun containerElevationPadding(): PaddingValues =
+        containerElevationPadding()
+    @Composable override fun containerElevationAmbientColor(): Color =
+        containerElevationAmbientColor()
+    @Composable override fun containerElevationSpotColor(): Color =
+        containerElevationSpotColor()
 
     // Badge Layout & Background
-    @Composable override fun isBadgeVisible(): Boolean = isBadgeVisible()
     @Composable override fun badgeContentAlignment(): Alignment = badgeContentAlignment()
     @Composable override fun badgeContainerPadding(): PaddingValues = badgeContainerPadding()
     @Composable override fun badgeContainerShape(): Shape = badgeContainerShape()
@@ -228,10 +270,16 @@ inline fun BrbxContentCardAppearance.rememberCopy(
         { this.containerBackground() },
     crossinline containerRippleColor: @Composable () -> Color =
         { this.containerRippleColor() },
+    crossinline containerElevation: @Composable () -> Dp =
+        { this.containerElevation() },
+    crossinline containerElevationPadding: @Composable () -> PaddingValues =
+        { this.containerElevationPadding() },
+    crossinline containerElevationAmbientColor: @Composable () -> Color =
+        { this.containerElevationAmbientColor() },
+    crossinline containerElevationSpotColor: @Composable () -> Color =
+        { this.containerElevationSpotColor() },
 
     // Badge Layout & Background
-    crossinline isBadgeVisible: @Composable () -> Boolean =
-        { this.isBadgeVisible() },
     crossinline badgeContentAlignment: @Composable () -> Alignment =
         { this.badgeContentAlignment() },
     crossinline badgeContainerPadding: @Composable () -> PaddingValues =
@@ -272,7 +320,10 @@ inline fun BrbxContentCardAppearance.rememberCopy(
             containerShape = containerShape,
             containerBackground = containerBackground,
             containerRippleColor = containerRippleColor,
-            isBadgeVisible = isBadgeVisible,
+            containerElevation = containerElevation,
+            containerElevationPadding = containerElevationPadding,
+            containerElevationAmbientColor = containerElevationAmbientColor,
+            containerElevationSpotColor = containerElevationSpotColor,
             badgeContentAlignment = badgeContentAlignment,
             badgeContainerPadding = badgeContainerPadding,
             badgeContainerShape = badgeContainerShape,

@@ -21,6 +21,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -40,9 +41,10 @@ import com.brbx.ui_compose.theme.mTypography
  * @param description The secondary text content of the card.
  * @param modifier The modifier to be applied to the card container.
  * @param appearance The [BrbxContentCardAppearance] configuration for the card's layout and style.
- * @param badgeText An optional text label to display as a badge on the card.
  * @param enabled Whether the card is clickable.
  * @param onClick The callback triggered when the card is clicked.
+ * @param additionalContent the [Composable] additional content which will be displayed over the whole card
+ * @param badgeContent The [Composable] content of the badge.
  */
 @Composable
 fun BrbxContentCard(
@@ -51,9 +53,9 @@ fun BrbxContentCard(
     description: String,
     modifier: Modifier = Modifier,
     appearance: BrbxContentCardAppearance = BrbxContentCardAppearances.default,
-    badgeText: String? = null,
     enabled: Boolean = true,
     onClick: () -> Unit = {},
+    additionalContent: @Composable () -> Unit = {},
     badgeContent: @Composable BoxScope.() -> Unit = {},
 ) {
     BrbxContentCardImpl(
@@ -62,9 +64,9 @@ fun BrbxContentCard(
         description = description,
         modifier = modifier,
         appearance = appearance,
-        badgeText = badgeText,
         enabled = enabled,
         onClick = onClick,
+        additionalContent = additionalContent,
         badgeContent = badgeContent,
     )
 }
@@ -76,18 +78,26 @@ private fun BrbxContentCardImpl(
     description: String,
     modifier: Modifier,
     appearance: BrbxContentCardAppearance,
-    badgeText: String?,
     enabled: Boolean,
     onClick: () -> Unit,
+    additionalContent: @Composable () -> Unit,
     badgeContent: @Composable BoxScope.() -> Unit,
 ) {
     val interactionSource = remember { MutableInteractionSource() }
 
     Box(
         modifier = modifier
+            .padding(paddingValues = appearance.containerElevationPadding())
             .size(
                 width = appearance.containerWidth(),
                 height = appearance.containerHeight(),
+            )
+            .shadow(
+                elevation = appearance.containerElevation(),
+                shape = appearance.containerShape(),
+                ambientColor = appearance.containerElevationAmbientColor(),
+                spotColor = appearance.containerElevationSpotColor(),
+                clip = false,
             )
             .clip(shape = appearance.containerShape())
             .background(brush = appearance.containerBackground())
@@ -103,8 +113,7 @@ private fun BrbxContentCardImpl(
             modifier = Modifier.fillMaxSize(),
         )
 
-        // TODO badge should be @Composable content
-        badgeText?.let {
+        if (badgeContent != {}) {
             Box(
                 contentAlignment = Alignment.Center,
                 modifier = Modifier
@@ -146,6 +155,8 @@ private fun BrbxContentCardImpl(
             )
         }
     }
+
+    additionalContent()
 }
 
 @Preview(showSystemUi = true)
@@ -157,9 +168,8 @@ private fun BrbxContentCardMediumPreview() {
             imageUrl = "",
             title = "TItle",
             description = "Description",
-            badgeText = "8.9",
             onClick = {},
-            appearance = BrbxContentCardAppearances.withBadge,
+            appearance = BrbxContentCardAppearances.elevated,
         ) {
             Text(
                 text = "9.8",

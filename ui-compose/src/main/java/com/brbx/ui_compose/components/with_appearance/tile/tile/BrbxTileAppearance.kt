@@ -1,5 +1,6 @@
 package com.brbx.ui_compose.components.with_appearance.tile.tile
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.Brush
@@ -49,7 +50,7 @@ interface BrbxTileAppearance {
      * The padding of the container elevation
      */
     @Composable
-    fun containerElevationPadding(): Dp
+    fun containerElevationPadding(): PaddingValues
 
     /**
      * The color used for the ambient shadow, which simulates diffuse, omnidirectional light.

@@ -21,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.brbx.core.common.BrbxIcon
 import com.brbx.core.common.toBrbxIcon
@@ -66,7 +67,7 @@ fun BrbxTile(
     modifier: Modifier = Modifier,
     appearance: BrbxTileAppearance = BrbxTileAppearances.default,
     iconContainerAppearance: BrbxIconContainerAppearance =
-        BrbxIconContainerAppearances.withoutBadge,
+        BrbxIconContainerAppearances.default,
     enabled: Boolean = true,
     onClick: () -> Unit = {},
     badgeContent: @Composable BoxScope.() -> Unit = {},
@@ -103,7 +104,7 @@ private fun BrbxTileImpl(
 
     Box(
         modifier = modifier
-            .padding(vertical = appearance.containerElevationPadding())
+            .padding(paddingValues = appearance.containerElevationPadding())
             .shadow(
                 elevation = appearance.containerElevation(),
                 shape = appearance.containerShape(),
@@ -111,8 +112,8 @@ private fun BrbxTileImpl(
                 ambientColor = appearance.containerElevationAmbientColor(),
                 spotColor = appearance.containerElevationSpotColor(),
             )
-            .clip(appearance.containerShape())
-            .background(appearance.containerBrush())
+            .clip(shape = appearance.containerShape())
+            .background(brush = appearance.containerBrush())
             .clickable(
                 interactionSource = interactionSource,
                 indication = ripple(color = appearance.containerRippleColor()),
@@ -122,7 +123,7 @@ private fun BrbxTileImpl(
         contentAlignment = Alignment.Center,
     ) {
         Column(
-            modifier = Modifier.padding(appearance.containerContentPadding()),
+            modifier = Modifier.padding(all = appearance.containerContentPadding()),
             verticalArrangement = Arrangement.spacedBy(appearance.contentColumnSpacing()),
         ) {
             Row(
@@ -176,21 +177,22 @@ private fun BrbxTileAppearancePreview() {
             title = "Title",
             description = "Description",
             appearance = BrbxTileAppearances.elevated,
-            iconContainerAppearance = BrbxIconContainerAppearances.withBadge,
+            iconContainerAppearance = BrbxIconContainerAppearances.default,
             onClick = {},
             badgeContent = {
                 Text(
                     text = "4",
                     style = mTypography.labelSmall.copy(
-                        fontSize = 7.sp,
-                    )
+                        fontSize = 8.sp,
+                    ),
+                    modifier = Modifier.padding(6.dp)
                 )
             }
         ) {
             BrbxPrecollection(
                 text = "Long text blablabla long text long long bla bla",
                 leadingContent = {
-                    BrbxIcon(OutlineSolar.Call.CallDropped)
+                    BrbxIcon(imageVector = OutlineSolar.Call.CallDropped)
                 },
                 modifier = Modifier
                     .fillMaxWidth()

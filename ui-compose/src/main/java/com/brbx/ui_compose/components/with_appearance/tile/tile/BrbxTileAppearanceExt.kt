@@ -1,5 +1,6 @@
 package com.brbx.ui_compose.components.with_appearance.tile.tile
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Brush
@@ -36,8 +37,8 @@ internal inline fun BrbxTileAppearance(
         { bDimens.dp16 },
     crossinline containerElevation: @Composable () -> Dp =
         { bElevation.dp0 },
-    crossinline containerElevationPadding: @Composable () -> Dp =
-        { bDimens.dp0 },
+    crossinline containerElevationPadding: @Composable () -> PaddingValues =
+        { PaddingValues(all = bDimens.dp0) },
     crossinline containerElevationAmbientColor: @Composable () -> Color =
         { remember { Color.Transparent } },
     crossinline containerElevationSpotColor: @Composable () -> Color =
@@ -83,7 +84,7 @@ internal inline fun BrbxTileAppearance(
     override fun containerElevation(): Dp = containerElevation()
 
     @Composable
-    override fun containerElevationPadding(): Dp = containerElevationPadding()
+    override fun containerElevationPadding(): PaddingValues = containerElevationPadding()
 
     @Composable
     override fun containerElevationAmbientColor(): Color = containerElevationAmbientColor()
@@ -144,7 +145,7 @@ inline fun BrbxTileAppearance.copy(
         { this.containerContentPadding() },
     crossinline containerElevation: @Composable () -> Dp =
         { this.containerElevation() },
-    crossinline containerElevationPadding: @Composable () -> Dp =
+    crossinline containerElevationPadding: @Composable () -> PaddingValues =
         { this.containerElevationPadding() },
     crossinline containerElevationAmbientColor: @Composable () -> Color =
         { this.containerElevationAmbientColor() },
@@ -187,7 +188,7 @@ inline fun BrbxTileAppearance.copy(
     override fun containerElevation(): Dp = containerElevation()
 
     @Composable
-    override fun containerElevationPadding(): Dp = containerElevationPadding()
+    override fun containerElevationPadding(): PaddingValues = containerElevationPadding()
 
     @Composable
     override fun containerElevationAmbientColor(): Color = containerElevationAmbientColor()
@@ -255,7 +256,7 @@ inline fun BrbxTileAppearance.rememberCopy(
         { this.containerContentPadding() },
     crossinline containerElevation: @Composable () -> Dp =
         { this.containerElevation() },
-    crossinline containerElevationPadding: @Composable () -> Dp =
+    crossinline containerElevationPadding: @Composable () -> PaddingValues =
         { this.containerElevationPadding() },
     crossinline containerElevationAmbientColor: @Composable () -> Color =
         { this.containerElevationAmbientColor() },
