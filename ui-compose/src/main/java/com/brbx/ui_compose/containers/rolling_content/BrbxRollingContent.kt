@@ -19,6 +19,7 @@ enum class RollDirection {
     Vertical, Horizontal
 }
 
+// TODO Add appearances
 @Composable
 fun <S> BrbxRollingContent(
     targetState: S,

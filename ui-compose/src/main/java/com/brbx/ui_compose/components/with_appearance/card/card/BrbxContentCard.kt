@@ -5,6 +5,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -48,6 +49,7 @@ fun BrbxContentCard(
     badgeText: String? = null,
     enabled: Boolean = true,
     onClick: () -> Unit = {},
+    badgeContent: @Composable BoxScope.() -> Unit = {},
 ) {
     BrbxContentCardImpl(
         imageUrl = imageUrl,
@@ -94,6 +96,7 @@ private fun BrbxContentCardImpl(
             modifier = Modifier.fillMaxSize(),
         )
 
+        // TODO badge should be @Composable content
         badgeText?.let {
             Box(
                 contentAlignment = Alignment.Center,
@@ -139,7 +142,7 @@ private fun BrbxContentCardImpl(
     }
 }
 
-@Preview
+@Preview(showSystemUi = true)
 @Composable
 private fun BrbxContentCardMediumPreview() {
     BrbxTheme(colorScheme =  lightColorScheme()) {
