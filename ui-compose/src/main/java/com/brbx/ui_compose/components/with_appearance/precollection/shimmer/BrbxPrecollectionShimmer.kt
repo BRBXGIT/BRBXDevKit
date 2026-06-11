@@ -73,8 +73,8 @@ private fun BrbxPrecollectionShimmerImpl(
     ) {
         BrbxShimmerBlock(
             modifier = Modifier
-                .weight(bIntensityTokens.intensity10, fill = false)
-                .fillMaxWidth(fraction = bIntensityTokens.intensity10)
+                .weight(bIntensityTokens.intensity100, fill = false)
+                .fillMaxWidth(fraction = bIntensityTokens.intensity100)
                 .padding(end = appearance.textEndPadding())
                 .height(bDimens.dp14)
                 .clip(shape = bShapes.dp4),

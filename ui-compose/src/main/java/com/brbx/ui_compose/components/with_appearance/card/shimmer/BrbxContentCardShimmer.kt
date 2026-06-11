@@ -92,7 +92,7 @@ private fun BrbxContentCardShimmerImpl(
         ) {
             BrbxShimmerBlock(
                 modifier = Modifier
-                    .fillMaxWidth(fraction = bIntensityTokens.intensity075)
+                    .fillMaxWidth(fraction = bIntensityTokens.intensity75)
                     .height(bDimens.dp20)
                     .clip(shape = bShapes.dp4),
                 appearance = titleShimmerAppearance,
@@ -100,7 +100,7 @@ private fun BrbxContentCardShimmerImpl(
 
             BrbxShimmerBlock(
                 modifier = Modifier
-                    .fillMaxWidth(fraction = bIntensityTokens.intensity09)
+                    .fillMaxWidth(fraction = bIntensityTokens.intensity90)
                     .height(bDimens.dp14)
                     .clip(shape = bShapes.dp4),
                 appearance = descriptionShimmerAppearance,

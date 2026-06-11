@@ -9,6 +9,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.Dp
 
+// TODO Add testing features
 /**
  * Defines the visual appearance and styling of the [BrbxIconContainer] component.
  * Allows flexible configuration of the container's shapes, brushes, paddings, alignments, and badge properties.

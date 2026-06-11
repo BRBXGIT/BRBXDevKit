@@ -131,7 +131,7 @@ private fun BrbxTileShimmerImpl(
                     BrbxShimmerBlock(
                         appearance = titleShimmerAppearance,
                         modifier = Modifier
-                            .fillMaxWidth(fraction = bIntensityTokens.intensity06)
+                            .fillMaxWidth(fraction = bIntensityTokens.intensity60)
                             .height(bDimens.dp16)
                             .clip(shape = bShapes.dp4),
                     )
@@ -139,7 +139,7 @@ private fun BrbxTileShimmerImpl(
                     BrbxShimmerBlock(
                         appearance = descriptionShimmerAppearance,
                         modifier = Modifier
-                            .fillMaxWidth(fraction = bIntensityTokens.intensity085)
+                            .fillMaxWidth(fraction = bIntensityTokens.intensity85)
                             .height(bDimens.dp12)
                             .clip(shape = bShapes.dp4),
                     )

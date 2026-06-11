@@ -22,9 +22,9 @@ import com.brbx.ui_compose.theme.mColors
 internal inline fun BrbxShimmerAppearance(
     // Animation
     crossinline initialValue: @Composable () -> Float =
-        { bIntensityTokens.intensity06 },
+        { bIntensityTokens.intensity60 },
     crossinline targetValue: @Composable () -> Float =
-        { bIntensityTokens.intensity10 },
+        { bIntensityTokens.intensity100 },
     crossinline durationMillis: @Composable () -> Int =
         { bAnimationTokens.duration700.toInt() },
     crossinline repeatMode: @Composable () -> RepeatMode =

@@ -12,13 +12,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
 
 @Stable
-enum class ScrollDirection {
+enum class BrbxScrollDirection {
     Down, Up
 }
 
 @Stable
-class ScrollDirectionState(
-    initialDirection: ScrollDirection = ScrollDirection.Up,
+class BrbxScrollDirectionState(
+    initialDirection: BrbxScrollDirection = BrbxScrollDirection.Up,
     private val scrollThreshold: Int = 10
 ) {
     var scrollDirection by mutableStateOf(initialDirection)
@@ -30,9 +30,9 @@ class ScrollDirectionState(
     fun update(currentIndex: Int, currentOffset: Int) {
         if (currentIndex != lastItemIndex) {
             scrollDirection = if (currentIndex > lastItemIndex) {
-                ScrollDirection.Down
+                BrbxScrollDirection.Down
             } else {
-                ScrollDirection.Up
+                BrbxScrollDirection.Up
             }
             lastItemIndex = currentIndex
             lastScrollOffset = currentOffset
@@ -41,9 +41,9 @@ class ScrollDirectionState(
 
             if (kotlin.math.abs(offsetDiff) >= scrollThreshold) {
                 scrollDirection = if (offsetDiff > 0) {
-                    ScrollDirection.Down
+                    BrbxScrollDirection.Down
                 } else {
-                    ScrollDirection.Up
+                    BrbxScrollDirection.Up
                 }
                 lastScrollOffset = currentOffset
             }
@@ -52,11 +52,11 @@ class ScrollDirectionState(
 }
 
 @Composable
-fun rememberScrollDirectionState(
+fun rememberBrbxScrollDirectionState(
     lazyGridState: LazyGridState,
     scrollThreshold: Int = 10
-): ScrollDirectionState {
-    val scrollState = remember { ScrollDirectionState(scrollThreshold = scrollThreshold) }
+): BrbxScrollDirectionState {
+    val scrollState = remember { BrbxScrollDirectionState(scrollThreshold = scrollThreshold) }
 
     LaunchedEffect(lazyGridState) {
         snapshotFlow {
@@ -74,11 +74,11 @@ fun rememberScrollDirectionState(
 }
 
 @Composable
-fun rememberScrollDirectionState(
+fun rememberBrbxScrollDirectionState(
     lazyListState: LazyListState,
     scrollThreshold: Int = 10
-): ScrollDirectionState {
-    val scrollState = remember { ScrollDirectionState(scrollThreshold = scrollThreshold) }
+): BrbxScrollDirectionState {
+    val scrollState = remember { BrbxScrollDirectionState(scrollThreshold = scrollThreshold) }
 
     LaunchedEffect(lazyListState) {
         snapshotFlow {

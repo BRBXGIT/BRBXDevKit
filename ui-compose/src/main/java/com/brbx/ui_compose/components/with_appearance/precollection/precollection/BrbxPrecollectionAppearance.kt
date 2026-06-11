@@ -10,6 +10,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 
+// TODO Add testing features
 /**
  * Defines the visual appearance and styling of the [BrbxPrecollection] component.
  * Allows flexible configuration of the component's shape, colors, paddings, and typography.
