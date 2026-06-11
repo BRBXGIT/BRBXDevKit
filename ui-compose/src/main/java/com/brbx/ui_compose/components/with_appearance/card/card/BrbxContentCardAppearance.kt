@@ -8,7 +8,6 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 
@@ -57,35 +56,51 @@ interface BrbxContentCardAppearance {
     // Badge Layout & Background
     // ---------------------------------------------------------------------------
 
-    /**
-     * The badge alignment in card.
-     */
-    @Composable
-    fun badgeAlignment(): Alignment
+    // ---------------------------------------------------------------------------
+    // Badge Container
+    // ---------------------------------------------------------------------------
 
     /**
-     * The background color of the badge.
+     * Visibility of badge.
      */
     @Composable
-    fun badgeContainerBrush(): Brush
+    fun isBadgeVisible(): Boolean
 
     /**
-     * The padding of the badge container.
+     * Alignment of content in badge.
      */
     @Composable
-    fun badgeContainerPadding(): PaddingValues
+    fun badgeContentAlignment(): Alignment
 
     /**
-     * The shape of the badge container.
+     * The shape of the badge container (e.g., leaf or circle).
      */
     @Composable
     fun badgeContainerShape(): Shape
 
     /**
-     * The internal padding of the badge (space around the text).
+     * The background behind the badge content (solid color or gradient).
      */
     @Composable
-    fun badgePadding(): PaddingValues
+    fun badgeContainerBrush(): Brush
+
+    /**
+     * The alignment of the badge relative to the root layout bounds.
+     */
+    @Composable
+    fun badgeAlignment(): Alignment
+
+    /**
+     * The padding of badge container.
+     */
+    @Composable
+    fun badgeContainerPadding(): PaddingValues
+
+    /**
+     * The default color for the content hosted inside the badge (provided via CompositionLocal).
+     */
+    @Composable
+    fun badgeContentColor(): Color
 
     // ---------------------------------------------------------------------------
     // Info Layout & Background
@@ -157,29 +172,4 @@ interface BrbxContentCardAppearance {
      */
     @Composable
     fun descriptionMaxLines(): Int
-
-    /**
-     * The text style for the badge label.
-     */
-    @Composable
-    fun badgeTextStyle(): TextStyle
-
-    /**
-     * The maximum number of lines for the badge.
-     * If the text exceeds this value, it will be truncated.
-     */
-    @Composable
-    fun badgeMaxLines(): Int
-
-    /**
-     * Badge overflow style.
-     */
-    @Composable
-    fun badgeOverflow(): TextOverflow
-
-    /**
-     * Badge text alignment.
-     */
-    @Composable
-    fun badgeTextAlign(): TextAlign
 }

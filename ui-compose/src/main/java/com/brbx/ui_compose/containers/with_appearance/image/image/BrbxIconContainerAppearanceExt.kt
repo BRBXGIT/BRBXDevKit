@@ -57,8 +57,6 @@ internal inline fun BrbxIconContainerAppearance(
         { remember { 4 } },
     crossinline badgePositionXDivider: @Composable () -> Int =
         { remember { 4 } },
-    crossinline badgeContentPadding: @Composable () -> PaddingValues =
-        { PaddingValues(all = bDimens.dp6) },
     crossinline badgeContentColor: @Composable () -> Color =
         { mColors.onError },
 ): BrbxIconContainerAppearance = object : BrbxIconContainerAppearance {
@@ -105,9 +103,6 @@ internal inline fun BrbxIconContainerAppearance(
 
     @Composable
     override fun badgePositionXDivider(): Int = badgePositionXDivider()
-
-    @Composable
-    override fun badgeContentPadding(): PaddingValues = badgeContentPadding()
 
     @Composable
     override fun badgeContentColor(): Color = badgeContentColor()
@@ -159,8 +154,6 @@ inline fun BrbxIconContainerAppearance.copy(
         { this.badgePositionYDivider() },
     crossinline badgePositionXDivider: @Composable () -> Int =
         { this.badgePositionXDivider() },
-    crossinline badgeContentPadding: @Composable () -> PaddingValues =
-        { this.badgeContentPadding() },
     crossinline badgeContentColor: @Composable () -> Color =
         { this.badgeContentColor() },
 ): BrbxIconContainerAppearance = object : BrbxIconContainerAppearance {
@@ -207,9 +200,6 @@ inline fun BrbxIconContainerAppearance.copy(
 
     @Composable
     override fun badgePositionXDivider(): Int = badgePositionXDivider()
-
-    @Composable
-    override fun badgeContentPadding(): PaddingValues = badgeContentPadding()
 
     @Composable
     override fun badgeContentColor(): Color = badgeContentColor()
@@ -267,8 +257,6 @@ inline fun BrbxIconContainerAppearance.rememberCopy(
         { this.badgePositionYDivider() },
     crossinline badgePositionXDivider: @Composable () -> Int =
         { this.badgePositionXDivider() },
-    crossinline badgeContentPadding: @Composable () -> PaddingValues =
-        { this.badgeContentPadding() },
     crossinline badgeContentColor: @Composable () -> Color =
         { this.badgeContentColor() },
 ): BrbxIconContainerAppearance =
@@ -287,7 +275,6 @@ inline fun BrbxIconContainerAppearance.rememberCopy(
             badgeAlignment = badgeAlignment,
             badgePositionYDivider = badgePositionYDivider,
             badgePositionXDivider = badgePositionXDivider,
-            badgeContentPadding = badgeContentPadding,
             badgeContentColor = badgeContentColor,
         )
     }

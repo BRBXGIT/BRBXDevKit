@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.layout
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.brbx.ui_compose.components.image.BrbxIcon
 import com.brbx.ui_compose.theme.BrbxTheme
@@ -87,7 +88,6 @@ private fun BRBXIconContainerImpl(
                     }
                     .clip(shape = appearance.badgeShape())
                     .background(brush = appearance.badgeContainerBrush())
-                    .padding(paddingValues = appearance.badgeContentPadding())
             ) {
                 CompositionLocalProvider(
                     LocalContentColor provides appearance.badgeContentColor(),
@@ -110,7 +110,8 @@ private fun BrbxIconContainerPreview() {
                     text = "3",
                     style = mTypography.labelSmall.copy(
                         fontSize = 6.sp,
-                    )
+                    ),
+                    modifier = Modifier.padding(6.dp)
                 )
             }
         ) {

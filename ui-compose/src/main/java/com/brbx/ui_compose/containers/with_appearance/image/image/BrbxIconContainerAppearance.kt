@@ -75,6 +75,9 @@ interface BrbxIconContainerAppearance {
     @Composable
     fun isBadgeVisible(): Boolean
 
+    /**
+     * The alignment of content in badge.
+     */
     @Composable
     fun badgeContentAlignment(): Alignment
 
@@ -107,12 +110,6 @@ interface BrbxIconContainerAppearance {
      */
     @Composable
     fun badgePositionXDivider(): Int
-
-    /**
-     * The internal padding from the badge container's bounds to its content.
-     */
-    @Composable
-    fun badgeContentPadding(): PaddingValues
 
     /**
      * The default color for the content hosted inside the badge (provided via CompositionLocal).

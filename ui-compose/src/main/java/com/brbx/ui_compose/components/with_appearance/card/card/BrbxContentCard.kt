@@ -11,17 +11,22 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.Text
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.material3.ripple
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.brbx.ui_compose.components.image.BrbxRemoteImage
 import com.brbx.ui_compose.theme.BrbxTheme
+import com.brbx.ui_compose.theme.mTypography
 
 /**
  * A reusable, highly customizable content card component for the BRBX design system.
@@ -60,6 +65,7 @@ fun BrbxContentCard(
         badgeText = badgeText,
         enabled = enabled,
         onClick = onClick,
+        badgeContent = badgeContent,
     )
 }
 
@@ -73,6 +79,7 @@ private fun BrbxContentCardImpl(
     badgeText: String?,
     enabled: Boolean,
     onClick: () -> Unit,
+    badgeContent: @Composable BoxScope.() -> Unit,
 ) {
     val interactionSource = remember { MutableInteractionSource() }
 
@@ -107,13 +114,12 @@ private fun BrbxContentCardImpl(
                         brush = appearance.badgeContainerBrush(),
                         shape = appearance.badgeContainerShape(),
                     )
-                    .padding(paddingValues = appearance.badgePadding()),
             ) {
-                Text(
-                    text = badgeText,
-                    style = appearance.badgeTextStyle(),
-                    textAlign = appearance.badgeTextAlign(),
-                )
+                CompositionLocalProvider(
+                    LocalContentColor provides appearance.badgeContentColor()
+                ) {
+                    badgeContent()
+                }
             }
         }
 
@@ -153,7 +159,14 @@ private fun BrbxContentCardMediumPreview() {
             description = "Description",
             badgeText = "8.9",
             onClick = {},
-            appearance = BrbxContentCardAppearances.default,
-        )
+            appearance = BrbxContentCardAppearances.withBadge,
+        ) {
+            Text(
+                text = "9.8",
+                style = mTypography.labelSmall,
+                modifier = Modifier.padding(8.dp),
+                textAlign = TextAlign.Center
+            )
+        }
     }
 }
