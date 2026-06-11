@@ -8,9 +8,6 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.SolidColor
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.brbx.ui_compose.common.UnsafeAppearanceCopy
@@ -18,7 +15,6 @@ import com.brbx.ui_compose.theme.bDimens
 import com.brbx.ui_compose.theme.bElevation
 import com.brbx.ui_compose.theme.bShapes
 import com.brbx.ui_compose.theme.mColors
-import com.brbx.ui_compose.theme.mTypography
 
 /**
  * Creates a new instance of
@@ -50,20 +46,6 @@ internal inline fun BrbxContentCardAppearance(
     crossinline containerElevationSpotColor: @Composable () -> Color =
         { remember { Color.Transparent } },
 
-    // Badge Layout & Background
-    crossinline badgeContentAlignment: @Composable () -> Alignment =
-        { remember { Alignment.Center } },
-    crossinline badgeContainerPadding: @Composable () -> PaddingValues =
-        { PaddingValues(bDimens.dp8) },
-    crossinline badgeContainerShape: @Composable () -> Shape =
-        { bShapes.softSpikyCircle() },
-    crossinline badgeContainerBrush: @Composable () -> Brush =
-        { SolidColor(mColors.primary) },
-    crossinline badgeAlignment: @Composable () -> Alignment =
-        { remember { Alignment.TopEnd } },
-    crossinline badgeContentColor: @Composable () -> Color =
-        { mColors.onPrimary },
-
     // Info Layout & Background
     crossinline infoAlignment: @Composable () -> Alignment =
         { remember { Alignment.BottomStart } },
@@ -71,26 +53,12 @@ internal inline fun BrbxContentCardAppearance(
         { bDimens.dp4 },
     crossinline infoBackground: @Composable () -> Brush =
         { SolidColor(mColors.tertiaryContainer) },
-    crossinline infoPadding: @Composable () -> PaddingValues =
-        { PaddingValues(bDimens.dp8) },
 
-    // Typography
-    crossinline titleStyle: @Composable () -> TextStyle = {
-        mTypography.bodyMedium.copy(
-            color = mColors.onTertiaryContainer,
-            fontWeight = FontWeight.W600,
-        )
-    },
-    crossinline titleMaxLines: @Composable () -> Int =
-        { remember { 1 } },
-    crossinline titleOverflow: @Composable () -> TextOverflow =
-        { remember { TextOverflow.Ellipsis } },
-    crossinline descriptionStyle: @Composable () -> TextStyle =
-        { mTypography.labelMedium.copy(color = mColors.secondary) },
-    crossinline descriptionOverflow: @Composable () -> TextOverflow =
-        { remember { TextOverflow.Ellipsis } },
-    crossinline descriptionMaxLines: @Composable () -> Int =
-        { remember { 1 } },
+    // Title & Description
+    crossinline titleColor: @Composable () -> Color =
+        { mColors.onTertiary },
+    crossinline descriptionColor: @Composable () -> Color =
+        { mColors.onTertiary.copy(alpha = 0.8f) },
 ): BrbxContentCardAppearance = object : BrbxContentCardAppearance {
 
     // Container & Interaction
@@ -113,27 +81,14 @@ internal inline fun BrbxContentCardAppearance(
     @Composable override fun containerElevationSpotColor(): Color =
         containerElevationSpotColor()
 
-    // Badge Layout & Background
-    @Composable override fun badgeContentAlignment(): Alignment = badgeContentAlignment()
-    @Composable override fun badgeContainerPadding(): PaddingValues = badgeContainerPadding()
-    @Composable override fun badgeContainerShape(): Shape = badgeContainerShape()
-    @Composable override fun badgeContainerBrush(): Brush = badgeContainerBrush()
-    @Composable override fun badgeAlignment(): Alignment = badgeAlignment()
-    @Composable override fun badgeContentColor(): Color = badgeContentColor()
-
     // Info Layout & Background
     @Composable override fun infoAlignment(): Alignment = infoAlignment()
     @Composable override fun infoSpacedBy(): Dp = infoSpacedBy()
     @Composable override fun infoBackground(): Brush = infoBackground()
-    @Composable override fun infoPadding(): PaddingValues = infoPadding()
 
-    // Typography
-    @Composable override fun titleStyle(): TextStyle = titleStyle()
-    @Composable override fun titleMaxLines(): Int = titleMaxLines()
-    @Composable override fun titleOverflow(): TextOverflow = titleOverflow()
-    @Composable override fun descriptionStyle(): TextStyle = descriptionStyle()
-    @Composable override fun descriptionOverflow(): TextOverflow = descriptionOverflow()
-    @Composable override fun descriptionMaxLines(): Int = descriptionMaxLines()
+    // Title & Description
+    @Composable override fun titleColor(): Color = titleColor()
+    @Composable override fun descriptionColor(): Color = descriptionColor()
 }
 
 /**
@@ -169,33 +124,14 @@ inline fun BrbxContentCardAppearance.copy(
     crossinline containerElevationSpotColor: @Composable () -> Color =
         { this.containerElevationSpotColor() },
 
-    // Badge Layout & Background
-    crossinline badgeContentAlignment: @Composable () -> Alignment =
-        { this.badgeContentAlignment() },
-    crossinline badgeContainerPadding: @Composable () -> PaddingValues =
-        { this.badgeContainerPadding() },
-    crossinline badgeContainerShape: @Composable () -> Shape =
-        { this.badgeContainerShape() },
-    crossinline badgeContainerBrush: @Composable () -> Brush =
-        { this.badgeContainerBrush() },
-    crossinline badgeAlignment: @Composable () -> Alignment =
-        { this.badgeAlignment() },
-    crossinline badgeContentColor: @Composable () -> Color =
-        { this.badgeContentColor() },
-
     // Info Layout & Background
     crossinline infoAlignment: @Composable () -> Alignment = { this.infoAlignment() },
     crossinline infoSpacedBy: @Composable () -> Dp = { this.infoSpacedBy() },
     crossinline infoBackground: @Composable () -> Brush = { this.infoBackground() },
-    crossinline infoPadding: @Composable () -> PaddingValues = { this.infoPadding() },
 
-    // Typography
-    crossinline titleStyle: @Composable () -> TextStyle = { this.titleStyle() },
-    crossinline titleMaxLines: @Composable () -> Int = { this.titleMaxLines() },
-    crossinline titleOverflow: @Composable () -> TextOverflow = { this.titleOverflow() },
-    crossinline descriptionStyle: @Composable () -> TextStyle = { this.descriptionStyle() },
-    crossinline descriptionOverflow: @Composable () -> TextOverflow = { this.descriptionOverflow() },
-    crossinline descriptionMaxLines: @Composable () -> Int = { this.descriptionMaxLines() },
+    // Title & Description
+    crossinline titleColor: @Composable () -> Color = { this.titleColor() },
+    crossinline descriptionColor: @Composable () -> Color = { this.descriptionColor() },
 ): BrbxContentCardAppearance = object : BrbxContentCardAppearance {
 
     // Container & Interaction
@@ -218,27 +154,14 @@ inline fun BrbxContentCardAppearance.copy(
     @Composable override fun containerElevationSpotColor(): Color =
         containerElevationSpotColor()
 
-    // Badge Layout & Background
-    @Composable override fun badgeContentAlignment(): Alignment = badgeContentAlignment()
-    @Composable override fun badgeContainerPadding(): PaddingValues = badgeContainerPadding()
-    @Composable override fun badgeContainerShape(): Shape = badgeContainerShape()
-    @Composable override fun badgeContainerBrush(): Brush = badgeContainerBrush()
-    @Composable override fun badgeAlignment(): Alignment = badgeAlignment()
-    @Composable override fun badgeContentColor(): Color = badgeContentColor()
-
     // Info Layout & Background
     @Composable override fun infoAlignment(): Alignment = infoAlignment()
     @Composable override fun infoSpacedBy(): Dp = infoSpacedBy()
     @Composable override fun infoBackground(): Brush = infoBackground()
-    @Composable override fun infoPadding(): PaddingValues = infoPadding()
 
-    // Typography
-    @Composable override fun titleStyle(): TextStyle = titleStyle()
-    @Composable override fun titleMaxLines(): Int = titleMaxLines()
-    @Composable override fun titleOverflow(): TextOverflow = titleOverflow()
-    @Composable override fun descriptionStyle(): TextStyle = descriptionStyle()
-    @Composable override fun descriptionOverflow(): TextOverflow = descriptionOverflow()
-    @Composable override fun descriptionMaxLines(): Int = descriptionMaxLines()
+    // Title & Description
+    @Composable override fun titleColor(): Color = titleColor()
+    @Composable override fun descriptionColor(): Color = descriptionColor()
 }
 
 /**
@@ -279,39 +202,14 @@ inline fun BrbxContentCardAppearance.rememberCopy(
     crossinline containerElevationSpotColor: @Composable () -> Color =
         { this.containerElevationSpotColor() },
 
-    // Badge Layout & Background
-    crossinline badgeContentAlignment: @Composable () -> Alignment =
-        { this.badgeContentAlignment() },
-    crossinline badgeContainerPadding: @Composable () -> PaddingValues =
-        { this.badgeContainerPadding() },
-    crossinline badgeContainerShape: @Composable () -> Shape =
-        { this.badgeContainerShape() },
-    crossinline badgeContainerBrush: @Composable () -> Brush =
-        { this.badgeContainerBrush() },
-    crossinline badgeAlignment: @Composable () -> Alignment =
-        { this.badgeAlignment() },
-    crossinline badgeContentColor: @Composable () -> Color =
-        { this.badgeContentColor() },
-
     // Info Layout & Background
     crossinline infoAlignment: @Composable () -> Alignment = { this.infoAlignment() },
     crossinline infoSpacedBy: @Composable () -> Dp = { this.infoSpacedBy() },
     crossinline infoBackground: @Composable () -> Brush = { this.infoBackground() },
-    crossinline infoPadding: @Composable () -> PaddingValues = { this.infoPadding() },
 
-    // Typography
-    crossinline titleStyle: @Composable () -> TextStyle =
-        { this.titleStyle() },
-    crossinline titleMaxLines: @Composable () -> Int =
-        { this.titleMaxLines() },
-    crossinline titleOverflow: @Composable () -> TextOverflow =
-        { this.titleOverflow() },
-    crossinline descriptionStyle: @Composable () -> TextStyle =
-        { this.descriptionStyle() },
-    crossinline descriptionOverflow: @Composable () -> TextOverflow =
-        { this.descriptionOverflow() },
-    crossinline descriptionMaxLines: @Composable () -> Int =
-        { this.descriptionMaxLines() },
+    // Title & Description
+    crossinline titleColor: @Composable () -> Color = { this.titleColor() },
+    crossinline descriptionColor: @Composable () -> Color = { this.descriptionColor() },
 ): BrbxContentCardAppearance =
     remember {
         this.copy(
@@ -324,21 +222,10 @@ inline fun BrbxContentCardAppearance.rememberCopy(
             containerElevationPadding = containerElevationPadding,
             containerElevationAmbientColor = containerElevationAmbientColor,
             containerElevationSpotColor = containerElevationSpotColor,
-            badgeContentAlignment = badgeContentAlignment,
-            badgeContainerPadding = badgeContainerPadding,
-            badgeContainerShape = badgeContainerShape,
-            badgeContainerBrush = badgeContainerBrush,
-            badgeAlignment = badgeAlignment,
-            badgeContentColor = badgeContentColor,
             infoAlignment = infoAlignment,
             infoSpacedBy = infoSpacedBy,
             infoBackground = infoBackground,
-            infoPadding = infoPadding,
-            titleStyle = titleStyle,
-            titleMaxLines = titleMaxLines,
-            titleOverflow = titleOverflow,
-            descriptionStyle = descriptionStyle,
-            descriptionOverflow = descriptionOverflow,
-            descriptionMaxLines = descriptionMaxLines,
+            titleColor = titleColor,
+            descriptionColor = descriptionColor,
         )
     }

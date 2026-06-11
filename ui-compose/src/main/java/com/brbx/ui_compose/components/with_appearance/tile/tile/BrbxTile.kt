@@ -5,16 +5,16 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.Text
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.material3.ripple
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -22,14 +22,9 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.brbx.core.common.BrbxIcon
-import com.brbx.core.common.toBrbxIcon
 import com.brbx.ui_compose.components.image.BrbxIcon
 import com.brbx.ui_compose.components.with_appearance.precollection.precollection.BrbxPrecollection
-import com.brbx.ui_compose.containers.with_appearance.icon_container.icon_container.BrbxIconContainer
-import com.brbx.ui_compose.containers.with_appearance.icon_container.icon_container.BrbxIconContainerAppearance
-import com.brbx.ui_compose.containers.with_appearance.icon_container.icon_container.BrbxIconContainerAppearances
+import com.brbx.ui_compose.containers.with_appearance.container.container.BrbxContainer
 import com.brbx.ui_compose.theme.BrbxTheme
 import com.brbx.ui_compose.theme.bDimens
 import com.brbx.ui_compose.theme.mTypography
@@ -37,68 +32,66 @@ import dev.chiksmedina.solar.BoldSolar
 import dev.chiksmedina.solar.OutlineSolar
 import dev.chiksmedina.solar.bold.Users
 import dev.chiksmedina.solar.bold.users.User
-import dev.chiksmedina.solar.outline.Call
-import dev.chiksmedina.solar.outline.call.CallDropped
+import dev.chiksmedina.solar.outline.Users
+import dev.chiksmedina.solar.outline.users.User
 
-// TODO Add testing features
 /**
- * A reusable, elevation-based tile component for the BRBX design system.
+ * An interactive, highly customizable tile component designed to display structured
+ * information, typically used within lists or grids.
  *
- * [BrbxTile] is designed to display a prominent icon, title, and description, with support
- * for secondary actions via [additionalContent].
- * It utilizes [BrbxTileAppearance] to manage visual properties such as shadows, shapes,
- * and spacing, ensuring a consistent elevated card aesthetic.
+ * The tile provides built-in touch feedback (ripple effect) and utilizes a standard layout
+ * hierarchy. The top section is a row displaying [trailingContent] alongside a stacked
+ * [title] and [description]. Below this primary row, [additionalContent] can be optionally
+ * provided. All visual styling—including elevation, padding, shapes, spacing, and text
+ * colors—is strictly driven by the [appearance] configuration.
  *
- * @param icon The [BrbxIcon] to display in the tile's header.
- * @param title The primary text headline.
- * @param description The secondary descriptive text.
- * @param modifier The modifier to be applied to the outer container.
- * @param appearance The theme configuration defining the visual styling.
- * @param iconContainerAppearance The theme configuration for the icon container.
- * @param enabled Whether the tile is clickable.
- * @param onClick The callback triggered when the tile is clicked.
- * @param badgeContent Optional content to render as a badge on the icon.
- * @param additionalContent Optional content to render below the main tile info (e.g., [BrbxPrecollection]).
+ * @param modifier The [Modifier] applied to the outermost container of the tile.
+ * @param appearance The visual configuration defining shadows, shapes, padding, spacing,
+ * colors, and ripple effects. Defaults to [BrbxTileAppearances.default].
+ * @param enabled Controls the enabled state of the tile. When `false`, click events are
+ * ignored and the ripple effect is disabled. Defaults to `true`.
+ * @param onClick The callback to be invoked when the tile is clicked.
+ * @param additionalContent An optional composable slot placed below the main title/description
+ * row. Useful for expanding content, tags, or actionable buttons.
+ * @param trailingContent A composable slot placed at the start of the primary row, typically
+ * used for an icon, avatar, or selection control.
+ * @param title The primary text or composable representing the tile's main subject. Automatically
+ * tinted using [BrbxTileAppearance.titleColor].
+ * @param description The secondary text or composable providing supporting context. Automatically
+ * tinted using [BrbxTileAppearance.descriptionColor].
  */
 @Composable
 fun BrbxTile(
-    icon: BrbxIcon,
-    title: String,
-    description: String,
     modifier: Modifier = Modifier,
     appearance: BrbxTileAppearance = BrbxTileAppearances.default,
-    iconContainerAppearance: BrbxIconContainerAppearance =
-        BrbxIconContainerAppearances.default,
     enabled: Boolean = true,
     onClick: () -> Unit = {},
-    badgeContent: @Composable BoxScope.() -> Unit = {},
     additionalContent: @Composable () -> Unit = {},
+    trailingContent: @Composable () -> Unit,
+    title: @Composable () -> Unit,
+    description: @Composable () -> Unit,
 ) =
     BrbxTileImpl(
-        icon = icon,
-        title = title,
-        description = description,
         modifier = modifier,
         appearance = appearance,
-        iconContainerAppearance = iconContainerAppearance,
         enabled = enabled,
         onClick = onClick,
-        badgeContent = badgeContent,
         additionalContent = additionalContent,
+        trailingContent = trailingContent,
+        title = title,
+        description = description,
     )
 
 @Composable
 private fun BrbxTileImpl(
-    icon: BrbxIcon,
-    title: String,
-    description: String,
     modifier: Modifier,
     appearance: BrbxTileAppearance,
-    iconContainerAppearance: BrbxIconContainerAppearance,
     enabled: Boolean,
     onClick: () -> Unit,
-    badgeContent: @Composable BoxScope.() -> Unit,
     additionalContent: @Composable () -> Unit,
+    trailingContent: @Composable () -> Unit,
+    title: @Composable () -> Unit,
+    description: @Composable () -> Unit,
 ) {
     val interactionSource = remember { MutableInteractionSource() }
 
@@ -131,32 +124,22 @@ private fun BrbxTileImpl(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(appearance.horizontalSpacing()),
             ) {
-                BrbxIconContainer(
-                    appearance = iconContainerAppearance,
-                    badgeContent = badgeContent,
-                ) {
-                    BrbxIcon(
-                        brbxIcon = icon,
-                        modifier = Modifier.size(iconContainerAppearance.iconSize()),
-                    )
-                }
+                trailingContent()
 
                 Column(
                     verticalArrangement = Arrangement.spacedBy(appearance.verticalSpacing()),
                 ) {
-                    Text(
-                        text = title,
-                        overflow = appearance.titleOverflow(),
-                        maxLines = appearance.titleMaxLines(),
-                        style = appearance.titleStyle(),
-                    )
+                    CompositionLocalProvider(
+                        LocalContentColor provides appearance.titleColor()
+                    ) {
+                        title()
+                    }
 
-                    Text(
-                        text = description,
-                        overflow = appearance.descriptionOverflow(),
-                        maxLines = appearance.descriptionMaxLines(),
-                        style = appearance.descriptionStyle(),
-                    )
+                    CompositionLocalProvider(
+                        LocalContentColor provides appearance.descriptionColor()
+                    ) {
+                        description()
+                    }
                 }
             }
 
@@ -170,33 +153,63 @@ private fun BrbxTileImpl(
 private fun BrbxTileAppearancePreview() {
     BrbxTheme(colorScheme = lightColorScheme()) {
         BrbxTile(
+            appearance = BrbxTileAppearances.elevated,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = bDimens.dp16),
-            icon = BoldSolar.Users.User.toBrbxIcon(),
-            title = "Title",
-            description = "Description",
-            appearance = BrbxTileAppearances.elevated,
-            iconContainerAppearance = BrbxIconContainerAppearances.default,
-            onClick = {},
-            badgeContent = {
+                .padding(horizontal = 16.dp),
+            trailingContent = {
+                BrbxContainer(
+                    badgeContent = {
+                        Text(
+                            text = "4",
+                            style = mTypography.labelSmall,
+                            modifier = Modifier.padding(all = bDimens.dp6),
+                        )
+                    }
+                ) {
+                    BrbxIcon(
+                        imageVector = BoldSolar.Users.User,
+                        modifier = Modifier.padding(all =bDimens.dp8),
+                    )
+                }
+            },
+            title = {
                 Text(
-                    text = "4",
-                    style = mTypography.labelSmall.copy(
-                        fontSize = 8.sp,
-                    ),
-                    modifier = Modifier.padding(6.dp)
+                    text = "Some title",
+                    style = mTypography.bodyMedium,
                 )
+            },
+            description = {
+                Text(
+                    text = "Some long description, it's very long and can not be in one line so it will be on second",
+                    style = mTypography.labelMedium,
+                )
+            },
+            additionalContent = {
+                BrbxPrecollection {
+                    Text(
+                        text = "Some long description, it's very long and can not rendered be in one line",
+                        style = mTypography.labelMedium,
+                        modifier = Modifier
+                            .weight(1f, fill = false)
+                            .padding(
+                                top = bDimens.dp8,
+                                start = bDimens.dp16,
+                                end = bDimens.dp16,
+                                bottom = bDimens.dp8,
+                            )
+                    )
+
+                    BrbxIcon(
+                        imageVector = OutlineSolar.Users.User,
+                        modifier = Modifier.padding(
+                            end = bDimens.dp16,
+                            top = bDimens.dp8,
+                            bottom = bDimens.dp8,
+                        ),
+                    )
+                }
             }
-        ) {
-            BrbxPrecollection(
-                text = "Long text blablabla long text long long bla bla",
-                leadingContent = {
-                    BrbxIcon(imageVector = OutlineSolar.Call.CallDropped)
-                },
-                modifier = Modifier
-                    .fillMaxWidth()
-            )
-        }
+        )
     }
 }

@@ -13,13 +13,13 @@ import com.brbx.ui_compose.theme.bIntensityTokens
 import com.brbx.ui_compose.theme.mColors
 
 /**
- * Creates a new instance of [BrbxShimmerAppearance] with the provided properties.
+ * Creates a new instance of [BrbxShimmerBlockAppearance] with the provided properties.
  *
  * Use this function to initialize a base appearance configuration. Since this is an
  * inline factory function, it provides a clean way to override default values
  * defined by the application theme.
  */
-internal inline fun BrbxShimmerAppearance(
+internal inline fun BrbxShimmerBlockAppearance(
     // Animation
     crossinline initialValue: @Composable () -> Float =
         { bIntensityTokens.intensity60 },
@@ -36,7 +36,7 @@ internal inline fun BrbxShimmerAppearance(
 
     // Colors
     crossinline containerColor: @Composable () -> Color = { mColors.surfaceContainer },
-): BrbxShimmerAppearance = object : BrbxShimmerAppearance {
+): BrbxShimmerBlockAppearance = object : BrbxShimmerBlockAppearance {
 
     // Animation
     @Composable override fun initialValue(): Float = initialValue()
@@ -51,7 +51,7 @@ internal inline fun BrbxShimmerAppearance(
 }
 
 /**
- * Creates a new [BrbxShimmerAppearance] by copying properties from the current instance.
+ * Creates a new [BrbxShimmerBlockAppearance] by copying properties from the current instance.
  *
  * This function is useful for creating a modified version of an existing appearance
  * object without mutating the original. Note that this creates a new object on
@@ -59,7 +59,7 @@ internal inline fun BrbxShimmerAppearance(
  * Better use [rememberCopy] instead.
  */
 @UnsafeAppearanceCopy
-inline fun BrbxShimmerAppearance.copy(
+inline fun BrbxShimmerBlockAppearance.copy(
     // Animation
     crossinline initialValue: @Composable () -> Float = { this.initialValue() },
     crossinline targetValue: @Composable () -> Float = { this.targetValue() },
@@ -70,7 +70,7 @@ inline fun BrbxShimmerAppearance.copy(
 
     // Colors
     crossinline containerColor: @Composable () -> Color = { this.containerColor() },
-): BrbxShimmerAppearance = object : BrbxShimmerAppearance {
+): BrbxShimmerBlockAppearance = object : BrbxShimmerBlockAppearance {
 
     // Animation
     @Composable override fun initialValue(): Float = initialValue()
@@ -85,11 +85,11 @@ inline fun BrbxShimmerAppearance.copy(
 }
 
 /**
- * Creates a memoized copy of the [BrbxShimmerAppearance] with specified overrides.
+ * Creates a memoized copy of the [BrbxShimmerBlockAppearance] with specified overrides.
  *
  * **Why you should use [rememberCopy]?**
  * 1. **Performance:** Recomposition can happen frequently. [remember] ensures that
- * a new [BrbxShimmerAppearance] object is not instantiated on every frame,
+ * a new [BrbxShimmerBlockAppearance] object is not instantiated on every frame,
  * preventing unnecessary object allocations.
  * 2. **Stability:** It preserves the instance across recompositions as long as
  * the inputs (parameters) remain the same, which helps Jetpack Compose skip
@@ -99,7 +99,7 @@ inline fun BrbxShimmerAppearance.copy(
  */
 @OptIn(UnsafeAppearanceCopy::class)
 @Composable
-inline fun BrbxShimmerAppearance.rememberCopy(
+inline fun BrbxShimmerBlockAppearance.rememberCopy(
     // Animation
     crossinline initialValue: @Composable () -> Float =
         { this.initialValue() },
@@ -116,7 +116,7 @@ inline fun BrbxShimmerAppearance.rememberCopy(
 
     // Colors
     crossinline containerColor: @Composable () -> Color = { this.containerColor() },
-): BrbxShimmerAppearance =
+): BrbxShimmerBlockAppearance =
     remember {
         this.copy(
             initialValue = initialValue,

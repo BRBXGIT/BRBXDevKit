@@ -1,21 +1,15 @@
 package com.brbx.ui_compose.components.with_appearance.precollection.precollection
 
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.SolidColor
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.unit.Dp
 import com.brbx.ui_compose.common.UnsafeAppearanceCopy
 import com.brbx.ui_compose.components.with_appearance.tile.tile.rememberCopy
-import com.brbx.ui_compose.theme.bDimens
 import com.brbx.ui_compose.theme.bShapes
 import com.brbx.ui_compose.theme.mColors
-import com.brbx.ui_compose.theme.mTypography
 
 /**
  * Creates a new instance of [BrbxPrecollectionAppearance] with the
@@ -34,20 +28,8 @@ internal inline fun BrbxPrecollectionAppearance(
         { SolidColor(mColors.tertiary.copy(alpha = 0.8f)) },
     crossinline containerRippleColor: @Composable () -> Color =
         { mColors.surface },
-    crossinline contentPadding: @Composable () -> PaddingValues =
-        { PaddingValues(horizontal = bDimens.dp10, vertical = bDimens.dp12) },
 
-    // Typography
-    crossinline textStyle: @Composable () -> TextStyle =
-        { mTypography.labelLarge.copy(color = mColors.onTertiary.copy(alpha = 0.8f)) },
-    crossinline textMaxLines: @Composable () -> Int =
-        { remember { 2 } },
-    crossinline textOverflow: @Composable () -> TextOverflow =
-        { remember { TextOverflow.Ellipsis } },
-    crossinline textEndPadding: @Composable () -> Dp =
-        { bDimens.dp16 },
-
-    // Leading content
+    // Content
     crossinline leadingContentColor: @Composable () -> Color = { mColors.onTertiary },
 ): BrbxPrecollectionAppearance = object : BrbxPrecollectionAppearance {
 
@@ -61,25 +43,9 @@ internal inline fun BrbxPrecollectionAppearance(
     @Composable
     override fun containerRippleColor(): Color = containerRippleColor()
 
+    // Content
     @Composable
-    override fun contentPadding(): PaddingValues = contentPadding()
-
-    // Typography
-    @Composable
-    override fun textStyle(): TextStyle = textStyle()
-
-    @Composable
-    override fun textMaxLines(): Int = textMaxLines()
-
-    @Composable
-    override fun textOverflow(): TextOverflow = textOverflow()
-
-    @Composable
-    override fun textEndPadding(): Dp = textEndPadding()
-
-    // Leading content
-    @Composable
-    override fun leadingContentColor(): Color = leadingContentColor()
+    override fun contentColor(): Color = leadingContentColor()
 }
 
 /**
@@ -100,22 +66,10 @@ inline fun BrbxPrecollectionAppearance.copy(
         { this.containerBrush() },
     crossinline containerRippleColor: @Composable () -> Color =
         { this.containerRippleColor() },
-    crossinline contentPadding: @Composable () -> PaddingValues =
-        { this.contentPadding() },
 
-    // Typography
-    crossinline textStyle: @Composable () -> TextStyle =
-        { this.textStyle() },
-    crossinline textMaxLines: @Composable () -> Int =
-        { this.textMaxLines() },
-    crossinline textOverflow: @Composable () -> TextOverflow =
-        { this.textOverflow() },
-    crossinline textEndPadding: @Composable () -> Dp =
-        { this.textEndPadding() },
-
-    // Leading content
+    // Content
     crossinline leadingContentColor: @Composable () -> Color =
-        { this.leadingContentColor() },
+        { this.contentColor() },
 ): BrbxPrecollectionAppearance = object : BrbxPrecollectionAppearance {
 
     // Container
@@ -128,25 +82,9 @@ inline fun BrbxPrecollectionAppearance.copy(
     @Composable
     override fun containerRippleColor(): Color = containerRippleColor()
 
+    // Content
     @Composable
-    override fun contentPadding(): PaddingValues = contentPadding()
-
-    // Typography
-    @Composable
-    override fun textStyle(): TextStyle = textStyle()
-
-    @Composable
-    override fun textMaxLines(): Int = textMaxLines()
-
-    @Composable
-    override fun textOverflow(): TextOverflow = textOverflow()
-
-    @Composable
-    override fun textEndPadding(): Dp = textEndPadding()
-
-    // Leading content
-    @Composable
-    override fun leadingContentColor(): Color = leadingContentColor()
+    override fun contentColor(): Color = leadingContentColor()
 }
 
 /**
@@ -168,32 +106,15 @@ inline fun BrbxPrecollectionAppearance.rememberCopy(
         { this.containerBrush() },
     crossinline containerRippleColor: @Composable () -> Color =
         { this.containerRippleColor() },
-    crossinline contentPadding: @Composable () -> PaddingValues =
-        { this.contentPadding() },
 
-    // Typography
-    crossinline textStyle: @Composable () -> TextStyle =
-        { this.textStyle() },
-    crossinline textMaxLines: @Composable () -> Int =
-        { this.textMaxLines() },
-    crossinline textOverflow: @Composable () -> TextOverflow =
-        { this.textOverflow() },
-    crossinline textEndPadding: @Composable () -> Dp =
-        { this.textEndPadding() },
-
-    // Leading content
+    // Content
     crossinline leadingContentColor: @Composable () -> Color =
-        { this.leadingContentColor() },
+        { this.contentColor() },
 ): BrbxPrecollectionAppearance = remember {
     this.copy(
         containerShape = containerShape,
         containerBrush = containerBrush,
         containerRippleColor = containerRippleColor,
-        contentPadding = contentPadding,
-        textStyle = textStyle,
-        textMaxLines = textMaxLines,
-        textOverflow = textOverflow,
-        textEndPadding = textEndPadding,
         leadingContentColor = leadingContentColor,
     )
 }

@@ -12,7 +12,7 @@ import androidx.compose.ui.graphics.Color
  * Allows flexible configuration of the animation's timing, behavior, and base colors.
  */
 @Immutable
-interface BrbxShimmerAppearance {
+interface BrbxShimmerBlockAppearance {
 
     // ---------------------------------------------------------------------------
     // Animation

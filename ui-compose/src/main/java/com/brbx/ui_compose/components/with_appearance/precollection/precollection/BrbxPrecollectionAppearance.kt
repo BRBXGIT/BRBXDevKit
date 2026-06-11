@@ -39,48 +39,13 @@ interface BrbxPrecollectionAppearance {
     @Composable
     fun containerRippleColor(): Color
 
-    /**
-     * The internal padding of the container (vertical and horizontal spacing).
-     */
-    @Composable
-    fun contentPadding(): PaddingValues
-
     // ---------------------------------------------------------------------------
-    // Typography
+    // Content
     // ---------------------------------------------------------------------------
 
     /**
-     * The text style (font, size, weight) for the component's label.
+     * The color for content.
      */
     @Composable
-    fun textStyle(): TextStyle
-
-
-    /**
-     * The spacing between text and leading content.
-     */
-    @Composable
-    fun textEndPadding(): Dp
-
-    /**
-     * Max lines of text that can be displayed.
-     */
-    @Composable
-    fun textMaxLines(): Int
-
-    /**
-     * The style of text overflow.
-     */
-    @Composable
-    fun textOverflow(): TextOverflow
-
-    // ---------------------------------------------------------------------------
-    // Leading content
-    // ---------------------------------------------------------------------------
-
-    /**
-     * The color for leading content.
-     */
-    @Composable
-    fun leadingContentColor(): Color
+    fun contentColor(): Color
 }

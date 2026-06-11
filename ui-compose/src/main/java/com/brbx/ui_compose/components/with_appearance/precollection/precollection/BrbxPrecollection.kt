@@ -5,7 +5,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.Text
@@ -21,51 +21,54 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.brbx.ui_compose.components.image.BrbxIcon
 import com.brbx.ui_compose.theme.BrbxTheme
 import com.brbx.ui_compose.theme.bDimens
+import com.brbx.ui_compose.theme.mTypography
 import dev.chiksmedina.solar.OutlineSolar
 import dev.chiksmedina.solar.outline.Users
 import dev.chiksmedina.solar.outline.users.User
 
-// TODO Add testing features
 /**
- * A reusable, interactive pre-collection component for the BRBX design system.
+ * An interactive, row-based container typically used to display summary headers or
+ * entry points into deeper collections of data.
  *
- * This component typically serves as a list item or selection trigger, featuring
- * a text label and customizable leading content (e.g., an icon).
- * It supports custom appearances via the [BrbxPrecollectionAppearance] interface.
+ * This component lays out its [content] horizontally, automatically centering items
+ * vertically and distributing them across the available width (using
+ * [Arrangement.SpaceBetween]). It provides built-in click handling with a ripple effect
+ * and derives all structural styling—including shapes, backgrounds, and content
+ * colors—from the provided [appearance].
  *
- * @param text The primary label text displayed in the component.
- * @param modifier The modifier to be applied to the outer container.
- * @param appearance The theme configuration for the component's shape, colors, and typography.
- * @param enabled Whether the component is clickable.
- * @param onClick The callback triggered when the component is clicked.
- * @param leadingContent An optional Composable to render alongside the text (e.g., an icon).
+ * @param modifier The [Modifier] applied to the outermost row container.
+ * @param appearance The visual configuration defining the background brush, shape,
+ * content color, and ripple color. Defaults to [BrbxPrecollectionAppearances.tertiary].
+ * @param enabled Controls the interactive state of the component. When `false`,
+ * click events are ignored and the ripple effect is disabled. Defaults to `true`.
+ * @param onClick The callback to be invoked when the component is clicked.
+ * @param content The composable content to be displayed inside the row. Because the
+ * underlying row uses `SpaceBetween`, elements placed here will naturally push out
+ * to the edges.
  */
 @Composable
 fun BrbxPrecollection(
-    text: String,
     modifier: Modifier = Modifier,
     appearance: BrbxPrecollectionAppearance = BrbxPrecollectionAppearances.tertiary,
     enabled: Boolean = true,
     onClick: () -> Unit = {},
-    leadingContent: @Composable () -> Unit = {},
+    content: @Composable RowScope.() -> Unit,
 ) =
     BrbxPrecollectionImpl(
-        text = text,
         modifier = modifier,
         appearance = appearance,
         enabled = enabled,
         onClick = onClick,
-        leadingContent = leadingContent,
+        content = content,
     )
 
 @Composable
 private fun BrbxPrecollectionImpl(
-    text: String,
     modifier: Modifier = Modifier,
     appearance: BrbxPrecollectionAppearance,
     enabled: Boolean,
     onClick: () -> Unit,
-    leadingContent: @Composable () -> Unit,
+    content: @Composable RowScope.() -> Unit,
 ) {
     val interactionSource = remember { MutableInteractionSource() }
 
@@ -78,25 +81,14 @@ private fun BrbxPrecollectionImpl(
                 indication = ripple(color = appearance.containerRippleColor()),
                 enabled = enabled,
                 onClick = onClick,
-            )
-            .padding(appearance.contentPadding()),
+            ),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween,
     ) {
-        Text(
-            text = text,
-            modifier = Modifier
-                .weight(1f, fill = false)
-                .padding(end = appearance.textEndPadding()),
-            overflow = appearance.textOverflow(),
-            maxLines = appearance.textMaxLines(),
-            style = appearance.textStyle(),
-        )
-
         CompositionLocalProvider(
-            LocalContentColor provides appearance.leadingContentColor(),
+            LocalContentColor provides appearance.contentColor()
         ) {
-            leadingContent()
+            content()
         }
     }
 }
@@ -105,14 +97,28 @@ private fun BrbxPrecollectionImpl(
 @Composable
 private fun BrbxPrecollectionPreview() {
     BrbxTheme(colorScheme = lightColorScheme()) {
-        BrbxPrecollection(
-            appearance = BrbxPrecollectionAppearances.secondary,
-            text = "Long text blablabla long text long long bla text bla",
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = bDimens.dp16)
-        ) {
-            BrbxIcon(OutlineSolar.Users.User)
+        BrbxPrecollection {
+            Text(
+                text = "Some long description, it's very long and can not be in one line so it will be on second",
+                style = mTypography.labelLarge,
+                modifier = Modifier
+                    .weight(1f, fill = false)
+                    .padding(
+                        top = bDimens.dp8,
+                        start = bDimens.dp16,
+                        end = bDimens.dp16,
+                        bottom = bDimens.dp8,
+                    )
+            )
+
+            BrbxIcon(
+                imageVector = OutlineSolar.Users.User,
+                modifier = Modifier.padding(
+                    end = bDimens.dp16,
+                    top = bDimens.dp8,
+                    bottom = bDimens.dp8,
+                ),
+            )
         }
     }
 }

@@ -9,7 +9,7 @@ import androidx.compose.runtime.Immutable
  * and simplifies the implementation of common UI patterns.
  */
 @Immutable
-object BrbxShimmerAppearances {
+object BrbxShimmerBlockAppearances {
 
-    val default = BrbxShimmerAppearance()
+    val default = BrbxShimmerBlockAppearance()
 }

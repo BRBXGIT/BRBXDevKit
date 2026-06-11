@@ -27,13 +27,13 @@ import com.brbx.ui_compose.theme.BrbxTheme
  * the size, shape, or padding of the loading placeholder.
  * @param appearance The configuration object defining the animation's behavior (e.g.,
  * duration, easing, initial/target alpha values) and the base container color.
- * Defaults to [BrbxShimmerAppearances.default].
+ * Defaults to [BrbxShimmerBlockAppearances.default].
  * @param content Optional composable content to be layered inside the shimmer block.
  */
 @Composable
 fun BrbxShimmerBlock(
     modifier: Modifier = Modifier,
-    appearance: BrbxShimmerAppearance = BrbxShimmerAppearances.default,
+    appearance: BrbxShimmerBlockAppearance = BrbxShimmerBlockAppearances.default,
     content: @Composable BoxScope.() -> Unit = {},
 ) =
     BrbxShimmerBlockImpl(
@@ -45,7 +45,7 @@ fun BrbxShimmerBlock(
 @Composable
 private fun BrbxShimmerBlockImpl(
     modifier: Modifier,
-    appearance: BrbxShimmerAppearance,
+    appearance: BrbxShimmerBlockAppearance,
     content: @Composable BoxScope.() -> Unit,
 ) {
     val infiniteTransition = rememberInfiniteTransition(label = "pulse")

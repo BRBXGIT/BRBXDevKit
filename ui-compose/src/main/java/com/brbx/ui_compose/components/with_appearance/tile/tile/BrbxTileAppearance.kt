@@ -6,8 +6,6 @@ import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 
 /**
@@ -93,44 +91,18 @@ interface BrbxTileAppearance {
     fun contentColumnSpacing(): Dp
 
     // ---------------------------------------------------------------------------
-    // Typography
+    // Title & Description
     // ---------------------------------------------------------------------------
 
     /**
-     * The text style (font, size, color, weight) for the tile's title.
+     * The color of title.
      */
     @Composable
-    fun titleStyle(): TextStyle
+    fun titleColor(): Color
 
     /**
-     * The maximum number of lines for the title.
-     * If the text exceeds this value, it will be truncated (usually with an ellipsis).
+     * The color of description.
      */
     @Composable
-    fun titleMaxLines(): Int
-
-    /**
-     * The text overflow style.
-     */
-    @Composable
-    fun titleOverflow(): TextOverflow
-
-    /**
-     * The text style (font, size, color, weight) for the tile's description.
-     */
-    @Composable
-    fun descriptionStyle(): TextStyle
-
-    /**
-     * The maximum number of lines for the description.
-     * If the text exceeds this value, it will be truncated.
-     */
-    @Composable
-    fun descriptionMaxLines(): Int
-
-    /**
-     * The text overflow style.
-     */
-    @Composable
-    fun descriptionOverflow(): TextOverflow
+    fun descriptionColor(): Color
 }

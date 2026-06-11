@@ -1,4 +1,4 @@
-package com.brbx.ui_compose.containers.with_appearance.icon_container.icon_container
+package com.brbx.ui_compose.containers.with_appearance.container.container
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -9,39 +9,40 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.layout
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.brbx.ui_compose.components.image.BrbxIcon
 import com.brbx.ui_compose.theme.BrbxTheme
+import com.brbx.ui_compose.theme.bDimens
 import com.brbx.ui_compose.theme.mTypography
 import dev.chiksmedina.solar.BoldSolar
 import dev.chiksmedina.solar.bold.Users
 import dev.chiksmedina.solar.bold.users.User
 
-// TODO Add testing features
 /**
- * A container component for icons that supports an optional overlay badge.
- * * This component uses [BrbxIconContainerAppearance] to dictate styling, positioning,
- * and visibility of both the primary content and the badge.
+ * A highly customizable container composable that supports an optional overlapping badge overlay.
  *
- * @param modifier The modifier to be applied to the container.
- * @param appearance The theme configuration defining the background, shapes, and badge logic.
- * @param badgeContent An optional Composable to render as a badge (e.g., a notification dot).
- * @param content The primary Composable content (e.g., an icon).
+ * This component provides a styled wrapper around its [content], applying backgrounds,
+ * shapes, and content colors dictated by the provided [appearance]. It also supports
+ * rendering a specialized badge ([badgeContent]), whose alignment, offset (calculated
+ * via positional dividers), and styling are similarly controlled by the [appearance] configuration.
+ *
+ * @param modifier The [Modifier] to be applied to the main content container.
+ * @param appearance The visual configuration for the container and badge, defining
+ * brushes, shapes, colors, alignments, and layout logic. Defaults to [BrbxContainerAppearances.primary].
+ * @param badgeContent An optional composable lambda to render inside the badge overlay area.
+ * @param content The primary composable content to be displayed inside the container.
  */
 @Composable
-fun BrbxIconContainer(
+fun BrbxContainer(
     modifier: Modifier = Modifier,
-    appearance: BrbxIconContainerAppearance = BrbxIconContainerAppearances.default,
+    appearance: BrbxContainerAppearance = BrbxContainerAppearances.primary,
     badgeContent: @Composable BoxScope.() -> Unit = {},
     content: @Composable BoxScope.() -> Unit,
 ) =
-    BRBXIconContainerImpl(
+    BrbxContainerImpl(
         modifier = modifier,
         appearance = appearance,
         badgeContent = badgeContent,
@@ -49,9 +50,9 @@ fun BrbxIconContainer(
     )
 
 @Composable
-private fun BRBXIconContainerImpl(
+private fun BrbxContainerImpl(
     modifier: Modifier = Modifier,
-    appearance: BrbxIconContainerAppearance,
+    appearance: BrbxContainerAppearance,
     badgeContent: @Composable BoxScope.() -> Unit,
     content: @Composable BoxScope.() -> Unit,
 ) {
@@ -63,7 +64,6 @@ private fun BRBXIconContainerImpl(
                     brush = appearance.containerBrush(),
                     shape = appearance.containerShape(),
                 )
-                .padding(paddingValues = appearance.contentPadding()),
         ) {
             CompositionLocalProvider(LocalContentColor provides appearance.contentColor()) {
                 content()
@@ -101,23 +101,20 @@ private fun BRBXIconContainerImpl(
 
 @Preview
 @Composable
-private fun BrbxIconContainerPreview() {
+private fun BrbxContainerPreview() {
     BrbxTheme(colorScheme = lightColorScheme()) {
-        BrbxIconContainer(
-            appearance = BrbxIconContainerAppearances.default,
+        BrbxContainer(
             badgeContent = {
                 Text(
-                    text = "3",
-                    style = mTypography.labelSmall.copy(
-                        fontSize = 6.sp,
-                    ),
-                    modifier = Modifier.padding(6.dp)
+                    text = "4",
+                    style = mTypography.labelSmall,
+                    modifier = Modifier.padding(all = bDimens.dp6),
                 )
             }
         ) {
             BrbxIcon(
                 imageVector = BoldSolar.Users.User,
-                modifier = Modifier.align(Alignment.Center),
+                modifier = Modifier.padding(all = bDimens.dp8),
             )
         }
     }

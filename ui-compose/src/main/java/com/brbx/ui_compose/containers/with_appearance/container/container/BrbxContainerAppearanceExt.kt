@@ -1,6 +1,5 @@
-package com.brbx.ui_compose.containers.with_appearance.icon_container.icon_container
+package com.brbx.ui_compose.containers.with_appearance.container.container
 
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -8,22 +7,20 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.SolidColor
-import androidx.compose.ui.unit.Dp
 import com.brbx.ui_compose.common.UnsafeAppearanceCopy
-import com.brbx.ui_compose.theme.bDimens
 import com.brbx.ui_compose.theme.bShapes
 import com.brbx.ui_compose.theme.mColors
 
 /**
  * Creates a new instance of
- * [com.brbx.ui_compose.containers.with_appearance.icon_container.icon_container.BrbxIconContainerAppearance]
+ * [com.brbx.ui_compose.containers.with_appearance.container.container.BrbxContainerAppearance]
  * with the provided properties.
  *
  * Use this function to initialize a base appearance configuration. Since
  * this is an inline factory function, it provides a clean way to override
  * default values defined by the application theme.
  */
-internal inline fun BrbxIconContainerAppearance(
+internal inline fun BrbxContainerAppearance(
     // Container
     crossinline containerShape: @Composable () -> Shape =
         { bShapes.circle },
@@ -33,14 +30,10 @@ internal inline fun BrbxIconContainerAppearance(
     // Icon
     crossinline contentColor: @Composable () -> Color =
         { mColors.onPrimary },
-    crossinline iconSize: @Composable () -> Dp =
-        { bDimens.dp24 },
 
     // Layout & Spacing
     crossinline contentAlignment: @Composable () -> Alignment =
         { remember { Alignment.Center } },
-    crossinline contentPadding: @Composable () -> PaddingValues =
-        { PaddingValues(bDimens.dp8) },
 
     // Badge Container
     crossinline badgeContentAlignment: @Composable () -> Alignment =
@@ -57,7 +50,7 @@ internal inline fun BrbxIconContainerAppearance(
         { remember { 4 } },
     crossinline badgeContentColor: @Composable () -> Color =
         { mColors.onError },
-): BrbxIconContainerAppearance = object : BrbxIconContainerAppearance {
+): BrbxContainerAppearance = object : BrbxContainerAppearance {
 
     // Container
     @Composable
@@ -66,19 +59,13 @@ internal inline fun BrbxIconContainerAppearance(
     @Composable
     override fun containerBrush(): Brush = containerBrush()
 
-    // Icon
+    // Content
     @Composable
     override fun contentColor(): Color = contentColor()
-
-    @Composable
-    override fun iconSize(): Dp = iconSize()
 
     // Layout & Spacing
     @Composable
     override fun contentAlignment(): Alignment = contentAlignment()
-
-    @Composable
-    override fun contentPadding(): PaddingValues = contentPadding()
 
     // Badge Container
     @Composable
@@ -104,7 +91,7 @@ internal inline fun BrbxIconContainerAppearance(
 }
 
 /**
- * Creates a new [BrbxIconContainerAppearance] by copying properties from
+ * Creates a new [BrbxContainerAppearance] by copying properties from
  * the current instance.
  *
  * This function is useful for creating a modified version of an existing
@@ -115,24 +102,20 @@ internal inline fun BrbxIconContainerAppearance(
  * Better use [rememberCopy] instead.
  */
 @UnsafeAppearanceCopy
-inline fun BrbxIconContainerAppearance.copy(
+inline fun BrbxContainerAppearance.copy(
     // Container
     crossinline containerShape: @Composable () -> Shape =
         { this.containerShape() },
     crossinline containerBrush: @Composable () -> Brush =
         { this.containerBrush() },
 
-    // Icon
+    // Content
     crossinline contentColor: @Composable () -> Color =
         { this.contentColor() },
-    crossinline iconSize: @Composable () -> Dp =
-        { this.iconSize() },
 
     // Layout & Spacing
     crossinline contentAlignment: @Composable () -> Alignment =
         { this.contentAlignment() },
-    crossinline contentPadding: @Composable () -> PaddingValues =
-        { this.contentPadding() },
 
     // Badge Container
     crossinline badgeContentAlignment: @Composable () -> Alignment =
@@ -149,7 +132,7 @@ inline fun BrbxIconContainerAppearance.copy(
         { this.badgePositionXDivider() },
     crossinline badgeContentColor: @Composable () -> Color =
         { this.badgeContentColor() },
-): BrbxIconContainerAppearance = object : BrbxIconContainerAppearance {
+): BrbxContainerAppearance = object : BrbxContainerAppearance {
 
     // Container
     @Composable
@@ -158,19 +141,13 @@ inline fun BrbxIconContainerAppearance.copy(
     @Composable
     override fun containerBrush(): Brush = containerBrush()
 
-    // Icon
+    // Content
     @Composable
     override fun contentColor(): Color = contentColor()
-
-    @Composable
-    override fun iconSize(): Dp = iconSize()
 
     // Layout & Spacing
     @Composable
     override fun contentAlignment(): Alignment = contentAlignment()
-
-    @Composable
-    override fun contentPadding(): PaddingValues = contentPadding()
 
     // Badge Container
     @Composable
@@ -196,12 +173,12 @@ inline fun BrbxIconContainerAppearance.copy(
 }
 
 /**
- * Creates a memoized copy of the [BrbxIconContainerAppearance] with
+ * Creates a memoized copy of the [BrbxContainerAppearance] with
  * specified overrides.
  *
  * **Why you should use [rememberCopy]?**
  * 1. **Performance:** Recomposition can happen frequently. [remember]
- * ensures that a new [BrbxIconContainerAppearance] object is not
+ * ensures that a new [BrbxContainerAppearance] object is not
  * instantiated on every frame, preventing unnecessary object
  * allocations.
  * 2. **Stability:** It preserves the instance across recompositions
@@ -213,24 +190,20 @@ inline fun BrbxIconContainerAppearance.copy(
  */
 @OptIn(UnsafeAppearanceCopy::class)
 @Composable
-inline fun BrbxIconContainerAppearance.rememberCopy(
+inline fun BrbxContainerAppearance.rememberCopy(
     // Container
     crossinline containerShape: @Composable () -> Shape =
         { this.containerShape() },
     crossinline containerBrush: @Composable () -> Brush =
         { this.containerBrush() },
 
-    // Icon
-    crossinline iconSize: @Composable () -> Dp =
-        { this.iconSize() },
+    // Content
     crossinline contentColor: @Composable () -> Color =
         { this.contentColor() },
 
     // Layout & Spacing
     crossinline contentAlignment: @Composable () -> Alignment =
         { this.contentAlignment() },
-    crossinline contentPadding: @Composable () -> PaddingValues =
-        { this.contentPadding() },
 
     // Badge Container
     crossinline badgeContentAlignment: @Composable () -> Alignment =
@@ -247,15 +220,13 @@ inline fun BrbxIconContainerAppearance.rememberCopy(
         { this.badgePositionXDivider() },
     crossinline badgeContentColor: @Composable () -> Color =
         { this.badgeContentColor() },
-): BrbxIconContainerAppearance =
+): BrbxContainerAppearance =
     remember {
         this.copy(
             containerShape = containerShape,
             containerBrush = containerBrush,
-            iconSize = iconSize,
             contentColor = contentColor,
             contentAlignment = contentAlignment,
-            contentPadding = contentPadding,
             badgeContentAlignment = badgeContentAlignment,
             badgeShape = badgeShape,
             badgeContainerBrush = badgeContainerBrush,

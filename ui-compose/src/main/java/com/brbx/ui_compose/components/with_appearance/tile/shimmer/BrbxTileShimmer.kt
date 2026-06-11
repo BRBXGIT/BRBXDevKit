@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -17,71 +19,60 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.tooling.preview.Preview
-import com.brbx.ui_compose.components.with_appearance.shimmer.BrbxShimmerAppearance
-import com.brbx.ui_compose.components.with_appearance.shimmer.BrbxShimmerAppearances
+import androidx.compose.ui.unit.dp
 import com.brbx.ui_compose.components.with_appearance.shimmer.BrbxShimmerBlock
+import com.brbx.ui_compose.components.with_appearance.shimmer.BrbxShimmerBlockAppearances
 import com.brbx.ui_compose.components.with_appearance.shimmer.rememberCopy
 import com.brbx.ui_compose.components.with_appearance.tile.tile.BrbxTileAppearance
 import com.brbx.ui_compose.components.with_appearance.tile.tile.BrbxTileAppearances
-import com.brbx.ui_compose.containers.with_appearance.icon_container.icon_container.BrbxIconContainerAppearance
-import com.brbx.ui_compose.containers.with_appearance.icon_container.icon_container.BrbxIconContainerAppearances
-import com.brbx.ui_compose.containers.with_appearance.icon_container.shimmer.BrbxIconContainerShimmer
+import com.brbx.ui_compose.containers.with_appearance.container.shimmer.BrbxContainerShimmer
 import com.brbx.ui_compose.theme.BrbxTheme
 import com.brbx.ui_compose.theme.bDimens
-import com.brbx.ui_compose.theme.bIntensityTokens
 import com.brbx.ui_compose.theme.bShapes
 import com.brbx.ui_compose.theme.mColors
 
 /**
- * A skeleton loading placeholder (shimmer) component that mimics the structure of a standard
- * [com.brbx.ui_compose.components.with_appearance.tile.tile.BrbxTile].
+ * A loading skeleton component that perfectly mirrors the layout and structure of a [com.brbx.ui_compose.components.with_appearance.tile.tile.BrbxTile].
  *
- * It provides a visual placeholder containing an icon container shimmer and two text line shimmers
- * (title and description) arranged horizontally, with an optional slot for additional content
- * at the bottom.
+ * This composable is used as a placeholder while the data for a tile is being fetched.
+ * By consuming the exact same [tileAppearance], it ensures that the shadows, shapes,
+ * padding, and spacing match the final loaded UI precisely, preventing layout shift.
+ * Unlike the standard tile, it removes all interactive elements (like clicks and ripples)
+ * and applies a placeholder or animated [shimmerContainerBrush] to the background.
  *
- * @param modifier The [Modifier] to be applied to the outermost container of this shimmer tile.
- * @param shimmerContainerBrush The [Brush] used to draw the background of the tile container.
- * Defaults to a solid surface container color.
- * @param tileAppearance The visual styling configuration for the outer tile container, including
- * padding, shape, elevation, and internal spacings.
- * @param iconContainerAppearance Specifies the appearance (e.g., shape, size) of the inner icon container.
- * @param iconContainerShimmerAppearance The shimmer animation/style configuration for the icon placeholder.
- * @param titleShimmerAppearance The shimmer animation/style configuration for the title line placeholder.
- * @param descriptionShimmerAppearance The shimmer animation/style configuration for the description line placeholder.
- * @param additionalContent A trailing composable lambda slot to inject extra placeholder content
- * (e.g., footers, buttons, or extra lines) below the main row arrangement.
+ * @param modifier The [Modifier] applied to the outermost container of the shimmer tile.
+ * @param shimmerContainerBrush The [Brush] used for the tile's background. This is typically
+ * a solid placeholder color or an animated shimmer gradient. Defaults to a solid surface color.
+ * @param tileAppearance The visual configuration defining shadows, shapes, padding, and
+ * spacing. This should exactly match the appearance of the target [com.brbx.ui_compose.components.with_appearance.tile.tile.BrbxTile]. Defaults to
+ * [BrbxTileAppearances.default].
+ * @param additionalContent An optional slot placed below the main row. Typically filled
+ * with structural [BrbxShimmerBlock] elements mocking buttons or tags.
+ * @param trailingContent A slot placed at the start of the primary row. Typically filled
+ * with a circular or square [BrbxShimmerBlock] mocking an avatar or icon.
+ * @param title The primary structural placeholder for the title text. Typically filled
+ * with a short, wide [BrbxShimmerBlock].
+ * @param description The secondary structural placeholder for the description text.
+ * Typically filled with one or more thinner [BrbxShimmerBlock] elements.
  */
 @Composable
 fun BrbxTileShimmer(
     modifier: Modifier = Modifier,
     shimmerContainerBrush: Brush= SolidColor(mColors.surfaceContainer),
     tileAppearance: BrbxTileAppearance = BrbxTileAppearances.default,
-    iconContainerAppearance: BrbxIconContainerAppearance =
-        BrbxIconContainerAppearances.default,
-    iconContainerShimmerAppearance: BrbxShimmerAppearance =
-        BrbxShimmerAppearances.default.rememberCopy(
-            containerColor = { mColors.surfaceContainerHigh }
-        ),
-    titleShimmerAppearance: BrbxShimmerAppearance =
-        BrbxShimmerAppearances.default.rememberCopy(
-            containerColor = { mColors.surfaceContainerHigh }
-        ),
-    descriptionShimmerAppearance: BrbxShimmerAppearance =
-        BrbxShimmerAppearances.default.rememberCopy(
-            containerColor = { mColors.surfaceContainerHighest }
-        ),
     additionalContent: @Composable () -> Unit = {},
+    trailingContent: @Composable () -> Unit,
+    title: @Composable () -> Unit,
+    description: @Composable () -> Unit,
 ) =
     BrbxTileShimmerImpl(
         shimmerContainerBrush = shimmerContainerBrush,
         modifier = modifier,
-        iconContainerAppearance = iconContainerAppearance,
         tileAppearance = tileAppearance,
-        iconContainerShimmerAppearance = iconContainerShimmerAppearance,
-        titleShimmerAppearance = titleShimmerAppearance,
-        descriptionShimmerAppearance = descriptionShimmerAppearance,
         additionalContent = additionalContent,
+        trailingContent = trailingContent,
+        title = title,
+        description = description,
     )
 
 @Composable
@@ -89,11 +80,10 @@ private fun BrbxTileShimmerImpl(
     shimmerContainerBrush: Brush,
     modifier: Modifier = Modifier,
     tileAppearance: BrbxTileAppearance,
-    iconContainerAppearance: BrbxIconContainerAppearance,
-    iconContainerShimmerAppearance: BrbxShimmerAppearance,
-    titleShimmerAppearance: BrbxShimmerAppearance,
-    descriptionShimmerAppearance: BrbxShimmerAppearance,
     additionalContent: @Composable () -> Unit,
+    trailingContent: @Composable () -> Unit,
+    title: @Composable () -> Unit,
+    description: @Composable () -> Unit,
 ) {
     Box(
         modifier = modifier
@@ -118,30 +108,15 @@ private fun BrbxTileShimmerImpl(
                 horizontalArrangement = Arrangement.spacedBy(tileAppearance.horizontalSpacing()),
                 modifier = Modifier.fillMaxWidth()
             ) {
-                BrbxIconContainerShimmer(
-                    iconAppearance = iconContainerAppearance,
-                    shimmerAppearance = iconContainerShimmerAppearance,
-                )
+                trailingContent()
 
                 Column(
                     verticalArrangement = Arrangement.spacedBy(tileAppearance.verticalSpacing()),
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    BrbxShimmerBlock(
-                        appearance = titleShimmerAppearance,
-                        modifier = Modifier
-                            .fillMaxWidth(fraction = bIntensityTokens.intensity60)
-                            .height(bDimens.dp16)
-                            .clip(shape = bShapes.dp4),
-                    )
+                    title()
 
-                    BrbxShimmerBlock(
-                        appearance = descriptionShimmerAppearance,
-                        modifier = Modifier
-                            .fillMaxWidth(fraction = bIntensityTokens.intensity85)
-                            .height(bDimens.dp12)
-                            .clip(shape = bShapes.dp4),
-                    )
+                    description()
                 }
             }
 
@@ -154,6 +129,42 @@ private fun BrbxTileShimmerImpl(
 @Composable
 private fun BrbxTileShimmerPreview() {
     BrbxTheme(darkColorScheme()) {
-        BrbxTileShimmer()
+        BrbxTileShimmer(
+            trailingContent = {
+                BrbxContainerShimmer(
+                    shimmerAppearance = BrbxShimmerBlockAppearances.default.rememberCopy(
+                        containerColor = { mColors.surfaceContainerHigh },
+                    )
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .padding(all = bDimens.dp8)
+                            .size(bDimens.dp24)
+                    )
+                }
+            },
+            title = {
+                BrbxShimmerBlock(
+                    appearance = BrbxShimmerBlockAppearances.default.rememberCopy(
+                        containerColor = { mColors.surfaceContainerHigh },
+                    ),
+                    modifier = Modifier
+                        .height(bDimens.dp16)
+                        .width(180.dp)
+                        .clip(shape = bShapes.dp12)
+                )
+            },
+            description = {
+                BrbxShimmerBlock(
+                    appearance = BrbxShimmerBlockAppearances.default.rememberCopy(
+                        containerColor = { mColors.surfaceContainerHighest },
+                    ),
+                    modifier = Modifier
+                        .height(bDimens.dp12)
+                        .width(240.dp)
+                        .clip(shape = bShapes.dp12)
+                )
+            }
+        )
     }
 }

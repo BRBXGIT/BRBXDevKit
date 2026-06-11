@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -18,46 +19,52 @@ import androidx.compose.material3.ripple
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.brbx.ui_compose.components.image.BrbxRemoteImage
 import com.brbx.ui_compose.theme.BrbxTheme
+import com.brbx.ui_compose.theme.bDimens
 import com.brbx.ui_compose.theme.mTypography
 
-// TODO Add testing features
 /**
- * A reusable, highly customizable content card component for the BRBX design system.
+ * An interactive, visually rich card component designed to display a background image
+ * overlaid with an information block and an optional badge.
  *
- * This component displays an image, a title, a description, and an optional badge.
- * It supports custom appearances via the [BrbxContentCardAppearance] interface, allowing
- * for consistent styling across different contexts.
+ * This component utilizes a [Box] layout hierarchy:
+ * 1. The image ([imageUrl]) fills the entire background.
+ * 2. The [badge] is placed on top, with its positioning managed by the caller via [BoxScope].
+ * 3. The information block (containing [title] and [description]) is drawn over the image,
+ * aligned and styled according to the [appearance] configuration.
  *
- * @param imageUrl The URL of the image to display.
- * @param title The primary text content of the card.
- * @param description The secondary text content of the card.
- * @param modifier The modifier to be applied to the card container.
- * @param appearance The [BrbxContentCardAppearance] configuration for the card's layout and style.
- * @param enabled Whether the card is clickable.
- * @param onClick The callback triggered when the card is clicked.
- * @param additionalContent the [Composable] additional content which will be displayed over the whole card
- * @param badgeContent The [Composable] content of the badge.
+ * All structural and visual styling—including strict dimensions, elevations, shapes,
+ * overlay backgrounds, and text colors—is driven by the provided [appearance].
+ *
+ * @param imageUrl The URL of the image to be loaded and displayed as the card's background.
+ * @param modifier The [Modifier] applied to the outermost container of the card.
+ * @param appearance The visual configuration defining dimensions, shapes, shadows, backgrounds,
+ * alignments, and content colors. Defaults to [BrbxContentCardAppearances.tertiary].
+ * @param enabled Controls the interactive state of the card. When `false`, click events are
+ * ignored and the ripple effect is disabled. Defaults to `true`.
+ * @param onClick The callback to be invoked when the card is clicked.
+ * @param badge An optional composable slot for an overlay element (like a tag or status indicator).
+ * It provides a [BoxScope], allowing the caller to align it freely (e.g., using `Modifier.align()`).
+ * @param title The primary text or composable representing the card's main subject. Automatically
+ * tinted using [BrbxContentCardAppearance.titleColor].
+ * @param description The secondary text or composable providing supporting context. Automatically
+ * tinted using [BrbxContentCardAppearance.descriptionColor].
  */
 @Composable
 fun BrbxContentCard(
     imageUrl: String?,
-    title: String,
-    description: String,
     modifier: Modifier = Modifier,
-    appearance: BrbxContentCardAppearance = BrbxContentCardAppearances.default,
+    appearance: BrbxContentCardAppearance = BrbxContentCardAppearances.tertiary,
     enabled: Boolean = true,
     onClick: () -> Unit = {},
-    additionalContent: @Composable () -> Unit = {},
-    badgeContent: @Composable BoxScope.() -> Unit = {},
+    badge: @Composable BoxScope.() -> Unit = {},
+    title: @Composable ColumnScope.() -> Unit,
+    description: @Composable ColumnScope.() -> Unit,
 ) =
     BrbxContentCardImpl(
         imageUrl = imageUrl,
@@ -67,22 +74,20 @@ fun BrbxContentCard(
         appearance = appearance,
         enabled = enabled,
         onClick = onClick,
-        additionalContent = additionalContent,
-        badgeContent = badgeContent,
+        badge = badge,
     )
 
 
 @Composable
 private fun BrbxContentCardImpl(
     imageUrl: String?,
-    title: String,
-    description: String,
     modifier: Modifier,
     appearance: BrbxContentCardAppearance,
     enabled: Boolean,
     onClick: () -> Unit,
-    additionalContent: @Composable () -> Unit,
-    badgeContent: @Composable BoxScope.() -> Unit,
+    title: @Composable ColumnScope.() -> Unit,
+    description: @Composable ColumnScope.() -> Unit,
+    badge: @Composable BoxScope.() -> Unit,
 ) {
     val interactionSource = remember { MutableInteractionSource() }
 
@@ -114,24 +119,7 @@ private fun BrbxContentCardImpl(
             modifier = Modifier.fillMaxSize(),
         )
 
-        if (badgeContent != {}) {
-            Box(
-                contentAlignment = Alignment.Center,
-                modifier = Modifier
-                    .align(alignment = appearance.badgeAlignment())
-                    .padding(paddingValues = appearance.badgeContainerPadding())
-                    .background(
-                        brush = appearance.badgeContainerBrush(),
-                        shape = appearance.badgeContainerShape(),
-                    )
-            ) {
-                CompositionLocalProvider(
-                    LocalContentColor provides appearance.badgeContentColor()
-                ) {
-                    badgeContent()
-                }
-            }
-        }
+        badge()
 
         Column(
             verticalArrangement = Arrangement.spacedBy(appearance.infoSpacedBy()),
@@ -141,23 +129,19 @@ private fun BrbxContentCardImpl(
                 .background(brush = appearance.infoBackground())
                 .padding(paddingValues = appearance.infoPadding()),
         ) {
-            Text(
-                text = title,
-                style = appearance.titleStyle(),
-                maxLines = appearance.titleMaxLines(),
-                overflow = appearance.titleOverflow(),
-            )
+            CompositionLocalProvider(
+                LocalContentColor provides appearance.titleColor()
+            ) {
+                title()
+            }
 
-            Text(
-                text = description,
-                style = appearance.descriptionStyle(),
-                maxLines = appearance.descriptionMaxLines(),
-                overflow = appearance.descriptionOverflow(),
-            )
+            CompositionLocalProvider(
+                LocalContentColor provides appearance.descriptionColor()
+            ) {
+                description()
+            }
         }
     }
-
-    additionalContent()
 }
 
 @Preview(showSystemUi = true)
@@ -165,19 +149,32 @@ private fun BrbxContentCardImpl(
 private fun BrbxContentCardMediumPreview() {
     BrbxTheme(colorScheme =  lightColorScheme()) {
         BrbxContentCard(
-            modifier = Modifier,
+            appearance = BrbxContentCardAppearances.primary,
             imageUrl = "",
-            title = "TItle",
-            description = "Description",
-            onClick = {},
-            appearance = BrbxContentCardAppearances.elevated,
-        ) {
-            Text(
-                text = "9.8",
-                style = mTypography.labelSmall,
-                modifier = Modifier.padding(8.dp),
-                textAlign = TextAlign.Center
-            )
-        }
+            title = {
+                Text(
+                    text = "Title",
+                    style = mTypography.bodyLarge,
+                    modifier = Modifier
+                        .padding(
+                            top = bDimens.dp2,
+                            start = bDimens.dp2,
+                            end = bDimens.dp2,
+                        )
+                )
+            },
+            description = {
+                Text(
+                    text = "Description",
+                    style = mTypography.bodyMedium,
+                    modifier = Modifier
+                        .padding(
+                            bottom = bDimens.dp2,
+                            start = bDimens.dp2,
+                            end = bDimens.dp2,
+                        )
+                )
+            }
+        )
     }
 }

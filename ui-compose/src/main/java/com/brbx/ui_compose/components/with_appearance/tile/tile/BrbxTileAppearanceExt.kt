@@ -7,16 +7,12 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.SolidColor
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import com.brbx.ui_compose.common.UnsafeAppearanceCopy
 import com.brbx.ui_compose.theme.bDimens
 import com.brbx.ui_compose.theme.bElevation
 import com.brbx.ui_compose.theme.bShapes
 import com.brbx.ui_compose.theme.mColors
-import com.brbx.ui_compose.theme.mTypography
 
 /**
  * Creates a new instance of
@@ -51,23 +47,9 @@ internal inline fun BrbxTileAppearance(
     crossinline verticalSpacing: @Composable () -> Dp = { bDimens.dp2 },
     crossinline contentColumnSpacing: @Composable () -> Dp = { bDimens.dp12 },
 
-    // Typography
-    crossinline titleStyle: @Composable () -> TextStyle = {
-        mTypography.bodyLarge.copy(
-            color = mColors.onSurface,
-            fontWeight = FontWeight.W600,
-        )
-    },
-    crossinline titleMaxLines: @Composable () -> Int =
-        { remember { 1 } },
-    crossinline titleOverflow: @Composable () -> TextOverflow =
-        { remember { TextOverflow.Ellipsis } },
-    crossinline descriptionStyle: @Composable () -> TextStyle =
-        { mTypography.bodyMedium.copy(color = mColors.secondary) },
-    crossinline descriptionMaxLines: @Composable () -> Int =
-        { remember { 2 } },
-    crossinline descriptionOverflow: @Composable () -> TextOverflow =
-        { remember { TextOverflow.Ellipsis } },
+    // Title & Description
+    crossinline titleColor: @Composable () -> Color = { mColors.onSurface },
+    crossinline descriptionColor: @Composable () -> Color = { mColors.secondary },
 ): BrbxTileAppearance = object : BrbxTileAppearance {
 
     // Container
@@ -105,24 +87,12 @@ internal inline fun BrbxTileAppearance(
     @Composable
     override fun contentColumnSpacing(): Dp = contentColumnSpacing()
 
-    // Typography
+    // Title & Description
     @Composable
-    override fun titleStyle(): TextStyle = titleStyle()
+    override fun titleColor(): Color = titleColor()
 
     @Composable
-    override fun titleMaxLines(): Int = titleMaxLines()
-
-    @Composable
-    override fun titleOverflow(): TextOverflow = titleOverflow()
-
-    @Composable
-    override fun descriptionStyle(): TextStyle = descriptionStyle()
-
-    @Composable
-    override fun descriptionMaxLines(): Int = descriptionMaxLines()
-
-    @Composable
-    override fun descriptionOverflow(): TextOverflow = descriptionOverflow()
+    override fun descriptionColor(): Color = descriptionColor()
 }
 
 /**
@@ -159,19 +129,9 @@ inline fun BrbxTileAppearance.copy(
     crossinline verticalSpacing: @Composable () -> Dp = { this.verticalSpacing() },
     crossinline contentColumnSpacing: @Composable () -> Dp = { this.contentColumnSpacing() },
 
-    // Typography
-    crossinline titleStyle: @Composable () -> TextStyle =
-        { this.titleStyle() },
-    crossinline titleMaxLines: @Composable () -> Int =
-        { this.titleMaxLines() },
-    crossinline titleOverflow: @Composable () -> TextOverflow =
-        { this.titleOverflow() },
-    crossinline descriptionStyle: @Composable () -> TextStyle =
-        { this.descriptionStyle() },
-    crossinline descriptionMaxLines: @Composable () -> Int =
-        { this.descriptionMaxLines() },
-    crossinline descriptionOverflow: @Composable () -> TextOverflow =
-        { this.descriptionOverflow() },
+    // Title & Description
+    crossinline titleColor: @Composable () -> Color = { this.titleColor() },
+    crossinline descriptionColor: @Composable () -> Color = { this.descriptionColor() },
 ): BrbxTileAppearance = object : BrbxTileAppearance {
 
     // Container
@@ -209,24 +169,12 @@ inline fun BrbxTileAppearance.copy(
     @Composable
     override fun contentColumnSpacing(): Dp = contentColumnSpacing()
 
-    // Typography
+    // Title & Description
     @Composable
-    override fun titleStyle(): TextStyle = titleStyle()
+    override fun titleColor(): Color = titleColor()
 
     @Composable
-    override fun titleMaxLines(): Int = titleMaxLines()
-
-    @Composable
-    override fun titleOverflow(): TextOverflow = titleOverflow()
-
-    @Composable
-    override fun descriptionStyle(): TextStyle = descriptionStyle()
-
-    @Composable
-    override fun descriptionMaxLines(): Int = descriptionMaxLines()
-
-    @Composable
-    override fun descriptionOverflow(): TextOverflow = descriptionOverflow()
+    override fun descriptionColor(): Color = descriptionColor()
 }
 
 /**
@@ -273,19 +221,9 @@ inline fun BrbxTileAppearance.rememberCopy(
     crossinline contentColumnSpacing: @Composable () -> Dp =
         { this.contentColumnSpacing() },
 
-    // Typography
-    crossinline titleStyle: @Composable () -> TextStyle =
-        { this.titleStyle() },
-    crossinline titleMaxLines: @Composable () -> Int =
-        { this.titleMaxLines() },
-    crossinline titleOverflow: @Composable () -> TextOverflow =
-        { this.titleOverflow() },
-    crossinline descriptionStyle: @Composable () -> TextStyle =
-        { this.descriptionStyle() },
-    crossinline descriptionMaxLines: @Composable () -> Int =
-        { this.descriptionMaxLines() },
-    crossinline descriptionOverflow: @Composable () -> TextOverflow =
-        { this.descriptionOverflow() },
+    // Title & Description
+    crossinline titleColor: @Composable () -> Color = { this.titleColor() },
+    crossinline descriptionColor: @Composable () -> Color = { this.descriptionColor() },
 ): BrbxTileAppearance = remember {
     this.copy(
         containerShape = containerShape,
@@ -299,11 +237,7 @@ inline fun BrbxTileAppearance.rememberCopy(
         horizontalSpacing = horizontalSpacing,
         verticalSpacing = verticalSpacing,
         contentColumnSpacing = contentColumnSpacing,
-        titleStyle = titleStyle,
-        titleMaxLines = titleMaxLines,
-        titleOverflow = titleOverflow,
-        descriptionStyle = descriptionStyle,
-        descriptionMaxLines = descriptionMaxLines,
-        descriptionOverflow = descriptionOverflow,
+        titleColor = titleColor,
+        descriptionColor = descriptionColor,
     )
 }

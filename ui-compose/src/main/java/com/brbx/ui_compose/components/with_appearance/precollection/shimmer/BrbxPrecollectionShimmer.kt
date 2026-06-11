@@ -1,93 +1,83 @@
 package com.brbx.ui_compose.components.with_appearance.precollection.shimmer
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.brbx.ui_compose.components.with_appearance.precollection.precollection.BrbxPrecollectionAppearance
 import com.brbx.ui_compose.components.with_appearance.precollection.precollection.BrbxPrecollectionAppearances
-import com.brbx.ui_compose.components.with_appearance.shimmer.BrbxShimmerAppearance
-import com.brbx.ui_compose.components.with_appearance.shimmer.BrbxShimmerAppearances
 import com.brbx.ui_compose.components.with_appearance.shimmer.BrbxShimmerBlock
 import com.brbx.ui_compose.theme.BrbxTheme
 import com.brbx.ui_compose.theme.bDimens
-import com.brbx.ui_compose.theme.bIntensityTokens
 import com.brbx.ui_compose.theme.bShapes
 
 /**
- * A shimmer skeleton loading component for the [com.brbx.ui_compose.components.with_appearance.precollection.precollection.BrbxPrecollection].
+ * A structural loading placeholder designed to mimic the exact bounds and background
+ * of a [com.brbx.ui_compose.components.with_appearance.precollection.precollection.BrbxPrecollection].
  *
- * This component provides a visual placeholder while the actual pre-collection data is being fetched or rendered.
- * It mimics the exact layout, container shape, and background of the real component via [appearance]
- * to prevent layout shifts once the actual content is displayed.
+ * This component sets up a static container using the shape and background brush
+ * defined by the [appearance]. It does not animate itself; rather, it acts as a
+ * bounded wrapper for individual [BrbxShimmerBlock] elements passed into the [content]
+ * slot. This ensures that only the internal placeholder elements (like text or icons)
+ * pulse, while the background remains stable.
  *
- * By exposing a [leadingContent] slot directly, it allows for maximum flexibility during loading states.
- * You can pass a static UI element (like a default icon or chevron), provide a custom-sized secondary
- * [BrbxShimmerBlock], or leave it empty depending on the specific context.
- *
- * @param modifier The [Modifier] to be applied to the root container.
- * @param appearance The [BrbxPrecollectionAppearance] configuration used to match the background,
- * shapes, and internal padding of the actual pre-collection component.
- * @param textShimmerAppearance The animation and styling configuration applied to the primary
- * text placeholder block.
- * @param leadingContent An optional Composable slot to render alongside the text placeholder.
- * Typically used for static trailing/leading icons or additional custom placeholders.
+ * @param modifier The [Modifier] to be applied to the outermost static container.
+ * @param appearance The visual configuration defining the clipping shape and static
+ * background brush. This should match the appearance of the loaded [com.brbx.ui_compose.components.with_appearance.precollection.precollection.BrbxPrecollection]
+ * to prevent layout shifts. Defaults to [BrbxPrecollectionAppearances.tertiary].
+ * @param content The composable slot for the internal loading elements. This lambda
+ * provides a [BoxScope], allowing you to precisely align your nested [BrbxShimmerBlock]
+ * components (e.g., using `Modifier.align(Alignment.CenterStart)`).
  */
 @Composable
 fun BrbxPrecollectionShimmer(
     modifier: Modifier = Modifier,
     appearance: BrbxPrecollectionAppearance = BrbxPrecollectionAppearances.tertiary,
-    textShimmerAppearance: BrbxShimmerAppearance = BrbxShimmerAppearances.default,
-    leadingContent: @Composable () -> Unit = {},
+    content: @Composable BoxScope.() -> Unit,
 ) =
     BrbxPrecollectionShimmerImpl(
         modifier = modifier,
         appearance = appearance,
-        textShimmerAppearance = textShimmerAppearance,
-        leadingContent = leadingContent,
+        content = content,
     )
 
 @Composable
 private fun BrbxPrecollectionShimmerImpl(
     modifier: Modifier,
     appearance: BrbxPrecollectionAppearance,
-    textShimmerAppearance: BrbxShimmerAppearance,
-    leadingContent: @Composable () -> Unit = {},
+    content: @Composable BoxScope.() -> Unit,
 ) {
-    Row(
+    Box(
+        content = content,
         modifier = modifier
             .clip(shape = appearance.containerShape())
             .background(brush = appearance.containerBrush())
-            .padding(paddingValues = appearance.contentPadding()),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween,
-    ) {
-        BrbxShimmerBlock(
-            modifier = Modifier
-                .weight(bIntensityTokens.intensity100, fill = false)
-                .fillMaxWidth(fraction = bIntensityTokens.intensity100)
-                .padding(end = appearance.textEndPadding())
-                .height(bDimens.dp14)
-                .clip(shape = bShapes.dp4),
-            appearance = textShimmerAppearance,
-        )
-
-        leadingContent()
-    }
+    )
 }
 
 @Preview
 @Composable
 private fun BrbxPrecollectionShimmerPreview() {
     BrbxTheme(darkColorScheme()) {
-        BrbxPrecollectionShimmer(modifier = Modifier.fillMaxWidth())
+        BrbxPrecollectionShimmer(
+            modifier = Modifier.fillMaxWidth(),
+        ) {
+            BrbxShimmerBlock(
+                modifier = Modifier
+                    .padding(all = bDimens.dp10)
+                    .height(bDimens.dp18)
+                    .width(240.dp)
+                    .clip(shape = bShapes.dp12)
+            )
+        }
     }
 }

@@ -1,20 +1,18 @@
-package com.brbx.ui_compose.containers.with_appearance.icon_container.icon_container
+package com.brbx.ui_compose.containers.with_appearance.container.container
 
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.unit.Dp
 
 /**
- * Defines the visual appearance and styling of the [BrbxIconContainer] component.
+ * Defines the visual appearance and styling of the [BrbxContainer] component.
  * Allows flexible configuration of the container's shapes, brushes, paddings, alignments, and badge properties.
  */
 @Immutable
-interface BrbxIconContainerAppearance {
+interface BrbxContainerAppearance {
 
     // ---------------------------------------------------------------------------
     // Container
@@ -34,7 +32,7 @@ interface BrbxIconContainerAppearance {
     fun containerBrush(): Brush
 
     // ---------------------------------------------------------------------------
-    // Container
+    // Content
     // ---------------------------------------------------------------------------
 
     /**
@@ -42,12 +40,6 @@ interface BrbxIconContainerAppearance {
      */
     @Composable
     fun contentColor(): Color
-
-    /**
-     * The default color for icon in the container.
-     */
-    @Composable
-    fun iconSize(): Dp
 
     // ---------------------------------------------------------------------------
     // Layout & Spacing
@@ -58,12 +50,6 @@ interface BrbxIconContainerAppearance {
      */
     @Composable
     fun contentAlignment(): Alignment
-
-    /**
-     * The internal padding from the container's bounds to its content.
-     */
-    @Composable
-    fun contentPadding(): PaddingValues
 
     // ---------------------------------------------------------------------------
     // Badge Container
