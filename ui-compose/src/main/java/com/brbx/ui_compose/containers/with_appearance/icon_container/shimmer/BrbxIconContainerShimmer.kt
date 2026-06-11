@@ -1,4 +1,4 @@
-package com.brbx.ui_compose.containers.with_appearance.image.shimmer
+package com.brbx.ui_compose.containers.with_appearance.icon_container.shimmer
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
@@ -11,8 +11,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.brbx.ui_compose.components.with_appearance.shimmer.BrbxShimmerAppearance
 import com.brbx.ui_compose.components.with_appearance.shimmer.BrbxShimmerAppearances
 import com.brbx.ui_compose.components.with_appearance.shimmer.BrbxShimmerBlock
-import com.brbx.ui_compose.containers.with_appearance.image.image.BrbxIconContainerAppearance
-import com.brbx.ui_compose.containers.with_appearance.image.image.BrbxIconContainerAppearances
+import com.brbx.ui_compose.containers.with_appearance.icon_container.icon_container.BrbxIconContainerAppearance
+import com.brbx.ui_compose.containers.with_appearance.icon_container.icon_container.BrbxIconContainerAppearances
 import com.brbx.ui_compose.theme.BrbxTheme
 
 @Composable
@@ -20,13 +20,12 @@ fun BrbxIconContainerShimmer(
     modifier: Modifier = Modifier,
     iconAppearance: BrbxIconContainerAppearance = BrbxIconContainerAppearances.default,
     shimmerAppearance: BrbxShimmerAppearance = BrbxShimmerAppearances.default,
-) {
+) =
     BrbxIconContainerShimmerImpl(
         modifier = modifier,
         iconAppearance = iconAppearance,
         shimmerAppearance = shimmerAppearance,
     )
-}
 
 @Composable
 private fun BrbxIconContainerShimmerImpl(

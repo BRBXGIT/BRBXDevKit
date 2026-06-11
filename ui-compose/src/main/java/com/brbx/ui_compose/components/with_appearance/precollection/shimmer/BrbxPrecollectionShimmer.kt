@@ -47,14 +47,13 @@ fun BrbxPrecollectionShimmer(
     appearance: BrbxPrecollectionAppearance = BrbxPrecollectionAppearances.tertiary,
     textShimmerAppearance: BrbxShimmerAppearance = BrbxShimmerAppearances.default,
     leadingContent: @Composable () -> Unit = {},
-) {
+) =
     BrbxPrecollectionShimmerImpl(
         modifier = modifier,
         appearance = appearance,
         textShimmerAppearance = textShimmerAppearance,
         leadingContent = leadingContent,
     )
-}
 
 @Composable
 private fun BrbxPrecollectionShimmerImpl(

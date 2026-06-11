@@ -35,6 +35,18 @@ fun BrbxShimmerBlock(
     modifier: Modifier = Modifier,
     appearance: BrbxShimmerAppearance = BrbxShimmerAppearances.default,
     content: @Composable BoxScope.() -> Unit = {},
+) =
+    BrbxShimmerBlockImpl(
+        modifier = modifier,
+        appearance = appearance,
+        content = content,
+    )
+
+@Composable
+private fun BrbxShimmerBlockImpl(
+    modifier: Modifier,
+    appearance: BrbxShimmerAppearance,
+    content: @Composable BoxScope.() -> Unit,
 ) {
     val infiniteTransition = rememberInfiniteTransition(label = "pulse")
 

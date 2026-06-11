@@ -27,9 +27,9 @@ import com.brbx.core.common.BrbxIcon
 import com.brbx.core.common.toBrbxIcon
 import com.brbx.ui_compose.components.image.BrbxIcon
 import com.brbx.ui_compose.components.with_appearance.precollection.precollection.BrbxPrecollection
-import com.brbx.ui_compose.containers.with_appearance.image.image.BrbxIconContainer
-import com.brbx.ui_compose.containers.with_appearance.image.image.BrbxIconContainerAppearance
-import com.brbx.ui_compose.containers.with_appearance.image.image.BrbxIconContainerAppearances
+import com.brbx.ui_compose.containers.with_appearance.icon_container.icon_container.BrbxIconContainer
+import com.brbx.ui_compose.containers.with_appearance.icon_container.icon_container.BrbxIconContainerAppearance
+import com.brbx.ui_compose.containers.with_appearance.icon_container.icon_container.BrbxIconContainerAppearances
 import com.brbx.ui_compose.theme.BrbxTheme
 import com.brbx.ui_compose.theme.bDimens
 import com.brbx.ui_compose.theme.mTypography
@@ -40,6 +40,7 @@ import dev.chiksmedina.solar.bold.users.User
 import dev.chiksmedina.solar.outline.Call
 import dev.chiksmedina.solar.outline.call.CallDropped
 
+// TODO Add testing features
 /**
  * A reusable, elevation-based tile component for the BRBX design system.
  *
@@ -72,7 +73,7 @@ fun BrbxTile(
     onClick: () -> Unit = {},
     badgeContent: @Composable BoxScope.() -> Unit = {},
     additionalContent: @Composable () -> Unit = {},
-) {
+) =
     BrbxTileImpl(
         icon = icon,
         title = title,
@@ -85,7 +86,6 @@ fun BrbxTile(
         badgeContent = badgeContent,
         additionalContent = additionalContent,
     )
-}
 
 @Composable
 private fun BrbxTileImpl(

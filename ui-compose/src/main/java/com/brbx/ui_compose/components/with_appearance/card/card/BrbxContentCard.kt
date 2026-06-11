@@ -29,6 +29,7 @@ import com.brbx.ui_compose.components.image.BrbxRemoteImage
 import com.brbx.ui_compose.theme.BrbxTheme
 import com.brbx.ui_compose.theme.mTypography
 
+// TODO Add testing features
 /**
  * A reusable, highly customizable content card component for the BRBX design system.
  *
@@ -57,7 +58,7 @@ fun BrbxContentCard(
     onClick: () -> Unit = {},
     additionalContent: @Composable () -> Unit = {},
     badgeContent: @Composable BoxScope.() -> Unit = {},
-) {
+) =
     BrbxContentCardImpl(
         imageUrl = imageUrl,
         title = title,
@@ -69,7 +70,7 @@ fun BrbxContentCard(
         additionalContent = additionalContent,
         badgeContent = badgeContent,
     )
-}
+
 
 @Composable
 private fun BrbxContentCardImpl(

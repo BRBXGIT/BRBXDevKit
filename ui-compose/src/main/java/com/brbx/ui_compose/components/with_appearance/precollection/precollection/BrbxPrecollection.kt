@@ -25,6 +25,7 @@ import dev.chiksmedina.solar.OutlineSolar
 import dev.chiksmedina.solar.outline.Users
 import dev.chiksmedina.solar.outline.users.User
 
+// TODO Add testing features
 /**
  * A reusable, interactive pre-collection component for the BRBX design system.
  *
@@ -47,7 +48,7 @@ fun BrbxPrecollection(
     enabled: Boolean = true,
     onClick: () -> Unit = {},
     leadingContent: @Composable () -> Unit = {},
-) {
+) =
     BrbxPrecollectionImpl(
         text = text,
         modifier = modifier,
@@ -56,7 +57,6 @@ fun BrbxPrecollection(
         onClick = onClick,
         leadingContent = leadingContent,
     )
-}
 
 @Composable
 private fun BrbxPrecollectionImpl(

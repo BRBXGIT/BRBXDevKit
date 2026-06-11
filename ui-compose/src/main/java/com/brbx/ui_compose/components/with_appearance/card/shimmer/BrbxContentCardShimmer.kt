@@ -51,7 +51,7 @@ fun BrbxContentCardShimmer(
     imageShimmerAppearance: BrbxShimmerAppearance = BrbxShimmerAppearances.default,
     titleShimmerAppearance: BrbxShimmerAppearance = BrbxShimmerAppearances.default,
     descriptionShimmerAppearance:  BrbxShimmerAppearance = BrbxShimmerAppearances.default,
-) {
+) =
     BrbxContentCardShimmerImpl(
         modifier = modifier,
         cardAppearance = cardAppearance,
@@ -59,7 +59,6 @@ fun BrbxContentCardShimmer(
         titleShimmerAppearance = titleShimmerAppearance,
         descriptionShimmerAppearance = descriptionShimmerAppearance,
     )
-}
 
 @Composable
 private fun BrbxContentCardShimmerImpl(

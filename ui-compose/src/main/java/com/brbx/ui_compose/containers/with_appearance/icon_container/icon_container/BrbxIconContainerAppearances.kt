@@ -1,4 +1,4 @@
-package com.brbx.ui_compose.containers.with_appearance.image.image
+package com.brbx.ui_compose.containers.with_appearance.icon_container.icon_container
 
 /**
  * A collection of predefined [BrbxIconContainerAppearance] styles.

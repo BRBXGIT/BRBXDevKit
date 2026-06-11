@@ -1,4 +1,4 @@
-package com.brbx.ui_compose.containers.with_appearance.image.image
+package com.brbx.ui_compose.containers.with_appearance.icon_container.icon_container
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
@@ -16,7 +16,7 @@ import com.brbx.ui_compose.theme.mColors
 
 /**
  * Creates a new instance of
- * [com.brbx.ui_compose.containers.with_appearance.image.image.BrbxIconContainerAppearance]
+ * [com.brbx.ui_compose.containers.with_appearance.icon_container.icon_container.BrbxIconContainerAppearance]
  * with the provided properties.
  *
  * Use this function to initialize a base appearance configuration. Since

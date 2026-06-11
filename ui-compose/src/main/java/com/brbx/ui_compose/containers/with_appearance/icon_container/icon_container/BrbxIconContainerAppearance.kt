@@ -1,4 +1,4 @@
-package com.brbx.ui_compose.containers.with_appearance.image.image
+package com.brbx.ui_compose.containers.with_appearance.icon_container.icon_container
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
@@ -9,7 +9,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.Dp
 
-// TODO Add testing features
 /**
  * Defines the visual appearance and styling of the [BrbxIconContainer] component.
  * Allows flexible configuration of the container's shapes, brushes, paddings, alignments, and badge properties.

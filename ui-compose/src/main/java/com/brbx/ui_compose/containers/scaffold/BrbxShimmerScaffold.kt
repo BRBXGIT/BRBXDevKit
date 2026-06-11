@@ -77,7 +77,7 @@ fun BrbxShimmerScaffold(
     errorContent: @Composable ((PaddingValues) -> Unit)? = null,
     shimmerContent: @Composable (PaddingValues) -> Unit,
     content: @Composable (PaddingValues) -> Unit,
-) {
+) =
     BrbxShimmerScaffoldImpl(
         isShimmering = isShimmering,
         modifier = modifier,
@@ -95,7 +95,6 @@ fun BrbxShimmerScaffold(
         content = content,
         shimmerContent = shimmerContent,
     )
-}
 
 @Composable
 private fun BrbxShimmerScaffoldImpl(

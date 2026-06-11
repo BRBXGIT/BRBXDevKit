@@ -1,4 +1,4 @@
-package com.brbx.ui_compose.containers.with_appearance.image.image
+package com.brbx.ui_compose.containers.with_appearance.icon_container.icon_container
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -23,6 +23,7 @@ import dev.chiksmedina.solar.BoldSolar
 import dev.chiksmedina.solar.bold.Users
 import dev.chiksmedina.solar.bold.users.User
 
+// TODO Add testing features
 /**
  * A container component for icons that supports an optional overlay badge.
  * * This component uses [BrbxIconContainerAppearance] to dictate styling, positioning,
@@ -39,14 +40,13 @@ fun BrbxIconContainer(
     appearance: BrbxIconContainerAppearance = BrbxIconContainerAppearances.default,
     badgeContent: @Composable BoxScope.() -> Unit = {},
     content: @Composable BoxScope.() -> Unit,
-) {
+) =
     BRBXIconContainerImpl(
         modifier = modifier,
         appearance = appearance,
         badgeContent = badgeContent,
         content = content,
     )
-}
 
 @Composable
 private fun BRBXIconContainerImpl(

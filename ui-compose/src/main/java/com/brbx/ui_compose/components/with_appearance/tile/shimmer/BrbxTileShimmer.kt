@@ -23,9 +23,9 @@ import com.brbx.ui_compose.components.with_appearance.shimmer.BrbxShimmerBlock
 import com.brbx.ui_compose.components.with_appearance.shimmer.rememberCopy
 import com.brbx.ui_compose.components.with_appearance.tile.tile.BrbxTileAppearance
 import com.brbx.ui_compose.components.with_appearance.tile.tile.BrbxTileAppearances
-import com.brbx.ui_compose.containers.with_appearance.image.image.BrbxIconContainerAppearance
-import com.brbx.ui_compose.containers.with_appearance.image.image.BrbxIconContainerAppearances
-import com.brbx.ui_compose.containers.with_appearance.image.shimmer.BrbxIconContainerShimmer
+import com.brbx.ui_compose.containers.with_appearance.icon_container.icon_container.BrbxIconContainerAppearance
+import com.brbx.ui_compose.containers.with_appearance.icon_container.icon_container.BrbxIconContainerAppearances
+import com.brbx.ui_compose.containers.with_appearance.icon_container.shimmer.BrbxIconContainerShimmer
 import com.brbx.ui_compose.theme.BrbxTheme
 import com.brbx.ui_compose.theme.bDimens
 import com.brbx.ui_compose.theme.bIntensityTokens
@@ -72,7 +72,7 @@ fun BrbxTileShimmer(
             containerColor = { mColors.surfaceContainerHighest }
         ),
     additionalContent: @Composable () -> Unit = {},
-) {
+) =
     BrbxTileShimmerImpl(
         shimmerContainerBrush = shimmerContainerBrush,
         modifier = modifier,
@@ -83,7 +83,6 @@ fun BrbxTileShimmer(
         descriptionShimmerAppearance = descriptionShimmerAppearance,
         additionalContent = additionalContent,
     )
-}
 
 @Composable
 private fun BrbxTileShimmerImpl(
