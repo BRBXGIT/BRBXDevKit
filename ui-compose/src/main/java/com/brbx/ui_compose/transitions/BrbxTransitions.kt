@@ -22,27 +22,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.TransformOrigin
 import androidx.compose.animation.core.Spring as ComposeSpring
 
-/**
- * A centralized utility object providing a collection of factory methods for Jetpack Compose
- * [EnterTransition] and [ExitTransition] animations.
- * * Transitions are organized into nested objects based on their underlying animation physics
- * ([Spring], [Tween]) and whether they are standalone or composite configurations ([SpringPreset], [TweenPreset]).
- */
 object BrbxTransitions {
 
-    /**
-     * Factory methods for transitions backed by a spring physics animation specification.
-     * Use these when you want natural, fluid, and physics-based motion.
-     */
     object Spring {
-        /**
-         * Creates a spring-based fade-in [EnterTransition].
-         *
-         * @param dampingRatio The damping ratio of the spring. Defaults to [ComposeSpring.DampingRatioNoBouncy].
-         * @param stiffness The stiffness of the spring. Defaults to [ComposeSpring.StiffnessMedium].
-         * @param initialAlpha The starting alpha value of the entering content.
-         * @return An [EnterTransition] for fading in.
-         */
+
         fun fadeIn(
             dampingRatio: Float = ComposeSpring.DampingRatioNoBouncy,
             stiffness: Float = ComposeSpring.StiffnessMedium,
@@ -52,14 +35,6 @@ object BrbxTransitions {
             initialAlpha = initialAlpha,
         )
 
-        /**
-         * Creates a spring-based fade-out [ExitTransition].
-         *
-         * @param dampingRatio The damping ratio of the spring. Defaults to [ComposeSpring.DampingRatioNoBouncy].
-         * @param stiffness The stiffness of the spring. Defaults to [ComposeSpring.StiffnessMedium].
-         * @param targetAlpha The final alpha value of the exiting content.
-         * @return An [ExitTransition] for fading out.
-         */
         fun fadeOut(
             dampingRatio: Float = ComposeSpring.DampingRatioNoBouncy,
             stiffness: Float = ComposeSpring.StiffnessMedium,
@@ -69,15 +44,6 @@ object BrbxTransitions {
             targetAlpha = targetAlpha,
         )
 
-        /**
-         * Creates a spring-based scale-in [EnterTransition].
-         *
-         * @param dampingRatio The damping ratio of the spring. Defaults to [ComposeSpring.DampingRatioNoBouncy].
-         * @param stiffness The stiffness of the spring. Defaults to [ComposeSpring.StiffnessMedium].
-         * @param initialScale The starting scale factor of the entering content.
-         * @param transformOrigin The pivot point for the scaling effect. Defaults to [TransformOrigin.Center].
-         * @return An [EnterTransition] for scaling in.
-         */
         fun scaleIn(
             dampingRatio: Float = ComposeSpring.DampingRatioNoBouncy,
             stiffness: Float = ComposeSpring.StiffnessMedium,
@@ -89,15 +55,6 @@ object BrbxTransitions {
             transformOrigin = transformOrigin,
         )
 
-        /**
-         * Creates a spring-based scale-out [ExitTransition].
-         *
-         * @param dampingRatio The damping ratio of the spring. Defaults to [ComposeSpring.DampingRatioNoBouncy].
-         * @param stiffness The stiffness of the spring. Defaults to [ComposeSpring.StiffnessMedium].
-         * @param targetScale The final scale factor of the exiting content.
-         * @param transformOrigin The pivot point for the scaling effect. Defaults to [TransformOrigin.Center].
-         * @return An [ExitTransition] for scaling out.
-         */
         fun scaleOut(
             dampingRatio: Float = ComposeSpring.DampingRatioNoBouncy,
             stiffness: Float = ComposeSpring.StiffnessMedium,
@@ -109,14 +66,6 @@ object BrbxTransitions {
             transformOrigin = transformOrigin,
         )
 
-        /**
-         * Creates a spring-based vertical slide-in [EnterTransition].
-         *
-         * @param dampingRatio The damping ratio of the spring. Defaults to [ComposeSpring.DampingRatioNoBouncy].
-         * @param stiffness The stiffness of the spring. Defaults to [ComposeSpring.StiffnessMedium].
-         * @param initialOffsetY Lambda calculating the starting Y offset based on full layout height. Defaults to half height upward.
-         * @return An [EnterTransition] for sliding in vertically.
-         */
         fun slideInVertically(
             dampingRatio: Float = ComposeSpring.DampingRatioNoBouncy,
             stiffness: Float = ComposeSpring.StiffnessMedium,
@@ -126,14 +75,6 @@ object BrbxTransitions {
             initialOffsetY = initialOffsetY,
         )
 
-        /**
-         * Creates a spring-based vertical slide-out [ExitTransition].
-         *
-         * @param dampingRatio The damping ratio of the spring. Defaults to [ComposeSpring.DampingRatioNoBouncy].
-         * @param stiffness The stiffness of the spring. Defaults to [ComposeSpring.StiffnessMedium].
-         * @param targetOffsetY Lambda calculating the final Y offset based on full layout height. Defaults to half height upward.
-         * @return An [ExitTransition] for sliding out vertically.
-         */
         fun slideOutVertically(
             dampingRatio: Float = ComposeSpring.DampingRatioNoBouncy,
             stiffness: Float = ComposeSpring.StiffnessMedium,
@@ -143,14 +84,6 @@ object BrbxTransitions {
             targetOffsetY = targetOffsetY,
         )
 
-        /**
-         * Creates a spring-based horizontal slide-in [EnterTransition].
-         *
-         * @param dampingRatio The damping ratio of the spring. Defaults to [ComposeSpring.DampingRatioNoBouncy].
-         * @param stiffness The stiffness of the spring. Defaults to [ComposeSpring.StiffnessMedium].
-         * @param initialOffsetX Lambda calculating the starting X offset based on full layout width. Defaults to half width leftward.
-         * @return An [EnterTransition] for sliding in horizontally.
-         */
         fun slideInHorizontally(
             dampingRatio: Float = ComposeSpring.DampingRatioNoBouncy,
             stiffness: Float = ComposeSpring.StiffnessMedium,
@@ -160,14 +93,6 @@ object BrbxTransitions {
             initialOffsetX = initialOffsetX,
         )
 
-        /**
-         * Creates a spring-based horizontal slide-out [ExitTransition].
-         *
-         * @param dampingRatio The damping ratio of the spring. Defaults to [ComposeSpring.DampingRatioNoBouncy].
-         * @param stiffness The stiffness of the spring. Defaults to [ComposeSpring.StiffnessMedium].
-         * @param targetOffsetX Lambda calculating the final X offset based on full layout width. Defaults to half width leftward.
-         * @return An [ExitTransition] for sliding out horizontally.
-         */
         fun slideOutHorizontally(
             dampingRatio: Float = ComposeSpring.DampingRatioNoBouncy,
             stiffness: Float = ComposeSpring.StiffnessMedium,
@@ -177,16 +102,6 @@ object BrbxTransitions {
             targetOffsetX = targetOffsetX,
         )
 
-        /**
-         * Creates a spring-based vertical expansion [EnterTransition] (clip reveal).
-         *
-         * @param dampingRatio The damping ratio of the spring. Defaults to [ComposeSpring.DampingRatioNoBouncy].
-         * @param stiffness The stiffness of the spring. Defaults to [ComposeSpring.StiffnessMedium].
-         * @param expandFrom The vertical alignment anchor from which the content expands. Defaults to [Alignment.Bottom].
-         * @param clip Whether the content outside the animating bounds should be clipped. Defaults to `true`.
-         * @param initialHeight Lambda calculating the starting height. Defaults to 0.
-         * @return An [EnterTransition] for vertical expansion.
-         */
         fun expandVertically(
             dampingRatio: Float = ComposeSpring.DampingRatioNoBouncy,
             stiffness: Float = ComposeSpring.StiffnessMedium,
@@ -200,16 +115,6 @@ object BrbxTransitions {
             initialHeight = initialHeight,
         )
 
-        /**
-         * Creates a spring-based vertical shrink [ExitTransition] (clip collapse).
-         *
-         * @param dampingRatio The damping ratio of the spring. Defaults to [ComposeSpring.DampingRatioNoBouncy].
-         * @param stiffness Fletcher/stiffness of the spring. Defaults to [ComposeSpring.StiffnessMedium].
-         * @param shrinkTowards The vertical alignment anchor towards which the content shrinks. Defaults to [Alignment.Bottom].
-         * @param clip Whether the content outside the animating bounds should be clipped. Defaults to `true`.
-         * @param targetHeight Lambda calculating the target height. Defaults to 0.
-         * @return An [ExitTransition] for vertical shrinking.
-         */
         fun shrinkVertically(
             dampingRatio: Float = ComposeSpring.DampingRatioNoBouncy,
             stiffness: Float = ComposeSpring.StiffnessMedium,
@@ -223,16 +128,6 @@ object BrbxTransitions {
             targetHeight = targetHeight,
         )
 
-        /**
-         * Creates a spring-based horizontal expansion [EnterTransition] (clip reveal).
-         *
-         * @param dampingRatio The damping ratio of the spring. Defaults to [ComposeSpring.DampingRatioNoBouncy].
-         * @param stiffness The stiffness of the spring. Defaults to [ComposeSpring.StiffnessMedium].
-         * @param expandFrom The horizontal alignment anchor from which the content expands. Defaults to [Alignment.End].
-         * @param clip Whether the content outside the animating bounds should be clipped. Defaults to `true`.
-         * @param initialWidth Lambda calculating the starting width. Defaults to 0.
-         * @return An [EnterTransition] for horizontal expansion.
-         */
         fun expandHorizontally(
             dampingRatio: Float = ComposeSpring.DampingRatioNoBouncy,
             stiffness: Float = ComposeSpring.StiffnessMedium,
@@ -246,16 +141,6 @@ object BrbxTransitions {
             initialWidth = initialWidth,
         )
 
-        /**
-         * Creates a spring-based horizontal shrink [ExitTransition] (clip collapse).
-         *
-         * @param dampingRatio The damping ratio of the spring. Defaults to [ComposeSpring.DampingRatioNoBouncy].
-         * @param stiffness The stiffness of the spring. Defaults to [ComposeSpring.StiffnessMedium].
-         * @param shrinkTowards The horizontal alignment anchor towards which the content shrinks. Defaults to [Alignment.End].
-         * @param clip Whether the content outside the animating bounds should be clipped. Defaults to `true`.
-         * @param targetWidth Lambda calculating the target width. Defaults to 0.
-         * @return An [ExitTransition] for horizontal shrinking.
-         */
         fun shrinkHorizontally(
             dampingRatio: Float = ComposeSpring.DampingRatioNoBouncy,
             stiffness: Float = ComposeSpring.StiffnessMedium,
@@ -270,20 +155,8 @@ object BrbxTransitions {
         )
     }
 
-    /**
-     * Factory methods for transitions backed by a duration-based [tween] animation specification.
-     * Use these when precise control over duration, delays, and mathematical easing curves is needed.
-     */
     object Tween {
-        /**
-         * Creates a tween-based fade-in [EnterTransition].
-         *
-         * @param duration Total length of the animation in milliseconds. Defaults to 300ms.
-         * @param delayMillis Postpones the animation start by this duration in milliseconds. Defaults to 0ms.
-         * @param easing The interpolation curve. Defaults to [FastOutSlowInEasing].
-         * @param initialAlpha The starting alpha value.
-         * @return An [EnterTransition] for fading in.
-         */
+
         fun fadeIn(
             duration: Long = 300L,
             delayMillis: Long = 0L,
@@ -298,15 +171,6 @@ object BrbxTransitions {
             initialAlpha = initialAlpha,
         )
 
-        /**
-         * Creates a tween-based fade-out [ExitTransition].
-         *
-         * @param duration Total length of the animation in milliseconds. Defaults to 300ms.
-         * @param delayMillis Postpones the animation start by this duration in milliseconds. Defaults to 0ms.
-         * @param easing The interpolation curve. Defaults to [FastOutSlowInEasing].
-         * @param targetAlpha The final alpha value.
-         * @return An [ExitTransition] for fading out.
-         */
         fun fadeOut(
             duration: Long = 300L,
             delayMillis: Long = 0L,
@@ -321,16 +185,6 @@ object BrbxTransitions {
             targetAlpha = targetAlpha,
         )
 
-        /**
-         * Creates a tween-based scale-in [EnterTransition].
-         *
-         * @param duration Total length of the animation in milliseconds. Defaults to 300ms.
-         * @param delayMillis Postpones the animation start by this duration in milliseconds. Defaults to 0ms.
-         * @param easing The interpolation curve. Defaults to [FastOutSlowInEasing].
-         * @param initialScale The starting scale factor.
-         * @param transformOrigin The pivot point for scaling. Defaults to [TransformOrigin.Center].
-         * @return An [EnterTransition] for scaling in.
-         */
         fun scaleIn(
             duration: Long = 300L,
             delayMillis: Long = 0L,
@@ -347,16 +201,6 @@ object BrbxTransitions {
             transformOrigin = transformOrigin,
         )
 
-        /**
-         * Creates a tween-based scale-out [ExitTransition].
-         *
-         * @param duration Total length of the animation in milliseconds. Defaults to 300ms.
-         * @param delayMillis Postpones the animation start by this duration in milliseconds. Defaults to 0ms.
-         * @param easing The interpolation curve. Defaults to [FastOutSlowInEasing].
-         * @param targetScale The final scale factor.
-         * @param transformOrigin The pivot point for scaling. Defaults to [TransformOrigin.Center].
-         * @return An [ExitTransition] for scaling out.
-         */
         fun scaleOut(
             duration: Long = 300L,
             delayMillis: Long = 0L,
@@ -373,15 +217,6 @@ object BrbxTransitions {
             transformOrigin = transformOrigin,
         )
 
-        /**
-         * Creates a tween-based vertical slide-in [EnterTransition].
-         *
-         * @param duration Total length of the animation in milliseconds. Defaults to 300ms.
-         * @param delayMillis Postpones the animation start by this duration in milliseconds. Defaults to 0ms.
-         * @param easing The interpolation curve. Defaults to [FastOutSlowInEasing].
-         * @param initialOffsetY Lambda calculating the starting Y offset based on layout height. Defaults to half height upward.
-         * @return An [EnterTransition] for sliding in vertically.
-         */
         fun slideInVertically(
             duration: Long = 300L,
             delayMillis: Long = 0L,
@@ -396,15 +231,6 @@ object BrbxTransitions {
             initialOffsetY = initialOffsetY,
         )
 
-        /**
-         * Creates a tween-based vertical slide-out [ExitTransition].
-         *
-         * @param duration Total length of the animation in milliseconds. Defaults to 300ms.
-         * @param delayMillis Postpones the animation start by this duration in milliseconds. Defaults to 0ms.
-         * @param easing The interpolation curve. Defaults to [FastOutSlowInEasing].
-         * @param targetOffsetY Lambda calculating the final Y offset based on layout height. Defaults to half height upward.
-         * @return An [ExitTransition] for sliding out vertically.
-         */
         fun slideOutVertically(
             duration: Long = 300L,
             delayMillis: Long = 0L,
@@ -419,15 +245,6 @@ object BrbxTransitions {
             targetOffsetY = targetOffsetY,
         )
 
-        /**
-         * Creates a tween-based horizontal slide-in [EnterTransition].
-         *
-         * @param duration Total length of the animation in milliseconds. Defaults to 300ms.
-         * @param delayMillis Postpones the animation start by this duration in milliseconds. Defaults to 0ms.
-         * @param easing The interpolation curve. Defaults to [FastOutSlowInEasing].
-         * @param initialOffsetX Lambda calculating the starting X offset based on layout width. Defaults to half width leftward.
-         * @return An [EnterTransition] for sliding in horizontally.
-         */
         fun slideInHorizontally(
             duration: Long = 300L,
             delayMillis: Long = 0L,
@@ -442,15 +259,6 @@ object BrbxTransitions {
             initialOffsetX = initialOffsetX,
         )
 
-        /**
-         * Creates a tween-based horizontal slide-out [ExitTransition].
-         *
-         * @param duration Total length of the animation in milliseconds. Defaults to 300ms.
-         * @param delayMillis Postpones the animation start by this duration in milliseconds. Defaults to 0ms.
-         * @param easing The interpolation curve. Defaults to [FastOutSlowInEasing].
-         * @param targetOffsetX Lambda calculating the final X offset based on layout width. Defaults to half width leftward.
-         * @return An [ExitTransition] for sliding out horizontally.
-         */
         fun slideOutHorizontally(
             duration: Long = 300L,
             delayMillis: Long = 0L,
@@ -465,17 +273,6 @@ object BrbxTransitions {
             targetOffsetX = targetOffsetX,
         )
 
-        /**
-         * Creates a tween-based vertical expansion [EnterTransition] (clip reveal).
-         *
-         * @param duration Total length of the animation in milliseconds. Defaults to 300ms.
-         * @param delayMillis Postpones the animation start by this duration in milliseconds. Defaults to 0ms.
-         * @param easing The interpolation curve. Defaults to [FastOutSlowInEasing].
-         * @param expandFrom The vertical alignment anchor from which the content expands. Defaults to [Alignment.Bottom].
-         * @param clip Whether the content outside the animating bounds should be clipped. Defaults to `true`.
-         * @param initialHeight Lambda calculating the starting height. Defaults to 0.
-         * @return An [EnterTransition] for vertical expansion.
-         */
         fun expandVertically(
             duration: Long = 300L,
             delayMillis: Long = 0L,
@@ -494,17 +291,6 @@ object BrbxTransitions {
             initialHeight = initialHeight,
         )
 
-        /**
-         * Creates a tween-based vertical shrink [ExitTransition] (clip collapse).
-         *
-         * @param duration Total length of the animation in milliseconds. Defaults to 300ms.
-         * @param delayMillis Postpones the animation start by this duration in milliseconds. Defaults to 0ms.
-         * @param easing The interpolation curve. Defaults to [FastOutSlowInEasing].
-         * @param shrinkTowards The vertical alignment anchor towards which the content shrinks. Defaults to [Alignment.Bottom].
-         * @param clip Whether the content outside the animating bounds should be clipped. Defaults to `true`.
-         * @param targetHeight Lambda calculating the target height. Defaults to 0.
-         * @return An [ExitTransition] for vertical shrinking.
-         */
         fun shrinkVertically(
             duration: Long = 300L,
             delayMillis: Long = 0L,
@@ -523,17 +309,6 @@ object BrbxTransitions {
             targetHeight = targetHeight,
         )
 
-        /**
-         * Creates a tween-based horizontal expansion [EnterTransition] (clip reveal).
-         *
-         * @param duration Total length of the animation in milliseconds. Defaults to 300ms.
-         * @param delayMillis Postpones the animation start by this duration in milliseconds. Defaults to 0ms.
-         * @param easing The interpolation curve. Defaults to [FastOutSlowInEasing].
-         * @param expandFrom The horizontal alignment anchor from which the content expands. Defaults to [Alignment.End].
-         * @param clip Whether the content outside the animating bounds should be clipped. Defaults to `true`.
-         * @param initialWidth Lambda calculating the starting width. Defaults to 0.
-         * @return An [EnterTransition] for horizontal expansion.
-         */
         fun expandHorizontally(
             duration: Long = 300L,
             delayMillis: Long = 0L,
@@ -552,17 +327,6 @@ object BrbxTransitions {
             initialWidth = initialWidth,
         )
 
-        /**
-         * Creates a tween-based horizontal shrink [ExitTransition] (clip collapse).
-         *
-         * @param duration Total length of the animation in milliseconds. Defaults to 300ms.
-         * @param delayMillis Postpones the animation start by this duration in milliseconds. Defaults to 0ms.
-         * @param easing The interpolation curve. Defaults to [FastOutSlowInEasing].
-         * @param shrinkTowards The horizontal alignment anchor towards which the content shrinks. Defaults to [Alignment.End].
-         * @param clip Whether the content outside the animating bounds should be clipped. Defaults to `true`.
-         * @param targetWidth Lambda calculating the target width. Defaults to 0.
-         * @return An [ExitTransition] for horizontal shrinking.
-         */
         fun shrinkHorizontally(
             duration: Long = 300L,
             delayMillis: Long = 0L,
@@ -582,13 +346,8 @@ object BrbxTransitions {
         )
     }
 
-    /**
-     * Pre-configured composite spring transitions.
-     * These convenience methods automatically combine a physics-backed [Spring.fadeIn] or [Spring.fadeOut]
-     * with another mechanical structural movement (e.g., scaling, sliding) for a natural look.
-     */
     object SpringPreset {
-        /** Combines [Spring.fadeIn] and [Spring.scaleIn]. */
+
         fun scaleIn(
             dampingRatio: Float = ComposeSpring.DampingRatioNoBouncy,
             stiffness: Float = ComposeSpring.StiffnessMedium,
@@ -598,7 +357,6 @@ object BrbxTransitions {
         ): EnterTransition = Spring.fadeIn(dampingRatio, stiffness, initialAlpha) +
                 Spring.scaleIn(dampingRatio, stiffness, initialScale, transformOrigin)
 
-        /** Combines [Spring.fadeOut] and [Spring.scaleOut]. */
         fun scaleOut(
             dampingRatio: Float = ComposeSpring.DampingRatioNoBouncy,
             stiffness: Float = ComposeSpring.StiffnessMedium,
@@ -608,7 +366,6 @@ object BrbxTransitions {
         ): ExitTransition = Spring.fadeOut(dampingRatio, stiffness, targetAlpha) +
                 Spring.scaleOut(dampingRatio, stiffness, targetScale, transformOrigin)
 
-        /** Combines [Spring.fadeIn] and [Spring.slideInVertically]. */
         fun slideInVertically(
             dampingRatio: Float = ComposeSpring.DampingRatioNoBouncy,
             stiffness: Float = ComposeSpring.StiffnessMedium,
@@ -617,7 +374,6 @@ object BrbxTransitions {
         ): EnterTransition = Spring.fadeIn(dampingRatio, stiffness, initialAlpha) +
                 Spring.slideInVertically(dampingRatio, stiffness, initialOffsetY)
 
-        /** Combines [Spring.fadeOut] and [Spring.slideOutVertically]. */
         fun slideOutVertically(
             dampingRatio: Float = ComposeSpring.DampingRatioNoBouncy,
             stiffness: Float = ComposeSpring.StiffnessMedium,
@@ -626,7 +382,6 @@ object BrbxTransitions {
         ): ExitTransition = Spring.fadeOut(dampingRatio, stiffness, targetAlpha) +
                 Spring.slideOutVertically(dampingRatio, stiffness, targetOffsetY)
 
-        /** Combines [Spring.fadeIn] and [Spring.slideInHorizontally]. */
         fun slideInHorizontally(
             dampingRatio: Float = ComposeSpring.DampingRatioNoBouncy,
             stiffness: Float = ComposeSpring.StiffnessMedium,
@@ -635,7 +390,6 @@ object BrbxTransitions {
         ): EnterTransition = Spring.fadeIn(dampingRatio, stiffness, initialAlpha) +
                 Spring.slideInHorizontally(dampingRatio, stiffness, initialOffsetX)
 
-        /** Combines [Spring.fadeOut] and [Spring.slideOutHorizontally]. */
         fun slideOutHorizontally(
             dampingRatio: Float = ComposeSpring.DampingRatioNoBouncy,
             stiffness: Float = ComposeSpring.StiffnessMedium,
@@ -644,7 +398,6 @@ object BrbxTransitions {
         ): ExitTransition = Spring.fadeOut(dampingRatio, stiffness, targetAlpha) +
                 Spring.slideOutHorizontally(dampingRatio, stiffness, targetOffsetX)
 
-        /** Combines [Spring.fadeIn] and [Spring.expandVertically]. */
         fun expandVertically(
             dampingRatio: Float = ComposeSpring.DampingRatioNoBouncy,
             stiffness: Float = ComposeSpring.StiffnessMedium,
@@ -655,7 +408,6 @@ object BrbxTransitions {
         ): EnterTransition = Spring.fadeIn(dampingRatio, stiffness, initialAlpha) +
                 Spring.expandVertically(dampingRatio, stiffness, expandFrom, clip, initialHeight)
 
-        /** Combines [Spring.fadeOut] and [Spring.shrinkVertically]. */
         fun shrinkVertically(
             dampingRatio: Float = ComposeSpring.DampingRatioNoBouncy,
             stiffness: Float = ComposeSpring.StiffnessMedium,
@@ -666,7 +418,6 @@ object BrbxTransitions {
         ): ExitTransition = Spring.fadeOut(dampingRatio, stiffness, targetAlpha) +
                 Spring.shrinkVertically(dampingRatio, stiffness, shrinkTowards, clip, targetHeight)
 
-        /** Combines [Spring.fadeIn] and [Spring.expandHorizontally]. */
         fun expandHorizontally(
             dampingRatio: Float = ComposeSpring.DampingRatioNoBouncy,
             stiffness: Float = ComposeSpring.StiffnessMedium,
@@ -677,7 +428,6 @@ object BrbxTransitions {
         ): EnterTransition = Spring.fadeIn(dampingRatio, stiffness, initialAlpha) +
                 Spring.expandHorizontally(dampingRatio, stiffness, expandFrom, clip, initialWidth)
 
-        /** Combines [Spring.fadeOut] and [Spring.shrinkHorizontally]. */
         fun shrinkHorizontally(
             dampingRatio: Float = ComposeSpring.DampingRatioNoBouncy,
             stiffness: Float = ComposeSpring.StiffnessMedium,
@@ -689,13 +439,8 @@ object BrbxTransitions {
                 Spring.shrinkHorizontally(dampingRatio, stiffness, shrinkTowards, clip, targetWidth)
     }
 
-    /**
-     * Pre-configured composite tween transitions.
-     * These convenience methods automatically combine a duration-backed [Tween.fadeIn] or [Tween.fadeOut]
-     * with another structural motion (e.g., scaling, sliding) for synchronized timing execution.
-     */
     object TweenPreset {
-        /** Combines [Tween.fadeIn] and [Tween.scaleIn]. */
+
         fun scaleIn(
             duration: Long = 300L,
             delayMillis: Long = 0L,
@@ -706,7 +451,6 @@ object BrbxTransitions {
         ): EnterTransition = Tween.fadeIn(duration, delayMillis, easing, initialAlpha) +
                 Tween.scaleIn(duration, delayMillis, easing, initialScale, transformOrigin)
 
-        /** Combines [Tween.fadeOut] and [Tween.scaleOut]. */
         fun scaleOut(
             duration: Long = 300L,
             delayMillis: Long = 0L,
@@ -717,7 +461,6 @@ object BrbxTransitions {
         ): ExitTransition = Tween.fadeOut(duration, delayMillis, easing, targetAlpha) +
                 Tween.scaleOut(duration, delayMillis, easing, targetScale, transformOrigin)
 
-        /** Combines [Tween.fadeIn] and [Tween.slideInVertically]. */
         fun slideInVertically(
             duration: Long = 300L,
             delayMillis: Long = 0L,
@@ -727,7 +470,6 @@ object BrbxTransitions {
         ): EnterTransition = Tween.fadeIn(duration, delayMillis, easing, initialAlpha) +
                 Tween.slideInVertically(duration, delayMillis, easing, initialOffsetY)
 
-        /** Combines [Tween.fadeOut] and [Tween.slideOutVertically]. */
         fun slideOutVertically(
             duration: Long = 300L,
             delayMillis: Long = 0L,
@@ -737,7 +479,6 @@ object BrbxTransitions {
         ): ExitTransition = Tween.fadeOut(duration, delayMillis, easing, targetAlpha) +
                 Tween.slideOutVertically(duration, delayMillis, easing, targetOffsetY)
 
-        /** Combines [Tween.fadeIn] and [Tween.slideInHorizontally]. */
         fun slideInHorizontally(
             duration: Long = 300L,
             delayMillis: Long = 0L,
@@ -747,7 +488,6 @@ object BrbxTransitions {
         ): EnterTransition = Tween.fadeIn(duration, delayMillis, easing, initialAlpha) +
                 Tween.slideInHorizontally(duration, delayMillis, easing, initialOffsetX)
 
-        /** Combines [Tween.fadeOut] and [Tween.slideOutHorizontally]. */
         fun slideOutHorizontally(
             duration: Long = 300L,
             delayMillis: Long = 0L,
@@ -757,7 +497,6 @@ object BrbxTransitions {
         ): ExitTransition = Tween.fadeOut(duration, delayMillis, easing, targetAlpha) +
                 Tween.slideOutHorizontally(duration, delayMillis, easing, targetOffsetX)
 
-        /** Combines [Tween.fadeIn] and [Tween.expandVertically]. */
         fun expandVertically(
             duration: Long = 300L,
             delayMillis: Long = 0L,
@@ -776,7 +515,6 @@ object BrbxTransitions {
                     initialHeight
                 )
 
-        /** Combines [Tween.fadeOut] and [Tween.shrinkVertically]. */
         fun shrinkVertically(
             duration: Long = 300L,
             delayMillis: Long = 0L,
@@ -795,7 +533,6 @@ object BrbxTransitions {
                     targetHeight
                 )
 
-        /** Combines [Tween.fadeIn] and [Tween.expandHorizontally]. */
         fun expandHorizontally(
             duration: Long = 300L,
             delayMillis: Long = 0L,
@@ -814,7 +551,6 @@ object BrbxTransitions {
                     initialWidth
                 )
 
-        /** Combines [Tween.fadeOut] and [Tween.shrinkHorizontally]. */
         fun shrinkHorizontally(
             duration: Long = 300L,
             delayMillis: Long = 0L,

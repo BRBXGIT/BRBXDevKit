@@ -7,7 +7,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 @Immutable
-internal data class BrbxDefaultShapes(
+internal data class DefaultBrbxShapes(
     override val zero: Shape = RoundedCornerShape(size = 0.dp),
 
     override val micro1: Shape = RoundedCornerShape(size = 4.dp),

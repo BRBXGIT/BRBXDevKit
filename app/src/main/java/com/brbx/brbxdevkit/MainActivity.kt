@@ -10,9 +10,15 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
+import androidx.compose.material3.ToggleButton
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import com.brbx.ui_compose.containers.with_appearance.pull_to_refresh.BrbxPullToRefreshContainer
 import com.brbx.ui_compose.containers.with_appearance.pull_to_refresh.BrbxPullToRefreshContainerAppearances
@@ -41,6 +47,12 @@ class MainActivity : ComponentActivity() {
                         isRefreshing = false,
                         onRefresh = {}
                     ) {
+                        var checked by remember { mutableStateOf(false) }
+                        Switch(
+                            checked = checked,
+                            onCheckedChange = { checked = it }
+                        )
+
                         LazyColumn(
                             modifier = Modifier
                                 .fillMaxWidth()

@@ -3,7 +3,7 @@ package com.brbx.ui_compose.theme.animation_tokens
 import androidx.compose.runtime.Immutable
 
 @Immutable
-internal data class BrbxDefaultAnimationTokens(
+internal data class DefaultBrbxAnimationTokens(
     override val zero: Long = 0L,
 
     override val extraShort1: Long = 50L,

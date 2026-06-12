@@ -3,7 +3,7 @@ package com.brbx.ui_compose.theme.intensity_tokens
 import androidx.compose.runtime.Immutable
 
 @Immutable
-internal data class BrbxDefaultIntensityTokens(
+internal data class DefaultBrbxIntensityTokens(
     override val zero: Float = 0.0f,
 
     override val faint1: Float = 0.05f,

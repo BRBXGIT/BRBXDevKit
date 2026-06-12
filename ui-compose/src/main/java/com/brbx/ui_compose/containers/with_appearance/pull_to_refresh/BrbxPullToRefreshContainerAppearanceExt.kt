@@ -9,7 +9,7 @@ import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.unit.Dp
 import com.brbx.ui_compose.common.UnsafeAppearanceCopy
 import com.brbx.ui_compose.theme.bIntensityTokens
-import com.brbx.ui_compose.theme.mMotionScheme
+import com.brbx.ui_compose.theme.bMotion
 
 /**
  * Creates a new instance of [BrbxPullToRefreshAppearance] with the provided properties.
@@ -23,7 +23,7 @@ internal inline fun BrbxPullToRefreshAppearance(
     crossinline translationTarget: @Composable () -> Float =
         { remember { 10f } },
     crossinline translationAnimationSpec: @Composable () -> AnimationSpec<Dp> =
-        { mMotionScheme.fastSpatialSpec() },
+        { bMotion.bouncyEffectSpec() },
 
     // Vibration
     crossinline withVibration: @Composable () -> Boolean =

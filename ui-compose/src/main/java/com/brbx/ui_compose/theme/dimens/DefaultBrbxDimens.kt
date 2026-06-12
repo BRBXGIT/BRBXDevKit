@@ -5,7 +5,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 @Immutable
-internal data class BrbxDefaultDimens(
+internal data class DefaultBrbxDimens(
     override val zero: Dp = 0.dp,
 
     override val micro1: Dp = 2.dp,

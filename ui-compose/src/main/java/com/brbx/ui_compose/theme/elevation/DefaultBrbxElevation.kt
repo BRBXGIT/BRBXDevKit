@@ -5,7 +5,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 @Immutable
-internal data class BrbxDefaultElevation(
+internal data class DefaultBrbxElevation(
     override val zero: Dp = 0.dp,
 
     override val small1: Dp = 2.dp,
