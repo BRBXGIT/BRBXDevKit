@@ -6,6 +6,6 @@ package com.brbx.ui_compose.common
             "rememberCopy instead.",
     level = RequiresOptIn.Level.WARNING,
 )
-@Retention(AnnotationRetention.BINARY)
+@Retention(value = AnnotationRetention.BINARY)
 @Target(AnnotationTarget.FUNCTION)
 annotation class UnsafeAppearanceCopy

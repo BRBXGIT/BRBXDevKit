@@ -192,21 +192,11 @@ private fun BrbxTileAppearancePreview() {
                         style = mTypography.labelMedium,
                         modifier = Modifier
                             .weight(1f, fill = false)
-                            .padding(
-                                top = bDimens.dp8,
-                                start = bDimens.dp16,
-                                end = bDimens.dp16,
-                                bottom = bDimens.dp8,
-                            )
+                            .padding(end = bDimens.dp8)
                     )
 
                     BrbxIcon(
                         imageVector = OutlineSolar.Users.User,
-                        modifier = Modifier.padding(
-                            end = bDimens.dp16,
-                            top = bDimens.dp8,
-                            bottom = bDimens.dp8,
-                        ),
                     )
                 }
             }
