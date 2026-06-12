@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.brbx.ui_compose.components.with_appearance.card.card.BrbxContentCardAppearance
 import com.brbx.ui_compose.components.with_appearance.card.card.BrbxContentCardAppearances
 import com.brbx.ui_compose.components.with_appearance.shimmer.BrbxShimmerBlock
@@ -107,17 +108,17 @@ private fun BrbxContentCardShimmerPreview() {
             title = {
                 BrbxShimmerBlock(
                     modifier = Modifier
-                        .height(bDimens.dp14)
-                        .width(bDimens.dp80)
-                        .clip(shape = bShapes.dp12)
+                        .height(bDimens.micro7)
+                        .width(80.dp)
+                        .clip(shape = bShapes.micro3)
                 )
             },
             description = {
                 BrbxShimmerBlock(
                     modifier = Modifier
-                        .height(bDimens.dp12)
-                        .width(bDimens.dp100)
-                        .clip(shape = bShapes.dp12)
+                        .height(bDimens.micro6)
+                        .width(100.dp)
+                        .clip(shape = bShapes.micro3)
                 )
             }
         )

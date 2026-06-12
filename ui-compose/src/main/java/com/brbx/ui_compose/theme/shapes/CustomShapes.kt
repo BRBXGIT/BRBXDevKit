@@ -18,7 +18,7 @@ import kotlin.math.sign
 import kotlin.math.sin
 
 @Immutable
-class Squircle(
+internal class Squircle(
     private val smoothness: Double = 3.2,
 ) : Shape {
     override fun createOutline(
@@ -33,11 +33,11 @@ class Squircle(
 
         for (angle in 0 until 360 step 2) {
             val radians = Math.toRadians(angle.toDouble())
-            val cosT = cos(radians)
-            val sinT = sin(radians)
+            val cosT = cos(x = radians)
+            val sinT = sin(x = radians)
 
-            val x = center.x + (rx * cosT.absoluteValue.pow(2.0 / smoothness) * sign(cosT)).toFloat()
-            val y = center.y + (ry * sinT.absoluteValue.pow(2.0 / smoothness) * sign(sinT)).toFloat()
+            val x = center.x + (rx * cosT.absoluteValue.pow(x = 2.0 / smoothness) * sign(cosT)).toFloat()
+            val y = center.y + (ry * sinT.absoluteValue.pow(x = 2.0 / smoothness) * sign(sinT)).toFloat()
 
             if (angle == 0) {
                 path.moveTo(x, y)
@@ -51,7 +51,7 @@ class Squircle(
 }
 
 @Immutable
-class SoftSpikyCircle(
+internal class SoftSpikyCircle(
     private val numSpikes: Int = 16,
     private val depthPercentage: Float = 0.08f,
 ) : Shape {
@@ -61,8 +61,8 @@ class SoftSpikyCircle(
         density: Density
     ): Outline {
         val path = Path()
-        val center = Offset(size.width / 2f, size.height / 2f)
-        val baseRadius = minOf(size.width, size.height) / 2f
+        val center = Offset(x = size.width / 2f, y = size.height / 2f)
+        val baseRadius = minOf(a = size.width, b = size.height) / 2f
         val depth = baseRadius * depthPercentage
 
         for (angle in 0 until 360 step 2) {
@@ -86,7 +86,7 @@ class SoftSpikyCircle(
 }
 
 @Immutable
-class Clover(
+internal class Clover(
     private val petals: Int = 4,
     private val depthPercentage: Float = 0.25f
 ) : Shape {
@@ -96,8 +96,8 @@ class Clover(
         density: Density
     ): Outline {
         val path = Path()
-        val center = Offset(size.width / 2f, size.height / 2f)
-        val baseRadius = minOf(size.width, size.height) / 2f
+        val center = Offset(x = size.width / 2f, y = size.height / 2f)
+        val baseRadius = minOf(a = size.width, b = size.height) / 2f
         val depth = baseRadius * depthPercentage
 
         for (angle in 0 until 360 step 2) {
@@ -119,7 +119,7 @@ class Clover(
 }
 
 @Immutable
-class Ticket(
+internal class Ticket(
     private val cutoutRadius: Dp = 12.dp
 ) : Shape {
     override fun createOutline(
@@ -131,9 +131,9 @@ class Ticket(
         val path = Path().apply {
             val middleY = size.height / 2f
 
-            moveTo(0f, 0f)
-            lineTo(size.width, 0f)
-            lineTo(size.width, middleY - radiusPx)
+            moveTo(x = 0f, y = 0f)
+            lineTo(x = size.width, y = 0f)
+            lineTo(x = size.width, y = middleY - radiusPx)
 
             arcTo(
                 rect = Rect(
@@ -147,9 +147,9 @@ class Ticket(
                 forceMoveTo = false
             )
 
-            lineTo(size.width, size.height)
-            lineTo(0f, size.height)
-            lineTo(0f, middleY + radiusPx)
+            lineTo(x = size.width, y = size.height)
+            lineTo(x = 0f, y = size.height)
+            lineTo(x = 0f, y = middleY + radiusPx)
 
             arcTo(
                 rect = Rect(

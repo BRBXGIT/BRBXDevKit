@@ -108,13 +108,13 @@ private fun BrbxContainerPreview() {
                 Text(
                     text = "4",
                     style = mTypography.labelSmall,
-                    modifier = Modifier.padding(all = bDimens.dp6),
+                    modifier = Modifier.padding(all = bDimens.micro3),
                 )
             }
         ) {
             BrbxIcon(
                 imageVector = BoldSolar.Users.User,
-                modifier = Modifier.padding(all = bDimens.dp8),
+                modifier = Modifier.padding(all = bDimens.micro4),
             )
         }
     }

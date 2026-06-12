@@ -25,7 +25,7 @@ import com.brbx.ui_compose.theme.mColors
 internal inline fun BrbxPrecollectionAppearance(
     // Container
     crossinline containerShape: @Composable () -> Shape =
-        { bShapes.dp12 },
+        { bShapes.micro3 },
     crossinline containerBrush: @Composable () -> Brush =
         { SolidColor(mColors.tertiary.copy(alpha = 0.8f)) },
     crossinline containerRippleColor: @Composable () -> Color =
@@ -33,7 +33,7 @@ internal inline fun BrbxPrecollectionAppearance(
 
     // Content
     crossinline contentPadding: @Composable () -> PaddingValues =
-        { PaddingValues(horizontal = bDimens.dp10, vertical = bDimens.dp12) },
+        { PaddingValues(horizontal = bDimens.micro5, vertical = bDimens.micro6) },
     crossinline leadingContentColor: @Composable () -> Color = { mColors.onTertiary },
 ): BrbxPrecollectionAppearance = object : BrbxPrecollectionAppearance {
 

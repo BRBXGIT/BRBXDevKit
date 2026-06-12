@@ -163,13 +163,13 @@ private fun BrbxTileAppearancePreview() {
                         Text(
                             text = "4",
                             style = mTypography.labelSmall,
-                            modifier = Modifier.padding(all = bDimens.dp6),
+                            modifier = Modifier.padding(all = bDimens.micro3),
                         )
                     }
                 ) {
                     BrbxIcon(
                         imageVector = BoldSolar.Users.User,
-                        modifier = Modifier.padding(all =bDimens.dp8),
+                        modifier = Modifier.padding(all =bDimens.micro4),
                     )
                 }
             },
@@ -192,7 +192,7 @@ private fun BrbxTileAppearancePreview() {
                         style = mTypography.labelMedium,
                         modifier = Modifier
                             .weight(1f, fill = false)
-                            .padding(end = bDimens.dp8)
+                            .padding(end = bDimens.micro4)
                     )
 
                     BrbxIcon(

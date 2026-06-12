@@ -104,7 +104,7 @@ private fun BrbxPrecollectionPreview() {
                 style = mTypography.labelLarge,
                 modifier = Modifier
                     .weight(1f, fill = false)
-                    .padding(end = bDimens.dp16)
+                    .padding(end = bDimens.micro8)
             )
 
             BrbxIcon(

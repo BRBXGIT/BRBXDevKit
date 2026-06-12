@@ -7,10 +7,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import androidx.graphics.shapes.RoundedPolygon
 import com.brbx.ui_compose.common.UnsafeAppearanceCopy
 import com.brbx.ui_compose.components.with_appearance.tile.tile.rememberCopy
-import com.brbx.ui_compose.theme.bDimens
 import com.brbx.ui_compose.theme.bIntensityTokens
 import com.brbx.ui_compose.theme.mColors
 
@@ -24,9 +24,9 @@ import com.brbx.ui_compose.theme.mColors
 internal inline fun BrbxPullToRefreshDefaultIndicatorAppearance(
     // Sizing & Progress
     crossinline indicatorSize: @Composable () -> Dp =
-        { bDimens.dp42 },
+        { remember { 42.dp } },
     crossinline minProgressFraction: @Composable () -> Float =
-        { bIntensityTokens.intensity0 },
+        { bIntensityTokens.zero },
     crossinline maxProgressFraction: @Composable () -> Float =
         { remember { 1f } },
 

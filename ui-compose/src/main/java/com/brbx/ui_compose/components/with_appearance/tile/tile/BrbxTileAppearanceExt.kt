@@ -26,15 +26,15 @@ import com.brbx.ui_compose.theme.mColors
 internal inline fun BrbxTileAppearance(
     // Container
     crossinline containerShape: @Composable () -> Shape =
-        { bShapes.dp12 },
+        { bShapes.micro3 },
     crossinline containerBrush: @Composable () -> Brush =
         { SolidColor(mColors.surfaceContainer) },
     crossinline containerContentPadding: @Composable () -> Dp =
-        { bDimens.dp16 },
+        { bDimens.micro8 },
     crossinline containerElevation: @Composable () -> Dp =
-        { bElevation.dp0 },
+        { bElevation.zero },
     crossinline containerElevationPadding: @Composable () -> PaddingValues =
-        { PaddingValues(all = bDimens.dp0) },
+        { PaddingValues(all = bDimens.zero) },
     crossinline containerElevationAmbientColor: @Composable () -> Color =
         { remember { Color.Transparent } },
     crossinline containerElevationSpotColor: @Composable () -> Color =
@@ -43,9 +43,9 @@ internal inline fun BrbxTileAppearance(
         { mColors.onSurface },
 
     // Layout & Spacing
-    crossinline horizontalSpacing: @Composable () -> Dp = { bDimens.dp16 },
-    crossinline verticalSpacing: @Composable () -> Dp = { bDimens.dp2 },
-    crossinline contentColumnSpacing: @Composable () -> Dp = { bDimens.dp12 },
+    crossinline horizontalSpacing: @Composable () -> Dp = { bDimens.micro8 },
+    crossinline verticalSpacing: @Composable () -> Dp = { bDimens.micro1 },
+    crossinline contentColumnSpacing: @Composable () -> Dp = { bDimens.micro6 },
 
     // Title & Description
     crossinline titleColor: @Composable () -> Color = { mColors.onSurface },

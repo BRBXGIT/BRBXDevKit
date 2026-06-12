@@ -3,26 +3,31 @@ package com.brbx.ui_compose.theme.animation_tokens
 import androidx.compose.runtime.Immutable
 
 @Immutable
-data class BrbxAnimationTokens(
-    val duration0: Long = 0L,
-    val duration50: Long = 50L,
-    val duration100: Long = 100L,
-    val duration150: Long = 150L,
-    val duration200: Long = 200L,
-    val duration250: Long = 250L,
-    val duration300: Long = 300L,
-    val duration350: Long = 350L,
-    val duration400: Long = 400L,
-    val duration450: Long = 450L,
-    val duration500: Long = 500L,
-    val duration550: Long = 550L,
-    val duration600: Long = 600L,
-    val duration650: Long = 650L,
-    val duration700: Long = 700L,
-    val duration750: Long = 750L,
-    val duration800: Long = 800L,
-    val duration850: Long = 850L,
-    val duration900: Long = 900L,
-    val duration950: Long = 950L,
-    val duration1000: Long = 1000L,
-)
+interface BrbxAnimationTokens {
+    val zero: Long
+
+    val extraShort1: Long
+    val extraShort2: Long
+    val extraShort3: Long
+    val extraShort4: Long
+
+    val short1: Long
+    val short2: Long
+    val short3: Long
+    val short4: Long
+
+    val medium1: Long
+    val medium2: Long
+    val medium3: Long
+    val medium4: Long
+
+    val long1: Long
+    val long2: Long
+    val long3: Long
+    val long4: Long
+
+    val extraLong1: Long
+    val extraLong2: Long
+    val extraLong3: Long
+    val extraLong4: Long
+}

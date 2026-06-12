@@ -2,59 +2,26 @@ package com.brbx.ui_compose.theme.dimens
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 
 @Immutable
-data class BrbxDimens(
-    val dp0: Dp = 0.dp,
-    val dp2: Dp = 2.dp,
-    val dp4: Dp = 4.dp,
-    val dp6: Dp = 6.dp,
-    val dp8: Dp = 8.dp,
-    val dp10: Dp = 10.dp,
-    val dp12: Dp = 12.dp,
-    val dp14: Dp = 14.dp,
-    val dp16: Dp = 16.dp,
-    val dp18: Dp = 18.dp,
-    val dp20: Dp = 20.dp,
-    val dp22: Dp = 22.dp,
-    val dp24: Dp = 24.dp,
-    val dp26: Dp = 26.dp,
-    val dp28: Dp = 28.dp,
-    val dp30: Dp = 30.dp,
-    val dp32: Dp = 32.dp,
-    val dp34: Dp = 34.dp,
-    val dp36: Dp = 36.dp,
-    val dp38: Dp = 38.dp,
-    val dp40: Dp = 40.dp,
-    val dp42: Dp = 42.dp,
-    val dp44: Dp = 44.dp,
-    val dp46: Dp = 46.dp,
-    val dp48: Dp = 48.dp,
-    val dp50: Dp = 50.dp,
-    val dp52: Dp = 52.dp,
-    val dp54: Dp = 54.dp,
-    val dp56: Dp = 56.dp,
-    val dp58: Dp = 58.dp,
-    val dp60: Dp = 60.dp,
-    val dp62: Dp = 62.dp,
-    val dp64: Dp = 64.dp,
-    val dp66: Dp = 66.dp,
-    val dp68: Dp = 68.dp,
-    val dp70: Dp = 70.dp,
-    val dp72: Dp = 72.dp,
-    val dp74: Dp = 74.dp,
-    val dp76: Dp = 76.dp,
-    val dp78: Dp = 78.dp,
-    val dp80: Dp = 80.dp,
-    val dp82: Dp = 82.dp,
-    val dp84: Dp = 84.dp,
-    val dp86: Dp = 86.dp,
-    val dp88: Dp = 88.dp,
-    val dp90: Dp = 90.dp,
-    val dp92: Dp = 92.dp,
-    val dp94: Dp = 94.dp,
-    val dp96: Dp = 96.dp,
-    val dp98: Dp = 98.dp,
-    val dp100: Dp = 100.dp,
-)
+interface BrbxDimens {
+    val zero: Dp
+
+    val micro1: Dp
+    val micro2: Dp
+    val micro3: Dp
+    val micro4: Dp
+    val micro5: Dp
+    val micro6: Dp
+    val micro7: Dp
+    val micro8: Dp
+
+    val macro1: Dp
+    val macro2: Dp
+    val macro3: Dp
+    val macro4: Dp
+    val macro5: Dp
+    val macro6: Dp
+    val macro7: Dp
+    val macro8: Dp
+}

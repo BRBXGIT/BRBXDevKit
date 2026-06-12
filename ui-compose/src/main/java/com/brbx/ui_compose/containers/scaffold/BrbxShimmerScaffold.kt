@@ -73,7 +73,7 @@ fun BrbxShimmerScaffold(
     containerColor: Color = mColors.background,
     contentColor: Color = contentColorFor(backgroundColor = containerColor),
     contentWindowInsets: WindowInsets = ScaffoldDefaults.contentWindowInsets,
-    crossfadeDuration: Int = bAnimationTokens.duration500.toInt(),
+    crossfadeDuration: Int = bAnimationTokens.medium2.toInt(),
     errorContent: @Composable ((PaddingValues) -> Unit)? = null,
     shimmerContent: @Composable (PaddingValues) -> Unit,
     content: @Composable (PaddingValues) -> Unit,
@@ -156,13 +156,13 @@ private fun BrbxShimmerScaffoldPreview() {
         val modifier = Modifier
             .fillMaxWidth()
             .height(50.dp)
-            .padding(horizontal = bDimens.dp16)
-            .clip(shape = RoundedCornerShape(size = bDimens.dp20))
+            .padding(horizontal = bDimens.micro8)
+            .clip(shape = RoundedCornerShape(size = bDimens.macro1))
         BrbxShimmerScaffold(
             containerColor = mColors.background,
             isShimmering = isShimmering,
             shimmerContent = {
-                Column(verticalArrangement = Arrangement.spacedBy(bDimens.dp12)) {
+                Column(verticalArrangement = Arrangement.spacedBy(bDimens.micro6)) {
                     BrbxShimmerBlock(modifier)
 
                     BrbxShimmerBlock(modifier)
@@ -171,7 +171,7 @@ private fun BrbxShimmerScaffoldPreview() {
                 }
             },
             content = {
-                Column(verticalArrangement = Arrangement.spacedBy(bDimens.dp12)) {
+                Column(verticalArrangement = Arrangement.spacedBy(bDimens.micro6)) {
                     Box(modifier.background(color = mColors.primary))
 
                     Box(modifier.background(color = mColors.primary))

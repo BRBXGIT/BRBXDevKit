@@ -32,15 +32,15 @@ internal inline fun BrbxContentCardAppearance(
     crossinline height: @Composable () -> Dp =
         { remember { 270.dp } },
     crossinline containerShape: @Composable () -> Shape =
-        { bShapes.dp12 },
+        { bShapes.micro3 },
     crossinline containerBackground: @Composable () -> Brush =
         { SolidColor(mColors.surface) },
     crossinline containerRippleColor: @Composable () -> Color =
         { mColors.surface },
     crossinline containerElevation: @Composable () -> Dp =
-        { bElevation.dp0 },
+        { bElevation.zero },
     crossinline containerElevationPadding: @Composable () -> PaddingValues =
-        { PaddingValues(all = bDimens.dp0) },
+        { PaddingValues(all = bDimens.zero) },
     crossinline containerElevationAmbientColor: @Composable () -> Color =
         { remember { Color.Transparent } },
     crossinline containerElevationSpotColor: @Composable () -> Color =
@@ -50,11 +50,11 @@ internal inline fun BrbxContentCardAppearance(
     crossinline infoAlignment: @Composable () -> Alignment =
         { remember { Alignment.BottomStart } },
     crossinline infoSpacedBy: @Composable () -> Dp =
-        { bDimens.dp4 },
+        { bDimens.micro2 },
     crossinline infoBackground: @Composable () -> Brush =
         { SolidColor(mColors.tertiaryContainer) },
     crossinline infoPadding: @Composable () -> PaddingValues =
-        { PaddingValues(bDimens.dp8) },
+        { PaddingValues(bDimens.micro4) },
 
     // Title & Description
     crossinline titleColor: @Composable () -> Color =

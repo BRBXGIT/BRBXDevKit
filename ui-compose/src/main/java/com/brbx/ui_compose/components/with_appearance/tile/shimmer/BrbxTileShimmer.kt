@@ -130,8 +130,8 @@ private fun BrbxTileShimmerPreview() {
                 ) {
                     Box(
                         modifier = Modifier
-                            .padding(all = bDimens.dp8)
-                            .size(bDimens.dp24)
+                            .padding(all = bDimens.micro4)
+                            .size(bDimens.macro2)
                     )
                 }
             },
@@ -141,9 +141,9 @@ private fun BrbxTileShimmerPreview() {
                         containerColor = { mColors.surfaceContainerHigh },
                     ),
                     modifier = Modifier
-                        .height(bDimens.dp16)
+                        .height(bDimens.micro8)
                         .width(180.dp)
-                        .clip(shape = bShapes.dp12)
+                        .clip(shape = bShapes.micro3)
                 )
             },
             description = {
@@ -152,9 +152,9 @@ private fun BrbxTileShimmerPreview() {
                         containerColor = { mColors.surfaceContainerHighest },
                     ),
                     modifier = Modifier
-                        .height(bDimens.dp12)
+                        .height(bDimens.micro6)
                         .width(240.dp)
-                        .clip(shape = bShapes.dp12)
+                        .clip(shape = bShapes.micro3)
                 )
             }
         )

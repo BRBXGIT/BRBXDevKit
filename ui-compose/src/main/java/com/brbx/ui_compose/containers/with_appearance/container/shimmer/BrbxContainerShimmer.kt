@@ -69,8 +69,8 @@ private fun BrbxContainerShimmerPreview() {
         BrbxContainerShimmer {
             Box(
                 modifier = Modifier
-                    .padding(all = bDimens.dp8)
-                    .size(bDimens.dp24),
+                    .padding(all = bDimens.micro4)
+                    .size(bDimens.macro2),
             )
         }
     }

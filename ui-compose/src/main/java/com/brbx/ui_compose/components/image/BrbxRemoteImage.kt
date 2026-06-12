@@ -76,7 +76,7 @@ fun BrbxRemoteImage(
     contentDescription: String? = null,
     filterQuality: FilterQuality = FilterQuality.Low,
     contentScale: ContentScale = ContentScale.Crop,
-    crossfadeDuration: Int = bAnimationTokens.duration300.toInt(),
+    crossfadeDuration: Int = bAnimationTokens.short2.toInt(),
     onLoading: @Composable (SubcomposeAsyncImageScope.(State.Loading) -> Unit)? = null,
     onError: @Composable (SubcomposeAsyncImageScope.(State.Error) -> Unit)? = null,
 ) {

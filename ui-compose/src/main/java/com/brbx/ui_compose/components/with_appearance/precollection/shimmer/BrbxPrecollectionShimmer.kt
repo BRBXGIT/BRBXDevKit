@@ -17,7 +17,6 @@ import com.brbx.ui_compose.components.with_appearance.precollection.precollectio
 import com.brbx.ui_compose.components.with_appearance.precollection.precollection.BrbxPrecollectionAppearances
 import com.brbx.ui_compose.components.with_appearance.shimmer.BrbxShimmerBlock
 import com.brbx.ui_compose.theme.BrbxTheme
-import com.brbx.ui_compose.theme.bDimens
 import com.brbx.ui_compose.theme.bShapes
 
 /**
@@ -74,9 +73,9 @@ private fun BrbxPrecollectionShimmerPreview() {
         ) {
             BrbxShimmerBlock(
                 modifier = Modifier
-                    .height(bDimens.dp18)
+                    .height(18.dp)
                     .width(240.dp)
-                    .clip(shape = bShapes.dp12)
+                    .clip(shape = bShapes.micro3)
             )
         }
     }

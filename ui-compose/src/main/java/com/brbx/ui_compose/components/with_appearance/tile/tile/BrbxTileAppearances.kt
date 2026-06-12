@@ -18,8 +18,8 @@ object BrbxTileAppearances {
     val default: BrbxTileAppearance = BrbxTileAppearance()
 
     val elevated: BrbxTileAppearance = BrbxTileAppearance(
-        containerElevationPadding = { PaddingValues(vertical = bDimens.dp12) },
-        containerElevation = { bElevation.dp6 },
+        containerElevationPadding = { PaddingValues(vertical = bDimens.micro6) },
+        containerElevation = { bElevation.small3 },
         containerElevationAmbientColor = { Color.Black },
         containerElevationSpotColor = { Color.Black },
     )

@@ -29,7 +29,7 @@ internal inline fun BrbxPullToRefreshAppearance(
     crossinline withVibration: @Composable () -> Boolean =
         { remember { false } },
     crossinline vibrationThreshold: @Composable () -> Float =
-        { bIntensityTokens.intensity100 },
+        { bIntensityTokens.heavy4 },
     crossinline vibrationType: @Composable () -> HapticFeedbackType =
         { remember { HapticFeedbackType.GestureThresholdActivate } },
 

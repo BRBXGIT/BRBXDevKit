@@ -2,25 +2,23 @@ package com.brbx.ui_compose.theme.elevation
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 
 @Immutable
-data class BrbxElevation(
-    val dp0: Dp = 0.dp,
-    val dp2: Dp = 2.dp,
-    val dp4: Dp = 4.dp,
-    val dp6: Dp = 6.dp,
-    val dp8: Dp = 8.dp,
-    val dp10: Dp = 10.dp,
-    val dp12: Dp = 12.dp,
-    val dp14: Dp = 14.dp,
-    val dp16: Dp = 16.dp,
-    val dp18: Dp = 18.dp,
-    val dp20: Dp = 20.dp,
-    val dp22: Dp = 22.dp,
-    val dp24: Dp = 24.dp,
-    val dp26: Dp = 26.dp,
-    val dp28: Dp = 28.dp,
-    val dp30: Dp = 30.dp,
-    val dp32: Dp = 32.dp,
-)
+interface BrbxElevation {
+    val zero: Dp
+
+    val small1: Dp
+    val small2: Dp
+    val small3: Dp
+    val small4: Dp
+
+    val medium1: Dp
+    val medium2: Dp
+    val medium3: Dp
+    val medium4: Dp
+
+    val large1: Dp
+    val large2: Dp
+    val large3: Dp
+    val large4: Dp
+}
