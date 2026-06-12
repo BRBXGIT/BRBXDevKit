@@ -31,19 +31,19 @@ internal class DefaultBrbxMotion : BrbxMotion {
 
     // --- Spatial ---
     override fun <T> slowSpatialSpec(visibilityThreshold: T?) = spring(
-        dampingRatio = 0.85f,
+        dampingRatio = 0.80f,
         stiffness = 400f,
         visibilityThreshold = visibilityThreshold,
     )
 
     override fun <T> mediumSpatialSpec(visibilityThreshold: T?) = spring(
-        dampingRatio = 0.7f,
+        dampingRatio = 0.70f,
         stiffness = 700f,
         visibilityThreshold = visibilityThreshold,
     )
 
     override fun <T> fastSpatialSpec(visibilityThreshold: T?) = spring(
-        dampingRatio = 0.55f,
+        dampingRatio = 0.60f,
         stiffness = 1000f,
         visibilityThreshold = visibilityThreshold,
     )
@@ -63,20 +63,20 @@ internal class DefaultBrbxMotion : BrbxMotion {
 
     override fun <T> softEffectSpec(visibilityThreshold: T?) = spring(
         dampingRatio = 1.0f,
-        stiffness = 400f,
+        stiffness = 700f,
         visibilityThreshold = visibilityThreshold,
     )
 
     // --- Structural ---
     override fun <T> enterStructuralSpec(visibilityThreshold: T?) = spring(
-        dampingRatio = 0.70f,
-        stiffness = 800f,
+        dampingRatio = 0.55f,
+        stiffness = 900f,
         visibilityThreshold = visibilityThreshold,
     )
 
     override fun <T> exitStructuralSpec(visibilityThreshold: T?) = spring(
         dampingRatio = 1.0f,
-        stiffness = 800f,
+        stiffness = 900f,
         visibilityThreshold = visibilityThreshold,
     )
 
@@ -88,14 +88,14 @@ internal class DefaultBrbxMotion : BrbxMotion {
 
     // --- Gestures ---
     override fun <T> pressGestureSpec(visibilityThreshold: T?) = spring(
-        dampingRatio = 1.0f,
+        dampingRatio = 0.4f,
         stiffness = 1500f,
         visibilityThreshold = visibilityThreshold,
     )
 
     override fun <T> settleGestureSpec(visibilityThreshold: T?) = spring(
-        dampingRatio = 0.7f,
-        stiffness = 300f,
+        dampingRatio = 0.4f,
+        stiffness = 1500f,
         visibilityThreshold = visibilityThreshold,
     )
 
