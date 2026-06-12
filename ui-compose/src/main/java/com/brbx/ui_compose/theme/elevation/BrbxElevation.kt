@@ -3,6 +3,14 @@ package com.brbx.ui_compose.theme.elevation
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.unit.Dp
 
+/**
+ * Defines the standardized elevation tokens for the Brbx design system.
+ * * Elevation establishes a spatial system along the z-axis, creating visual hierarchy
+ * and depth through shadows or overlays. Consistent elevation helps users intuitively
+ * understand the relationship and importance of overlapping UI components.
+ * All values are represented in Density-independent Pixels ([Dp]).
+ * * The elevations scale progressively across three primary tiers: Small, Medium, and Large.
+ */
 @Immutable
 interface BrbxElevation {
     val zero: Dp

@@ -13,7 +13,7 @@ import androidx.compose.runtime.Immutable
 internal class DefaultBrbxMotion : BrbxMotion {
 
     // =========================================================================
-    // 1. MATERIAL 3 OVERRIDES
+    // MATERIAL 3 OVERRIDES
     // =========================================================================
 
     override fun <T> defaultSpatialSpec(): FiniteAnimationSpec<T> = mediumSpatialSpec()
@@ -26,7 +26,7 @@ internal class DefaultBrbxMotion : BrbxMotion {
 
 
     // =========================================================================
-    // 2. CUSTOM SPECIFICATIONS
+    // CUSTOM SPECIFICATIONS
     // =========================================================================
 
     // --- Spatial ---

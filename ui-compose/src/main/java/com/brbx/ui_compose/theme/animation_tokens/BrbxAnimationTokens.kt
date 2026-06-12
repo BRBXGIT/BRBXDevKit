@@ -2,6 +2,13 @@ package com.brbx.ui_compose.theme.animation_tokens
 
 import androidx.compose.runtime.Immutable
 
+/**
+ * Defines the standardized animation duration tokens for the Brbx design system.
+ * * These tokens ensure consistency in motion and transitions across the application.
+ * Values are expected to be represented in milliseconds (ms).
+ * * The durations are categorized by length (extra-short to extra-long) and
+ * scale gradually from 1 (shortest in the category) to 4 (longest in the category).
+ */
 @Immutable
 interface BrbxAnimationTokens {
     val zero: Long

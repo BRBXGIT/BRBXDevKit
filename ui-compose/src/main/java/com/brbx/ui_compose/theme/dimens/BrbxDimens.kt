@@ -3,6 +3,15 @@ package com.brbx.ui_compose.theme.dimens
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.unit.Dp
 
+/**
+ * Defines the standardized dimension tokens for the Brbx design system.
+ * * These tokens provide a consistent spatial system across the application,
+ * ensuring uniform padding, margins, elevations, and component sizing.
+ * All values are represented in Density-independent Pixels ([Dp]).
+ * * The dimensions are split into two primary progressive scales:
+ * * **Micro**: Fine-grained measurements typically used for tight, internal component spacing.
+ * * **Macro**: Larger measurements typically used for structural layout and screen margins.
+ */
 @Immutable
 interface BrbxDimens {
     val zero: Dp

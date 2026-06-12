@@ -17,5 +17,5 @@ object BrbxPullToRefreshContainerAppearances {
         withVibration = { remember { true } },
     )
 
-    val withoutVibration: BrbxPullToRefreshAppearance = BrbxPullToRefreshAppearance()
+    val withoutVibration = BrbxPullToRefreshAppearance()
 }

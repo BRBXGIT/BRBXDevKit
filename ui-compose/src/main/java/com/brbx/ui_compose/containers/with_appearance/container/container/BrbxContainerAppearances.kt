@@ -11,14 +11,14 @@ import com.brbx.ui_compose.theme.mColors
  */
 object BrbxContainerAppearances {
 
-    val primary: BrbxContainerAppearance = BrbxContainerAppearance()
+    val primary = BrbxContainerAppearance()
 
-    val secondary: BrbxContainerAppearance = BrbxContainerAppearance(
+    val secondary = BrbxContainerAppearance(
         containerBrush = { SolidColor(value = mColors.secondary) },
         contentColor = { mColors.onSecondary },
     )
 
-    val tertiary: BrbxContainerAppearance = BrbxContainerAppearance(
+    val tertiary = BrbxContainerAppearance(
         containerBrush = { SolidColor(value = mColors.tertiary) },
         contentColor = { mColors.onTertiary },
     )

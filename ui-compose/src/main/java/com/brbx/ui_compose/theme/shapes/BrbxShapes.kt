@@ -5,6 +5,15 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
+/**
+ * Defines the standardized shape and corner radius tokens for the Brbx design system.
+ * * These tokens ensure a consistent visual language for component bounding boxes, containers,
+ * and expressive brand elements. The system categorizes shapes into distinct groups:
+ * * **Primitives:** Basic, un-rounded or fully rounded geometries.
+ * * **Micro:** Subtle corner radii for small, interactive components.
+ * * **Macro:** Substantial corner radii for large, structural layout elements.
+ * * **Expressive & Parametric:** Thematic, asymmetrical, or mathematically generated shapes for branding and specialized UI.
+ */
 @Immutable
 interface BrbxShapes {
     val zero: Shape

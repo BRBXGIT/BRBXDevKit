@@ -11,5 +11,5 @@ import androidx.compose.runtime.Immutable
 @Immutable
 object BrbxShimmerBlockAppearances {
 
-    val default: BrbxShimmerBlockAppearance = BrbxShimmerBlockAppearance()
+    val default = BrbxShimmerBlockAppearance()
 }

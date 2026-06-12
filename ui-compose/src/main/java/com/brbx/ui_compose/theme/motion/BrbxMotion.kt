@@ -37,7 +37,6 @@ interface BrbxMotion : MotionScheme {
      */
     fun <T> fastSpatialSpec(visibilityThreshold: T? = null): FiniteAnimationSpec<T>
 
-
     // ==========================================
     // EFFECTS (Accents, Notifications, Feedback)
     // ==========================================

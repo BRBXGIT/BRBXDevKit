@@ -46,13 +46,17 @@ abstract class BrbxMviViewModel<State, in Intent : Any, LocalEffect>(
         }
 
         override fun postLocalEffect(effect: LocalEffect) {
-            viewModelScope.launch { _localEffects.emit(value = effect) }
+            _localEffects.postEffect(effect)
         }
 
         override fun postBrbxEffect(effect: BrbxEffect) {
-            viewModelScope.launch { _brbxEffects.emit(value = effect) }
+            _brbxEffects.postEffect(effect)
         }
     }
 
     open fun onIntent(intent: Intent) {}
+
+    private fun <T> MutableSharedFlow<T>.postEffect(effect: T) {
+        viewModelScope.launch { emit(value = effect) }
+    }
 }

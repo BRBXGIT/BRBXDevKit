@@ -17,13 +17,13 @@ import com.brbx.ui_compose.theme.mColors
 @Immutable
 object BrbxContentCardAppearances {
 
-    val primary: BrbxContentCardAppearance = BrbxContentCardAppearance(
+    val primary = BrbxContentCardAppearance(
         infoBackground = { SolidColor(value = mColors.primary) },
         titleColor = { mColors.onPrimary },
         descriptionColor = { mColors.onPrimary.copy(alpha = 0.8f) },
     )
 
-    val primaryElevated: BrbxContentCardAppearance = BrbxContentCardAppearance(
+    val primaryElevated = BrbxContentCardAppearance(
         infoBackground = { SolidColor(value = mColors.primary) },
         titleColor = { mColors.onPrimary },
         descriptionColor = { mColors.onPrimary.copy(alpha = 0.8f) },
@@ -33,13 +33,13 @@ object BrbxContentCardAppearances {
         containerElevationSpotColor = { Color.Black },
     )
 
-    val secondary: BrbxContentCardAppearance = BrbxContentCardAppearance(
+    val secondary = BrbxContentCardAppearance(
         infoBackground = { SolidColor(value = mColors.secondary) },
         titleColor = { mColors.onSecondary },
         descriptionColor = { mColors.onSecondary.copy(alpha = 0.8f) },
     )
 
-    val secondaryElevated: BrbxContentCardAppearance = BrbxContentCardAppearance(
+    val secondaryElevated = BrbxContentCardAppearance(
         infoBackground = { SolidColor(value = mColors.secondary) },
         titleColor = { mColors.onSecondary },
         descriptionColor = { mColors.onSecondary.copy(alpha = 0.8f) },
@@ -49,9 +49,9 @@ object BrbxContentCardAppearances {
         containerElevationSpotColor = { Color.Black },
     )
 
-    val tertiary: BrbxContentCardAppearance = BrbxContentCardAppearance()
+    val tertiary = BrbxContentCardAppearance()
 
-    val tertiaryElevated: BrbxContentCardAppearance = BrbxContentCardAppearance(
+    val tertiaryElevated = BrbxContentCardAppearance(
         containerElevationPadding = { PaddingValues(all = bDimens.micro4) },
         containerElevation = { bElevation.small2 },
         containerElevationAmbientColor = { Color.Black },

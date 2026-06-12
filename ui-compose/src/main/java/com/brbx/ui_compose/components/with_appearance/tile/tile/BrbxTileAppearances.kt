@@ -15,9 +15,9 @@ import com.brbx.ui_compose.theme.bElevation
 @Immutable
 object BrbxTileAppearances {
 
-    val default: BrbxTileAppearance = BrbxTileAppearance()
+    val default = BrbxTileAppearance()
 
-    val elevated: BrbxTileAppearance = BrbxTileAppearance(
+    val elevated = BrbxTileAppearance(
         containerElevationPadding = { PaddingValues(vertical = bDimens.micro6) },
         containerElevation = { bElevation.small3 },
         containerElevationAmbientColor = { Color.Black },

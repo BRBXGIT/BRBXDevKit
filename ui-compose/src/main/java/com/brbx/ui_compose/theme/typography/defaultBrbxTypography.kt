@@ -6,6 +6,16 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
+/**
+ * Provides the default [Typography] scale for the Brbx design system.
+ * * This typography scale establishes a clear visual hierarchy, ensuring optimal readability
+ * and structural consistency across the application. It utilizes standard typography
+ * categories (Display, Headline, Title, Body, Label) but applies Brbx-specific configurations
+ * for font weights, sizes, line heights, and letter spacings.
+ * @param fontFamily An optional [FontFamily] to apply uniformly across all text styles.
+ * If null, the system default typography (e.g., Roboto on Android) will be used.
+ * @return A fully configured [Typography] instance ready to be consumed by a Compose Theme.
+ */
 internal fun defaultBrbxTypography(fontFamily: FontFamily? = null): Typography =
     Typography(
         displayLarge = TextStyle(
