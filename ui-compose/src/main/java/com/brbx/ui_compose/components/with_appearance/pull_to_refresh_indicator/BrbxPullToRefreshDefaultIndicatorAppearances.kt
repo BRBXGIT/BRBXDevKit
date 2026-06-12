@@ -9,5 +9,6 @@ import androidx.compose.runtime.Immutable
 @Immutable
 object BrbxPullToRefreshDefaultIndicatorAppearances {
 
-    val default = BrbxPullToRefreshDefaultIndicatorAppearance()
+    val default: BrbxPullToRefreshDefaultIndicatorAppearance =
+        BrbxPullToRefreshDefaultIndicatorAppearance()
 }

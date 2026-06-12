@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.unit.Dp
 
 /**
@@ -29,6 +30,29 @@ interface BrbxPullToRefreshAppearance {
      */
     @Composable
     fun translationAnimationSpec(): AnimationSpec<Dp>
+
+    // ---------------------------------------------------------------------------
+    // Vibration
+    // ---------------------------------------------------------------------------
+
+    /**
+     * Specify vibration, if enabled the phone will vibrate when swipe will reach threshold.
+     * Requires <uses-permission android:name="android.permission.VIBRATE" /> in manifest.
+     */
+    @Composable
+    fun withVibration(): Boolean
+
+    /**
+     * The threshold of swipe for the vibration
+     */
+    @Composable
+    fun vibrationThreshold(): Float
+
+    /**
+     * The haptic type of the vibration
+     */
+    @Composable
+    fun vibrationType(): HapticFeedbackType
 
     // ---------------------------------------------------------------------------
     // Layout & Alignment

@@ -1,5 +1,9 @@
 package com.brbx.ui_compose.containers.with_appearance.pull_to_refresh
 
+import android.Manifest
+import androidx.annotation.RequiresPermission
+import androidx.compose.runtime.remember
+
 /**
  * A collection of predefined [BrbxPullToRefreshAppearance] styles.
  * This object serves as a centralized theme repository for pull-to-refresh container variations.
@@ -8,5 +12,10 @@ package com.brbx.ui_compose.containers.with_appearance.pull_to_refresh
  */
 object BrbxPullToRefreshContainerAppearances {
 
-    val default = BrbxPullToRefreshAppearance()
+    @RequiresPermission(value = Manifest.permission.VIBRATE)
+    fun withVibration(): BrbxPullToRefreshAppearance = BrbxPullToRefreshAppearance(
+        withVibration = { remember { true } },
+    )
+
+    val withoutVibration: BrbxPullToRefreshAppearance = BrbxPullToRefreshAppearance()
 }

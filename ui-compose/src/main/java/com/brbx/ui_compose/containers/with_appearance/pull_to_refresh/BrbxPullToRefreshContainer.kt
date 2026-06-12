@@ -6,13 +6,16 @@ import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.material3.pulltorefresh.PullToRefreshState
 import androidx.compose.material3.pulltorefresh.rememberPullToRefreshState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.unit.dp
 import com.brbx.ui_compose.components.with_appearance.pull_to_refresh_indicator.BrbxPullToRefreshDefaultIndicator
 
-// TODO Add testing tools
 /**
  * A container component that implements pull-to-refresh logic with customizable animations and layout.
  * This component uses [BrbxPullToRefreshAppearance] to dictate styling, animation behavior,
@@ -31,7 +34,8 @@ fun BrbxPullToRefreshContainer(
     isRefreshing: Boolean,
     onRefresh: () -> Unit,
     modifier: Modifier = Modifier,
-    appearance: BrbxPullToRefreshAppearance = BrbxPullToRefreshContainerAppearances.default,
+    appearance: BrbxPullToRefreshAppearance =
+        BrbxPullToRefreshContainerAppearances.withoutVibration,
     state: PullToRefreshState = rememberPullToRefreshState(),
     indicator: @Composable (fraction: Float) -> Unit =
         { fraction -> BrbxPullToRefreshDefaultIndicator(isRefreshing, fraction) },
@@ -57,6 +61,22 @@ private fun BrbxPullToRefreshContainerImpl(
     indicator: @Composable (fraction: Float) -> Unit,
     content: @Composable () -> Unit,
 ) {
+    if (appearance.withVibration()) {
+        val haptics = LocalHapticFeedback.current
+
+        val vibrationThreshold = appearance.vibrationThreshold()
+        val isPastThreshold by remember {
+            derivedStateOf { state.distanceFraction >= vibrationThreshold }
+        }
+
+        val vibrationType = appearance.vibrationType()
+        LaunchedEffect(key1 = isPastThreshold) {
+            if (isPastThreshold) {
+                haptics.performHapticFeedback(hapticFeedbackType = vibrationType)
+            }
+        }
+    }
+
     PullToRefreshBox(
         modifier = modifier,
         isRefreshing = isRefreshing,

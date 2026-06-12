@@ -17,13 +17,13 @@ import com.brbx.ui_compose.theme.mColors
 @Immutable
 object BrbxContentCardAppearances {
 
-    val primary = BrbxContentCardAppearance(
+    val primary: BrbxContentCardAppearance = BrbxContentCardAppearance(
         infoBackground = { SolidColor(value = mColors.primary) },
         titleColor = { mColors.onPrimary },
         descriptionColor = { mColors.onPrimary.copy(alpha = 0.8f) },
     )
 
-    val primaryElevated = BrbxContentCardAppearance(
+    val primaryElevated: BrbxContentCardAppearance = BrbxContentCardAppearance(
         infoBackground = { SolidColor(value = mColors.primary) },
         titleColor = { mColors.onPrimary },
         descriptionColor = { mColors.onPrimary.copy(alpha = 0.8f) },
@@ -33,13 +33,13 @@ object BrbxContentCardAppearances {
         containerElevationSpotColor = { Color.Black },
     )
 
-    val secondary = BrbxContentCardAppearance(
+    val secondary: BrbxContentCardAppearance = BrbxContentCardAppearance(
         infoBackground = { SolidColor(value = mColors.secondary) },
         titleColor = { mColors.onSecondary },
         descriptionColor = { mColors.onSecondary.copy(alpha = 0.8f) },
     )
 
-    val secondaryElevated = BrbxContentCardAppearance(
+    val secondaryElevated: BrbxContentCardAppearance = BrbxContentCardAppearance(
         infoBackground = { SolidColor(value = mColors.secondary) },
         titleColor = { mColors.onSecondary },
         descriptionColor = { mColors.onSecondary.copy(alpha = 0.8f) },
@@ -49,9 +49,9 @@ object BrbxContentCardAppearances {
         containerElevationSpotColor = { Color.Black },
     )
 
-    val tertiary = BrbxContentCardAppearance()
+    val tertiary: BrbxContentCardAppearance = BrbxContentCardAppearance()
 
-    val tertiaryElevated = BrbxContentCardAppearance(
+    val tertiaryElevated: BrbxContentCardAppearance = BrbxContentCardAppearance(
         containerElevationPadding = { PaddingValues(all = bDimens.dp8) },
         containerElevation = { bElevation.dp4 },
         containerElevationAmbientColor = { Color.Black },

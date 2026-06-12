@@ -5,8 +5,10 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.unit.Dp
 import com.brbx.ui_compose.common.UnsafeAppearanceCopy
+import com.brbx.ui_compose.theme.bIntensityTokens
 import com.brbx.ui_compose.theme.mMotionScheme
 
 /**
@@ -23,6 +25,14 @@ internal inline fun BrbxPullToRefreshAppearance(
     crossinline translationAnimationSpec: @Composable () -> AnimationSpec<Dp> =
         { mMotionScheme.fastSpatialSpec() },
 
+    // Vibration
+    crossinline withVibration: @Composable () -> Boolean =
+        { remember { false } },
+    crossinline vibrationThreshold: @Composable () -> Float =
+        { bIntensityTokens.intensity100 },
+    crossinline vibrationType: @Composable () -> HapticFeedbackType =
+        { remember { HapticFeedbackType.GestureThresholdActivate } },
+
     // Layout & Alignment
     crossinline contentVerticalArrangement: @Composable () -> Arrangement.Vertical =
         { Arrangement.SpaceBetween },
@@ -36,6 +46,16 @@ internal inline fun BrbxPullToRefreshAppearance(
 
     @Composable
     override fun translationAnimationSpec(): AnimationSpec<Dp> = translationAnimationSpec()
+
+    // Vibration
+    @Composable
+    override fun withVibration(): Boolean = withVibration()
+
+    @Composable
+    override fun vibrationThreshold(): Float = vibrationThreshold()
+
+    @Composable
+    override fun vibrationType(): HapticFeedbackType = vibrationType()
 
     // Layout & Alignment
     @Composable
@@ -64,6 +84,11 @@ inline fun BrbxPullToRefreshAppearance.copy(
     crossinline translationAnimationSpec: @Composable () -> AnimationSpec<Dp> =
         { this.translationAnimationSpec() },
 
+    // Vibration
+    crossinline withVibration: @Composable () -> Boolean = { this.withVibration() },
+    crossinline vibrationThreshold: @Composable () -> Float = { this.vibrationThreshold() },
+    crossinline vibrationType: @Composable () -> HapticFeedbackType = { this.vibrationType() },
+
     // Layout & Alignment
     crossinline contentVerticalArrangement: @Composable () -> Arrangement.Vertical =
         { this.contentVerticalArrangement() },
@@ -77,6 +102,16 @@ inline fun BrbxPullToRefreshAppearance.copy(
 
     @Composable
     override fun translationAnimationSpec(): AnimationSpec<Dp> = translationAnimationSpec()
+
+    // Vibration
+    @Composable
+    override fun withVibration(): Boolean = withVibration()
+
+    @Composable
+    override fun vibrationThreshold(): Float = vibrationThreshold()
+
+    @Composable
+    override fun vibrationType(): HapticFeedbackType = vibrationType()
 
     // Layout & Alignment
     @Composable
@@ -111,6 +146,14 @@ inline fun BrbxPullToRefreshAppearance.rememberCopy(
     crossinline translationAnimationSpec: @Composable () -> AnimationSpec<Dp> =
         { this.translationAnimationSpec() },
 
+    // Vibration
+    crossinline withVibration: @Composable () -> Boolean =
+        { this.withVibration() },
+    crossinline vibrationThreshold: @Composable () -> Float =
+        { this.vibrationThreshold() },
+    crossinline vibrationType: @Composable () -> HapticFeedbackType =
+        { this.vibrationType() },
+
     // Layout & Alignment
     crossinline contentVerticalArrangement: @Composable () -> Arrangement.Vertical =
         { this.contentVerticalArrangement() },
@@ -120,6 +163,9 @@ inline fun BrbxPullToRefreshAppearance.rememberCopy(
     this.copy(
         translationTarget = translationTarget,
         translationAnimationSpec = translationAnimationSpec,
+        withVibration = withVibration,
+        vibrationThreshold = vibrationThreshold,
+        vibrationType = vibrationType,
         contentVerticalArrangement = contentVerticalArrangement,
         contentHorizontalAlignment = contentHorizontalAlignment
     )
