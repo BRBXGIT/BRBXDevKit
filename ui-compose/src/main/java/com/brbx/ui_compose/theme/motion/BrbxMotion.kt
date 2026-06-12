@@ -60,7 +60,6 @@ interface BrbxMotion : MotionScheme {
      */
     fun <T> softEffectSpec(visibilityThreshold: T? = null): FiniteAnimationSpec<T>
 
-
     // ==========================================
     // STRUCTURAL (Lists, Enter/Exit)
     // ==========================================
