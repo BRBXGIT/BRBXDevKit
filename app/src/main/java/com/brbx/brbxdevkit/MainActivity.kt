@@ -63,7 +63,7 @@ class MainActivity : ComponentActivity() {
                                 }
                             },
                             searchFieldPlaceholderText = "Input here...".toBrbxText(),
-                            textFieldValue = value,
+                            textFieldValue = { value },
                             onTextFieldValueChange = { value = it }
                         )
                     }

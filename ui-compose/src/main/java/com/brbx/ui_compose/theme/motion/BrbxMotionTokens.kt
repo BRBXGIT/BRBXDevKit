@@ -26,7 +26,7 @@ internal object BrbxMotionTokens {
     object Damping {
         const val HighBouncy = 0.35f
         const val Bouncy = 0.4f
-        const val MediumBouncy = 0.55f
+        const val MediumBouncy = 0.65f
         const val SlightBouncy = 0.6f
         const val Snappy = 0.65f
         const val Organic = 0.7f

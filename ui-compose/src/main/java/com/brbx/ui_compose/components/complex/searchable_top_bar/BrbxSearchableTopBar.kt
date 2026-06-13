@@ -103,7 +103,7 @@ fun BrbxSearchableTopBar(
     searchIcon: @Composable () -> Unit,
     closeSearchIcon: @Composable () -> Unit,
     searchFieldPlaceholderText: BrbxText,
-    textFieldValue: String,
+    textFieldValue: () -> String,
     onTextFieldValueChange: (String) -> Unit,
 ) {
     val focusRequester = remember { FocusRequester() }
@@ -211,7 +211,7 @@ private fun BrbxSearchableTopBarImpl(
 
 @Composable
 private fun DefaultSearchField(
-    textFieldValue: String,
+    textFieldValue: () -> String,
     onTextFieldValueChange: (String) -> Unit,
     focusRequester: FocusRequester,
     appearance: BrbxSearchableTopBarAppearance,
@@ -227,8 +227,9 @@ private fun DefaultSearchField(
         label = "Text overflow fade animation"
     )
 
+    val value = textFieldValue()
     BasicTextField(
-        value = textFieldValue,
+        value = value,
         onValueChange = onTextFieldValueChange,
         onTextLayout = { textLayoutResult ->
             textWidth = textLayoutResult.size.width
@@ -248,7 +249,7 @@ private fun DefaultSearchField(
                 modifier = Modifier.fillMaxWidth(),
                 contentAlignment = Alignment.CenterStart
             ) {
-                if (textFieldValue.isEmpty()) {
+                if (value.isEmpty()) {
                     BrbxText(
                         text = searchFieldPlaceholderText,
                         style = appearance.defaultSearchFieldPlaceholderStyle(),
