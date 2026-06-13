@@ -14,8 +14,6 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.LaunchedEffect
@@ -27,20 +25,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.text.input.ImeAction
 import com.brbx.ui_compose.components.image.BrbxIcon
-import com.brbx.ui_compose.components.searchable_topbar.BrbxSearchableTopBar
+import com.brbx.ui_compose.components.searchable_top_bar.BrbxSearchableTopBar
 import com.brbx.ui_compose.theme.BrbxTheme
 import com.brbx.ui_compose.theme.mColors
 import com.brbx.ui_compose.theme.mTypography
 import dev.chiksmedina.solar.OutlineSolar
 import dev.chiksmedina.solar.outline.Arrows
-import dev.chiksmedina.solar.outline.ArrowsAction
+import dev.chiksmedina.solar.outline.EssentionalUi
 import dev.chiksmedina.solar.outline.Search
 import dev.chiksmedina.solar.outline.arrows.ArrowLeft
-import dev.chiksmedina.solar.outline.arrowsaction.Download
+import dev.chiksmedina.solar.outline.essentionalui.Cat
 import dev.chiksmedina.solar.outline.search.Magnifer
 
 class MainActivity : ComponentActivity() {
@@ -60,18 +57,10 @@ class MainActivity : ComponentActivity() {
                     topBar = {
                         BrbxSearchableTopBar(
                             isSearching = isSearching,
-                            actions = {
-                                IconButton(
-                                    onClick = {
-                                        isSearching = false
-                                    }
-                                ) {
-                                    BrbxIcon(OutlineSolar.ArrowsAction.Download)
-                                }
-                            },
                             title = {
                                 Text(
-                                    text = "Title"
+                                    text = "Title",
+                                    style = mTypography.titleLarge,
                                 )
                             },
                             searchIcon = {
@@ -86,6 +75,13 @@ class MainActivity : ComponentActivity() {
                                     onClick = {}
                                 ) {
                                     BrbxIcon(OutlineSolar.Arrows.ArrowLeft)
+                                }
+                            },
+                            closeSearchIcon = {
+                                IconButton(
+                                    onClick = { isSearching = false }
+                                ) {
+                                    BrbxIcon(OutlineSolar.EssentionalUi.Cat)
                                 }
                             },
                             searchField = {
@@ -103,7 +99,7 @@ class MainActivity : ComponentActivity() {
                                         .focusRequester(focusRequester),
                                     singleLine = true,
                                     keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
-                                    textStyle = mTypography.bodyLarge.copy(
+                                    textStyle = mTypography.titleLarge.copy(
                                         color = mColors.onSurface
                                     ),
                                     cursorBrush = solidCursorBrush,
