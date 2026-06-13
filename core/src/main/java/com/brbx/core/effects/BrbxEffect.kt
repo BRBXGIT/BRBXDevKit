@@ -7,6 +7,13 @@ import com.brbx.core.common.BrbxText
 import com.brbx.core.effects.snackbar.BrbxSnackbarConfig
 import com.brbx.core.navigation.BrbxBaseNavigationRoute
 
+/**
+ * Represents a one-off UI side effect within the Brbx architecture.
+ *
+ * Effects are transient actions triggered by the view model (or business logic) that must be
+ * handled exactly once by the UI layer. Common use cases include showing transient notifications
+ * (snackbars, toasts), triggering navigation, or launching external intents.
+ */
 @Immutable
 sealed interface BrbxEffect {
 
@@ -20,6 +27,7 @@ sealed interface BrbxEffect {
     // Navigation
     @JvmInline
     value class Navigate(val route: BrbxBaseNavigationRoute) : BrbxEffect
+
     data object NavigateBack : BrbxEffect
 
     // Intents
