@@ -81,7 +81,7 @@ fun BrbxRemoteImage(
     onError: @Composable (SubcomposeAsyncImageScope.(State.Error) -> Unit)? = null,
 ) {
     val context = LocalContext.current
-    val imageRequest = remember(model) {
+    val imageRequest = remember(key1 = model) {
         ImageRequest.Builder(context)
             .data(model)
             .crossfade(enable = true)
@@ -110,7 +110,7 @@ private fun BrbxRemoteImagePreview() {
             modifier = Modifier.size(100.dp, 100.dp),
             model = "",
             onError = {
-                Box(modifier = Modifier.fillMaxSize().background(mColors.surface))
+                Box(modifier = Modifier.fillMaxSize().background(color = mColors.surface))
             },
         )
     }

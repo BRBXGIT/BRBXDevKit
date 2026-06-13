@@ -20,9 +20,18 @@ import androidx.compose.animation.slideOutVertically
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.TransformOrigin
 
-// TODO Kdoc
+/**
+ * A utility object providing standard Jetpack Compose transitions backed by [tween] animation specs.
+ *
+ * This object is divided into two parts:
+ * - [Default]: Standard, single-property transitions (e.g., pure fade, pure scale).
+ * - [Presets]: Composite transitions that combine a primary animation with a fade effect for smoother UI transitions.
+ */
 object BrbxTweenTransitions {
 
+    /**
+     * Contains basic transition functions that apply a [tween] spec to standard Compose animations.
+     */
     object Default {
 
         fun fadeIn(
@@ -214,6 +223,10 @@ object BrbxTweenTransitions {
         )
     }
 
+    /**
+     * Contains composite transition presets that combine a geometric transformation
+     * (scale, slide, expand/shrink) with a standard fade effect for polished UI entry/exit.
+     */
     object Presets {
 
         fun scaleIn(

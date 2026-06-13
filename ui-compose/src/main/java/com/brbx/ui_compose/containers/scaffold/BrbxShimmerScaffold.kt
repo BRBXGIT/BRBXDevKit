@@ -1,21 +1,16 @@
 package com.brbx.ui_compose.containers.scaffold
 
 import androidx.compose.animation.Crossfade
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.FabPosition
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.ScaffoldDefaults
-import androidx.compose.material3.contentColorFor
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -25,72 +20,38 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.brbx.ui_compose.components.with_appearance.shimmer.BrbxShimmerBlock
+import com.brbx.ui_compose.components.shimmer.BrbxShimmerBlock
 import com.brbx.ui_compose.theme.BrbxTheme
-import com.brbx.ui_compose.theme.bAnimationTokens
-import com.brbx.ui_compose.theme.mColors
 import com.brbx.ui_compose.theme.bDimens
+import com.brbx.ui_compose.theme.mColors
 import kotlinx.coroutines.delay
 import kotlin.time.Duration.Companion.milliseconds
 
-/**
- * A customized [Scaffold] that smoothly transitions between a loading state and main content.
- *
- * This component wraps the standard Material [Scaffold] and uses a [Crossfade] animation
- * to switch between the [shimmerContent] and the actual [content] based on the [isShimmering] flag.
- * It is highly useful for screens that require a skeleton or shimmer loading effect while fetching data,
- * keeping the standard layout elements (like top bars and FABs) static.
- *
- * @param isShimmering Determines whether to show the [shimmerContent] (`true`) or the actual [content] (`false`).
- * @param modifier The modifier to be applied to the scaffold container.
- * @param isError Parameter that tells scaffold to show error content after shimmer.
- * @param topBar Top app bar of the screen.
- * @param bottomBar Bottom bar of the screen.
- * @param snackbarHost Component to host snackbars.
- * @param floatingActionButton Main action button of the screen.
- * @param floatingActionButtonPosition Position of the [floatingActionButton] on the screen.
- * @param containerColor The background color of the scaffold itself.
- * @param contentColor The preferred color for content inside this scaffold.
- * @param contentWindowInsets Window insets to be passed to the content slots.
- * @param crossfadeDuration The duration (in milliseconds) of the crossfade animation between states.
- * @param errorContent The composable representing the error in the something like data fetching.
- * @param shimmerContent The composable representing the loading state (e.g., skeleton UI). Receives the inner padding.
- * @param content The composable representing the main UI when data is loaded. Receives the inner padding.
- */
 @Composable
 fun BrbxShimmerScaffold(
     isShimmering: Boolean,
     modifier: Modifier = Modifier,
+    appearance: BrbxShimmerScaffoldAppearance = BrbxShimmerScaffoldAppearances.default,
     isError: Boolean = false,
     topBar: @Composable () -> Unit = {},
     bottomBar: @Composable () -> Unit = {},
     snackbarHost: @Composable () -> Unit = {},
     floatingActionButton: @Composable () -> Unit = {},
-    floatingActionButtonPosition: FabPosition = FabPosition.End,
-    containerColor: Color = mColors.background,
-    contentColor: Color = contentColorFor(backgroundColor = containerColor),
-    contentWindowInsets: WindowInsets = ScaffoldDefaults.contentWindowInsets,
-    crossfadeDuration: Int = bAnimationTokens.medium2.toInt(),
-    errorContent: @Composable ((PaddingValues) -> Unit)? = null,
+    errorContent: @Composable (PaddingValues) -> Unit = {},
     shimmerContent: @Composable (PaddingValues) -> Unit,
     content: @Composable (PaddingValues) -> Unit,
 ) =
     BrbxShimmerScaffoldImpl(
         isShimmering = isShimmering,
         modifier = modifier,
+        appearance = appearance,
         isError = isError,
         topBar = topBar,
         bottomBar = bottomBar,
         snackbarHost = snackbarHost,
         floatingActionButton = floatingActionButton,
-        floatingActionButtonPosition = floatingActionButtonPosition,
-        containerColor = containerColor,
-        contentColor = contentColor,
-        contentWindowInsets = contentWindowInsets,
-        crossfadeDuration = crossfadeDuration,
         errorContent = errorContent,
         content = content,
         shimmerContent = shimmerContent,
@@ -100,17 +61,13 @@ fun BrbxShimmerScaffold(
 private fun BrbxShimmerScaffoldImpl(
     isShimmering: Boolean,
     modifier: Modifier,
+    appearance: BrbxShimmerScaffoldAppearance,
     isError: Boolean,
     topBar: @Composable () -> Unit,
     bottomBar: @Composable () -> Unit,
     snackbarHost: @Composable () -> Unit,
     floatingActionButton: @Composable () -> Unit,
-    floatingActionButtonPosition: FabPosition,
-    containerColor: Color,
-    contentColor: Color,
-    contentWindowInsets: WindowInsets,
-    crossfadeDuration: Int,
-    errorContent: @Composable ((PaddingValues) -> Unit)?,
+    errorContent: @Composable (PaddingValues) -> Unit,
     shimmerContent: @Composable (PaddingValues) -> Unit,
     content: @Composable (PaddingValues) -> Unit,
 ) {
@@ -120,20 +77,20 @@ private fun BrbxShimmerScaffoldImpl(
         bottomBar = bottomBar,
         snackbarHost = snackbarHost,
         floatingActionButton = floatingActionButton,
-        floatingActionButtonPosition = floatingActionButtonPosition,
-        containerColor = containerColor,
-        contentColor = contentColor,
-        contentWindowInsets = contentWindowInsets,
+        floatingActionButtonPosition = appearance.floatingActionButtonPosition(),
+        containerColor = appearance.containerColor(),
+        contentColor = appearance.contentColor(),
+        contentWindowInsets = appearance.contentWindowInsets(),
     ) { paddingValues ->
         Crossfade(
             targetState = isShimmering,
-            animationSpec = tween(crossfadeDuration),
+            animationSpec = appearance.crossfadeAnimationSpec(),
             label = "Shimmer crossfade",
         ) { targetIsShimmering ->
             if (targetIsShimmering) {
                 shimmerContent(paddingValues)
             } else {
-                if (errorContent != null && isError) {
+                if (errorContent != {} && isError) {
                     errorContent(paddingValues)
                 } else {
                     content(paddingValues)
@@ -148,8 +105,8 @@ private fun BrbxShimmerScaffoldImpl(
 private fun BrbxShimmerScaffoldPreview() {
     BrbxTheme(colorScheme = darkColorScheme()) {
         var isShimmering by remember { mutableStateOf(true) }
-        LaunchedEffect(isShimmering) {
-            delay(3000.milliseconds)
+        LaunchedEffect(key1 = isShimmering) {
+            delay(duration = 3000.milliseconds)
             isShimmering = !isShimmering
         }
 
@@ -159,7 +116,6 @@ private fun BrbxShimmerScaffoldPreview() {
             .padding(horizontal = bDimens.micro8)
             .clip(shape = RoundedCornerShape(size = bDimens.macro1))
         BrbxShimmerScaffold(
-            containerColor = mColors.background,
             isShimmering = isShimmering,
             shimmerContent = {
                 Column(verticalArrangement = Arrangement.spacedBy(bDimens.micro6)) {

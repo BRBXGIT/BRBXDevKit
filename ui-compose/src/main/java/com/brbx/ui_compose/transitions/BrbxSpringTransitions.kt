@@ -21,9 +21,18 @@ import androidx.compose.animation.slideOutVertically
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.IntSize
 
-// TODO Kdoc
+/**
+ * A utility object providing standard Jetpack Compose transitions backed by [spring] animation specs.
+ *
+ * This object is divided into two parts:
+ * - [Default]: Standard, single-property transitions (e.g., pure fade, pure scale).
+ * - [Presets]: Composite transitions that combine a primary animation with a fade effect for smoother UI transitions.
+ */
 object BrbxSpringTransitions {
 
+    /**
+     * Contains basic transition functions that apply a [spring] spec to standard Compose animations.
+     */
     object Default {
 
         fun fadeIn(
@@ -215,6 +224,10 @@ object BrbxSpringTransitions {
         )
     }
 
+    /**
+     * Contains composite transition presets that combine a geometric transformation
+     * (scale, slide, expand/shrink) with a standard fade effect for polished UI entry/exit.
+     */
     object Presets {
 
         fun scaleIn(

@@ -27,7 +27,24 @@ import com.brbx.ui_compose.theme.shapes.BrbxShapes
 import com.brbx.ui_compose.theme.shapes.LocalBrbxShapes
 import com.brbx.ui_compose.theme.typography.defaultBrbxTypography
 
-// TODO Kdoc
+/**
+ * The core theming composable for the BRBX design system.
+ *
+ * This function integrates standard Material 3 tokens (Colors, Typography) with custom
+ * BRBX design tokens (Shapes, Dimensions, Elevation, Animation, Intensity, and Motion)
+ * via [CompositionLocalProvider]. Any composable hierarchy wrapped in this theme will
+ * have access to these specific design constraints.
+ *
+ * @param colorScheme The standard Material 3 color palette.
+ * @param typography The text styles mapped to Material 3's typography scale. Defaults to [defaultBrbxTypography].
+ * @param motion The custom motion scheme used for spatial or state transitions. Defaults to [DefaultBrbxMotion].
+ * @param shapes Custom structural shapes and corner radii. Defaults to [DefaultBrbxShapes].
+ * @param dimens Custom dimension and spacing tokens. Defaults to [DefaultBrbxDimens].
+ * @param elevation Custom shadow and surface elevation tokens. Defaults to [DefaultBrbxElevation].
+ * @param animationTokens Custom duration and curve specifications for animations. Defaults to [DefaultBrbxAnimationTokens].
+ * @param intensityTokens Custom opacity, alpha, and emphasis metrics. Defaults to [DefaultBrbxIntensityTokens].
+ * @param content The composable content to be rendered within the bounds of this theme.
+ */
 @Composable
 fun BrbxTheme(
     colorScheme: ColorScheme,
@@ -57,6 +74,12 @@ fun BrbxTheme(
     }
 }
 
+/**
+ * A static accessor object for retrieving the current BRBX theme values provided
+ * at the call site's position in the composition hierarchy.
+ *
+ * Functions similarly to [MaterialTheme], but encompasses the extended BRBX token sets.
+ */
 object BrbxTheme {
 
     val colorScheme: ColorScheme
@@ -84,13 +107,13 @@ object BrbxTheme {
         @Composable @ReadOnlyComposable get() = LocalBrbxMotion.current
 }
 
-// Material tokens
+// --- Standard Material Tokens Shorthands ---
 val mColors: ColorScheme
     @Composable @ReadOnlyComposable get() = BrbxTheme.colorScheme
 val mTypography: Typography
     @Composable @ReadOnlyComposable get() = BrbxTheme.typography
 
-// BRBX tokens
+// --- Custom BRBX Tokens Shorthands ---
 val bShapes: BrbxShapes
     @Composable @ReadOnlyComposable get() = BrbxTheme.shapes
 val bElevation: BrbxElevation

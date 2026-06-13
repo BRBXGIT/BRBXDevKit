@@ -100,12 +100,23 @@ interface BrbxMotion : MotionScheme {
     // ==========================================
 
     /**
-     * Tween animation optimized for smooth color transitions.
-     */
-    fun <T> colorSpec(delay: Long = 0L): FiniteAnimationSpec<T>
+     * A slow, duration-based animation specification for non-spatial properties like alpha or color.
+     * Ideal for broad, ambient transitions such as full-screen crossfades, large background color shifts,
+     * or gradual state changes that shouldn't feel jarring.
+     **/
+    fun <T> nonSpatialSlowSpec(delay: Long = 0L): DurationBasedAnimationSpec<T>
 
     /**
-     * Tween animation optimized for alpha (opacity) crossfades.
-     */
-    fun <T> fadeSpec(delay: Long = 0L): FiniteAnimationSpec<T>
+     * The standard, medium-speed duration-based animation specification for non-spatial properties.
+     * Best suited for everyday color transitions (e.g., button hover, press, or focus states) and standard
+     * component opacity crossfades.
+     **/
+    fun <T> nonSpatialMediumSpec(delay: Long = 0L): DurationBasedAnimationSpec<T>
+
+    /**
+     * A fast, duration-based animation specification for non-spatial properties.
+     * Used for immediate, highly responsive visual feedback such as quick alpha toggles, rapid
+     * highlight pulses, or instantaneous color snaps.
+     **/
+    fun <T> nonSpatialFastSpec(delay: Long = 0L): DurationBasedAnimationSpec<T>
 }
