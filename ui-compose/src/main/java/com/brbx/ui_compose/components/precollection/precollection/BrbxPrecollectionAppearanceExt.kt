@@ -7,11 +7,14 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.unit.Dp
 import com.brbx.ui_compose.common.UnsafeAppearanceCopy
 import com.brbx.ui_compose.components.tile.tile.rememberCopy
 import com.brbx.ui_compose.theme.bDimens
 import com.brbx.ui_compose.theme.bShapes
 import com.brbx.ui_compose.theme.mColors
+import com.brbx.ui_compose.theme.mTypography
 
 /**
  * Creates a new instance of [BrbxPrecollectionAppearance] with the
@@ -35,6 +38,14 @@ internal inline fun BrbxPrecollectionAppearance(
     crossinline contentPadding: @Composable () -> PaddingValues =
         { PaddingValues(horizontal = bDimens.micro5, vertical = bDimens.micro6) },
     crossinline leadingContentColor: @Composable () -> Color = { mColors.onTertiary },
+
+    // Default Content
+    crossinline textStyle: @Composable () -> TextStyle =
+        { mTypography.labelLarge },
+    crossinline iconSize: @Composable () -> Dp =
+        { bDimens.macro2 },
+    crossinline textPaddingEnd: @Composable () -> Dp =
+        { bDimens.micro8 },
 ): BrbxPrecollectionAppearance = object : BrbxPrecollectionAppearance {
 
     // Container
@@ -45,6 +56,11 @@ internal inline fun BrbxPrecollectionAppearance(
     // Leading content
     @Composable override fun contentColor(): Color = leadingContentColor()
     @Composable override fun contentPadding(): PaddingValues = contentPadding()
+
+    // Default Content
+    @Composable override fun textStyle(): TextStyle = textStyle()
+    @Composable override fun iconSize(): Dp = iconSize()
+    @Composable override fun textPaddingEnd(): Dp = textPaddingEnd()
 }
 
 /**
@@ -71,6 +87,11 @@ inline fun BrbxPrecollectionAppearance.copy(
         { this.contentPadding() },
     crossinline leadingContentColor: @Composable () -> Color =
         { this.contentColor() },
+
+    // Default Content
+    crossinline textStyle: @Composable () -> TextStyle = { this.textStyle() },
+    crossinline iconSize: @Composable () -> Dp = { this.iconSize() },
+    crossinline textPaddingEnd: @Composable () -> Dp = { this.textPaddingEnd() },
 ): BrbxPrecollectionAppearance = object : BrbxPrecollectionAppearance {
 
     // Container
@@ -81,6 +102,11 @@ inline fun BrbxPrecollectionAppearance.copy(
     // Content
     @Composable override fun contentPadding(): PaddingValues = contentPadding()
     @Composable override fun contentColor(): Color = leadingContentColor()
+
+    // Default Content
+    @Composable override fun textStyle(): TextStyle = textStyle()
+    @Composable override fun iconSize(): Dp = iconSize()
+    @Composable override fun textPaddingEnd(): Dp = textPaddingEnd()
 }
 
 /**
@@ -108,6 +134,11 @@ inline fun BrbxPrecollectionAppearance.rememberCopy(
         { this.contentPadding() },
     crossinline leadingContentColor: @Composable () -> Color =
         { this.contentColor() },
+
+    // Default Content
+    crossinline textStyle: @Composable () -> TextStyle = { this.textStyle() },
+    crossinline iconSize: @Composable () -> Dp = { this.iconSize() },
+    crossinline textPaddingEnd: @Composable () -> Dp = { this.textPaddingEnd() },
 ): BrbxPrecollectionAppearance = remember {
     this.copy(
         containerShape = containerShape,
@@ -115,5 +146,8 @@ inline fun BrbxPrecollectionAppearance.rememberCopy(
         containerRippleColor = containerRippleColor,
         contentPadding = contentPadding,
         leadingContentColor = leadingContentColor,
+        textStyle = textStyle,
+        iconSize = iconSize,
+        textPaddingEnd = textPaddingEnd,
     )
 }

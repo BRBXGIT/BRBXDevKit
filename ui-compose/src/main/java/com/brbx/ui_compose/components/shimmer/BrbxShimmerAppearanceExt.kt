@@ -32,7 +32,7 @@ internal inline fun BrbxShimmerBlockAppearance(
         { remember { StartOffset(offsetMillis = 0) } },
 
     // Colors
-    crossinline containerColor: @Composable () -> Color = { mColors.surfaceContainer },
+    crossinline containerColorr: @Composable () -> Color = { mColors.surfaceContainer },
 ): BrbxShimmerBlockAppearance = object : BrbxShimmerBlockAppearance {
 
     // Animation
@@ -43,7 +43,7 @@ internal inline fun BrbxShimmerBlockAppearance(
     @Composable override fun initialStartOffset(): StartOffset = initialStartOffset()
 
     // Colors
-    @Composable override fun containerColor(): Color = containerColor()
+    @Composable override fun containerColor(): Color = containerColorr()
 }
 
 /**

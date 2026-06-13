@@ -11,7 +11,7 @@ import androidx.compose.runtime.Immutable
  * eliminating the need for duplicated component overloads.
  */
 @Immutable
-interface BrbxText {
+sealed interface BrbxText {
 
     @JvmInline
     value class Res(@param:StringRes val resId: Int) : BrbxText

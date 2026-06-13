@@ -7,12 +7,15 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import com.brbx.ui_compose.common.UnsafeAppearanceCopy
 import com.brbx.ui_compose.theme.bDimens
 import com.brbx.ui_compose.theme.bElevation
 import com.brbx.ui_compose.theme.bShapes
 import com.brbx.ui_compose.theme.mColors
+import com.brbx.ui_compose.theme.mTypography
 
 /**
  * Creates a new instance of
@@ -50,6 +53,14 @@ internal inline fun BrbxTileAppearance(
     // Title & Description
     crossinline titleColor: @Composable () -> Color = { mColors.onSurface },
     crossinline descriptionColor: @Composable () -> Color = { mColors.secondary },
+
+    // Typography
+    crossinline titleStyle: @Composable () -> TextStyle = { mTypography.bodyMedium },
+    crossinline titleMaxLines: @Composable () -> Int = { remember { 1 } },
+    crossinline titleOverflow: @Composable () -> TextOverflow = { remember { TextOverflow.Ellipsis } },
+    crossinline descriptionStyle: @Composable () -> TextStyle = { mTypography.labelMedium },
+    crossinline descriptionMaxLines: @Composable () -> Int = { remember { 2 } },
+    crossinline descriptionOverflow: @Composable () -> TextOverflow = { remember { TextOverflow.Ellipsis } },
 ): BrbxTileAppearance = object : BrbxTileAppearance {
 
     // Container
@@ -93,6 +104,14 @@ internal inline fun BrbxTileAppearance(
 
     @Composable
     override fun descriptionColor(): Color = descriptionColor()
+
+    // Typography
+    @Composable override fun titleStyle(): TextStyle = titleStyle()
+    @Composable override fun titleMaxLines(): Int = titleMaxLines()
+    @Composable override fun titleOverflow(): TextOverflow = titleOverflow()
+    @Composable override fun descriptionStyle(): TextStyle = descriptionStyle()
+    @Composable override fun descriptionMaxLines(): Int = descriptionMaxLines()
+    @Composable override fun descriptionOverflow(): TextOverflow = descriptionOverflow()
 }
 
 /**
@@ -132,6 +151,14 @@ inline fun BrbxTileAppearance.copy(
     // Title & Description
     crossinline titleColor: @Composable () -> Color = { this.titleColor() },
     crossinline descriptionColor: @Composable () -> Color = { this.descriptionColor() },
+
+    // Typography
+    crossinline titleStyle: @Composable () -> TextStyle = { this.titleStyle() },
+    crossinline titleMaxLines: @Composable () -> Int = { this.titleMaxLines() },
+    crossinline titleOverflow: @Composable () -> TextOverflow = { this.titleOverflow() },
+    crossinline descriptionStyle: @Composable () -> TextStyle = { this.descriptionStyle() },
+    crossinline descriptionMaxLines: @Composable () -> Int = { this.descriptionMaxLines() },
+    crossinline descriptionOverflow: @Composable () -> TextOverflow = { this.descriptionOverflow() },
 ): BrbxTileAppearance = object : BrbxTileAppearance {
 
     // Container
@@ -175,6 +202,14 @@ inline fun BrbxTileAppearance.copy(
 
     @Composable
     override fun descriptionColor(): Color = descriptionColor()
+
+    // Typography
+    @Composable override fun titleStyle(): TextStyle = titleStyle()
+    @Composable override fun titleMaxLines(): Int = titleMaxLines()
+    @Composable override fun titleOverflow(): TextOverflow = titleOverflow()
+    @Composable override fun descriptionStyle(): TextStyle = descriptionStyle()
+    @Composable override fun descriptionMaxLines(): Int = descriptionMaxLines()
+    @Composable override fun descriptionOverflow(): TextOverflow = descriptionOverflow()
 }
 
 /**
@@ -224,6 +259,20 @@ inline fun BrbxTileAppearance.rememberCopy(
     // Title & Description
     crossinline titleColor: @Composable () -> Color = { this.titleColor() },
     crossinline descriptionColor: @Composable () -> Color = { this.descriptionColor() },
+
+    // Typography
+    crossinline titleStyle: @Composable () -> TextStyle =
+        { this.titleStyle() },
+    crossinline titleMaxLines: @Composable () -> Int =
+        { this.titleMaxLines() },
+    crossinline titleOverflow: @Composable () -> TextOverflow =
+        { this.titleOverflow() },
+    crossinline descriptionStyle: @Composable () -> TextStyle =
+        { this.descriptionStyle() },
+    crossinline descriptionMaxLines: @Composable () -> Int =
+        { this.descriptionMaxLines() },
+    crossinline descriptionOverflow: @Composable () -> TextOverflow =
+        { this.descriptionOverflow() },
 ): BrbxTileAppearance = remember {
     this.copy(
         containerShape = containerShape,
@@ -239,5 +288,11 @@ inline fun BrbxTileAppearance.rememberCopy(
         contentColumnSpacing = contentColumnSpacing,
         titleColor = titleColor,
         descriptionColor = descriptionColor,
+        titleStyle = titleStyle,
+        titleMaxLines = titleMaxLines,
+        titleOverflow = titleOverflow,
+        descriptionStyle = descriptionStyle,
+        descriptionMaxLines = descriptionMaxLines,
+        descriptionOverflow = descriptionOverflow,
     )
 }

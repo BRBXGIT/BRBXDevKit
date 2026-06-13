@@ -8,12 +8,13 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.LocalContentColor
-import androidx.compose.material3.Text
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.material3.ripple
 import androidx.compose.runtime.Composable
@@ -23,9 +24,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.tooling.preview.Preview
+import com.brbx.core.common.BrbxText
+import com.brbx.core.common.toBrbxText
+import com.brbx.ui_compose.components.card.shimmer.BrbxContentCardShimmer
 import com.brbx.ui_compose.components.image.BrbxRemoteImage
+import com.brbx.ui_compose.components.text.BrbxText
 import com.brbx.ui_compose.theme.BrbxTheme
-import com.brbx.ui_compose.theme.mTypography
 
 /**
  * An interactive, visually rich card component designed to display a background image
@@ -67,15 +71,48 @@ fun BrbxContentCard(
 ) =
     BrbxContentCardImpl(
         imageUrl = imageUrl,
-        title = title,
-        description = description,
         modifier = modifier,
         appearance = appearance,
         enabled = enabled,
         onClick = onClick,
         badge = badge,
+        title = title,
+        description = description,
     )
 
+@Composable
+fun BrbxContentCard(
+    imageUrl: String?,
+    modifier: Modifier = Modifier,
+    appearance: BrbxContentCardAppearance = BrbxContentCardAppearances.tertiary,
+    enabled: Boolean = true,
+    onClick: () -> Unit = {},
+    badge: @Composable BoxScope.() -> Unit = {},
+    title: BrbxText,
+    description: BrbxText,
+) =
+    BrbxContentCardImpl(
+        imageUrl = imageUrl,
+        modifier = modifier,
+        appearance = appearance,
+        enabled = enabled,
+        onClick = onClick,
+        badge = badge,
+        title = {
+            BrbxText(
+                text = title,
+                maxLines = appearance.titleMaxLines(),
+                overflow = appearance.titleOverflow(),
+            )
+        },
+        description = {
+            BrbxText(
+                text = description,
+                maxLines = appearance.titleMaxLines(),
+                overflow = appearance.descriptionOverflow(),
+            )
+        },
+    )
 
 @Composable
 private fun BrbxContentCardImpl(
@@ -129,13 +166,15 @@ private fun BrbxContentCardImpl(
                 .padding(paddingValues = appearance.infoContentPadding()),
         ) {
             CompositionLocalProvider(
-                LocalContentColor provides appearance.titleColor()
+                LocalContentColor provides appearance.titleColor(),
+                LocalTextStyle provides appearance.titleStyle(),
             ) {
                 title()
             }
 
             CompositionLocalProvider(
-                LocalContentColor provides appearance.descriptionColor()
+                LocalContentColor provides appearance.descriptionColor(),
+                LocalTextStyle provides appearance.descriptionStyle(),
             ) {
                 description()
             }
@@ -147,21 +186,17 @@ private fun BrbxContentCardImpl(
 @Composable
 private fun BrbxContentCardMediumPreview() {
     BrbxTheme(colorScheme =  lightColorScheme()) {
-        BrbxContentCard(
-            appearance = BrbxContentCardAppearances.primary,
-            imageUrl = "",
-            title = {
-                Text(
-                    text = "Title",
-                    style = mTypography.bodyLarge,
-                )
-            },
-            description = {
-                Text(
-                    text = "Description",
-                    style = mTypography.bodyMedium,
-                )
-            }
-        )
+        Row {
+            BrbxContentCard(
+                appearance = BrbxContentCardAppearances.primaryElevated,
+                imageUrl = "",
+                title = "Title".toBrbxText(),
+                description = "Description".toBrbxText()
+            )
+
+            BrbxContentCardShimmer(
+                appearance = BrbxContentCardAppearances.primaryElevated
+            ) {  }
+        }
     }
 }

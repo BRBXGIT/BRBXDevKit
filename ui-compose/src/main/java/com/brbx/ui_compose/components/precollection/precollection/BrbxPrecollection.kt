@@ -7,8 +7,9 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.LocalContentColor
-import androidx.compose.material3.Text
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.material3.ripple
 import androidx.compose.runtime.Composable
@@ -18,10 +19,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
+import com.brbx.core.common.BrbxIcon
+import com.brbx.core.common.BrbxText
+import com.brbx.core.common.toBrbxIcon
+import com.brbx.core.common.toBrbxText
 import com.brbx.ui_compose.components.image.BrbxIcon
+import com.brbx.ui_compose.components.text.BrbxText
 import com.brbx.ui_compose.theme.BrbxTheme
-import com.brbx.ui_compose.theme.bDimens
-import com.brbx.ui_compose.theme.mTypography
 import dev.chiksmedina.solar.OutlineSolar
 import dev.chiksmedina.solar.outline.Users
 import dev.chiksmedina.solar.outline.users.User
@@ -63,6 +67,37 @@ fun BrbxPrecollection(
     )
 
 @Composable
+fun BrbxPrecollection(
+    text: BrbxText,
+    modifier: Modifier = Modifier,
+    icon: BrbxIcon? = null,
+    appearance: BrbxPrecollectionAppearance = BrbxPrecollectionAppearances.tertiary,
+    enabled: Boolean = true,
+    onClick: () -> Unit = {},
+) {
+    BrbxPrecollectionImpl(
+        modifier = modifier,
+        appearance = appearance,
+        enabled = enabled,
+        onClick = onClick,
+    ) {
+        BrbxText(
+            text = text,
+            modifier = Modifier
+                .weight(1f, fill = false)
+                .padding(end = appearance.textPaddingEnd())
+        )
+
+        icon?.let {
+            BrbxIcon(
+                brbxIcon = icon,
+                modifier = Modifier.size(appearance.iconSize())
+            )
+        }
+    }
+}
+
+@Composable
 private fun BrbxPrecollectionImpl(
     modifier: Modifier = Modifier,
     appearance: BrbxPrecollectionAppearance,
@@ -87,7 +122,8 @@ private fun BrbxPrecollectionImpl(
         horizontalArrangement = Arrangement.SpaceBetween,
     ) {
         CompositionLocalProvider(
-            LocalContentColor provides appearance.contentColor()
+            LocalContentColor provides appearance.contentColor(),
+            LocalTextStyle provides appearance.textStyle(),
         ) {
             content()
         }
@@ -98,18 +134,9 @@ private fun BrbxPrecollectionImpl(
 @Composable
 private fun BrbxPrecollectionPreview() {
     BrbxTheme(colorScheme = lightColorScheme()) {
-        BrbxPrecollection {
-            Text(
-                text = "Some long description, it's very long and can not be in one line so it will be on second",
-                style = mTypography.labelLarge,
-                modifier = Modifier
-                    .weight(1f, fill = false)
-                    .padding(end = bDimens.micro8)
-            )
-
-            BrbxIcon(
-                imageVector = OutlineSolar.Users.User,
-            )
-        }
+        BrbxPrecollection(
+            text = "Some long description, it's very long and can not be in one line so it will be on second".toBrbxText(),
+            icon = OutlineSolar.Users.User.toBrbxIcon(),
+        )
     }
 }

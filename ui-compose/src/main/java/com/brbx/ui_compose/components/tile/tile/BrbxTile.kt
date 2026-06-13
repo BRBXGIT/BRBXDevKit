@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.LocalContentColor
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.Text
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.material3.ripple
@@ -22,8 +23,11 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.brbx.core.common.BrbxText
+import com.brbx.core.common.toBrbxText
 import com.brbx.ui_compose.components.image.BrbxIcon
 import com.brbx.ui_compose.components.precollection.precollection.BrbxPrecollection
+import com.brbx.ui_compose.components.text.BrbxText
 import com.brbx.ui_compose.containers.container.container.BrbxContainer
 import com.brbx.ui_compose.theme.BrbxTheme
 import com.brbx.ui_compose.theme.bDimens
@@ -67,9 +71,9 @@ fun BrbxTile(
     enabled: Boolean = true,
     onClick: () -> Unit = {},
     additionalContent: @Composable () -> Unit = {},
+    description: @Composable () -> Unit = {},
     trailingContent: @Composable () -> Unit,
     title: @Composable () -> Unit,
-    description: @Composable () -> Unit,
 ) =
     BrbxTileImpl(
         modifier = modifier,
@@ -80,6 +84,42 @@ fun BrbxTile(
         trailingContent = trailingContent,
         title = title,
         description = description,
+    )
+
+@Composable
+fun BrbxTile(
+    title: BrbxText,
+    modifier: Modifier = Modifier,
+    description: BrbxText? = null,
+    appearance: BrbxTileAppearance = BrbxTileAppearances.default,
+    enabled: Boolean = true,
+    onClick: () -> Unit = {},
+    additionalContent: @Composable () -> Unit = {},
+    trailingContent: @Composable () -> Unit,
+) =
+    BrbxTileImpl(
+        modifier = modifier,
+        appearance = appearance,
+        enabled = enabled,
+        onClick = onClick,
+        trailingContent = trailingContent,
+        additionalContent = additionalContent,
+        title = {
+            BrbxText(
+                text = title,
+                maxLines = appearance.titleMaxLines(),
+                overflow = appearance.titleOverflow()
+            )
+        },
+        description = {
+            if (description != null) {
+                BrbxText(
+                    text = description,
+                    maxLines = appearance.descriptionMaxLines(),
+                    overflow = appearance.descriptionOverflow()
+                )
+            }
+        }
     )
 
 @Composable
@@ -130,13 +170,15 @@ private fun BrbxTileImpl(
                     verticalArrangement = Arrangement.spacedBy(appearance.verticalSpacing()),
                 ) {
                     CompositionLocalProvider(
-                        LocalContentColor provides appearance.titleColor()
+                        LocalContentColor provides appearance.titleColor(),
+                        LocalTextStyle provides appearance.titleStyle(),
                     ) {
                         title()
                     }
 
                     CompositionLocalProvider(
-                        LocalContentColor provides appearance.descriptionColor()
+                        LocalContentColor provides appearance.descriptionColor(),
+                        LocalTextStyle provides appearance.descriptionStyle(),
                     ) {
                         description()
                     }
@@ -169,22 +211,12 @@ private fun BrbxTileAppearancePreview() {
                 ) {
                     BrbxIcon(
                         imageVector = BoldSolar.Users.User,
-                        modifier = Modifier.padding(all =bDimens.micro4),
+                        modifier = Modifier.padding(all = bDimens.micro4),
                     )
                 }
             },
-            title = {
-                Text(
-                    text = "Some title",
-                    style = mTypography.bodyMedium,
-                )
-            },
-            description = {
-                Text(
-                    text = "Some long description, it's very long and can not be in one line so it will be on second",
-                    style = mTypography.labelMedium,
-                )
-            },
+            title = "Some title".toBrbxText(),
+            description = "Some long description, it's very long and can not be in one line so it will be on second".toBrbxText(),
             additionalContent = {
                 BrbxPrecollection {
                     Text(

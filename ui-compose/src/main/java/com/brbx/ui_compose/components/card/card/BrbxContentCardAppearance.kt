@@ -7,6 +7,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 
 /**
@@ -104,7 +106,7 @@ interface BrbxContentCardAppearance {
     fun infoContentPadding(): PaddingValues
 
     // ---------------------------------------------------------------------------
-    // Title & Description
+    // Title & Description colors
     // ---------------------------------------------------------------------------
 
     /**
@@ -118,4 +120,44 @@ interface BrbxContentCardAppearance {
      */
     @Composable
     fun descriptionColor(): Color
+
+    // ---------------------------------------------------------------------------
+    // Typography
+    // ---------------------------------------------------------------------------
+
+    /**
+     * The text style of the title.
+     */
+    @Composable
+    fun titleStyle(): TextStyle
+
+    /**
+     * The maximum number of lines for the title.
+     */
+    @Composable
+    fun titleMaxLines(): Int
+
+    /**
+     * How visual overflow should be handled for the title.
+     */
+    @Composable
+    fun titleOverflow(): TextOverflow
+
+    /**
+     * The text style of the description.
+     */
+    @Composable
+    fun descriptionStyle(): TextStyle
+
+    /**
+     * The maximum number of lines for the description.
+     */
+    @Composable
+    fun descriptionMaxLines(): Int
+
+    /**
+     * How visual overflow should be handled for the description.
+     */
+    @Composable
+    fun descriptionOverflow(): TextOverflow
 }

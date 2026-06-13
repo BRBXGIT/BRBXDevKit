@@ -6,6 +6,8 @@ import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.unit.Dp
 
 /**
  * Defines the visual appearance and styling of the [BrbxPrecollection] component.
@@ -51,4 +53,26 @@ interface BrbxPrecollectionAppearance {
      */
     @Composable
     fun contentColor(): Color
+
+    // ---------------------------------------------------------------------------
+    // Default Content
+    // ---------------------------------------------------------------------------
+
+    /**
+     * The default text style for the precollection text.
+     */
+    @Composable
+    fun textStyle(): TextStyle
+
+    /**
+     * The default size for the trailing icon.
+     */
+    @Composable
+    fun iconSize(): Dp
+
+    /**
+     * The padding applied to the end of the text (between text and icon).
+     */
+    @Composable
+    fun textPaddingEnd(): Dp
 }

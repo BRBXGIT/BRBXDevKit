@@ -38,6 +38,7 @@ import dev.chiksmedina.solar.outline.Search
 import dev.chiksmedina.solar.outline.arrows.ArrowLeft
 import dev.chiksmedina.solar.outline.search.Magnifer
 
+// TODO Add default impl of slot api
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BrbxSearchableTopBar(

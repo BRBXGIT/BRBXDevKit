@@ -9,21 +9,22 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.brbx.ui_compose.components.shimmer.BrbxShimmerBlock
 import com.brbx.ui_compose.components.shimmer.BrbxShimmerBlockAppearances
 import com.brbx.ui_compose.components.shimmer.rememberCopy
 import com.brbx.ui_compose.components.tile.tile.BrbxTileAppearance
 import com.brbx.ui_compose.components.tile.tile.BrbxTileAppearances
 import com.brbx.ui_compose.containers.container.shimmer.BrbxContainerShimmer
+import com.brbx.ui_compose.state.brbxRememberTextHeightInDp
 import com.brbx.ui_compose.theme.BrbxTheme
 import com.brbx.ui_compose.theme.bDimens
 import com.brbx.ui_compose.theme.bShapes
@@ -69,6 +70,47 @@ fun BrbxTileShimmer(
     )
 
 @Composable
+fun BrbxTileShimmer(
+    modifier: Modifier = Modifier,
+    appearance: BrbxTileAppearance = BrbxTileAppearances.default,
+    additionalContent: @Composable () -> Unit = {},
+    trailingContent: @Composable () -> Unit,
+) {
+    BrbxTileShimmerImpl(
+        modifier = modifier,
+        appearance = appearance,
+        additionalContent = additionalContent,
+        trailingContent = trailingContent,
+        title = {
+            val height = brbxRememberTextHeightInDp(text = "Title")
+            val titleAppearance = BrbxShimmerBlockAppearances.default.rememberCopy(
+                containerColor = { mColors.surfaceContainerHigh },
+            )
+            BrbxShimmerBlock(
+                appearance = titleAppearance,
+                modifier = Modifier
+                    .height(height)
+                    .fillMaxWidth(fraction = 0.6f)
+                    .clip(shape = bShapes.micro1)
+            )
+        },
+        description = {
+            val height = brbxRememberTextHeightInDp(text = "Description")
+            val descriptionAppearance = BrbxShimmerBlockAppearances.default.rememberCopy(
+                containerColor = { mColors.surfaceContainerHighest },
+            )
+            BrbxShimmerBlock(
+                appearance = descriptionAppearance,
+                modifier = Modifier
+                    .height(height)
+                    .fillMaxWidth(fraction = 0.8f)
+                    .clip(shape = bShapes.micro1)
+            )
+        }
+    )
+}
+
+@Composable
 private fun BrbxTileShimmerImpl(
     modifier: Modifier = Modifier,
     appearance: BrbxTileAppearance,
@@ -106,9 +148,17 @@ private fun BrbxTileShimmerImpl(
                     verticalArrangement = Arrangement.spacedBy(appearance.verticalSpacing()),
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    title()
+                    CompositionLocalProvider(
+                        LocalTextStyle provides appearance.titleStyle(),
+                    ) {
+                        title()
+                    }
 
-                    description()
+                    CompositionLocalProvider(
+                        LocalTextStyle provides appearance.descriptionStyle()
+                    ) {
+                        description()
+                    }
                 }
             }
 
@@ -135,28 +185,6 @@ private fun BrbxTileShimmerPreview() {
                     )
                 }
             },
-            title = {
-                BrbxShimmerBlock(
-                    appearance = BrbxShimmerBlockAppearances.default.rememberCopy(
-                        containerColor = { mColors.surfaceContainerHigh },
-                    ),
-                    modifier = Modifier
-                        .height(bDimens.micro8)
-                        .width(180.dp)
-                        .clip(shape = bShapes.micro3)
-                )
-            },
-            description = {
-                BrbxShimmerBlock(
-                    appearance = BrbxShimmerBlockAppearances.default.rememberCopy(
-                        containerColor = { mColors.surfaceContainerHighest },
-                    ),
-                    modifier = Modifier
-                        .height(bDimens.micro6)
-                        .width(240.dp)
-                        .clip(shape = bShapes.micro3)
-                )
-            }
         )
     }
 }

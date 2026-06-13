@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.dp
 import com.brbx.ui_compose.components.precollection.precollection.BrbxPrecollectionAppearance
 import com.brbx.ui_compose.components.precollection.precollection.BrbxPrecollectionAppearances
 import com.brbx.ui_compose.components.shimmer.BrbxShimmerBlock
+import com.brbx.ui_compose.state.brbxRememberTextHeightInDp
 import com.brbx.ui_compose.theme.BrbxTheme
 import com.brbx.ui_compose.theme.bShapes
 
@@ -47,6 +48,25 @@ fun BrbxPrecollectionShimmer(
         modifier = modifier,
         appearance = appearance,
         content = content,
+    )
+
+@Composable
+fun BrbxPrecollectionShimmer(
+    modifier: Modifier = Modifier,
+    appearance: BrbxPrecollectionAppearance = BrbxPrecollectionAppearances.tertiary,
+) =
+    BrbxPrecollectionShimmerImpl(
+        modifier = modifier,
+        appearance = appearance,
+        content = {
+            val height = brbxRememberTextHeightInDp(text = "Description") - 1.dp
+            BrbxShimmerBlock(
+                modifier = Modifier
+                    .height(height)
+                    .fillMaxWidth(fraction = 0.7f)
+                    .clip(shape = bShapes.micro1)
+            )
+        }
     )
 
 @Composable
