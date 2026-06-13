@@ -2,6 +2,7 @@ package com.brbx.brbxdevkit
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -11,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -40,6 +42,7 @@ import dev.chiksmedina.solar.outline.arrows.ArrowLeft
 import dev.chiksmedina.solar.outline.essentionalui.Cat
 import dev.chiksmedina.solar.outline.search.Magnifer
 
+@OptIn(ExperimentalMaterial3Api::class)
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +53,8 @@ class MainActivity : ComponentActivity() {
             } else {
                 lightColorScheme()
             }
+
+            BackHandler() { }
 
             var isSearching by remember { mutableStateOf(false) }
             BrbxTheme(theme) {

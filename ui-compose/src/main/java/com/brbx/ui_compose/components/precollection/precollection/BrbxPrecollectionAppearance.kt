@@ -64,11 +64,7 @@ interface BrbxPrecollectionAppearance {
     @Composable
     fun textStyle(): TextStyle
 
-    /**
-     * The default size for the trailing icon.
-     */
-    @Composable
-    fun iconSize(): Dp
+    // TODO Add max lines and overflow also add testing features to such components
 
     /**
      * The padding applied to the end of the text (between text and icon).

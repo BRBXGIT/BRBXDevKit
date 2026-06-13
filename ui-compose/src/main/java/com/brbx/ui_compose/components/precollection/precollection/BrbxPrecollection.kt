@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.lightColorScheme
@@ -70,7 +71,7 @@ fun BrbxPrecollection(
 fun BrbxPrecollection(
     text: BrbxText,
     modifier: Modifier = Modifier,
-    icon: BrbxIcon? = null,
+    leadingContent: @Composable () -> Unit = {},
     appearance: BrbxPrecollectionAppearance = BrbxPrecollectionAppearances.tertiary,
     enabled: Boolean = true,
     onClick: () -> Unit = {},
@@ -88,12 +89,7 @@ fun BrbxPrecollection(
                 .padding(end = appearance.textPaddingEnd())
         )
 
-        icon?.let {
-            BrbxIcon(
-                brbxIcon = icon,
-                modifier = Modifier.size(appearance.iconSize())
-            )
-        }
+        leadingContent()
     }
 }
 
@@ -136,7 +132,9 @@ private fun BrbxPrecollectionPreview() {
     BrbxTheme(colorScheme = lightColorScheme()) {
         BrbxPrecollection(
             text = "Some long description, it's very long and can not be in one line so it will be on second".toBrbxText(),
-            icon = OutlineSolar.Users.User.toBrbxIcon(),
+            leadingContent = {
+                BrbxIcon(OutlineSolar.Users.User)
+            }
         )
     }
 }

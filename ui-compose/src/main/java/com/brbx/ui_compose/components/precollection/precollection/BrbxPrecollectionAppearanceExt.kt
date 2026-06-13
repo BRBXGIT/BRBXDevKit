@@ -42,8 +42,6 @@ internal inline fun BrbxPrecollectionAppearance(
     // Default Content
     crossinline textStyle: @Composable () -> TextStyle =
         { mTypography.labelLarge },
-    crossinline iconSize: @Composable () -> Dp =
-        { bDimens.macro2 },
     crossinline textPaddingEnd: @Composable () -> Dp =
         { bDimens.micro8 },
 ): BrbxPrecollectionAppearance = object : BrbxPrecollectionAppearance {
@@ -59,7 +57,6 @@ internal inline fun BrbxPrecollectionAppearance(
 
     // Default Content
     @Composable override fun textStyle(): TextStyle = textStyle()
-    @Composable override fun iconSize(): Dp = iconSize()
     @Composable override fun textPaddingEnd(): Dp = textPaddingEnd()
 }
 
@@ -90,7 +87,6 @@ inline fun BrbxPrecollectionAppearance.copy(
 
     // Default Content
     crossinline textStyle: @Composable () -> TextStyle = { this.textStyle() },
-    crossinline iconSize: @Composable () -> Dp = { this.iconSize() },
     crossinline textPaddingEnd: @Composable () -> Dp = { this.textPaddingEnd() },
 ): BrbxPrecollectionAppearance = object : BrbxPrecollectionAppearance {
 
@@ -105,7 +101,6 @@ inline fun BrbxPrecollectionAppearance.copy(
 
     // Default Content
     @Composable override fun textStyle(): TextStyle = textStyle()
-    @Composable override fun iconSize(): Dp = iconSize()
     @Composable override fun textPaddingEnd(): Dp = textPaddingEnd()
 }
 
@@ -137,7 +132,6 @@ inline fun BrbxPrecollectionAppearance.rememberCopy(
 
     // Default Content
     crossinline textStyle: @Composable () -> TextStyle = { this.textStyle() },
-    crossinline iconSize: @Composable () -> Dp = { this.iconSize() },
     crossinline textPaddingEnd: @Composable () -> Dp = { this.textPaddingEnd() },
 ): BrbxPrecollectionAppearance = remember {
     this.copy(
@@ -147,7 +141,6 @@ inline fun BrbxPrecollectionAppearance.rememberCopy(
         contentPadding = contentPadding,
         leadingContentColor = leadingContentColor,
         textStyle = textStyle,
-        iconSize = iconSize,
         textPaddingEnd = textPaddingEnd,
     )
 }

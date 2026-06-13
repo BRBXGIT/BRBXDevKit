@@ -1,14 +1,16 @@
 package com.brbx.ui_compose.components.searchable_top_bar
 
-import androidx.compose.animation.core.FiniteAnimationSpec
+import androidx.compose.animation.AnimatedContentTransitionScope
+import androidx.compose.animation.ContentTransform
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.TopAppBarColors
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.IntOffset
 
 /**
  * Defines the visual appearance and animation specs of the [BrbxSearchableTopBar] component.
@@ -47,24 +49,42 @@ interface BrbxSearchableTopBarAppearance {
     fun contentPadding(): PaddingValues
 
     // ---------------------------------------------------------------------------
-    // Animations
+    // Typography & Colors
     // ---------------------------------------------------------------------------
 
     /**
-     * The animation spec used for the enter spatial transitions (slide in).
+     * The text style applied to the standard title.
      */
-    @Composable
-    fun enterSpatial(): FiniteAnimationSpec<IntOffset>
+    @Composable fun titleStyle(): TextStyle
 
     /**
-     * The animation spec used for the exit spatial transitions (slide out).
+     * The text style applied to the active search field input.
      */
-    @Composable
-    fun exitSpatial(): FiniteAnimationSpec<IntOffset>
+    @Composable fun searchFieldTextStyle(): TextStyle
 
     /**
-     * The animation spec used for the alpha transitions (fade in/out).
+     * The brush used to draw the blinking cursor in the search field.
+     */
+    @Composable fun searchFieldCursorBrush(): Brush
+
+    /**
+     * The text style applied to the search field placeholder.
+     */
+    @Composable fun searchFieldPlaceholderStyle(): TextStyle
+
+    // ---------------------------------------------------------------------------
+    // Transitions
+    // ---------------------------------------------------------------------------
+
+    /**
+     * The transition specification for swapping the title and the search field.
      */
     @Composable
-    fun alphaSpec(): FiniteAnimationSpec<Float>
+    fun searchFieldTransitionSpec(): AnimatedContentTransitionScope<Boolean>.() -> ContentTransform
+
+    /**
+     * The transition specification for swapping the search icon and the close icon.
+     */
+    @Composable
+    fun searchIconTransitionSpec(): AnimatedContentTransitionScope<Boolean>.() -> ContentTransform
 }

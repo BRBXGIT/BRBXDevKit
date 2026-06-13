@@ -31,10 +31,11 @@ dependencies {
     api(libs.androidx.compose.ui.graphics)
     api(libs.androidx.compose.material3)
     api(libs.androidx.compose.animation.graphics)
+    api(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.ui.tooling.preview)
     debugImplementation(libs.androidx.compose.ui.tooling)
     // Coil
     implementation(libs.coil.compose)
     // Solar icons
-    api(libs.solar)
+    implementation(libs.solar)
 }

@@ -1,6 +1,14 @@
 package com.brbx.ui_compose.components.searchable_top_bar
 
-import androidx.compose.animation.core.FiniteAnimationSpec
+import androidx.compose.animation.AnimatedContentTransitionScope
+import androidx.compose.animation.ContentTransform
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.animation.slideOutVertically
+import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -8,12 +16,16 @@ import androidx.compose.material3.TopAppBarColors
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
-import androidx.compose.ui.unit.dp
 import com.brbx.ui_compose.common.UnsafeAppearanceCopy
 import com.brbx.ui_compose.components.tile.tile.rememberCopy
 import com.brbx.ui_compose.theme.bMotion
+import com.brbx.ui_compose.theme.mColors
+import com.brbx.ui_compose.theme.mTypography
 
 /**
  * Creates a new instance of [BrbxSearchableTopBarAppearance] with the provided properties.
@@ -33,13 +45,57 @@ internal inline fun BrbxSearchableTopBarAppearance(
     crossinline contentPadding: @Composable () -> PaddingValues =
         { TopAppBarDefaults.ContentPadding },
 
-    // Animations
-    crossinline enterSpatial: @Composable () -> FiniteAnimationSpec<IntOffset> =
-        { bMotion.enterStructuralSpec() },
-    crossinline exitSpatial: @Composable () -> FiniteAnimationSpec<IntOffset> =
-        { bMotion.exitStructuralSpec() },
-    crossinline alphaSpec: @Composable () -> FiniteAnimationSpec<Float> =
-        { bMotion.nonSpatialSlowSpec() },
+    // Default Typography & Colors
+    crossinline titleStyle: @Composable () -> TextStyle =
+        { mTypography.titleLarge },
+    crossinline searchFieldTextStyle: @Composable () -> TextStyle =
+        { mTypography.titleLarge.copy(color = mColors.onSurface) },
+    crossinline searchFieldCursorBrush: @Composable () -> Brush =
+        { SolidColor(value = mColors.primary) },
+    crossinline searchFieldPlaceholderStyle: @Composable () -> TextStyle =
+        { mTypography.bodyLarge.copy(color = mColors.onSurfaceVariant) },
+
+    // Transitions
+    crossinline searchFieldTransitionSpec: @Composable () -> (
+        AnimatedContentTransitionScope<Boolean>.() -> ContentTransform
+    ) = {
+        val enterSpatial = bMotion.enterStructuralSpec<IntOffset>()
+        val exitSpatial = bMotion.exitStructuralSpec<IntOffset>()
+        val alphaSpec = bMotion.nonSpatialSlowSpec<Float>()
+
+        remember(enterSpatial, exitSpatial, alphaSpec) {
+            {
+                val direction = if (targetState) -1 else 1
+                val enter = slideInHorizontally(
+                    animationSpec = enterSpatial
+                ) { (it / 2) * direction } + fadeIn(animationSpec = alphaSpec)
+                val exit = slideOutHorizontally(
+                    animationSpec = exitSpatial
+                ) { -(it / 2) * direction } + fadeOut(animationSpec = alphaSpec)
+                enter togetherWith exit
+            }
+        }
+    },
+    crossinline searchIconTransitionSpec: @Composable () -> (
+        AnimatedContentTransitionScope<Boolean>.() -> ContentTransform
+    ) = {
+        val enterSpatial = bMotion.enterStructuralSpec<IntOffset>()
+        val exitSpatial = bMotion.exitStructuralSpec<IntOffset>()
+        val alphaSpec = bMotion.nonSpatialSlowSpec<Float>()
+
+        remember(enterSpatial, exitSpatial, alphaSpec) {
+            {
+                val direction = if (targetState) 1 else -1
+                val enter = slideInVertically(
+                    animationSpec = enterSpatial
+                ) { (it / 2) * direction } + fadeIn(animationSpec = alphaSpec)
+                val exit = slideOutVertically(
+                    animationSpec = exitSpatial
+                ) { -(it / 2) * direction } + fadeOut(animationSpec = alphaSpec)
+                enter togetherWith exit
+            }
+        }
+    },
 ): BrbxSearchableTopBarAppearance = object : BrbxSearchableTopBarAppearance {
 
     // Container & Layout
@@ -48,10 +104,23 @@ internal inline fun BrbxSearchableTopBarAppearance(
     @Composable override fun colors(): TopAppBarColors = colors()
     @Composable override fun contentPadding(): PaddingValues = contentPadding()
 
-    // Animations
-    @Composable override fun enterSpatial(): FiniteAnimationSpec<IntOffset> = enterSpatial()
-    @Composable override fun exitSpatial(): FiniteAnimationSpec<IntOffset> = exitSpatial()
-    @Composable override fun alphaSpec(): FiniteAnimationSpec<Float> = alphaSpec()
+    // Default Typography & Colors
+    @Composable override fun titleStyle(): TextStyle =
+        titleStyle()
+    @Composable override fun searchFieldTextStyle(): TextStyle =
+        searchFieldTextStyle()
+    @Composable override fun searchFieldCursorBrush(): Brush =
+        searchFieldCursorBrush()
+    @Composable override fun searchFieldPlaceholderStyle(): TextStyle =
+        searchFieldPlaceholderStyle()
+
+    // Transitions
+    @Composable override fun searchFieldTransitionSpec():
+            AnimatedContentTransitionScope<Boolean>.() -> ContentTransform =
+                searchFieldTransitionSpec()
+    @Composable override fun searchIconTransitionSpec():
+            AnimatedContentTransitionScope<Boolean>.() -> ContentTransform =
+                searchIconTransitionSpec()
 }
 
 /**
@@ -72,13 +141,23 @@ inline fun BrbxSearchableTopBarAppearance.copy(
     crossinline colors: @Composable () -> TopAppBarColors = { this.colors() },
     crossinline contentPadding: @Composable () -> PaddingValues = { this.contentPadding() },
 
-    // Animations
-    crossinline enterSpatial: @Composable () -> FiniteAnimationSpec<IntOffset> =
-        { this.enterSpatial() },
-    crossinline exitSpatial: @Composable () -> FiniteAnimationSpec<IntOffset> =
-        { this.exitSpatial() },
-    crossinline alphaSpec: @Composable () -> FiniteAnimationSpec<Float> =
-        { this.alphaSpec() },
+    // Default Typography & Colors
+    crossinline titleStyle: @Composable () -> TextStyle =
+        { this.titleStyle() },
+    crossinline searchFieldTextStyle: @Composable () -> TextStyle =
+        { this.searchFieldTextStyle() },
+    crossinline searchFieldCursorBrush: @Composable () -> Brush =
+        { this.searchFieldCursorBrush() },
+    crossinline searchFieldPlaceholderStyle: @Composable () -> TextStyle =
+        { this.searchFieldPlaceholderStyle() },
+
+    // Transitions
+    crossinline searchFieldTransitionSpec:
+        @Composable () -> (AnimatedContentTransitionScope<Boolean>.() -> ContentTransform) =
+            { this.searchFieldTransitionSpec() },
+    crossinline searchIconTransitionSpec:
+        @Composable () -> (AnimatedContentTransitionScope<Boolean>.() -> ContentTransform) =
+            { this.searchIconTransitionSpec() },
 ): BrbxSearchableTopBarAppearance = object : BrbxSearchableTopBarAppearance {
 
     // Container & Layout
@@ -87,10 +166,19 @@ inline fun BrbxSearchableTopBarAppearance.copy(
     @Composable override fun colors(): TopAppBarColors = colors()
     @Composable override fun contentPadding(): PaddingValues = contentPadding()
 
-    // Animations
-    @Composable override fun enterSpatial(): FiniteAnimationSpec<IntOffset> = enterSpatial()
-    @Composable override fun exitSpatial(): FiniteAnimationSpec<IntOffset> = exitSpatial()
-    @Composable override fun alphaSpec(): FiniteAnimationSpec<Float> = alphaSpec()
+    // Default Typography & Colors
+    @Composable override fun titleStyle(): TextStyle = titleStyle()
+    @Composable override fun searchFieldTextStyle(): TextStyle = searchFieldTextStyle()
+    @Composable override fun searchFieldCursorBrush(): Brush = searchFieldCursorBrush()
+    @Composable override fun searchFieldPlaceholderStyle(): TextStyle = searchFieldPlaceholderStyle()
+
+    // Transitions
+    @Composable override fun searchFieldTransitionSpec():
+            AnimatedContentTransitionScope<Boolean>.() -> ContentTransform =
+                searchFieldTransitionSpec()
+    @Composable override fun searchIconTransitionSpec():
+            AnimatedContentTransitionScope<Boolean>.() -> ContentTransform =
+                searchIconTransitionSpec()
 }
 
 /**
@@ -117,21 +205,34 @@ inline fun BrbxSearchableTopBarAppearance.rememberCopy(
     crossinline colors: @Composable () -> TopAppBarColors = { this.colors() },
     crossinline contentPadding: @Composable () -> PaddingValues = { this.contentPadding() },
 
-    // Animations
-    crossinline enterSpatial: @Composable () -> FiniteAnimationSpec<IntOffset> =
-        { this.enterSpatial() },
-    crossinline exitSpatial: @Composable () -> FiniteAnimationSpec<IntOffset> =
-        { this.exitSpatial() },
-    crossinline alphaSpec: @Composable () -> FiniteAnimationSpec<Float> =
-        { this.alphaSpec() },
+    // Default Typography & Colors
+    crossinline titleStyle: @Composable () -> TextStyle =
+        { this.titleStyle() },
+    crossinline searchFieldTextStyle: @Composable () -> TextStyle =
+        { this.searchFieldTextStyle() },
+    crossinline searchFieldCursorBrush: @Composable () -> Brush =
+        { this.searchFieldCursorBrush() },
+    crossinline searchFieldPlaceholderStyle: @Composable () -> TextStyle =
+        { this.searchFieldPlaceholderStyle() },
+
+    // Transitions
+    crossinline searchFieldTransitionSpec:
+        @Composable () -> (AnimatedContentTransitionScope<Boolean>.() -> ContentTransform) =
+            { this.searchFieldTransitionSpec() },
+    crossinline searchIconTransitionSpec:
+        @Composable () -> (AnimatedContentTransitionScope<Boolean>.() -> ContentTransform) =
+            { this.searchIconTransitionSpec() },
 ): BrbxSearchableTopBarAppearance = remember {
     this.copy(
         expandedHeight = expandedHeight,
         windowInsets = windowInsets,
         colors = colors,
         contentPadding = contentPadding,
-        enterSpatial = enterSpatial,
-        exitSpatial = exitSpatial,
-        alphaSpec = alphaSpec,
+        titleStyle = titleStyle,
+        searchFieldTextStyle = searchFieldTextStyle,
+        searchFieldCursorBrush = searchFieldCursorBrush,
+        searchFieldPlaceholderStyle = searchFieldPlaceholderStyle,
+        searchFieldTransitionSpec = searchFieldTransitionSpec,
+        searchIconTransitionSpec = searchIconTransitionSpec,
     )
 }
