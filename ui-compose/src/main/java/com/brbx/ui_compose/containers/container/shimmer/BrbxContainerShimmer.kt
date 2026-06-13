@@ -9,9 +9,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
-import com.brbx.ui_compose.components.shimmer.BrbxShimmerBlockAppearance
-import com.brbx.ui_compose.components.shimmer.BrbxShimmerBlockAppearances
-import com.brbx.ui_compose.components.shimmer.BrbxShimmerBlock
+import com.brbx.ui_compose.components.complex.shimmer.BrbxShimmerBlockAppearance
+import com.brbx.ui_compose.components.complex.shimmer.BrbxShimmerBlockAppearances
+import com.brbx.ui_compose.components.complex.shimmer.BrbxShimmerBlock
 import com.brbx.ui_compose.containers.container.container.BrbxContainerAppearance
 import com.brbx.ui_compose.containers.container.container.BrbxContainerAppearances
 import com.brbx.ui_compose.theme.BrbxTheme

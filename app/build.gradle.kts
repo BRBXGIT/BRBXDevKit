@@ -38,9 +38,6 @@ dependencies {
     // Core
     implementation(libs.androidx.core.ktx)
 
-    // Compose
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.activity.compose)
-    implementation(libs.androidx.compose.ui)
-    implementation(libs.androidx.compose.ui.graphics)
+    // Solar
+    implementation(libs.solar)
 }

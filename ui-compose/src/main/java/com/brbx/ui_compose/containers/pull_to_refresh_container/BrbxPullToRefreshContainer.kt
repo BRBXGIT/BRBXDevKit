@@ -14,7 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.unit.dp
-import com.brbx.ui_compose.components.pull_to_refresh_indicator.BrbxPullToRefreshDefaultIndicator
+import com.brbx.ui_compose.components.complex.pull_to_refresh_indicator.BrbxPullToRefreshDefaultIndicator
 
 /**
  * A container component that implements pull-to-refresh logic with customizable animations and layout.

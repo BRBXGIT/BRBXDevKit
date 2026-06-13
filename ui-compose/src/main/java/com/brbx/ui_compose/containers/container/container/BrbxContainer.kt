@@ -13,7 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.layout
 import androidx.compose.ui.tooling.preview.Preview
-import com.brbx.ui_compose.components.image.BrbxIcon
+import com.brbx.ui_compose.components.simple.image.BrbxIcon
 import com.brbx.ui_compose.theme.BrbxTheme
 import com.brbx.ui_compose.theme.bDimens
 import com.brbx.ui_compose.theme.mTypography
