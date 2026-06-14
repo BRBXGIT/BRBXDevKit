@@ -7,11 +7,7 @@ plugins {
 
 android {
     namespace = "com.brbx.ui_compose"
-    compileSdk {
-        version = release(36) {
-            minorApiLevel = 1
-        }
-    }
+    compileSdk = 37
     defaultConfig { minSdk = 28 }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
