@@ -3,7 +3,6 @@ package com.brbx.core.effects.snackbar
 import androidx.compose.runtime.Immutable
 import com.brbx.core.common.BrbxText
 
-// TODO Add snackbar system
 /**
  * Defines the configuration parameters for displaying a Snackbar within the Brbx design system.
  *
