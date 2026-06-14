@@ -72,7 +72,9 @@ fun BrbxContentCardShimmer(
         appearance = appearance,
         badge = badge,
         title = {
-            val height = brbxRememberTextHeightInDp(text = "Title") - 1.dp
+            val height = appearance
+                .defaultTitleStyle()
+                .brbxRememberTextHeightInDp() - 1.dp
             BrbxShimmerBlock(
                 modifier = Modifier
                     .height(height)
@@ -81,7 +83,9 @@ fun BrbxContentCardShimmer(
             )
         },
         description = {
-            val height = brbxRememberTextHeightInDp(text = "Description") - 1.dp
+            val height = appearance
+                .defaultDescriptionStyle()
+                .brbxRememberTextHeightInDp() - 1.dp
             BrbxShimmerBlock(
                 modifier = Modifier
                     .height(height)

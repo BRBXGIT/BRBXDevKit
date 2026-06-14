@@ -1,4 +1,4 @@
-package com.brbx.ui_compose.containers.container.container
+package com.brbx.ui_compose.containers.container.container_with_badge
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
@@ -8,11 +8,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 
 /**
- * Defines the visual appearance and styling of the [BrbxContainer] component.
+ * Defines the visual appearance and styling of the [BrbxContainerWithBadge] component.
  * Allows flexible configuration of the container's shapes, brushes, paddings, alignments, and badge properties.
  */
 @Immutable
-interface BrbxContainerAppearance {
+interface BrbxContainerWithBadgeAppearance {
 
     // ---------------------------------------------------------------------------
     // Container

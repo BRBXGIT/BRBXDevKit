@@ -82,7 +82,9 @@ fun BrbxTileShimmer(
         additionalContent = additionalContent,
         trailingContent = trailingContent,
         title = {
-            val height = brbxRememberTextHeightInDp(text = "Title")
+            val height = appearance
+                .defaultTitleStyle()
+                .brbxRememberTextHeightInDp()
             val titleAppearance = BrbxShimmerBlockAppearances.default.rememberCopy(
                 containerColor = { mColors.surfaceContainerHigh },
             )
@@ -95,7 +97,9 @@ fun BrbxTileShimmer(
             )
         },
         description = {
-            val height = brbxRememberTextHeightInDp(text = "Description")
+            val height = appearance
+                .defaultTitleStyle()
+                .brbxRememberTextHeightInDp()
             val descriptionAppearance = BrbxShimmerBlockAppearances.default.rememberCopy(
                 containerColor = { mColors.surfaceContainerHighest },
             )

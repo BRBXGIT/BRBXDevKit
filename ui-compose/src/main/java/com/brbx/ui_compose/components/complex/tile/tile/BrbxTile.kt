@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.Text
@@ -22,13 +23,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.brbx.core.common.BrbxText
+import com.brbx.core.common.asString
 import com.brbx.core.common.toBrbxText
-import com.brbx.ui_compose.components.simple.image.BrbxIcon
 import com.brbx.ui_compose.components.complex.precollection.precollection.BrbxPrecollection
-import com.brbx.ui_compose.components.simple.text.BrbxText
-import com.brbx.ui_compose.containers.container.container.BrbxContainer
+import com.brbx.ui_compose.components.simple.image.BrbxIcon
+import com.brbx.ui_compose.containers.container.container_with_badge.BrbxContainerWithBadge
 import com.brbx.ui_compose.theme.BrbxTheme
 import com.brbx.ui_compose.theme.bDimens
 import com.brbx.ui_compose.theme.mTypography
@@ -105,16 +105,16 @@ fun BrbxTile(
         trailingContent = trailingContent,
         additionalContent = additionalContent,
         title = {
-            BrbxText(
-                text = title,
+            Text(
+                text = title.asString(),
                 maxLines = appearance.defaultTitleMaxLines(),
                 overflow = appearance.defaultTitleOverflow()
             )
         },
         description = {
             if (description != null) {
-                BrbxText(
-                    text = description,
+                Text(
+                    text = description.asString(),
                     maxLines = appearance.defaultDescriptionMaxLines(),
                     overflow = appearance.defaultDescriptionOverflow()
                 )
@@ -192,46 +192,71 @@ private fun BrbxTileImpl(
 
 @Preview(showSystemUi = true)
 @Composable
-private fun BrbxTileAppearancePreview() {
+private fun BrbxTileAppearancePreviewWithBadge() {
     BrbxTheme(colorScheme = lightColorScheme()) {
-        BrbxTile(
-            appearance = BrbxTileAppearances.elevated,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp),
-            trailingContent = {
-                BrbxContainer(
-                    badgeContent = {
-                        Text(
-                            text = "4",
-                            style = mTypography.labelSmall,
-                            modifier = Modifier.padding(all = bDimens.micro3),
-                        )
-                    }
-                ) {
-                    BrbxIcon(
-                        imageVector = BoldSolar.Users.User,
-                        modifier = Modifier.padding(all = bDimens.micro4),
-                    )
-                }
-            },
-            title = "Some title".toBrbxText(),
-            description = "Some long description, it's very long and can not be in one line so it will be on second".toBrbxText(),
-            additionalContent = {
-                BrbxPrecollection {
-                    Text(
-                        text = "Some long description, it's very long and can not rendered be in one line",
-                        style = mTypography.labelMedium,
-                        modifier = Modifier
-                            .weight(1f, fill = false)
-                            .padding(end = bDimens.micro4)
-                    )
+        LazyColumn(
+            verticalArrangement = Arrangement.spacedBy(bDimens.micro4)
+        ) {
+            item {
+                BrbxTile(
+                    appearance = BrbxTileAppearances.elevated,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = bDimens.micro8),
+                    trailingContent = {
+                        BrbxContainerWithBadge(
+                            badgeContent = {
+                                Text(
+                                    text = "4",
+                                    style = mTypography.labelSmall,
+                                    modifier = Modifier.padding(all = bDimens.micro3),
+                                )
+                            }
+                        ) {
+                            BrbxIcon(
+                                imageVector = BoldSolar.Users.User,
+                                modifier = Modifier.padding(all = bDimens.micro4),
+                            )
+                        }
+                    },
+                    title = "Some title".toBrbxText(),
+                    description = "Some long description, it's very long and can not be in one line so it will be on second".toBrbxText(),
+                    additionalContent = {
+                        BrbxPrecollection {
+                            Text(
+                                text = "Some long description, it's very long and can not rendered be in one line",
+                                style = mTypography.labelMedium,
+                                modifier = Modifier
+                                    .weight(1f, fill = false)
+                                    .padding(end = bDimens.micro4)
+                            )
 
-                    BrbxIcon(
-                        imageVector = OutlineSolar.Users.User,
-                    )
-                }
+                            BrbxIcon(
+                                imageVector = OutlineSolar.Users.User,
+                            )
+                        }
+                    }
+                )
             }
-        )
+
+            item {
+                BrbxTile(
+                    appearance = BrbxTileAppearances.elevated,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = bDimens.micro8),
+                    trailingContent = {
+                        BrbxContainerWithBadge {
+                            BrbxIcon(
+                                imageVector = BoldSolar.Users.User,
+                                modifier = Modifier.padding(all = bDimens.micro4),
+                            )
+                        }
+                    },
+                    title = "Some title".toBrbxText(),
+                    description = "Some long description, it's very long and can not rendered be in one line".toBrbxText(),
+                )
+            }
+        }
     }
 }

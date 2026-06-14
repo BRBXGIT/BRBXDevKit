@@ -1,4 +1,4 @@
-package com.brbx.ui_compose.containers.pull_to_refresh_container
+package com.brbx.ui_compose.containers.pull_to_refresh
 
 import android.Manifest
 import androidx.annotation.RequiresPermission

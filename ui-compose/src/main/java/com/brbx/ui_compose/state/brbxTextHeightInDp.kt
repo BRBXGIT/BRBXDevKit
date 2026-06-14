@@ -1,6 +1,5 @@
 package com.brbx.ui_compose.state
 
-import androidx.compose.material3.LocalTextStyle
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalDensity
@@ -13,12 +12,11 @@ import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.unit.Dp
 
 @Composable
-fun brbxRememberTextHeightInDp(
-    text: String,
-    style: TextStyle = LocalTextStyle.current,
+fun TextStyle.brbxRememberTextHeightInDp(
+    text: String = "Any text",
     textMeasurer: TextMeasurer = rememberTextMeasurer()
 ): Dp {
-    val optimizedStyle = style.copy(
+    val optimizedStyle = this.copy(
         platformStyle = PlatformTextStyle(
             includeFontPadding = false
         ),
@@ -28,7 +26,7 @@ fun brbxRememberTextHeightInDp(
         ),
     )
     val density = LocalDensity.current
-    val heightInPx = remember(text, optimizedStyle, textMeasurer) {
+    val heightInPx = remember(key1 = text, key2 = optimizedStyle, key3 = textMeasurer) {
         textMeasurer.measure(
             text = AnnotatedString(text),
             style = optimizedStyle,

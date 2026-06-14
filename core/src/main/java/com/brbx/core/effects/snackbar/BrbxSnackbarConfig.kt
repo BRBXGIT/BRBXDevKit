@@ -16,7 +16,7 @@ import com.brbx.core.common.BrbxText
 interface BrbxSnackbarConfig {
 
     val text: BrbxText
-    val duration: Long
+    val duration: BrbxSnackbarDuration
     val isDismissable: Boolean
     val buttonText: BrbxText?
     val onButtonClick: (() -> Unit)?

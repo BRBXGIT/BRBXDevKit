@@ -61,7 +61,7 @@ internal inline fun BrbxSearchableTopBarAppearance(
     ) = {
         val enterSpatial = bMotion.enterStructuralSpec<IntOffset>()
         val exitSpatial = bMotion.exitStructuralSpec<IntOffset>()
-        val alphaSpec = bMotion.nonSpatialSlowSpec<Float>()
+        val alphaSpec = bMotion.nonSpatialFastSpec<Float>()
 
         remember(enterSpatial, exitSpatial, alphaSpec) {
             {
@@ -81,7 +81,7 @@ internal inline fun BrbxSearchableTopBarAppearance(
     ) = {
         val enterSpatial = bMotion.enterStructuralSpec<IntOffset>()
         val exitSpatial = bMotion.exitStructuralSpec<IntOffset>()
-        val alphaSpec = bMotion.nonSpatialSlowSpec<Float>()
+        val alphaSpec = bMotion.nonSpatialFastSpec<Float>()
 
         remember(enterSpatial, exitSpatial, alphaSpec) {
             {

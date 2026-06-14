@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.LocalTextStyle
+import androidx.compose.material3.Text
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.material3.ripple
 import androidx.compose.runtime.Composable
@@ -19,9 +20,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import com.brbx.core.common.BrbxText
+import com.brbx.core.common.asString
 import com.brbx.core.common.toBrbxText
 import com.brbx.ui_compose.components.simple.image.BrbxIcon
-import com.brbx.ui_compose.components.simple.text.BrbxText
 import com.brbx.ui_compose.theme.BrbxTheme
 import dev.chiksmedina.solar.OutlineSolar
 import dev.chiksmedina.solar.outline.Users
@@ -78,8 +79,8 @@ fun BrbxPrecollection(
         enabled = enabled,
         onClick = onClick,
     ) {
-        BrbxText(
-            text = text,
+        Text(
+            text = text.asString(),
             modifier = Modifier
                 .weight(1f, fill = false)
                 .padding(end = appearance.defaultTextPaddingEnd())

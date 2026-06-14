@@ -1,4 +1,4 @@
-package com.brbx.ui_compose.containers.container.container
+package com.brbx.ui_compose.containers.container.container_with_badge
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -31,14 +31,14 @@ import dev.chiksmedina.solar.bold.users.User
  *
  * @param modifier The [Modifier] to be applied to the main content container.
  * @param appearance The visual configuration for the container and badge, defining
- * brushes, shapes, colors, alignments, and layout logic. Defaults to [BrbxContainerAppearances.primary].
+ * brushes, shapes, colors, alignments, and layout logic. Defaults to [BrbxContainerWithBadgeAppearances.primary].
  * @param badgeContent An optional composable lambda to render inside the badge overlay area.
  * @param content The primary composable content to be displayed inside the container.
  */
 @Composable
-fun BrbxContainer(
+fun BrbxContainerWithBadge(
     modifier: Modifier = Modifier,
-    appearance: BrbxContainerAppearance = BrbxContainerAppearances.primary,
+    appearance: BrbxContainerWithBadgeAppearance = BrbxContainerWithBadgeAppearances.primary,
     badgeContent: @Composable BoxScope.() -> Unit = {},
     content: @Composable BoxScope.() -> Unit,
 ) =
@@ -52,7 +52,7 @@ fun BrbxContainer(
 @Composable
 private fun BrbxContainerImpl(
     modifier: Modifier = Modifier,
-    appearance: BrbxContainerAppearance,
+    appearance: BrbxContainerWithBadgeAppearance,
     badgeContent: @Composable BoxScope.() -> Unit,
     content: @Composable BoxScope.() -> Unit,
 ) {
@@ -101,9 +101,9 @@ private fun BrbxContainerImpl(
 
 @Preview
 @Composable
-private fun BrbxContainerPreview() {
+private fun BrbxContainerWithBadgePreview() {
     BrbxTheme(colorScheme = lightColorScheme()) {
-        BrbxContainer(
+        BrbxContainerWithBadge(
             badgeContent = {
                 Text(
                     text = "4",

@@ -59,7 +59,9 @@ fun BrbxPrecollectionShimmer(
         modifier = modifier,
         appearance = appearance,
         content = {
-            val height = brbxRememberTextHeightInDp(text = "Description") - 1.dp
+            val height = appearance
+                .defaultTextStyle()
+                .brbxRememberTextHeightInDp() - 1.dp
             BrbxShimmerBlock(
                 modifier = Modifier
                     .height(height)

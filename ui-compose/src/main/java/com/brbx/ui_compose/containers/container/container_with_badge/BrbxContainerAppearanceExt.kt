@@ -1,4 +1,4 @@
-package com.brbx.ui_compose.containers.container.container
+package com.brbx.ui_compose.containers.container.container_with_badge
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -13,14 +13,14 @@ import com.brbx.ui_compose.theme.mColors
 
 /**
  * Creates a new instance of
- * [com.brbx.ui_compose.containers.container.container.BrbxContainerAppearance]
+ * [com.brbx.ui_compose.containers.container.container_with_badge.BrbxContainerWithBadgeAppearance]
  * with the provided properties.
  *
  * Use this function to initialize a base appearance configuration. Since
  * this is an inline factory function, it provides a clean way to override
  * default values defined by the application theme.
  */
-internal inline fun BrbxContainerAppearance(
+internal inline fun BrbxContainerWithBadgeAppearance(
     // Container
     crossinline containerShape: @Composable () -> Shape =
         { bShapes.circle },
@@ -50,7 +50,7 @@ internal inline fun BrbxContainerAppearance(
         { remember { 4 } },
     crossinline badgeContentColor: @Composable () -> Color =
         { mColors.onError },
-): BrbxContainerAppearance = object : BrbxContainerAppearance {
+): BrbxContainerWithBadgeAppearance = object : BrbxContainerWithBadgeAppearance {
 
     // Container
     @Composable
@@ -91,7 +91,7 @@ internal inline fun BrbxContainerAppearance(
 }
 
 /**
- * Creates a new [BrbxContainerAppearance] by copying properties from
+ * Creates a new [BrbxContainerWithBadgeAppearance] by copying properties from
  * the current instance.
  *
  * This function is useful for creating a modified version of an existing
@@ -102,7 +102,7 @@ internal inline fun BrbxContainerAppearance(
  * Better use [rememberCopy] instead.
  */
 @UnsafeAppearanceCopy
-inline fun BrbxContainerAppearance.copy(
+inline fun BrbxContainerWithBadgeAppearance.copy(
     // Container
     crossinline containerShape: @Composable () -> Shape =
         { this.containerShape() },
@@ -132,7 +132,7 @@ inline fun BrbxContainerAppearance.copy(
         { this.badgePositionXDivider() },
     crossinline badgeContentColor: @Composable () -> Color =
         { this.badgeContentColor() },
-): BrbxContainerAppearance = object : BrbxContainerAppearance {
+): BrbxContainerWithBadgeAppearance = object : BrbxContainerWithBadgeAppearance {
 
     // Container
     @Composable
@@ -173,12 +173,12 @@ inline fun BrbxContainerAppearance.copy(
 }
 
 /**
- * Creates a memoized copy of the [BrbxContainerAppearance] with
+ * Creates a memoized copy of the [BrbxContainerWithBadgeAppearance] with
  * specified overrides.
  *
  * **Why you should use [rememberCopy]?**
  * 1. **Performance:** Recomposition can happen frequently. [remember]
- * ensures that a new [BrbxContainerAppearance] object is not
+ * ensures that a new [BrbxContainerWithBadgeAppearance] object is not
  * instantiated on every frame, preventing unnecessary object
  * allocations.
  * 2. **Stability:** It preserves the instance across recompositions
@@ -190,7 +190,7 @@ inline fun BrbxContainerAppearance.copy(
  */
 @OptIn(UnsafeAppearanceCopy::class)
 @Composable
-inline fun BrbxContainerAppearance.rememberCopy(
+inline fun BrbxContainerWithBadgeAppearance.rememberCopy(
     // Container
     crossinline containerShape: @Composable () -> Shape =
         { this.containerShape() },
@@ -220,7 +220,7 @@ inline fun BrbxContainerAppearance.rememberCopy(
         { this.badgePositionXDivider() },
     crossinline badgeContentColor: @Composable () -> Color =
         { this.badgeContentColor() },
-): BrbxContainerAppearance =
+): BrbxContainerWithBadgeAppearance =
     remember {
         this.copy(
             containerShape = containerShape,

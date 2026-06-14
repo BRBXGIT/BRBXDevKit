@@ -8,13 +8,16 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.LocalTextStyle
+import androidx.compose.material3.Text
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.material3.ripple
 import androidx.compose.runtime.Composable
@@ -25,11 +28,11 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.tooling.preview.Preview
 import com.brbx.core.common.BrbxText
+import com.brbx.core.common.asString
 import com.brbx.core.common.toBrbxText
-import com.brbx.ui_compose.components.complex.card.shimmer.BrbxContentCardShimmer
 import com.brbx.ui_compose.components.simple.image.BrbxRemoteImage
-import com.brbx.ui_compose.components.simple.text.BrbxText
 import com.brbx.ui_compose.theme.BrbxTheme
+import com.brbx.ui_compose.theme.bDimens
 
 /**
  * An interactive, visually rich card component designed to display a background image
@@ -99,15 +102,15 @@ fun BrbxContentCard(
         onClick = onClick,
         badge = badge,
         title = {
-            BrbxText(
-                text = title,
+            Text(
+                text = title.asString(),
                 maxLines = appearance.defaultTitleMaxLines(),
                 overflow = appearance.defaultTitleOverflow(),
             )
         },
         description = {
-            BrbxText(
-                text = description,
+            Text(
+                text = description.asString(),
                 maxLines = appearance.defaultTitleMaxLines(),
                 overflow = appearance.defaultDescriptionOverflow(),
             )
@@ -186,17 +189,22 @@ private fun BrbxContentCardImpl(
 @Composable
 private fun BrbxContentCardMediumPreview() {
     BrbxTheme(colorScheme =  lightColorScheme()) {
-        Row {
-            BrbxContentCard(
-                appearance = BrbxContentCardAppearances.primaryElevated,
-                imageUrl = "",
-                title = "Title".toBrbxText(),
-                description = "Description".toBrbxText()
-            )
-
-            BrbxContentCardShimmer(
-                appearance = BrbxContentCardAppearances.primaryElevated
-            ) {  }
+        val appearance = BrbxContentCardAppearances.tertiaryElevated
+        LazyVerticalGrid(
+            contentPadding = PaddingValues(all = bDimens.micro4),
+            modifier = Modifier.fillMaxSize(),
+            columns = GridCells.Adaptive(minSize = appearance.containerWidth()),
+            verticalArrangement = Arrangement.spacedBy(bDimens.micro4),
+            horizontalArrangement = Arrangement.spacedBy(bDimens.micro4),
+        ) {
+            items(count = 4) {
+                BrbxContentCard(
+                    imageUrl = null,
+                    title = "Title".toBrbxText(),
+                    description = "Description".toBrbxText(),
+                    appearance = appearance,
+                )
+            }
         }
     }
 }

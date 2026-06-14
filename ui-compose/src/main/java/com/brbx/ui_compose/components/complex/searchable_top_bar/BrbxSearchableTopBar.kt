@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.material3.darkColorScheme
@@ -38,7 +39,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.brbx.core.common.BrbxText
-import com.brbx.ui_compose.components.simple.text.BrbxText
+import com.brbx.core.common.asString
 import com.brbx.ui_compose.theme.BrbxTheme
 
 /**
@@ -136,8 +137,8 @@ fun BrbxSearchableTopBar(
         isSearching = isSearching,
         onSystemBackClick = handleSystemBackClick,
         title = {
-            BrbxText(
-                text = title,
+            Text(
+                text = title.asString(),
                 style = appearance.defaultTitleStyle(),
             )
         },
@@ -250,8 +251,8 @@ private fun DefaultSearchField(
                 contentAlignment = Alignment.CenterStart
             ) {
                 if (value.isEmpty()) {
-                    BrbxText(
-                        text = searchFieldPlaceholderText,
+                    Text(
+                        text = searchFieldPlaceholderText.asString(),
                         style = appearance.defaultSearchFieldPlaceholderStyle(),
                     )
                 }

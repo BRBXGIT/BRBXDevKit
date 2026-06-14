@@ -1,4 +1,4 @@
-package com.brbx.ui_compose.containers.pull_to_refresh_container
+package com.brbx.ui_compose.containers.pull_to_refresh
 
 import androidx.compose.animation.core.AnimationSpec
 import androidx.compose.foundation.layout.Arrangement
@@ -23,7 +23,7 @@ internal inline fun BrbxPullToRefreshAppearance(
     crossinline translationTarget: @Composable () -> Float =
         { remember { 10f } },
     crossinline translationAnimationSpec: @Composable () -> AnimationSpec<Dp> =
-        { bMotion.bouncyEffectSpec() },
+        { bMotion.settleGestureSpec() },
 
     // Vibration
     crossinline withVibration: @Composable () -> Boolean =
