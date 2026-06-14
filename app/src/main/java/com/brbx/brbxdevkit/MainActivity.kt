@@ -1,6 +1,7 @@
 package com.brbx.brbxdevkit
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -19,7 +20,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import com.brbx.core.common.BrbxText
 import com.brbx.core.common.toBrbxText
+import com.brbx.core.effects.snackbar.BrbxSnackbarConfig
+import com.brbx.core.effects.snackbar.BrbxSnackbarDuration
 import com.brbx.ui_compose.components.complex.precollection.precollection.BrbxPrecollection
 import com.brbx.ui_compose.components.complex.searchable_top_bar.BrbxSearchableTopBar
 import com.brbx.ui_compose.components.complex.tile.tile.BrbxTile
@@ -27,6 +31,7 @@ import com.brbx.ui_compose.components.complex.tile.tile.BrbxTileAppearances
 import com.brbx.ui_compose.components.simple.brbx_switch.BrbxSwitch
 import com.brbx.ui_compose.components.simple.image.BrbxIcon
 import com.brbx.ui_compose.containers.complex.container.container_with_badge.BrbxContainerWithBadge
+import com.brbx.ui_compose.containers.complex.snackbar_host.LocalBrbxSnackbarHostState
 import com.brbx.ui_compose.theme.BrbxTheme
 import com.brbx.ui_compose.theme.bDimens
 import com.brbx.ui_compose.theme.mTypography
@@ -94,7 +99,22 @@ class MainActivity : ComponentActivity() {
                         }
 
                         item {
+                            val s = LocalBrbxSnackbarHostState.current
                             BrbxTile(
+                                onClick = {
+                                    s.show(
+                                        config = object : BrbxSnackbarConfig {
+                                            override val text: BrbxText = "This is a test snackbar hope it will be nice".toBrbxText()
+                                            override val duration: BrbxSnackbarDuration =
+                                                BrbxSnackbarDuration.Long
+                                            override val isDismissable: Boolean = true
+                                            override val buttonText: BrbxText = "Click".toBrbxText()
+                                            override val onButtonClick: (() -> Unit) = {
+                                                Log.d("CCCC", "Click")
+                                            }
+                                        }
+                                    )
+                                },
                                 appearance = BrbxTileAppearances.elevated,
                                 modifier = Modifier.fillMaxWidth(),
                                 trailingContent = {

@@ -7,6 +7,8 @@ import androidx.compose.material3.Typography
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
+import com.brbx.ui_compose.containers.complex.snackbar_host.BrbxDefaultSnackbarHostState
+import com.brbx.ui_compose.containers.complex.snackbar_host.LocalBrbxSnackbarHostState
 import com.brbx.ui_compose.theme.animation_tokens.BrbxAnimationTokens
 import com.brbx.ui_compose.theme.animation_tokens.DefaultBrbxAnimationTokens
 import com.brbx.ui_compose.theme.animation_tokens.LocalBrbxAnimationTokens
@@ -64,6 +66,7 @@ fun BrbxTheme(
         LocalBrbxElevation provides elevation,
         LocalBrbxIntensityTokens provides intensityTokens,
         LocalBrbxMotion provides motion,
+        LocalBrbxSnackbarHostState provides BrbxDefaultSnackbarHostState() // TODO Added for test remove in future
     ) {
         MaterialTheme(
             colorScheme = colorScheme,
