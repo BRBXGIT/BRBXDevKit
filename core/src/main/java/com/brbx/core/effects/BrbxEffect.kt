@@ -5,7 +5,6 @@ import android.widget.Toast
 import androidx.compose.runtime.Immutable
 import com.brbx.core.common.BrbxText
 import com.brbx.core.effects.snackbar.BrbxSnackbarConfig
-import com.brbx.core.navigation.BrbxBaseNavigationRoute
 
 /**
  * Represents a one-off UI side effect within the Brbx architecture.
@@ -26,7 +25,7 @@ sealed interface BrbxEffect {
 
     // Navigation
     @JvmInline
-    value class Navigate(val route: BrbxBaseNavigationRoute) : BrbxEffect
+    value class Navigate<Destination : Any>(val route: Destination) : BrbxEffect
 
     data object NavigateBack : BrbxEffect
 

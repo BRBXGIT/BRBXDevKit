@@ -1,4 +1,4 @@
-package com.brbx.ui_compose.containers.container.shimmer
+package com.brbx.ui_compose.containers.complex.container.shimmer
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
@@ -12,17 +12,17 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.brbx.ui_compose.components.complex.shimmer.BrbxShimmerBlockAppearance
 import com.brbx.ui_compose.components.complex.shimmer.BrbxShimmerBlockAppearances
 import com.brbx.ui_compose.components.complex.shimmer.BrbxShimmerBlock
-import com.brbx.ui_compose.containers.container.container_with_badge.BrbxContainerWithBadgeAppearance
-import com.brbx.ui_compose.containers.container.container_with_badge.BrbxContainerWithBadgeAppearances
+import com.brbx.ui_compose.containers.complex.container.container_with_badge.BrbxContainerWithBadgeAppearance
+import com.brbx.ui_compose.containers.complex.container.container_with_badge.BrbxContainerWithBadgeAppearances
 import com.brbx.ui_compose.theme.BrbxTheme
 import com.brbx.ui_compose.theme.bDimens
 
 /**
- * A loading skeleton component that mimics the shape and structure of a [com.brbx.ui_compose.containers.container.container_with_badge.BrbxContainerWithBadge]
+ * A loading skeleton component that mimics the shape and structure of a [com.brbx.ui_compose.containers.complex.container.container_with_badge.BrbxContainerWithBadge]
  * while displaying an animated shimmer effect.
  *
  * This composable is typically used as a placeholder while the actual data for a
- * [com.brbx.ui_compose.containers.container.container_with_badge.BrbxContainerWithBadge] is being fetched. It seamlessly clips a [BrbxShimmerBlock] to the
+ * [com.brbx.ui_compose.containers.complex.container.container_with_badge.BrbxContainerWithBadge] is being fetched. It seamlessly clips a [BrbxShimmerBlock] to the
  * exact shape defined by the container's [appearance], ensuring the loading state
  * visually matches the final loaded UI.
  *

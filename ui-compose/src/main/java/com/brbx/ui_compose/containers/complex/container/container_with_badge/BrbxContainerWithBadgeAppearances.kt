@@ -1,4 +1,4 @@
-package com.brbx.ui_compose.containers.container.container_with_badge
+package com.brbx.ui_compose.containers.complex.container.container_with_badge
 
 import androidx.compose.ui.graphics.SolidColor
 import com.brbx.ui_compose.theme.mColors

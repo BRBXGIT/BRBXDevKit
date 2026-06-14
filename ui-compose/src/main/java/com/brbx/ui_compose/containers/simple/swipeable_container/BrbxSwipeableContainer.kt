@@ -1,4 +1,4 @@
-package com.brbx.ui_compose.containers.swipeable_container
+package com.brbx.ui_compose.containers.simple.swipeable_container
 
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.AnimationSpec

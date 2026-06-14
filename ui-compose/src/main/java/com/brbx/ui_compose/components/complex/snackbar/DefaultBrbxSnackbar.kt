@@ -20,7 +20,7 @@ import com.brbx.core.common.toBrbxText
 import com.brbx.core.effects.snackbar.BrbxSnackbarConfig
 import com.brbx.core.effects.snackbar.BrbxSnackbarDuration
 import com.brbx.core.effects.snackbar.DefaultBrbxSnackbarConfig
-import com.brbx.ui_compose.containers.swipeable_container.BrbxSwipeableContainer
+import com.brbx.ui_compose.containers.simple.swipeable_container.BrbxSwipeableContainer
 import com.brbx.ui_compose.theme.BrbxTheme
 import com.brbx.ui_compose.theme.bDimens
 import com.brbx.ui_compose.theme.bElevation
@@ -28,6 +28,7 @@ import com.brbx.ui_compose.theme.bShapes
 import com.brbx.ui_compose.theme.mColors
 import com.brbx.ui_compose.theme.mTypography
 
+// TODO Add appearance
 @Composable
 fun DefaultBrbxSnackbar(
     config: BrbxSnackbarConfig,

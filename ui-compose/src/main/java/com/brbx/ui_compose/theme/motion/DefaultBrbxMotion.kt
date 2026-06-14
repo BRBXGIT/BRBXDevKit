@@ -12,13 +12,13 @@ internal class DefaultBrbxMotion : BrbxMotion {
     // MATERIAL 3 OVERRIDES
     // =========================================================================
 
-    override fun <T> defaultSpatialSpec(): FiniteAnimationSpec<T> = mediumSpatialSpec()
-    override fun <T> fastSpatialSpec(): FiniteAnimationSpec<T> = fastSpatialSpec(null)
-    override fun <T> slowSpatialSpec(): FiniteAnimationSpec<T> = slowSpatialSpec(null)
+    override fun <T> defaultSpatialSpec(): SpringSpec<T> = mediumSpatialSpec()
+    override fun <T> fastSpatialSpec(): SpringSpec<T> = fastSpatialSpec(null)
+    override fun <T> slowSpatialSpec(): SpringSpec<T> = slowSpatialSpec(null)
 
-    override fun <T> defaultEffectsSpec(): FiniteAnimationSpec<T> = softEffectSpec()
-    override fun <T> fastEffectsSpec(): FiniteAnimationSpec<T> = snappyEffectSpec()
-    override fun <T> slowEffectsSpec(): FiniteAnimationSpec<T> = bouncyEffectSpec()
+    override fun <T> defaultEffectsSpec(): SpringSpec<T> = softEffectSpec()
+    override fun <T> fastEffectsSpec(): SpringSpec<T> = snappyEffectSpec()
+    override fun <T> slowEffectsSpec(): SpringSpec<T> = bouncyEffectSpec()
 
     // =========================================================================
     // CUSTOM SPECIFICATIONS

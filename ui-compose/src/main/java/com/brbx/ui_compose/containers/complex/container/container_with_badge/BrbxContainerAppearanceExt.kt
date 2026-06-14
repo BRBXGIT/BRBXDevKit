@@ -1,4 +1,4 @@
-package com.brbx.ui_compose.containers.container.container_with_badge
+package com.brbx.ui_compose.containers.complex.container.container_with_badge
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -13,7 +13,7 @@ import com.brbx.ui_compose.theme.mColors
 
 /**
  * Creates a new instance of
- * [com.brbx.ui_compose.containers.container.container_with_badge.BrbxContainerWithBadgeAppearance]
+ * [com.brbx.ui_compose.containers.complex.container.container_with_badge.BrbxContainerWithBadgeAppearance]
  * with the provided properties.
  *
  * Use this function to initialize a base appearance configuration. Since

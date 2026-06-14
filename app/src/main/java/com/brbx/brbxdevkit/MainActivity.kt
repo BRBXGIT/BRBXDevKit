@@ -26,7 +26,7 @@ import com.brbx.ui_compose.components.complex.tile.tile.BrbxTile
 import com.brbx.ui_compose.components.complex.tile.tile.BrbxTileAppearances
 import com.brbx.ui_compose.components.simple.brbx_switch.BrbxSwitch
 import com.brbx.ui_compose.components.simple.image.BrbxIcon
-import com.brbx.ui_compose.containers.container.container_with_badge.BrbxContainerWithBadge
+import com.brbx.ui_compose.containers.complex.container.container_with_badge.BrbxContainerWithBadge
 import com.brbx.ui_compose.theme.BrbxTheme
 import com.brbx.ui_compose.theme.bDimens
 import com.brbx.ui_compose.theme.mTypography

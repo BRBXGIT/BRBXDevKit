@@ -1,4 +1,4 @@
-package com.brbx.ui_compose.containers.scaffold
+package com.brbx.ui_compose.containers.complex.scaffold
 
 import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.background

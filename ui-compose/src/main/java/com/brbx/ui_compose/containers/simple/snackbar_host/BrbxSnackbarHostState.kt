@@ -1,4 +1,4 @@
-package com.brbx.ui_compose.containers.snackbar_host
+package com.brbx.ui_compose.containers.simple.snackbar_host
 
 import androidx.compose.runtime.Stable
 import com.brbx.core.effects.snackbar.BrbxSnackbarConfig

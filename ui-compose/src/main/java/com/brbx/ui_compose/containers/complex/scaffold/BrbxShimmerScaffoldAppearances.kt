@@ -1,4 +1,4 @@
-package com.brbx.ui_compose.containers.scaffold
+package com.brbx.ui_compose.containers.complex.scaffold
 
 /**
  * A collection of predefined [BrbxShimmerScaffoldAppearance] styles.

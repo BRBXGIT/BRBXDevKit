@@ -23,7 +23,7 @@ import com.brbx.ui_compose.components.complex.shimmer.BrbxShimmerBlockAppearance
 import com.brbx.ui_compose.components.complex.shimmer.rememberCopy
 import com.brbx.ui_compose.components.complex.tile.tile.BrbxTileAppearance
 import com.brbx.ui_compose.components.complex.tile.tile.BrbxTileAppearances
-import com.brbx.ui_compose.containers.container.shimmer.BrbxContainerShimmer
+import com.brbx.ui_compose.containers.complex.container.shimmer.BrbxContainerShimmer
 import com.brbx.ui_compose.state.brbxRememberTextHeightInDp
 import com.brbx.ui_compose.theme.BrbxTheme
 import com.brbx.ui_compose.theme.bDimens
