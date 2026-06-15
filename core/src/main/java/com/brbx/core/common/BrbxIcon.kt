@@ -1,9 +1,14 @@
 package com.brbx.core.common
 
 import androidx.annotation.DrawableRes
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.painter.BitmapPainter
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.graphics.vector.rememberVectorPainter
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.graphics.painter.Painter as ComposePainter
 
 /**
@@ -36,3 +41,12 @@ fun ImageVector.toBrbxIcon(): BrbxIcon.Vector = BrbxIcon.Vector(imageVector = th
 fun ImageBitmap.toBrbxIcon(): BrbxIcon.Bitmap = BrbxIcon.Bitmap(this)
 
 fun ComposePainter.toBrbxIcon(): BrbxIcon.Painter = BrbxIcon.Painter(this)
+
+@Composable
+fun BrbxIcon.asPainter(): ComposePainter =
+    when (this) {
+        is BrbxIcon.Res -> painterResource(id = this.resId)
+        is BrbxIcon.Vector -> rememberVectorPainter(image = this.imageVector)
+        is BrbxIcon.Bitmap -> remember(key1 = this.bitmap) { BitmapPainter(image = this.bitmap) }
+        is BrbxIcon.Painter -> this.painter
+    }
