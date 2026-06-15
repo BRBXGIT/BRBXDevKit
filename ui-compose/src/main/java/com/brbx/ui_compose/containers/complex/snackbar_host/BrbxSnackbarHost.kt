@@ -2,6 +2,7 @@ package com.brbx.ui_compose.containers.complex.snackbar_host
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.AnimatedVisibilityScope
+import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -10,9 +11,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import com.brbx.ui_compose.components.complex.snackbar.BrbxSnackbar
 import com.brbx.ui_compose.components.complex.snackbar.config.BrbxSnackbarConfig
 import com.brbx.ui_compose.components.complex.snackbar.config.BrbxSnackbarDuration
-import com.brbx.ui_compose.components.complex.snackbar.BrbxSnackbar
 import com.brbx.ui_compose.containers.complex.snackbar_host.appearance.BrbxSnackbarHostAppearance
 import com.brbx.ui_compose.containers.complex.snackbar_host.appearance.BrbxSnackbarHostAppearances
 import com.brbx.ui_compose.containers.complex.snackbar_host.state.BrbxSnackbarHostState
@@ -63,25 +64,38 @@ private fun BrbxSnackbarHostImpl(
 
     val currentConfig = hostState.currentSnackbar
     var displayedConfig by remember { mutableStateOf(currentConfig) }
+
     LaunchedEffect(key1 = currentConfig) {
-        if (currentConfig != null) {
+        if (currentConfig != null && currentConfig != displayedConfig) {
             displayedConfig = currentConfig
-            val duration = when (val duration = currentConfig.duration) {
-                is BrbxSnackbarDuration.Custom -> duration.millis
+            val duration = when (val dur = currentConfig.duration) {
+                is BrbxSnackbarDuration.Custom -> dur.millis
                 BrbxSnackbarDuration.Long -> 6000L
-                BrbxSnackbarDuration.Short -> 3000L // TODO remove hardcoded values
+                BrbxSnackbarDuration.Short -> 3000L
             }
             delay(duration.milliseconds)
             hostState.dismissCurrent()
         }
     }
 
-    AnimatedVisibility(
-        visible = currentConfig != null,
+    val transition = updateTransition(
+        targetState = currentConfig != null,
+        label = "SnackbarTransition"
+    )
+    LaunchedEffect(key1 = transition.currentState, key2 = transition.targetState) {
+        if (!transition.currentState && !transition.targetState) {
+            if (displayedConfig != null) {
+                hostState.onExitAnimationFinished()
+                displayedConfig = null
+            }
+        }
+    }
+
+    transition.AnimatedVisibility(
+        visible = { targetVisible -> targetVisible },
         modifier = modifier,
         enter = appearance.enterTransition(),
         exit = appearance.exitTransition(),
-        label = "Snackbar appearance/disappearance animation",
     ) {
         displayedConfig?.let { config ->
             content(config)

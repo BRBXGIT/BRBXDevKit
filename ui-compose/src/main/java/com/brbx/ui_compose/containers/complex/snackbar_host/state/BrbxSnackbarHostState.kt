@@ -1,6 +1,6 @@
 package com.brbx.ui_compose.containers.complex.snackbar_host.state
 
-import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.Stable
 import com.brbx.ui_compose.components.complex.snackbar.config.BrbxSnackbarConfig
 
 /**
@@ -9,7 +9,7 @@ import com.brbx.ui_compose.components.complex.snackbar.config.BrbxSnackbarConfig
  * * Implementations of this interface should be passed to the [com.brbx.ui_compose.containers.complex.snackbar_host.BrbxSnackbarHost] to control
  * the visibility and lifecycle of snackbars.
  */
-@Immutable
+@Stable
 interface BrbxSnackbarHostState {
 
     val currentSnackbar: BrbxSnackbarConfig?
@@ -17,4 +17,5 @@ interface BrbxSnackbarHostState {
     fun show(config: BrbxSnackbarConfig)
     fun dismissCurrent()
     suspend fun observeQueue()
+    fun onExitAnimationFinished()
 }
