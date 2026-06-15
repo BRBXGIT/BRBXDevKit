@@ -13,7 +13,6 @@
             <option value="$PROJECT_DIR$/coroutines-helpers" />
             <option value="$PROJECT_DIR$/mvi" />
             <option value="$PROJECT_DIR$/mvi-compose" />
-            <option value="$PROJECT_DIR$/navigation-compose" />
             <option value="$PROJECT_DIR$/ui-compose" />
           </set>
         </option>
