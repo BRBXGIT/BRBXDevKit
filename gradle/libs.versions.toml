@@ -17,6 +17,9 @@ activityCompose = "1.13.0"
 material3Android = "1.5.0-alpha21"
 animationGraphics = "1.11.2"
 
+# Navigation
+composeNavigation = "2.9.7"
+
 # Coil
 coilCompose = "2.7.0"
 
@@ -40,6 +43,9 @@ androidx-compose-material3 = { module = "androidx.compose.material3:material3-an
 androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 androidx-compose-animation-graphics = { module = "androidx.compose.animation:animation-graphics", version.ref = "animationGraphics" }
+
+# Naivation
+navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "composeNavigation" }
 
 # Coil
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }

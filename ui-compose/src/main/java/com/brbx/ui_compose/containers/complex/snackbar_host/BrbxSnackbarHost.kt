@@ -10,11 +10,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import com.brbx.core.effects.snackbar.BrbxSnackbarConfig
-import com.brbx.core.effects.snackbar.BrbxSnackbarDuration
+import com.brbx.ui_compose.components.complex.snackbar.config.BrbxSnackbarConfig
+import com.brbx.ui_compose.components.complex.snackbar.config.BrbxSnackbarDuration
 import com.brbx.ui_compose.components.complex.snackbar.BrbxSnackbar
 import com.brbx.ui_compose.containers.complex.snackbar_host.appearance.BrbxSnackbarHostAppearance
 import com.brbx.ui_compose.containers.complex.snackbar_host.appearance.BrbxSnackbarHostAppearances
+import com.brbx.ui_compose.containers.complex.snackbar_host.state.BrbxSnackbarHostState
 import com.brbx.ui_compose.theme.bDimens
 import kotlinx.coroutines.delay
 import kotlin.time.Duration.Companion.milliseconds
@@ -57,9 +58,7 @@ private fun BrbxSnackbarHostImpl(
     content: @Composable AnimatedVisibilityScope.(config: BrbxSnackbarConfig) -> Unit,
 ) {
     LaunchedEffect(key1 = hostState) {
-        if (hostState is BrbxDefaultSnackbarHostState) {
-            hostState.observeQueue()
-        }
+        hostState.observeQueue()
     }
 
     val currentConfig = hostState.currentSnackbar

@@ -1,7 +1,7 @@
-package com.brbx.ui_compose.containers.complex.snackbar_host
+package com.brbx.ui_compose.containers.complex.snackbar_host.state
 
 import androidx.compose.runtime.*
-import com.brbx.core.effects.snackbar.BrbxSnackbarConfig
+import com.brbx.ui_compose.components.complex.snackbar.config.BrbxSnackbarConfig
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.first
@@ -15,7 +15,7 @@ import kotlin.time.Duration.Companion.milliseconds
  * through timeout, user swipe, or action click) before showing the next one.
  */
 @Stable
-internal class BrbxDefaultSnackbarHostState : BrbxSnackbarHostState {
+internal class DefaultBrbxSnackbarHostState : BrbxSnackbarHostState {
 
     override var currentSnackbar by mutableStateOf<BrbxSnackbarConfig?>(null)
         private set
@@ -23,14 +23,14 @@ internal class BrbxDefaultSnackbarHostState : BrbxSnackbarHostState {
     private val queue = Channel<BrbxSnackbarConfig>(capacity = Channel.UNLIMITED)
 
     override fun show(config: BrbxSnackbarConfig) {
-        queue.trySend(config)
+        queue.trySend(element = config)
     }
 
     override fun dismissCurrent() {
         currentSnackbar = null
     }
 
-    suspend fun observeQueue() {
+    override suspend fun observeQueue() {
         for (config in queue) {
             currentSnackbar = config
             snapshotFlow { currentSnackbar }.first { it == null }

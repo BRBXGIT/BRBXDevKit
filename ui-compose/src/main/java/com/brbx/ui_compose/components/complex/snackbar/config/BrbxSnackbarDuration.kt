@@ -1,4 +1,4 @@
-package com.brbx.core.effects.snackbar
+package com.brbx.ui_compose.components.complex.snackbar.config
 
 import androidx.compose.runtime.Immutable
 

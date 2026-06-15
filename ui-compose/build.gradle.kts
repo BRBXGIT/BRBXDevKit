@@ -18,9 +18,6 @@ android {
 
 dependencies {
 
-    // Modules
-    api(project(":core"))
-
     // Compose
     api(platform(libs.androidx.compose.bom))
     api(libs.androidx.compose.ui)

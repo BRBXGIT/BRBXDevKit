@@ -1,7 +1,7 @@
-package com.brbx.core.effects.snackbar
+package com.brbx.ui_compose.components.complex.snackbar.config
 
 import androidx.compose.runtime.Immutable
-import com.brbx.core.common.BrbxText
+import com.brbx.ui_compose.common.BrbxText
 
 /**
  * Defines the configuration parameters for displaying a Snackbar within the Brbx design system.

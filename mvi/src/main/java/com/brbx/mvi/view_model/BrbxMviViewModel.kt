@@ -2,7 +2,6 @@ package com.brbx.mvi.view_model
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.brbx.core.effects.BrbxEffect
 import com.brbx.mvi.coroutines.shareInLazily
 import com.brbx.mvi.coroutines.stateInLazily
 import kotlinx.coroutines.CoroutineScope
@@ -12,31 +11,49 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 /**
- * A base [ViewModel] that manages an MVI lifecycle.
+ * Base [ViewModel] for implementing the Model-View-Intent (MVI) architecture pattern.
  *
- * @param State The data class representing the immutable UI state.
- * @param Intent The actions or user inputs triggered from the UI.
- * @param LocalEffect One-off events specific to this screen (e.g., showing a Toast, local navigation).
- * @param initialState The initial state configuration for the screen.
- * @param brbxEffectsReplay The number of values replayed to new subscribers for global effects.
- * @param localEffectsReplay The number of values replayed to new subscribers for local effects.
+ * This class provides the foundational scaffolding for managing unidirectional data flow.
+ * It handles the storage and emission of UI state, the processing of user intents, and
+ * the dispatching of one-time side effects.
+ *
+ * It divides side effects into two distinct categories to better separate screen-specific
+ * logic from global app logic:
+ * - **Common Effects:** App-wide events (e.g., global navigation, system-level snackbars).
+ * - **Local Effects:** Screen-specific events (e.g., local dialogs, list scrolling, animations).
+ *
+ * @param State The immutable type representing the current state of the UI.
+ * @param Intent The type representing user actions or events originating from the UI.
+ * @param CommonEffect The type representing global or application-wide one-time side effects.
+ * @param LocalEffect The type representing screen-specific one-time side effects.
+ * @param initialState The starting UI state before any intents are processed.
+ * @param brbxEffectsReplay The number of past [CommonEffect]s to replay to new subscribers. Defaults to 0.
+ * @param localEffectsReplay The number of past [LocalEffect]s to replay to new subscribers. Defaults to 0.
  */
-abstract class BrbxMviViewModel<State, in Intent : Any, LocalEffect>(
+abstract class BrbxMviViewModel<State, in Intent : Any, CommonEffect, LocalEffect>(
     initialState: State,
     brbxEffectsReplay: Int = 0,
     localEffectsReplay: Int = 0,
 ) : ViewModel() {
 
+    // ---------------------------------------------------------------------------
+    // State & Effects
+    // ---------------------------------------------------------------------------
+
     private val _state = MutableStateFlow(value = initialState)
     open val state = _state.stateInLazily(initialValue = initialState)
 
-    private val _brbxEffects = MutableSharedFlow<BrbxEffect>(replay = brbxEffectsReplay)
-    open val brbxEffects = _brbxEffects.shareInLazily()
+    private val _commonEffects = MutableSharedFlow<CommonEffect>(replay = brbxEffectsReplay)
+    open val commonEffects = _commonEffects.shareInLazily()
 
     private val _localEffects = MutableSharedFlow<LocalEffect>(replay = localEffectsReplay)
     open val localEffects = _localEffects.shareInLazily()
 
-    open val mviScope = object : BrbxMviScope<State, LocalEffect> {
+    // ---------------------------------------------------------------------------
+    // MVI Scope
+    // ---------------------------------------------------------------------------
+
+    open val mviScope = object : BrbxMviScope<State, CommonEffect, LocalEffect> {
         override val state: State get() = _state.value
 
         override val coroutineScope: CoroutineScope get() = viewModelScope
@@ -45,16 +62,28 @@ abstract class BrbxMviViewModel<State, in Intent : Any, LocalEffect>(
             _state.update(function = transform)
         }
 
-        override fun postLocalEffect(effect: LocalEffect) {
-            _localEffects.postEffect(effect)
+        override fun postCommonEffect(effect: CommonEffect) {
+            dispatchCommonEffect(effect)
         }
 
-        override fun postBrbxEffect(effect: BrbxEffect) {
-            _brbxEffects.postEffect(effect)
+        override fun postLocalEffect(effect: LocalEffect) {
+            dispatchLocalEffect(effect)
         }
     }
 
-    open fun onIntent(intent: Intent) {}
+    // ---------------------------------------------------------------------------
+    // Dispatch methods
+    // ---------------------------------------------------------------------------
+
+    open fun dispatchIntent(intent: Intent) {}
+
+    open fun dispatchCommonEffect(effect: CommonEffect) {
+        _commonEffects.postEffect(effect)
+    }
+
+    open fun dispatchLocalEffect(effect: LocalEffect) {
+        _localEffects.postEffect(effect)
+    }
 
     private fun <T> MutableSharedFlow<T>.postEffect(effect: T) {
         viewModelScope.launch { emit(value = effect) }

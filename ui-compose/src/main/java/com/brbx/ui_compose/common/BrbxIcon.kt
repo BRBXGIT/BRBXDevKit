@@ -1,4 +1,4 @@
-package com.brbx.core.common
+package com.brbx.ui_compose.common
 
 import androidx.annotation.DrawableRes
 import androidx.compose.runtime.Composable

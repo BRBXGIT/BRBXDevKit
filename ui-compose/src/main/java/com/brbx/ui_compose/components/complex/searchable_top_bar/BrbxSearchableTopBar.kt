@@ -38,8 +38,8 @@ import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.brbx.core.common.BrbxText
-import com.brbx.core.common.asString
+import com.brbx.ui_compose.common.BrbxText
+import com.brbx.ui_compose.common.asString
 import com.brbx.ui_compose.theme.BrbxTheme
 
 /**

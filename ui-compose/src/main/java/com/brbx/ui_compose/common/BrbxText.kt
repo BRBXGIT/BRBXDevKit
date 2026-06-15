@@ -1,5 +1,6 @@
-package com.brbx.core.common
+package com.brbx.ui_compose.common
 
+import android.content.Context
 import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
@@ -33,7 +34,7 @@ fun BrbxText.asString(): String =
         is BrbxText.Res -> stringResource(id = this.resId)
     }
 
-fun BrbxText.asString(context: android.content.Context): String =
+fun BrbxText.asString(context: Context): String =
     when (this) {
         is BrbxText.Raw -> this.text
         is BrbxText.Res -> context.getString(this.resId)

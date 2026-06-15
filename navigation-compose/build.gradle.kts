@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.brbx.mvi_compose"
+    namespace = "com.brbx.navigation_compose"
     compileSdk = 37
     defaultConfig { minSdk = 28 }
     compileOptions {
@@ -18,10 +18,6 @@ android {
 
 dependencies {
 
-    // Modules
-    api(project(":mvi"))
-    api(project(":ui-compose"))
-
-    // Navigation
+    // Compose navigation
     api(libs.navigation.compose)
 }

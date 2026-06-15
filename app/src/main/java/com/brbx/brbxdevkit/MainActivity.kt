@@ -19,7 +19,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import com.brbx.core.common.toBrbxText
+import com.brbx.ui_compose.common.toBrbxText
 import com.brbx.ui_compose.components.complex.precollection.precollection.BrbxPrecollection
 import com.brbx.ui_compose.components.complex.searchable_top_bar.BrbxSearchableTopBar
 import com.brbx.ui_compose.components.complex.tile.tile.BrbxTile

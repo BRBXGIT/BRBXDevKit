@@ -27,9 +27,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.tooling.preview.Preview
-import com.brbx.core.common.BrbxText
-import com.brbx.core.common.asString
-import com.brbx.core.common.toBrbxText
+import com.brbx.ui_compose.common.BrbxText
+import com.brbx.ui_compose.common.asString
+import com.brbx.ui_compose.common.toBrbxText
 import com.brbx.ui_compose.components.simple.image.BrbxRemoteImage
 import com.brbx.ui_compose.theme.BrbxTheme
 import com.brbx.ui_compose.theme.bDimens

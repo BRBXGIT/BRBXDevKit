@@ -15,8 +15,8 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.brbx.core.common.BrbxIcon
-import com.brbx.core.common.asPainter
+import com.brbx.ui_compose.common.BrbxIcon
+import com.brbx.ui_compose.common.asPainter
 import com.brbx.ui_compose.theme.BrbxTheme
 import dev.chiksmedina.solar.OutlineSolar
 import dev.chiksmedina.solar.outline.Users

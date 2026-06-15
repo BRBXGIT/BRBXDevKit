@@ -21,9 +21,6 @@ android {
 
 dependencies {
 
-    // Modules
-    api(project(":core"))
-
     // ViewModel Lifecycle
     api(libs.androidx.lifecycle.viewmodel.ktx)
 }

@@ -14,11 +14,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import com.brbx.core.common.BrbxText
-import com.brbx.core.common.asString
-import com.brbx.core.common.toBrbxText
-import com.brbx.core.effects.snackbar.BrbxSnackbarConfig
-import com.brbx.core.effects.snackbar.BrbxSnackbarDuration
+import com.brbx.ui_compose.common.BrbxText
+import com.brbx.ui_compose.common.asString
+import com.brbx.ui_compose.common.toBrbxText
+import com.brbx.ui_compose.components.complex.snackbar.config.BrbxSnackbarConfig
+import com.brbx.ui_compose.components.complex.snackbar.config.BrbxSnackbarDuration
 import com.brbx.ui_compose.containers.simple.omni_swipeable_container.BrbxDefaultSwipeConfig
 import com.brbx.ui_compose.containers.simple.omni_swipeable_container.BrbxOmniSwipeableContainer
 import com.brbx.ui_compose.containers.simple.omni_swipeable_container.BrbxSwipeConfig

@@ -1,10 +1,9 @@
-package com.brbx.core.effects
+package com.brbx.mvi_compose.effects
 
 import android.content.Intent
 import android.widget.Toast
 import androidx.compose.runtime.Immutable
-import com.brbx.core.common.BrbxText
-import com.brbx.core.effects.snackbar.BrbxSnackbarConfig
+import com.brbx.ui_compose.components.complex.snackbar.config.BrbxSnackbarConfig
 
 /**
  * Represents a one-off UI side effect within the Brbx architecture.
@@ -21,7 +20,7 @@ sealed interface BrbxEffect {
     value class ShowSnackbar(val config: BrbxSnackbarConfig) : BrbxEffect
 
     // Toast
-    data class ShowToast(val text: BrbxText, val length: Int = Toast.LENGTH_SHORT)
+    data class ShowAndroidToast(val text: String, val length: Int = Toast.LENGTH_SHORT) : BrbxEffect
 
     // Navigation
     @JvmInline

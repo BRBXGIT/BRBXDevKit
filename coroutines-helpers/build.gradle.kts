@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.brbx.core"
+    namespace = "com.brbx.coroutines_helpers"
     compileSdk = 37
     defaultConfig { minSdk = 28 }
     compileOptions {
