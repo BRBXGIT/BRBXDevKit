@@ -64,7 +64,8 @@ private fun BrbxSnackbarImpl(
 ) {
     BrbxOmniSwipeableContainer(
         enabled = snackbarConfig.isDismissable,
-        animationSpec = appearance.swipeAnimationSpec(),
+        revertAnimationSpec = appearance.revertAnimationSpec(),
+        dismissAnimationSpec = appearance.dismissAnimationSpec(),
         modifier = modifier,
         config = swipeConfig,
         onSwiped = { onDismiss() },

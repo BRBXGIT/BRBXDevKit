@@ -95,10 +95,17 @@ internal class DefaultBrbxMotion : BrbxMotion {
     )
 
     // --- Non-Spatial ---
+    override fun <T> nonSpatialExtraFastSpec(delay: Long): DurationBasedAnimationSpec<T> =
+        tween(
+            durationMillis = BrbxMotionTokens.NonSpatial.DurationExtraFast,
+            delayMillis = delay.toInt(),
+            easing = BrbxMotionTokens.NonSpatial.EasingExtraFast,
+        )
+
     override fun <T> nonSpatialFastSpec(delay: Long): DurationBasedAnimationSpec<T> = tween(
-        durationMillis = BrbxMotionTokens.NonSpatial.DurationSlowMillis,
+        durationMillis = BrbxMotionTokens.NonSpatial.DurationFastMillis,
         delayMillis = delay.toInt(),
-        easing = BrbxMotionTokens.NonSpatial.EasingSlow,
+        easing = BrbxMotionTokens.NonSpatial.EasingFast,
     )
 
     override fun <T> nonSpatialMediumSpec(delay: Long): DurationBasedAnimationSpec<T> = tween(
@@ -108,8 +115,15 @@ internal class DefaultBrbxMotion : BrbxMotion {
     )
 
     override fun <T> nonSpatialSlowSpec(delay: Long): DurationBasedAnimationSpec<T> = tween(
-        durationMillis = BrbxMotionTokens.NonSpatial.DurationFastMillis,
+        durationMillis = BrbxMotionTokens.NonSpatial.DurationSlowMillis,
         delayMillis = delay.toInt(),
-        easing = BrbxMotionTokens.NonSpatial.EasingFast,
+        easing = BrbxMotionTokens.NonSpatial.EasingSlow,
     )
+
+    override fun <T> nonSpatialExtraSlowSpec(delay: Long): DurationBasedAnimationSpec<T> =
+        tween(
+            durationMillis = BrbxMotionTokens.NonSpatial.DurationExtraSlow,
+            delayMillis = delay.toInt(),
+            easing = BrbxMotionTokens.NonSpatial.EasingExtraSlow,
+        )
 }

@@ -26,7 +26,9 @@ import com.brbx.ui_compose.theme.mTypography
  */
 internal inline fun BrbxSnackbarAppearance(
     // Animation
-    crossinline swipeAnimationSpec: @Composable () -> AnimationSpec<Offset> =
+    crossinline dismissAnimationSpec: @Composable () -> AnimationSpec<Offset> =
+        { bMotion.nonSpatialExtraFastSpec() },
+    crossinline revertAnimationSpec: @Composable () -> AnimationSpec<Offset> =
         { bMotion.settleGestureSpec() },
 
     // Container
@@ -35,7 +37,7 @@ internal inline fun BrbxSnackbarAppearance(
     crossinline containerBrush: @Composable () -> Brush =
         { SolidColor(value = mColors.surfaceContainer) },
     crossinline containerElevation: @Composable () -> Dp =
-        { bElevation.small2 },
+        { bElevation.small1 },
 
     // Layout & Spacing
     crossinline contentVerticalSpacing: @Composable () -> Dp =
@@ -59,7 +61,8 @@ internal inline fun BrbxSnackbarAppearance(
 ): BrbxSnackbarAppearance = object : BrbxSnackbarAppearance {
 
     // Animation
-    @Composable override fun swipeAnimationSpec(): AnimationSpec<Offset> = swipeAnimationSpec()
+    @Composable override fun dismissAnimationSpec(): AnimationSpec<Offset> = dismissAnimationSpec()
+    @Composable override fun revertAnimationSpec(): AnimationSpec<Offset> = revertAnimationSpec()
 
     // Container
     @Composable override fun containerShape(): Shape = containerShape()
@@ -85,8 +88,10 @@ internal inline fun BrbxSnackbarAppearance(
 @UnsafeAppearanceCopy
 inline fun BrbxSnackbarAppearance.copy(
     // Animation
-    crossinline swipeAnimationSpec: @Composable () -> AnimationSpec<Offset> =
-        { this.swipeAnimationSpec() },
+    crossinline dismissAnimationSpec: @Composable () -> AnimationSpec<Offset> =
+        { this.dismissAnimationSpec() },
+    crossinline revertAnimationSpec: @Composable () -> AnimationSpec<Offset> =
+        { this.revertAnimationSpec() },
 
     // Container
     crossinline containerShape: @Composable () -> Shape =
@@ -118,7 +123,8 @@ inline fun BrbxSnackbarAppearance.copy(
 ): BrbxSnackbarAppearance = object : BrbxSnackbarAppearance {
 
     // Animation
-    @Composable override fun swipeAnimationSpec(): AnimationSpec<Offset> = swipeAnimationSpec()
+    @Composable override fun dismissAnimationSpec(): AnimationSpec<Offset> = dismissAnimationSpec()
+    @Composable override fun revertAnimationSpec(): AnimationSpec<Offset> = revertAnimationSpec()
 
     // Container
     @Composable override fun containerShape(): Shape = containerShape()
@@ -158,8 +164,10 @@ inline fun BrbxSnackbarAppearance.copy(
 @Composable
 inline fun BrbxSnackbarAppearance.rememberCopy(
     // Animation
-    crossinline swipeAnimationSpec: @Composable () -> AnimationSpec<Offset> =
-        { this.swipeAnimationSpec() },
+    crossinline dismissAnimationSpec: @Composable () -> AnimationSpec<Offset> =
+        { this.dismissAnimationSpec() },
+    crossinline revertAnimationSpec: @Composable () -> AnimationSpec<Offset> =
+        { this.revertAnimationSpec() },
 
     // Container
     crossinline containerShape: @Composable () -> Shape =
@@ -190,7 +198,8 @@ inline fun BrbxSnackbarAppearance.rememberCopy(
         { this.actionTextStyle() },
 ): BrbxSnackbarAppearance = remember {
     this.copy(
-        swipeAnimationSpec = swipeAnimationSpec,
+        dismissAnimationSpec = dismissAnimationSpec,
+        revertAnimationSpec = revertAnimationSpec,
         containerShape = containerShape,
         containerBrush = containerBrush,
         containerElevation = containerElevation,

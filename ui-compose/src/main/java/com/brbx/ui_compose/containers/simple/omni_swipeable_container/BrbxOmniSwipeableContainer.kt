@@ -33,7 +33,7 @@ import kotlin.math.roundToInt
  * @param enabled Controls whether swipe gestures are active. If false, the container cannot be dragged.
  * @param config The configuration dictating allowed swipe directions and the minimum swipe threshold.
  * @param onSwiped Callback invoked when a successful swipe gesture is completed. Provides the resulting [BrbxSwipeDirection].
- * @param animationSpec The [AnimationSpec] used for both settling back to the center and animating off-screen.
+ * @param revertAnimationSpec The [AnimationSpec] used for both settling back to the center and animating off-screen.
  * @param content The composable content to be displayed inside this container.
  */
 @Composable
@@ -42,7 +42,8 @@ fun BrbxOmniSwipeableContainer(
     enabled: Boolean = true,
     config: BrbxSwipeConfig = BrbxDefaultSwipeConfig(),
     onSwiped: (swipeDirection: BrbxSwipeDirection) -> Unit = {},
-    animationSpec: AnimationSpec<Offset> = bMotion.settleGestureSpec(),
+    dismissAnimationSpec: AnimationSpec<Offset> = bMotion.nonSpatialExtraFastSpec(),
+    revertAnimationSpec: AnimationSpec<Offset> = bMotion.settleGestureSpec(),
     content: @Composable BoxScope.() -> Unit
 ) =
     BrbxOmniSwipeableContainerImpl(
@@ -50,7 +51,8 @@ fun BrbxOmniSwipeableContainer(
         enabled = enabled,
         config = config,
         onSwiped = onSwiped,
-        animationSpec = animationSpec,
+        revertAnimationSpec = revertAnimationSpec,
+        dismissAnimationSpec = dismissAnimationSpec,
         content = content,
     )
 
@@ -60,7 +62,8 @@ private fun BrbxOmniSwipeableContainerImpl(
     enabled: Boolean,
     config: BrbxSwipeConfig,
     onSwiped: (swipeDirection: BrbxSwipeDirection) -> Unit,
-    animationSpec: AnimationSpec<Offset>,
+    dismissAnimationSpec: AnimationSpec<Offset>,
+    revertAnimationSpec: AnimationSpec<Offset>,
     content: @Composable BoxScope.() -> Unit,
 ) {
     val offset =
@@ -93,13 +96,13 @@ private fun BrbxOmniSwipeableContainerImpl(
                                 )
                                 offset.animateTo(
                                     targetValue = targetOffset,
-                                    animationSpec = animationSpec,
+                                    animationSpec = dismissAnimationSpec,
                                 )
                                 swipedDirection?.let { onSwiped(it) }
                             } else {
                                 offset.animateTo(
                                     targetValue = Offset.Zero,
-                                    animationSpec = animationSpec,
+                                    animationSpec = revertAnimationSpec,
                                 )
                             }
                         }

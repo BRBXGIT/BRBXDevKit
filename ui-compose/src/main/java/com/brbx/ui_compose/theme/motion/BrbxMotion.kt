@@ -100,11 +100,18 @@ interface BrbxMotion : MotionScheme {
     // ==========================================
 
     /**
+     * An exceptionally slow, duration-based animation specification for non-spatial properties.
+     * Ideal for almost imperceptible ambient changes, long-running atmospheric background shifts,
+     * or dramatic, thematic transitions where the change should feel extremely gradual.
+     **/
+    fun <T> nonSpatialExtraSlowSpec(delay: Long = 0L): DurationBasedAnimationSpec<T>
+
+    /**
      * A slow, duration-based animation specification for non-spatial properties like alpha or color.
      * Ideal for broad, ambient transitions such as full-screen crossfades, large background color shifts,
      * or gradual state changes that shouldn't feel jarring.
      **/
-    fun <T> nonSpatialFastSpec(delay: Long = 0L): DurationBasedAnimationSpec<T>
+    fun <T> nonSpatialSlowSpec(delay: Long = 0L): DurationBasedAnimationSpec<T>
 
     /**
      * The standard, medium-speed duration-based animation specification for non-spatial properties.
@@ -118,5 +125,12 @@ interface BrbxMotion : MotionScheme {
      * Used for immediate, highly responsive visual feedback such as quick alpha toggles, rapid
      * highlight pulses, or instantaneous color snaps.
      **/
-    fun <T> nonSpatialSlowSpec(delay: Long = 0L): DurationBasedAnimationSpec<T>
+    fun <T> nonSpatialFastSpec(delay: Long = 0L): DurationBasedAnimationSpec<T>
+
+    /**
+     * An exceptionally fast, almost instantaneous duration-based animation specification.
+     * Best suited for micro-interactions or immediate state toggles where a hard cut is slightly
+     * too jarring, but a standard fast transition feels sluggish.
+     **/
+    fun <T> nonSpatialExtraFastSpec(delay: Long = 0L): DurationBasedAnimationSpec<T>
 }

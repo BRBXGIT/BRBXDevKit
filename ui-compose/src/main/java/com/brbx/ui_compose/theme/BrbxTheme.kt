@@ -66,7 +66,6 @@ fun BrbxTheme(
         LocalBrbxElevation provides elevation,
         LocalBrbxIntensityTokens provides intensityTokens,
         LocalBrbxMotion provides motion,
-        LocalBrbxSnackbarHostState provides BrbxDefaultSnackbarHostState() // TODO Added for test remove in future
     ) {
         MaterialTheme(
             colorScheme = colorScheme,

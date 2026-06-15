@@ -18,13 +18,13 @@ internal inline fun BrbxSnackbarHostAppearance(
     // Animation
     crossinline enterTransition: @Composable () -> EnterTransition =
         {
-            scaleIn(animationSpec = bMotion.enterStructuralSpec()) +
-                    fadeIn(animationSpec = bMotion.nonSpatialFastSpec())
+            scaleIn(animationSpec = bMotion.enterStructuralSpec(), initialScale = 0.8f) +
+                    fadeIn(animationSpec = bMotion.nonSpatialExtraFastSpec())
         },
     crossinline exitTransition: @Composable () -> ExitTransition =
         {
-            scaleOut(animationSpec = bMotion.exitStructuralSpec()) +
-                    fadeOut(animationSpec = bMotion.nonSpatialFastSpec())
+            scaleOut(animationSpec = bMotion.exitStructuralSpec(), targetScale = 0.8f) +
+                    fadeOut(animationSpec = bMotion.nonSpatialExtraFastSpec())
         },
 ): BrbxSnackbarHostAppearance = object : BrbxSnackbarHostAppearance {
 

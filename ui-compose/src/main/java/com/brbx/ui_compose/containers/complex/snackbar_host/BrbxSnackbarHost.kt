@@ -5,6 +5,10 @@ import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import com.brbx.core.effects.snackbar.BrbxSnackbarConfig
 import com.brbx.core.effects.snackbar.BrbxSnackbarDuration
@@ -29,7 +33,14 @@ fun BrbxSnackbarHost(
     hostState: BrbxSnackbarHostState,
     modifier: Modifier = Modifier,
     appearance: BrbxSnackbarHostAppearance = BrbxSnackbarHostAppearances.default,
-    content: @Composable AnimatedVisibilityScope.(config: BrbxSnackbarConfig) -> Unit,
+    content: @Composable AnimatedVisibilityScope.(config: BrbxSnackbarConfig) -> Unit=
+        { config ->
+            BrbxSnackbar(
+                config = config,
+                onDismiss = { hostState.dismissCurrent() },
+                modifier = Modifier.padding(horizontal = bDimens.micro8, vertical = bDimens.micro4),
+            )
+        },
 ) =
     BrbxSnackbarHostImpl(
         hostState = hostState,
@@ -43,14 +54,7 @@ private fun BrbxSnackbarHostImpl(
     hostState: BrbxSnackbarHostState,
     modifier: Modifier,
     appearance: BrbxSnackbarHostAppearance,
-    content: @Composable AnimatedVisibilityScope.(config: BrbxSnackbarConfig) -> Unit =
-        { config ->
-            BrbxSnackbar(
-                config = config,
-                onDismiss = { hostState.dismissCurrent() },
-                modifier = Modifier.padding(horizontal = bDimens.micro8, vertical = bDimens.micro4),
-            )
-        },
+    content: @Composable AnimatedVisibilityScope.(config: BrbxSnackbarConfig) -> Unit,
 ) {
     LaunchedEffect(key1 = hostState) {
         if (hostState is BrbxDefaultSnackbarHostState) {
@@ -59,13 +63,14 @@ private fun BrbxSnackbarHostImpl(
     }
 
     val currentConfig = hostState.currentSnackbar
-
+    var displayedConfig by remember { mutableStateOf(currentConfig) }
     LaunchedEffect(key1 = currentConfig) {
         if (currentConfig != null) {
+            displayedConfig = currentConfig
             val duration = when (val duration = currentConfig.duration) {
                 is BrbxSnackbarDuration.Custom -> duration.millis
-                BrbxSnackbarDuration.Long -> 3000L
-                BrbxSnackbarDuration.Short -> 6000L
+                BrbxSnackbarDuration.Long -> 6000L
+                BrbxSnackbarDuration.Short -> 3000L // TODO remove hardcoded values
             }
             delay(duration.milliseconds)
             hostState.dismissCurrent()
@@ -79,7 +84,7 @@ private fun BrbxSnackbarHostImpl(
         exit = appearance.exitTransition(),
         label = "Snackbar appearance/disappearance animation",
     ) {
-        currentConfig?.let { config ->
+        displayedConfig?.let { config ->
             content(config)
         }
     }

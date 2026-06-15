@@ -24,10 +24,16 @@ interface BrbxSnackbarAppearance {
     // ---------------------------------------------------------------------------
 
     /**
-     * The animation spec used for the swipe gesture settling.
+     * The animation spec used when the snackbar is swiped away and dismissed off-screen.
      */
     @Composable
-    fun swipeAnimationSpec(): AnimationSpec<Offset>
+    fun dismissAnimationSpec(): AnimationSpec<Offset>
+
+    /**
+     * The animation spec used when the swipe gesture is canceled and the snackbar settles back.
+     */
+    @Composable
+    fun revertAnimationSpec(): AnimationSpec<Offset>
 
     // ---------------------------------------------------------------------------
     // Container
