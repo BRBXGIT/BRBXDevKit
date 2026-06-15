@@ -22,6 +22,7 @@ import com.brbx.ui_compose.theme.BrbxTheme
 import com.brbx.ui_compose.theme.bAnimationTokens
 import com.brbx.ui_compose.theme.mColors
 
+// TODO Remove coil to another module
 /**
  * Renders a remote image using a pre-configured [ImageRequest].
  *

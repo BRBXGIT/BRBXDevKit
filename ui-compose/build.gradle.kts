@@ -18,8 +18,8 @@ android {
 
 dependencies {
 
-    // Core
-    implementation(project(":core"))
+    // Modules
+    api(project(":core"))
 
     // Compose
     api(platform(libs.androidx.compose.bom))
@@ -31,7 +31,7 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     debugImplementation(libs.androidx.compose.ui.tooling)
     // Coil
-    implementation(libs.coil.compose)
+    implementation(libs.coil.compose) // Todo remove coil to another module
     // Solar icons
     implementation(libs.solar)
 }

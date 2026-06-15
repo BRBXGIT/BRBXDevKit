@@ -1,4 +1,4 @@
-package com.brbx.ui_compose.components.complex.card.card
+package com.brbx.ui_compose.components.complex.content_card.content_card
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Immutable

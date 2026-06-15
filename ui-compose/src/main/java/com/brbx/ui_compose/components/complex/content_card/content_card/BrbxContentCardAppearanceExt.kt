@@ -1,4 +1,4 @@
-package com.brbx.ui_compose.components.complex.card.card
+package com.brbx.ui_compose.components.complex.content_card.content_card
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
@@ -21,7 +21,7 @@ import com.brbx.ui_compose.theme.mTypography
 
 /**
  * Creates a new instance of
- * [com.brbx.ui_compose.components.complex.card.card.BrbxContentCardAppearance]
+ * [com.brbx.ui_compose.components.complex.content_card.content_card.BrbxContentCardAppearance]
  * with the provided properties.
  *
  * Use this function to initialize a base appearance configuration. Since
