@@ -58,7 +58,7 @@ abstract class BrbxMviViewModel<State, in Intent : Any, CommonEffect, LocalEffec
 
         override val coroutineScope: CoroutineScope get() = viewModelScope
 
-        override fun updateState(transform: (State) -> State) {
+        override fun updateState(transform: State.() -> State) {
             _state.update(function = transform)
         }
 

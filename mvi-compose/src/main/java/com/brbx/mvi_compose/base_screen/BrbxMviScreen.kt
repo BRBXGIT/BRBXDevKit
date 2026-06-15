@@ -1,13 +1,11 @@
 package com.brbx.mvi_compose.base_screen
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.navigation.NavController
 import com.brbx.mvi.view_model.BrbxMviViewModel
 import com.brbx.mvi_compose.effects.BrbxEffect
 import com.brbx.mvi_compose.effects.BrbxMviEffectHandler
 import com.brbx.ui_compose.containers.complex.snackbar_host.state.BrbxSnackbarHostState
-import com.brbx.ui_compose.containers.complex.snackbar_host.state.LocalBrbxSnackbarHostState
 import com.brbx.ui_compose.containers.complex.snackbar_host.state.rememberBrbxSnackbarHostState
 
 @Composable
@@ -39,19 +37,15 @@ private fun <State, Intent : Any, LocalEffect> BrbxMviScreenImpl(
         dispatchLocalEffect: (effect: LocalEffect) -> Unit,
     ) -> Unit,
 ) {
-    CompositionLocalProvider(
-        LocalBrbxSnackbarHostState provides snackbarHostState,
-    ) {
-        BrbxMviEffectHandler(
-            effects = viewModel.commonEffects,
-            snackbarHostState = LocalBrbxSnackbarHostState.current,
-            navController = navController,
-        )
+    BrbxMviEffectHandler(
+        effects = viewModel.commonEffects,
+        snackbarHostState = snackbarHostState,
+        navController = navController,
+    )
 
-        content(
-            viewModel::dispatchIntent,
-            viewModel::dispatchCommonEffect,
-            viewModel::dispatchLocalEffect,
-        )
-    }
+    content(
+        viewModel::dispatchIntent,
+        viewModel::dispatchCommonEffect,
+        viewModel::dispatchLocalEffect,
+    )
 }
