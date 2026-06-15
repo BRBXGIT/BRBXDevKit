@@ -1,28 +1,17 @@
-package com.brbx.ui_compose.components.simple.image
+package com.brbx.coil_helpers.helpers
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.size
-import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.FilterQuality
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImagePainter.State
 import coil.compose.SubcomposeAsyncImage
 import coil.compose.SubcomposeAsyncImageScope
 import coil.request.CachePolicy
 import coil.request.ImageRequest
-import com.brbx.ui_compose.theme.BrbxTheme
-import com.brbx.ui_compose.theme.bAnimationTokens
-import com.brbx.ui_compose.theme.mColors
 
-// TODO Remove coil to another module
 /**
  * Renders a remote image using a pre-configured [ImageRequest].
  *
@@ -77,7 +66,7 @@ fun BrbxRemoteImage(
     contentDescription: String? = null,
     filterQuality: FilterQuality = FilterQuality.Low,
     contentScale: ContentScale = ContentScale.Crop,
-    crossfadeDuration: Int = bAnimationTokens.short2.toInt(),
+    crossfadeDuration: Int = 300,
     onLoading: @Composable (SubcomposeAsyncImageScope.(State.Loading) -> Unit)? = null,
     onError: @Composable (SubcomposeAsyncImageScope.(State.Error) -> Unit)? = null,
 ) {
@@ -101,18 +90,4 @@ fun BrbxRemoteImage(
         onLoading = onLoading,
         onError = onError,
     )
-}
-
-@Preview
-@Composable
-private fun BrbxRemoteImagePreview() {
-    BrbxTheme(colorScheme = lightColorScheme()) {
-        BrbxRemoteImage(
-            modifier = Modifier.size(100.dp, 100.dp),
-            model = "",
-            onError = {
-                Box(modifier = Modifier.fillMaxSize().background(color = mColors.surface))
-            },
-        )
-    }
 }

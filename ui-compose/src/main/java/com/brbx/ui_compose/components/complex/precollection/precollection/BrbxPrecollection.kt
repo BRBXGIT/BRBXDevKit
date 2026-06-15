@@ -1,7 +1,7 @@
 package com.brbx.ui_compose.components.complex.precollection.precollection
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -22,7 +22,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.brbx.ui_compose.common.BrbxText
 import com.brbx.ui_compose.common.asString
 import com.brbx.ui_compose.common.toBrbxText
-import com.brbx.ui_compose.components.simple.image.BrbxIcon
+import com.brbx.ui_compose.components.simple.icon.BrbxIcon
 import com.brbx.ui_compose.theme.BrbxTheme
 import dev.chiksmedina.solar.OutlineSolar
 import dev.chiksmedina.solar.outline.Users
@@ -54,6 +54,8 @@ fun BrbxPrecollection(
     appearance: BrbxPrecollectionAppearance = BrbxPrecollectionAppearances.tertiary,
     enabled: Boolean = true,
     onClick: () -> Unit = {},
+    onLongClick: () -> Unit = {},
+    onDoubleClick: () -> Unit = {},
     content: @Composable RowScope.() -> Unit,
 ) =
     BrbxPrecollectionImpl(
@@ -61,6 +63,8 @@ fun BrbxPrecollection(
         appearance = appearance,
         enabled = enabled,
         onClick = onClick,
+        onLongClick = onLongClick,
+        onDoubleClick = onDoubleClick,
         content = content,
     )
 
@@ -72,12 +76,16 @@ fun BrbxPrecollection(
     appearance: BrbxPrecollectionAppearance = BrbxPrecollectionAppearances.tertiary,
     enabled: Boolean = true,
     onClick: () -> Unit = {},
+    onLongClick: () -> Unit = {},
+    onDoubleClick: () -> Unit = {},
 ) {
     BrbxPrecollectionImpl(
         modifier = modifier,
         appearance = appearance,
         enabled = enabled,
         onClick = onClick,
+        onLongClick = onLongClick,
+        onDoubleClick = onDoubleClick,
     ) {
         Text(
             text = text.asString(),
@@ -96,6 +104,8 @@ private fun BrbxPrecollectionImpl(
     appearance: BrbxPrecollectionAppearance,
     enabled: Boolean,
     onClick: () -> Unit,
+    onLongClick: () -> Unit,
+    onDoubleClick: () -> Unit,
     content: @Composable RowScope.() -> Unit,
 ) {
     val interactionSource = remember { MutableInteractionSource() }
@@ -104,11 +114,13 @@ private fun BrbxPrecollectionImpl(
         modifier = modifier
             .clip(appearance.containerShape())
             .background(appearance.containerBrush())
-            .clickable(
+            .combinedClickable(
                 interactionSource = interactionSource,
                 indication = ripple(color = appearance.containerRippleColor()),
                 enabled = enabled,
                 onClick = onClick,
+                onLongClick = onLongClick,
+                onDoubleClick = onDoubleClick,
             )
             .padding(paddingValues = appearance.contentPadding()),
         verticalAlignment = Alignment.CenterVertically,

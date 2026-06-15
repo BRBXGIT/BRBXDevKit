@@ -1,7 +1,7 @@
 package com.brbx.ui_compose.components.complex.content_card.content_card
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -30,7 +30,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.brbx.ui_compose.common.BrbxText
 import com.brbx.ui_compose.common.asString
 import com.brbx.ui_compose.common.toBrbxText
-import com.brbx.ui_compose.components.simple.image.BrbxRemoteImage
 import com.brbx.ui_compose.theme.BrbxTheme
 import com.brbx.ui_compose.theme.bDimens
 
@@ -39,15 +38,14 @@ import com.brbx.ui_compose.theme.bDimens
  * overlaid with an information block and an optional badge.
  *
  * This component utilizes a [Box] layout hierarchy:
- * 1. The image ([imageUrl]) fills the entire background.
- * 2. The [badge] is placed on top, with its positioning managed by the caller via [BoxScope].
- * 3. The information block (containing [title] and [description]) is drawn over the image,
+ * 1. The [badge] is placed on top, with its positioning managed by the caller via [BoxScope].
+ * 2. The information block (containing [title] and [description]) is drawn over the image,
  * aligned and styled according to the [appearance] configuration.
  *
  * All structural and visual styling—including strict dimensions, elevations, shapes,
  * overlay backgrounds, and text colors—is driven by the provided [appearance].
  *
- * @param imageUrl The URL of the image to be loaded and displayed as the card's background.
+ * @param backgroundContent The card's background content, typically and image.
  * @param modifier The [Modifier] applied to the outermost container of the card.
  * @param appearance The visual configuration defining dimensions, shapes, shadows, backgrounds,
  * alignments, and content colors. Defaults to [BrbxContentCardAppearances.tertiary].
@@ -63,21 +61,25 @@ import com.brbx.ui_compose.theme.bDimens
  */
 @Composable
 fun BrbxContentCard(
-    imageUrl: String?,
     modifier: Modifier = Modifier,
     appearance: BrbxContentCardAppearance = BrbxContentCardAppearances.tertiary,
     enabled: Boolean = true,
     onClick: () -> Unit = {},
+    onLongClick: () -> Unit = {},
+    onDoubleClick: () -> Unit = {},
     badge: @Composable BoxScope.() -> Unit = {},
+    backgroundContent: @Composable BoxScope.() -> Unit,
     title: @Composable ColumnScope.() -> Unit,
     description: @Composable ColumnScope.() -> Unit,
 ) =
     BrbxContentCardImpl(
-        imageUrl = imageUrl,
         modifier = modifier,
         appearance = appearance,
         enabled = enabled,
         onClick = onClick,
+        onLongClick = onLongClick,
+        onDoubleClick = onDoubleClick,
+        backgroundContent = backgroundContent,
         badge = badge,
         title = title,
         description = description,
@@ -85,21 +87,24 @@ fun BrbxContentCard(
 
 @Composable
 fun BrbxContentCard(
-    imageUrl: String?,
     modifier: Modifier = Modifier,
     appearance: BrbxContentCardAppearance = BrbxContentCardAppearances.tertiary,
     enabled: Boolean = true,
     onClick: () -> Unit = {},
+    onLongClick: () -> Unit = {},
+    onDoubleClick: () -> Unit = {},
+    backgroundContent: @Composable BoxScope.() -> Unit,
     badge: @Composable BoxScope.() -> Unit = {},
     title: BrbxText,
     description: BrbxText,
 ) =
     BrbxContentCardImpl(
-        imageUrl = imageUrl,
         modifier = modifier,
         appearance = appearance,
         enabled = enabled,
         onClick = onClick,
+        onLongClick = onLongClick,
+        onDoubleClick = onDoubleClick,
         badge = badge,
         title = {
             Text(
@@ -115,15 +120,18 @@ fun BrbxContentCard(
                 overflow = appearance.defaultDescriptionOverflow(),
             )
         },
+        backgroundContent = backgroundContent,
     )
 
 @Composable
 private fun BrbxContentCardImpl(
-    imageUrl: String?,
     modifier: Modifier,
     appearance: BrbxContentCardAppearance,
     enabled: Boolean,
     onClick: () -> Unit,
+    onLongClick: () -> Unit,
+    onDoubleClick: () -> Unit,
+    backgroundContent: @Composable BoxScope.() -> Unit,
     title: @Composable ColumnScope.() -> Unit,
     description: @Composable ColumnScope.() -> Unit,
     badge: @Composable BoxScope.() -> Unit,
@@ -146,17 +154,16 @@ private fun BrbxContentCardImpl(
             )
             .clip(shape = appearance.containerShape())
             .background(brush = appearance.containerBackground())
-            .clickable(
+            .combinedClickable(
                 interactionSource = interactionSource,
                 indication = ripple(color = appearance.containerRippleColor()),
                 enabled = enabled,
                 onClick = onClick,
+                onLongClick = onLongClick,
+                onDoubleClick = onDoubleClick,
             ),
     ) {
-        BrbxRemoteImage(
-            model = imageUrl,
-            modifier = Modifier.fillMaxSize(),
-        )
+        backgroundContent()
 
         badge()
 
@@ -199,10 +206,10 @@ private fun BrbxContentCardMediumPreview() {
         ) {
             items(count = 4) {
                 BrbxContentCard(
-                    imageUrl = null,
                     title = "Title".toBrbxText(),
                     description = "Description".toBrbxText(),
                     appearance = appearance,
+                    backgroundContent = {}
                 )
             }
         }

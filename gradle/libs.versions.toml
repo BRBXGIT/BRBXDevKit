@@ -18,7 +18,7 @@ material3Android = "1.5.0-alpha21"
 animationGraphics = "1.11.2"
 
 # Navigation
-composeNavigation = "2.9.7"
+composeNavigation = "2.9.8"
 
 # Coil
 coilCompose = "2.7.0"

@@ -27,8 +27,6 @@ dependencies {
     api(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.ui.tooling.preview)
     debugImplementation(libs.androidx.compose.ui.tooling)
-    // Coil
-    implementation(libs.coil.compose) // Todo remove coil to another module
     // Solar icons
     implementation(libs.solar)
 }

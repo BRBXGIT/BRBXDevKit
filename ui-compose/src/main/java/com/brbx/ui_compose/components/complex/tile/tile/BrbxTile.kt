@@ -1,7 +1,7 @@
 package com.brbx.ui_compose.components.complex.tile.tile
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -27,7 +27,7 @@ import com.brbx.ui_compose.common.BrbxText
 import com.brbx.ui_compose.common.asString
 import com.brbx.ui_compose.common.toBrbxText
 import com.brbx.ui_compose.components.complex.precollection.precollection.BrbxPrecollection
-import com.brbx.ui_compose.components.simple.image.BrbxIcon
+import com.brbx.ui_compose.components.simple.icon.BrbxIcon
 import com.brbx.ui_compose.containers.complex.container.container_with_badge.BrbxContainerWithBadge
 import com.brbx.ui_compose.theme.BrbxTheme
 import com.brbx.ui_compose.theme.bDimens
@@ -70,6 +70,8 @@ fun BrbxTile(
     appearance: BrbxTileAppearance = BrbxTileAppearances.default,
     enabled: Boolean = true,
     onClick: () -> Unit = {},
+    onLongClick: () -> Unit = {},
+    onDoubleClick: () -> Unit = {},
     additionalContent: @Composable () -> Unit = {},
     description: @Composable () -> Unit = {},
     trailingContent: @Composable () -> Unit,
@@ -80,6 +82,8 @@ fun BrbxTile(
         appearance = appearance,
         enabled = enabled,
         onClick = onClick,
+        onLongClick = onLongClick,
+        onDoubleClick = onDoubleClick,
         additionalContent = additionalContent,
         trailingContent = trailingContent,
         title = title,
@@ -94,6 +98,8 @@ fun BrbxTile(
     appearance: BrbxTileAppearance = BrbxTileAppearances.default,
     enabled: Boolean = true,
     onClick: () -> Unit = {},
+    onLongClick: () -> Unit = {},
+    onDoubleClick: () -> Unit = {},
     additionalContent: @Composable () -> Unit = {},
     trailingContent: @Composable () -> Unit,
 ) =
@@ -102,6 +108,8 @@ fun BrbxTile(
         appearance = appearance,
         enabled = enabled,
         onClick = onClick,
+        onLongClick = onLongClick,
+        onDoubleClick = onDoubleClick,
         trailingContent = trailingContent,
         additionalContent = additionalContent,
         title = {
@@ -128,6 +136,8 @@ private fun BrbxTileImpl(
     appearance: BrbxTileAppearance,
     enabled: Boolean,
     onClick: () -> Unit,
+    onLongClick: () -> Unit,
+    onDoubleClick: () -> Unit,
     additionalContent: @Composable () -> Unit,
     trailingContent: @Composable () -> Unit,
     title: @Composable () -> Unit,
@@ -147,11 +157,13 @@ private fun BrbxTileImpl(
             )
             .clip(shape = appearance.containerShape())
             .background(brush = appearance.containerBrush())
-            .clickable(
+            .combinedClickable(
                 interactionSource = interactionSource,
                 indication = ripple(color = appearance.containerRippleColor()),
                 enabled = enabled,
                 onClick = onClick,
+                onLongClick = onLongClick,
+                onDoubleClick = onDoubleClick,
             ),
         contentAlignment = Alignment.Center,
     ) {

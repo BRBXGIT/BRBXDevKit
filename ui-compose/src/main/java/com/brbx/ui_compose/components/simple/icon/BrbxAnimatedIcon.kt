@@ -1,4 +1,4 @@
-package com.brbx.ui_compose.components.simple.image
+package com.brbx.ui_compose.components.simple.icon
 
 import androidx.annotation.DrawableRes
 import androidx.compose.animation.graphics.res.animatedVectorResource
