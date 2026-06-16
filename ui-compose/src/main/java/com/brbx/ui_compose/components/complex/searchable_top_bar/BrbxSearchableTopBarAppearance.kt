@@ -2,12 +2,14 @@ package com.brbx.ui_compose.components.complex.searchable_top_bar
 
 import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.ContentTransform
+import androidx.compose.animation.core.DurationBasedAnimationSpec
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.TopAppBarColors
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
@@ -49,7 +51,7 @@ interface BrbxSearchableTopBarAppearance {
     fun contentPadding(): PaddingValues
 
     // ---------------------------------------------------------------------------
-    // Default Typography & Colors
+    // Default Typography, Colors & Animation
     // ---------------------------------------------------------------------------
 
     /**
@@ -71,6 +73,11 @@ interface BrbxSearchableTopBarAppearance {
      * The text style applied to the search field placeholder.
      */
     @Composable fun defaultSearchFieldPlaceholderStyle(): TextStyle
+
+    /**
+     * Animation spec of decoration box when text is overflowing
+     */
+    @Composable fun defaultOverflowFadeAnimation(): DurationBasedAnimationSpec<Float>
 
     // ---------------------------------------------------------------------------
     // Transitions

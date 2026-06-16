@@ -223,8 +223,8 @@ private fun DefaultSearchField(
     val isOverflowing by remember { derivedStateOf { textWidth > containerWidth } }
 
     val fadeProgress by animateFloatAsState(
-        targetValue = if (isOverflowing) 1f else 0f,
-        animationSpec = tween(durationMillis = 150, easing = LinearEasing),
+        targetValue = if (isOverflowing) 1f else 0f, // TODO Move to appearance
+        animationSpec = appearance.defaultOverflowFadeAnimation(),
         label = "Text overflow fade animation"
     )
 
@@ -277,7 +277,7 @@ private fun DefaultSearchField(
                                             Color.Black
                                         ),
                                         startX = 0f,
-                                        endX = 32.dp.toPx()
+                                        endX = 32.dp.toPx() // TODO Move to appearance
                                     ),
                                     blendMode = BlendMode.DstIn
                                 )

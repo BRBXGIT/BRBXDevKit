@@ -2,6 +2,7 @@ package com.brbx.ui_compose.components.complex.searchable_top_bar
 
 import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.ContentTransform
+import androidx.compose.animation.core.DurationBasedAnimationSpec
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInHorizontally
@@ -45,7 +46,7 @@ internal inline fun BrbxSearchableTopBarAppearance(
     crossinline contentPadding: @Composable () -> PaddingValues =
         { TopAppBarDefaults.ContentPadding },
 
-    // Default Typography & Colors
+    // Default Typography, Colors & Animation
     crossinline defaultTitleStyle: @Composable () -> TextStyle =
         { mTypography.titleLarge },
     crossinline defaultSearchFieldTextStyle: @Composable () -> TextStyle =
@@ -54,6 +55,8 @@ internal inline fun BrbxSearchableTopBarAppearance(
         { SolidColor(value = mColors.primary) },
     crossinline defaultSearchFieldPlaceholderStyle: @Composable () -> TextStyle =
         { mTypography.bodyLarge.copy(color = mColors.onSurfaceVariant) },
+    crossinline defaultOverflowFadeAnimation: @Composable () -> DurationBasedAnimationSpec<Float> =
+        { bMotion.nonSpatialExtraFastSpec() },
 
     // Transitions
     crossinline searchFieldTransitionSpec: @Composable () -> (
@@ -104,7 +107,7 @@ internal inline fun BrbxSearchableTopBarAppearance(
     @Composable override fun colors(): TopAppBarColors = colors()
     @Composable override fun contentPadding(): PaddingValues = contentPadding()
 
-    // Default Typography & Colors
+    // Default Typography, Colors & Animation
     @Composable override fun defaultTitleStyle(): TextStyle =
         defaultTitleStyle()
     @Composable override fun defaultSearchFieldTextStyle(): TextStyle =
@@ -113,6 +116,8 @@ internal inline fun BrbxSearchableTopBarAppearance(
         defaultSearchFieldCursorBrush()
     @Composable override fun defaultSearchFieldPlaceholderStyle(): TextStyle =
         defaultSearchFieldPlaceholderStyle()
+    @Composable override fun defaultOverflowFadeAnimation(): DurationBasedAnimationSpec<Float> =
+        defaultOverflowFadeAnimation()
 
     // Transitions
     @Composable override fun searchFieldTransitionSpec():
@@ -141,7 +146,7 @@ inline fun BrbxSearchableTopBarAppearance.copy(
     crossinline colors: @Composable () -> TopAppBarColors = { this.colors() },
     crossinline contentPadding: @Composable () -> PaddingValues = { this.contentPadding() },
 
-    // Default Typography & Colors
+    // Default Typography, Colors & Animation
     crossinline defaultTitleStyle: @Composable () -> TextStyle =
         { this.defaultTitleStyle() },
     crossinline defaultSearchFieldTextStyle: @Composable () -> TextStyle =
@@ -150,6 +155,8 @@ inline fun BrbxSearchableTopBarAppearance.copy(
         { this.defaultSearchFieldCursorBrush() },
     crossinline defaultSearchFieldPlaceholderStyle: @Composable () -> TextStyle =
         { this.defaultSearchFieldPlaceholderStyle() },
+    crossinline defaultOverflowFadeAnimation: @Composable () -> DurationBasedAnimationSpec<Float> =
+        { this.defaultOverflowFadeAnimation() },
 
     // Transitions
     crossinline searchFieldTransitionSpec:
@@ -166,11 +173,17 @@ inline fun BrbxSearchableTopBarAppearance.copy(
     @Composable override fun colors(): TopAppBarColors = colors()
     @Composable override fun contentPadding(): PaddingValues = contentPadding()
 
-    // Default Typography & Colors
-    @Composable override fun defaultTitleStyle(): TextStyle = defaultTitleStyle()
-    @Composable override fun defaultSearchFieldTextStyle(): TextStyle = defaultSearchFieldTextStyle()
-    @Composable override fun defaultSearchFieldCursorBrush(): Brush = defaultSearchFieldCursorBrush()
-    @Composable override fun defaultSearchFieldPlaceholderStyle(): TextStyle = defaultSearchFieldPlaceholderStyle()
+    // Default Typography, Colors & Animation
+    @Composable override fun defaultTitleStyle(): TextStyle =
+        defaultTitleStyle()
+    @Composable override fun defaultSearchFieldTextStyle(): TextStyle =
+        defaultSearchFieldTextStyle()
+    @Composable override fun defaultSearchFieldCursorBrush(): Brush =
+        defaultSearchFieldCursorBrush()
+    @Composable override fun defaultSearchFieldPlaceholderStyle(): TextStyle =
+        defaultSearchFieldPlaceholderStyle()
+    @Composable override fun defaultOverflowFadeAnimation(): DurationBasedAnimationSpec<Float> =
+        defaultOverflowFadeAnimation()
 
     // Transitions
     @Composable override fun searchFieldTransitionSpec():
@@ -205,7 +218,7 @@ inline fun BrbxSearchableTopBarAppearance.rememberCopy(
     crossinline colors: @Composable () -> TopAppBarColors = { this.colors() },
     crossinline contentPadding: @Composable () -> PaddingValues = { this.contentPadding() },
 
-    // Default Typography & Colors
+    // Default Typography, Colors & Animation
     crossinline defaultTitleStyle: @Composable () -> TextStyle =
         { this.defaultTitleStyle() },
     crossinline defaultSearchFieldTextStyle: @Composable () -> TextStyle =
@@ -214,6 +227,8 @@ inline fun BrbxSearchableTopBarAppearance.rememberCopy(
         { this.defaultSearchFieldCursorBrush() },
     crossinline defaultSearchFieldPlaceholderStyle: @Composable () -> TextStyle =
         { this.defaultSearchFieldPlaceholderStyle() },
+    crossinline defaultOverflowFadeAnimation: @Composable () -> DurationBasedAnimationSpec<Float> =
+        { this.defaultOverflowFadeAnimation() },
 
     // Transitions
     crossinline searchFieldTransitionSpec:
@@ -232,6 +247,7 @@ inline fun BrbxSearchableTopBarAppearance.rememberCopy(
         defaultSearchFieldTextStyle = defaultSearchFieldTextStyle,
         defaultSearchFieldCursorBrush = defaultSearchFieldCursorBrush,
         defaultSearchFieldPlaceholderStyle = defaultSearchFieldPlaceholderStyle,
+        defaultOverflowFadeAnimation = defaultOverflowFadeAnimation,
         searchFieldTransitionSpec = searchFieldTransitionSpec,
         searchIconTransitionSpec = searchIconTransitionSpec,
     )

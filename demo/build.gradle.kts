@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.android.application)
     // Compose
     alias(libs.plugins.kotlin.compose)
+    // Serialization
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -26,12 +28,15 @@ android {
 
 dependencies {
 
-    implementation(project(":mvi"))
-    implementation(project(":ui-compose"))
+    // Modules
+    implementation(project(":mvi-compose"))
 
     // Core
     implementation(libs.androidx.core.ktx)
-
     // Solar
     implementation(libs.solar)
+    // Koin
+    implementation(libs.koin.core)
+    implementation(libs.koin.android)
+    implementation(libs.koin.androidx.compose)
 }

@@ -23,7 +23,7 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "BRBXDevKit"
-include(":app")
+include(":demo")
 include(":ui-compose")
 include(":mvi")
 include(":coroutines-helpers")
