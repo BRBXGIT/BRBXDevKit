@@ -1,18 +1,18 @@
 package com.brbx.mvi_compose.base_screen
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.navigation.NavController
 import com.brbx.mvi.view_model.BrbxMviViewModel
 import com.brbx.mvi_compose.effects.BrbxEffect
 import com.brbx.mvi_compose.effects.BrbxMviEffectHandler
-import com.brbx.ui_compose.containers.complex.snackbar_host.state.BrbxSnackbarHostState
-import com.brbx.ui_compose.containers.complex.snackbar_host.state.rememberBrbxSnackbarHostState
+import com.brbx.ui_compose.containers.complex.snackbar_host.composition.LocalBrbxSnackbarHostState
+import com.brbx.ui_compose.containers.complex.snackbar_host.state.rememberBrbxSnackbarComponents
 
 @Composable
 fun <State, Intent : Any, LocalEffect> BrbxMviScreen(
     navController: NavController,
     viewModel: BrbxMviViewModel<State, Intent, BrbxEffect, LocalEffect>,
-    snackbarHostState: BrbxSnackbarHostState = rememberBrbxSnackbarHostState(),
     content: @Composable (
         dispatchIntent: (intent: Intent) -> Unit,
         dispatchBrbxEffect: (effect: BrbxEffect) -> Unit,
@@ -22,7 +22,6 @@ fun <State, Intent : Any, LocalEffect> BrbxMviScreen(
     BrbxMviScreenImpl(
         viewModel = viewModel,
         navController = navController,
-        snackbarHostState = snackbarHostState,
         content = content,
     )
 
@@ -30,22 +29,26 @@ fun <State, Intent : Any, LocalEffect> BrbxMviScreen(
 private fun <State, Intent : Any, LocalEffect> BrbxMviScreenImpl(
     viewModel: BrbxMviViewModel<State, Intent, BrbxEffect, LocalEffect>,
     navController: NavController,
-    snackbarHostState: BrbxSnackbarHostState,
     content: @Composable (
         dispatchIntent: (intent: Intent) -> Unit,
         dispatchBrbxEffect: (effect: BrbxEffect) -> Unit,
         dispatchLocalEffect: (effect: LocalEffect) -> Unit,
     ) -> Unit,
 ) {
+    val snackbarComponents = rememberBrbxSnackbarComponents()
     BrbxMviEffectHandler(
         effects = viewModel.commonEffects,
-        snackbarHostState = snackbarHostState,
+        snackbarController = snackbarComponents.controller,
         navController = navController,
     )
 
-    content(
-        viewModel::dispatchIntent,
-        viewModel::dispatchCommonEffect,
-        viewModel::dispatchLocalEffect,
-    )
+    CompositionLocalProvider(
+        LocalBrbxSnackbarHostState provides snackbarComponents.hostState,
+    ) {
+        content(
+            viewModel::dispatchIntent,
+            viewModel::dispatchCommonEffect,
+            viewModel::dispatchLocalEffect,
+        )
+    }
 }

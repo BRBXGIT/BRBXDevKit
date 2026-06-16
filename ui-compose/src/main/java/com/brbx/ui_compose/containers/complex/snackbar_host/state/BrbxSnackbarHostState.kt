@@ -14,7 +14,6 @@ interface BrbxSnackbarHostState {
 
     val currentSnackbar: BrbxSnackbarConfig?
 
-    fun show(config: BrbxSnackbarConfig)
     fun dismissCurrent()
     suspend fun observeQueue()
     fun onExitAnimationFinished()

@@ -5,25 +5,25 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavController
-import com.brbx.ui_compose.containers.complex.snackbar_host.state.BrbxSnackbarHostState
+import com.brbx.ui_compose.containers.complex.snackbar_host.state.BrbxSnackbarController
 import kotlinx.coroutines.flow.SharedFlow
 
 @Composable
 internal fun BrbxMviEffectHandler(
     effects: SharedFlow<BrbxEffect>,
-    snackbarHostState: BrbxSnackbarHostState,
+    snackbarController: BrbxSnackbarController,
     navController: NavController,
 ) =
     BrbxMviEffectHandlerImpl(
         effects = effects,
-        snackbarHostState = snackbarHostState,
+        snackbarController = snackbarController,
         navController = navController,
     )
 
 @Composable
 private fun BrbxMviEffectHandlerImpl(
     effects: SharedFlow<BrbxEffect>,
-    snackbarHostState: BrbxSnackbarHostState,
+    snackbarController: BrbxSnackbarController,
     navController: NavController,
 ) {
     val context = LocalContext.current
@@ -32,7 +32,7 @@ private fun BrbxMviEffectHandlerImpl(
             when (effect) {
                 is BrbxEffect.IntentTo -> context.startActivity(effect.intent)
                 is BrbxEffect.Navigate<*> -> navController.navigate(effect.route)
-                is BrbxEffect.ShowSnackbar -> snackbarHostState.show(effect.config)
+                is BrbxEffect.ShowSnackbar -> snackbarController.show(effect.config)
                 BrbxEffect.NavigateBack -> navController.navigateUp()
                 is BrbxEffect.ShowAndroidToast -> {
                     Toast.makeText(

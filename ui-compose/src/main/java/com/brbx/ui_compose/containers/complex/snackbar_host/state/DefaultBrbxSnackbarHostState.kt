@@ -17,7 +17,7 @@ import kotlinx.coroutines.flow.first
  * through timeout, user swipe, or action click) before showing the next one.
  */
 @Stable
-internal class DefaultBrbxSnackbarHostState : BrbxSnackbarHostState {
+internal class DefaultBrbxSnackbarHostState : BrbxSnackbarController, BrbxSnackbarHostState {
 
     override var currentSnackbar by mutableStateOf<BrbxSnackbarConfig?>(null)
         private set

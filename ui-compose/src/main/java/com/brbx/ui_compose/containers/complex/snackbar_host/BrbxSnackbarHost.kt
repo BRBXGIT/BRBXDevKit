@@ -16,6 +16,7 @@ import com.brbx.ui_compose.components.complex.snackbar.config.BrbxSnackbarConfig
 import com.brbx.ui_compose.components.complex.snackbar.config.BrbxSnackbarDuration
 import com.brbx.ui_compose.containers.complex.snackbar_host.appearance.BrbxSnackbarHostAppearance
 import com.brbx.ui_compose.containers.complex.snackbar_host.appearance.BrbxSnackbarHostAppearances
+import com.brbx.ui_compose.containers.complex.snackbar_host.composition.bSnackbarHost
 import com.brbx.ui_compose.containers.complex.snackbar_host.state.BrbxSnackbarHostState
 import com.brbx.ui_compose.theme.bDimens
 import kotlinx.coroutines.delay
@@ -32,8 +33,8 @@ import kotlin.time.Duration.Companion.milliseconds
  */
 @Composable
 fun BrbxSnackbarHost(
-    hostState: BrbxSnackbarHostState,
     modifier: Modifier = Modifier,
+    hostState: BrbxSnackbarHostState = bSnackbarHost,
     appearance: BrbxSnackbarHostAppearance = BrbxSnackbarHostAppearances.default,
     content: @Composable AnimatedVisibilityScope.(config: BrbxSnackbarConfig) -> Unit=
         { config ->
