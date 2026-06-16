@@ -43,20 +43,9 @@ afterEvaluate {
         publications {
             create<MavenPublication>("release") {
                 from(components["release"])
-                groupId = "com.brbx"
+                groupId = "com.github.BRBXGIT"
                 artifactId = "ui-compose"
                 version = "1.0.0"
-            }
-        }
-        repositories { // TODO Add build module to handle boilerplate
-            maven {
-                name = "GitHubPackages"
-                url = uri("https://maven.pkg.github.com/BRBXGIT/BRBXDevKit")
-
-                credentials {
-                    username = project.findProperty("gpr.user") as String?
-                    password = project.findProperty("gpr.key") as String?
-                }
             }
         }
     }
