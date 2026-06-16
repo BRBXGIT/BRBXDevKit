@@ -89,16 +89,23 @@ private fun BrbxOmniSwipeableContainerImpl(
                     onDragEnd = {
                         scope.launch {
                             if (targetEnabled) {
-                                val (targetOffset, swipedDirection) = calculateSwipeTarget(
+                                val (targetOffset, swipeDirection) = calculateSwipeTarget(
                                     currentOffset = offset.value,
                                     config = config,
                                     containerSize = size
                                 )
-                                offset.animateTo(
-                                    targetValue = targetOffset,
-                                    animationSpec = dismissAnimationSpec,
-                                )
-                                swipedDirection?.let { onSwiped(it) }
+                                if (swipeDirection != null) {
+                                    offset.animateTo(
+                                        targetValue = targetOffset,
+                                        animationSpec = dismissAnimationSpec,
+                                    )
+                                    onSwiped(swipeDirection)
+                                } else {
+                                    offset.animateTo(
+                                        targetValue = targetOffset,
+                                        animationSpec = revertAnimationSpec,
+                                    )
+                                }
                             } else {
                                 offset.animateTo(
                                     targetValue = Offset.Zero,
@@ -132,19 +139,33 @@ private fun calculateSwipeTarget(
     val (x, y) = currentOffset
     val isHorizontalSwipe = abs(x) > abs(x = y)
 
+    val safeMultiplier = 1.25f
+
     if (isHorizontalSwipe && abs(x) > config.swipeThreshold) {
         if (x > 0 && BrbxSwipeDirection.Right in config.allowedDirections) {
-            return Offset(x = containerSize.width.toFloat(), y) to BrbxSwipeDirection.Right
+            return Offset(
+                x = containerSize.width.toFloat() * safeMultiplier,
+                y = y
+            ) to BrbxSwipeDirection.Right
         }
         if (x < 0 && BrbxSwipeDirection.Left in config.allowedDirections) {
-            return Offset(x = -containerSize.width.toFloat(), y) to BrbxSwipeDirection.Left
+            return Offset(
+                x = -containerSize.width.toFloat() * safeMultiplier,
+                y = y
+            ) to BrbxSwipeDirection.Left
         }
-    } else if (!isHorizontalSwipe && abs(x = y) > config.swipeThreshold) {
+    } else if (!isHorizontalSwipe && abs(y) > config.swipeThreshold) {
         if (y > 0 && BrbxSwipeDirection.Down in config.allowedDirections) {
-            return Offset(x, y = containerSize.height.toFloat()) to BrbxSwipeDirection.Down
+            return Offset(
+                x = x,
+                y = containerSize.height.toFloat() * safeMultiplier
+            ) to BrbxSwipeDirection.Down
         }
         if (y < 0 && BrbxSwipeDirection.Up in config.allowedDirections) {
-            return Offset(x, y = -containerSize.height.toFloat()) to BrbxSwipeDirection.Up
+            return Offset(
+                x = x,
+                y = -containerSize.height.toFloat() * safeMultiplier
+            ) to BrbxSwipeDirection.Up
         }
     }
 

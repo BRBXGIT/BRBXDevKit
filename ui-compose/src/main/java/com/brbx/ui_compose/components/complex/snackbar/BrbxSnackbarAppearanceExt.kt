@@ -27,7 +27,7 @@ import com.brbx.ui_compose.theme.mTypography
 internal inline fun BrbxSnackbarAppearance(
     // Animation
     crossinline dismissAnimationSpec: @Composable () -> AnimationSpec<Offset> =
-        { bMotion.nonSpatialExtraFastSpec() },
+        { bMotion.exitStructuralSpec() },
     crossinline revertAnimationSpec: @Composable () -> AnimationSpec<Offset> =
         { bMotion.settleGestureSpec() },
 

@@ -10,11 +10,12 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.first
 
 /**
- * The default implementation of [BrbxSnackbarHostState].
+ * The default implementation of [BrbxSnackbarHostState] and [BrbxSnackbarController].
  * * This class uses a Kotlin Coroutines [Channel] to manage a queue of snackbars.
  * It ensures that multiple rapid calls to [show] do not overlap, but instead
  * display sequentially, waiting for the previous snackbar to be dismissed (either
- * through timeout, user swipe, or action click) before showing the next one.
+ * through timeout, user swipe, or action click) and fully animated out before
+ * showing the next one.
  */
 @Stable
 internal class DefaultBrbxSnackbarHostState : BrbxSnackbarController, BrbxSnackbarHostState {

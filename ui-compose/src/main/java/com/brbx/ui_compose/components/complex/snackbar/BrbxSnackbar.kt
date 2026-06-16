@@ -62,6 +62,7 @@ private fun BrbxSnackbarImpl(
     appearance: BrbxSnackbarAppearance,
     modifier: Modifier,
 ) {
+    // TODO Add base swipe offset after which snackbar should be hidden
     BrbxOmniSwipeableContainer(
         enabled = snackbarConfig.isDismissable,
         revertAnimationSpec = appearance.revertAnimationSpec(),
