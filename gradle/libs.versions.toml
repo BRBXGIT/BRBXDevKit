@@ -27,7 +27,7 @@ coilCompose = "2.7.0"
 solar = "2.1.0"
 
 # Koin
-koin = "4.2.1"
+koin = "4.2.2"
 
 [libraries]
 # Core-kx

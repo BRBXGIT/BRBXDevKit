@@ -5,10 +5,6 @@ plugins {
 
 kotlin {
     jvmToolchain(jdkVersion = 17)
-
-    compilerOptions {
-        freeCompilerArgs.add("-Xcontext-parameters")
-    }
 }
 
 dependencies {

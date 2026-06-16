@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.android.library)
     // Compose
     alias(libs.plugins.kotlin.compose)
+    // Maven
+    `maven-publish`
 }
 
 android {
@@ -14,10 +16,39 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
     buildFeatures { compose = true }
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+        }
+    }
 }
 
 dependencies {
 
     // Coil
     api(libs.coil.compose)
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            create<MavenPublication>("release") {
+                from(components["release"])
+                groupId = "com.brbx"
+                artifactId = "coil-helpers"
+                version = "1.0.0"
+            }
+        }
+        repositories {
+            maven {
+                name = "GitHubPackages"
+                url = uri("https://maven.pkg.github.com/BRBXGIT/BRBXDevKit")
+
+                credentials {
+                    username = project.findProperty("gpr.user") as String?
+                    password = project.findProperty("gpr.key") as String?
+                }
+            }
+        }
+    }
 }

@@ -1,6 +1,8 @@
 plugins {
     // Android library
     alias(libs.plugins.android.library)
+    // Maven
+    `maven-publish`
 }
 
 android {
@@ -14,7 +16,11 @@ android {
     kotlin {
         compilerOptions {
             jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
-            freeCompilerArgs.add("-Xcontext-parameters")
+        }
+    }
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
         }
     }
 }
@@ -23,4 +29,28 @@ dependencies {
 
     // ViewModel Lifecycle
     api(libs.androidx.lifecycle.viewmodel.ktx)
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            create<MavenPublication>("release") {
+                from(components["release"])
+                groupId = "com.brbx"
+                artifactId = "mvi"
+                version = "1.0.0"
+            }
+        }
+        repositories {
+            maven {
+                name = "GitHubPackages"
+                url = uri("https://maven.pkg.github.com/BRBXGIT/BRBXDevKit")
+
+                credentials {
+                    username = project.findProperty("gpr.user") as String?
+                    password = project.findProperty("gpr.key") as String?
+                }
+            }
+        }
+    }
 }
