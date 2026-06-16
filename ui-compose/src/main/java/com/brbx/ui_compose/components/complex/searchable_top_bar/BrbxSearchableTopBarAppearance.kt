@@ -79,6 +79,11 @@ interface BrbxSearchableTopBarAppearance {
      */
     @Composable fun defaultOverflowFadeAnimation(): DurationBasedAnimationSpec<Float>
 
+    /**
+     * Width of decoration overflowing box
+     */
+    @Composable fun overflowWidth(): Dp
+
     // ---------------------------------------------------------------------------
     // Transitions
     // ---------------------------------------------------------------------------

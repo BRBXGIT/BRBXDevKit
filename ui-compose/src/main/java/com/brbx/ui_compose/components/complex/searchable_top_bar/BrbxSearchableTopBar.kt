@@ -2,9 +2,7 @@ package com.brbx.ui_compose.components.complex.searchable_top_bar
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedContent
-import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -37,7 +35,6 @@ import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.brbx.ui_compose.common.BrbxText
 import com.brbx.ui_compose.common.asString
 import com.brbx.ui_compose.theme.BrbxTheme
@@ -223,11 +220,12 @@ private fun DefaultSearchField(
     val isOverflowing by remember { derivedStateOf { textWidth > containerWidth } }
 
     val fadeProgress by animateFloatAsState(
-        targetValue = if (isOverflowing) 1f else 0f, // TODO Move to appearance
+        targetValue = if (isOverflowing) 1f else 0f,
         animationSpec = appearance.defaultOverflowFadeAnimation(),
         label = "Text overflow fade animation"
     )
 
+    val overflowWidth = appearance.overflowWidth()
     val value = textFieldValue()
     BasicTextField(
         value = value,
@@ -277,7 +275,7 @@ private fun DefaultSearchField(
                                             Color.Black
                                         ),
                                         startX = 0f,
-                                        endX = 32.dp.toPx() // TODO Move to appearance
+                                        endX = overflowWidth.toPx(),
                                     ),
                                     blendMode = BlendMode.DstIn
                                 )

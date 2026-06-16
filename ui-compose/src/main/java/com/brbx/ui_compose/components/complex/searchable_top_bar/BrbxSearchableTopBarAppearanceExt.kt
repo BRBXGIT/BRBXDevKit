@@ -22,6 +22,7 @@ import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
+import androidx.compose.ui.unit.dp
 import com.brbx.ui_compose.common.UnsafeAppearanceCopy
 import com.brbx.ui_compose.components.complex.tile.tile.rememberCopy
 import com.brbx.ui_compose.theme.bMotion
@@ -59,7 +60,7 @@ internal inline fun BrbxSearchableTopBarAppearance(
         { bMotion.nonSpatialExtraFastSpec() },
 
     // Transitions
-    crossinline searchFieldTransitionSpecc: @Composable () -> (
+    crossinline searchFieldTransitionSpec: @Composable () -> (
         AnimatedContentTransitionScope<Boolean>.() -> ContentTransform
     ) = {
         val enterWithBounce = bMotion.enterStructuralSpec<IntOffset>()
@@ -105,6 +106,7 @@ internal inline fun BrbxSearchableTopBarAppearance(
             }
         }
     },
+    crossinline overflowWidth: @Composable () -> Dp = { remember { 32.dp } },
 ): BrbxSearchableTopBarAppearance = object : BrbxSearchableTopBarAppearance {
 
     // Container & Layout
@@ -124,11 +126,12 @@ internal inline fun BrbxSearchableTopBarAppearance(
         defaultSearchFieldPlaceholderStyle()
     @Composable override fun defaultOverflowFadeAnimation(): DurationBasedAnimationSpec<Float> =
         defaultOverflowFadeAnimation()
+    @Composable override fun overflowWidth(): Dp = overflowWidth()
 
     // Transitions
     @Composable override fun searchFieldTransitionSpec():
             AnimatedContentTransitionScope<Boolean>.() -> ContentTransform =
-                searchFieldTransitionSpecc()
+                searchFieldTransitionSpec()
     @Composable override fun searchIconTransitionSpec():
             AnimatedContentTransitionScope<Boolean>.() -> ContentTransform =
                 searchIconTransitionSpec()
@@ -163,6 +166,8 @@ inline fun BrbxSearchableTopBarAppearance.copy(
         { this.defaultSearchFieldPlaceholderStyle() },
     crossinline defaultOverflowFadeAnimation: @Composable () -> DurationBasedAnimationSpec<Float> =
         { this.defaultOverflowFadeAnimation() },
+    crossinline overflowWidth: @Composable () -> Dp =
+        { this.overflowWidth() },
 
     // Transitions
     crossinline searchFieldTransitionSpec:
@@ -190,6 +195,9 @@ inline fun BrbxSearchableTopBarAppearance.copy(
         defaultSearchFieldPlaceholderStyle()
     @Composable override fun defaultOverflowFadeAnimation(): DurationBasedAnimationSpec<Float> =
         defaultOverflowFadeAnimation()
+    @Composable
+    override fun overflowWidth(): Dp =
+        overflowWidth()
 
     // Transitions
     @Composable override fun searchFieldTransitionSpec():
@@ -235,6 +243,8 @@ inline fun BrbxSearchableTopBarAppearance.rememberCopy(
         { this.defaultSearchFieldPlaceholderStyle() },
     crossinline defaultOverflowFadeAnimation: @Composable () -> DurationBasedAnimationSpec<Float> =
         { this.defaultOverflowFadeAnimation() },
+    crossinline overflowWidth: @Composable () -> Dp =
+        { this.overflowWidth() },
 
     // Transitions
     crossinline searchFieldTransitionSpec:
@@ -254,6 +264,7 @@ inline fun BrbxSearchableTopBarAppearance.rememberCopy(
         defaultSearchFieldCursorBrush = defaultSearchFieldCursorBrush,
         defaultSearchFieldPlaceholderStyle = defaultSearchFieldPlaceholderStyle,
         defaultOverflowFadeAnimation = defaultOverflowFadeAnimation,
+        overflowWidth = overflowWidth,
         searchFieldTransitionSpec = searchFieldTransitionSpec,
         searchIconTransitionSpec = searchIconTransitionSpec,
     )
