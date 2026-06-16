@@ -59,18 +59,21 @@ internal inline fun BrbxSearchableTopBarAppearance(
         { bMotion.nonSpatialExtraFastSpec() },
 
     // Transitions
-    crossinline searchFieldTransitionSpec: @Composable () -> (
+    crossinline searchFieldTransitionSpecc: @Composable () -> (
         AnimatedContentTransitionScope<Boolean>.() -> ContentTransform
     ) = {
-        val enterSpatial = bMotion.enterStructuralSpec<IntOffset>()
+        val enterWithBounce = bMotion.enterStructuralSpec<IntOffset>()
+        val enterWithoutBounce = bMotion.exitStructuralSpec<IntOffset>()
         val exitSpatial = bMotion.exitStructuralSpec<IntOffset>()
-        val alphaSpec = bMotion.nonSpatialFastSpec<Float>()
+        val alphaSpec = bMotion.nonSpatialExtraFastSpec<Float>()
 
-        remember(enterSpatial, exitSpatial, alphaSpec) {
+        remember(enterWithBounce, enterWithoutBounce, exitSpatial, alphaSpec) {
             {
                 val direction = if (targetState) -1 else 1
+                val currentEnterSpatial = if (targetState) enterWithBounce else enterWithoutBounce
+
                 val enter = slideInHorizontally(
-                    animationSpec = enterSpatial
+                    animationSpec = currentEnterSpatial
                 ) { (it / 2) * direction } + fadeIn(animationSpec = alphaSpec)
                 val exit = slideOutHorizontally(
                     animationSpec = exitSpatial
@@ -82,15 +85,18 @@ internal inline fun BrbxSearchableTopBarAppearance(
     crossinline searchIconTransitionSpec: @Composable () -> (
         AnimatedContentTransitionScope<Boolean>.() -> ContentTransform
     ) = {
-        val enterSpatial = bMotion.enterStructuralSpec<IntOffset>()
+        val enterWithBounce = bMotion.enterStructuralSpec<IntOffset>()
+        val enterWithoutBounce = bMotion.exitStructuralSpec<IntOffset>()
         val exitSpatial = bMotion.exitStructuralSpec<IntOffset>()
         val alphaSpec = bMotion.nonSpatialFastSpec<Float>()
 
-        remember(enterSpatial, exitSpatial, alphaSpec) {
+        remember(enterWithBounce, enterWithoutBounce, exitSpatial, alphaSpec) {
             {
                 val direction = if (targetState) 1 else -1
+                val currentEnterSpatial = if (targetState) enterWithBounce else enterWithoutBounce
+
                 val enter = slideInVertically(
-                    animationSpec = enterSpatial
+                    animationSpec = currentEnterSpatial
                 ) { (it / 2) * direction } + fadeIn(animationSpec = alphaSpec)
                 val exit = slideOutVertically(
                     animationSpec = exitSpatial
@@ -122,7 +128,7 @@ internal inline fun BrbxSearchableTopBarAppearance(
     // Transitions
     @Composable override fun searchFieldTransitionSpec():
             AnimatedContentTransitionScope<Boolean>.() -> ContentTransform =
-                searchFieldTransitionSpec()
+                searchFieldTransitionSpecc()
     @Composable override fun searchIconTransitionSpec():
             AnimatedContentTransitionScope<Boolean>.() -> ContentTransform =
                 searchIconTransitionSpec()

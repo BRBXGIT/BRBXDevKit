@@ -71,7 +71,7 @@ internal class DefaultBrbxMotion : BrbxMotion {
 
     override fun <T> exitStructuralSpec(visibilityThreshold: T?): SpringSpec<T> = spring(
         dampingRatio = BrbxMotionTokens.Damping.NoBouncy,
-        stiffness = BrbxMotionTokens.Stiffness.Medium,
+        stiffness = BrbxMotionTokens.Stiffness.VeryHigh,
         visibilityThreshold = visibilityThreshold,
     )
 

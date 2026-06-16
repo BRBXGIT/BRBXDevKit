@@ -35,14 +35,13 @@ internal object BrbxMotionTokens {
     }
 
     object NonSpatial {
-        const val DurationExtraFast = 100
+        const val DurationExtraFast = 150
         const val DurationFastMillis = 300
         const val DurationMediumMillis = 500
         const val DurationSlowMillis = 700
-        const val DurationExtraSlow = 900
+        const val DurationExtraSlow = 850
 
-
-        val EasingExtraFast = LinearOutSlowInEasing
+        val EasingExtraFast = FastOutSlowInEasing
         val EasingFast = LinearOutSlowInEasing
         val EasingMedium = FastOutSlowInEasing
         val EasingSlow = LinearEasing
