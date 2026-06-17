@@ -61,6 +61,10 @@ koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }
 
+# build-logic
+android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
+kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+
 [bundles]
 #Compose
 compose-core = [
@@ -86,3 +90,8 @@ kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", versi
 
 # Android library
 android-library = { id = "com.android.library", version.ref = "agp" }
+
+# build-logic
+brbxdevkit-android-library = { id = "brbxdevkit.android.library" }
+brbxdevkit-compose-android-library = { id = "brbxdevkit.android.library.compose" }
+brbxdevkit-android-publish = { id = "brbxdevkit.android.publish" }
