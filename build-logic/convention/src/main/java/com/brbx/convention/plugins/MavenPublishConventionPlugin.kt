@@ -20,7 +20,7 @@ class MavenPublishConventionPlugin : Plugin<Project> {
                     pluginManager.withPlugin("com.android.library") {
                         publications.create<MavenPublication>("release") {
                             from(components["release"])
-                            groupId = "com.github.BRBXGIT"
+                            groupId = "com.github.brbxgit.brbxdevkit"
                             artifactId = project.name
                             version = "1.0.0"
                         }
@@ -30,7 +30,7 @@ class MavenPublishConventionPlugin : Plugin<Project> {
                     pluginManager.withPlugin("org.jetbrains.kotlin.jvm") {
                         publications.create<MavenPublication>("java") {
                             from(components["java"])
-                            groupId = "com.github.BRBXGIT"
+                            groupId = "com.github.brbxgit.brbxdevkit"
                             artifactId = project.name
                             version = "1.0.0"
                         }
