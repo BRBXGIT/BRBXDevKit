@@ -22,7 +22,7 @@ class MavenPublishConventionPlugin : Plugin<Project> {
                             from(components["release"])
                             groupId = "com.github.BRBXGIT.BRBXDevKit"
                             artifactId = project.name
-                            version = "1.0.4"
+                            version = "1.0.44"
                         }
                     }
                 }
@@ -33,7 +33,7 @@ class MavenPublishConventionPlugin : Plugin<Project> {
                         from(components["java"])
                         groupId = "com.github.BRBXGIT.BRBXDevKit"
                         artifactId = project.name
-                        version = "1.0.4"
+                        version = "1.0.44"
                     }
                 }
             }
