@@ -1,7 +1,6 @@
 package com.brbx.core.coroutines
 
 import androidx.annotation.CheckResult
-import androidx.compose.runtime.Immutable
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 
@@ -16,14 +15,12 @@ internal typealias CoroutineError = Throwable.() -> Unit
  * error handling. It holds the scope and the action to be executed, and is designed
  * to be consumed by the [onError] infix function to actually trigger the launch.
  */
-@Immutable
 interface BrbxCoroutineUnit {
     val scope: CoroutineScope
     val coroutineAction: CoroutineAction
     val coroutineFinally: CoroutineFinally?
 }
 
-@Immutable
 internal data class DefaultBrbxCoroutineUnit(
     override val scope: CoroutineScope,
     override val coroutineAction: CoroutineAction,
