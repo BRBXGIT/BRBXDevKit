@@ -15,7 +15,13 @@ class MavenPublishConventionPlugin : Plugin<Project> {
             pluginManager.apply("maven-publish")
 
             group = "com.github.BRBXGIT.BRBXDevKit"
-            version = "1.0.45"
+            version = System.getenv("JITPACK_VERSION") ?: "1.0.44-LOCAL"
+
+            tasks.withType(
+                org.gradle.api.publish.tasks.GenerateModuleMetadata::class.java
+            ).configureEach {
+                enabled = false
+            }
 
             extensions.configure<PublishingExtension> {
                 pluginManager.withPlugin("com.android.library") {
