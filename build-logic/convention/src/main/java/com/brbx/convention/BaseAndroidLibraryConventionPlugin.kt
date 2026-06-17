@@ -6,12 +6,12 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
 
-class ComposeAndroidLibraryConventionPlugin : Plugin<Project> {
+abstract class BaseAndroidLibraryConventionPlugin : Plugin<Project> {
 
     override fun apply(target: Project) {
         with(target) {
             pluginManager.apply("com.android.library")
-            pluginManager.apply("org.jetbrains.kotlin.plugin.compose")
+            applyExtraPlugins()
 
             extensions.configure<LibraryExtension> {
                 val modulePath = project.path
@@ -20,9 +20,7 @@ class ComposeAndroidLibraryConventionPlugin : Plugin<Project> {
                     .joinToString(separator = ".") { it.replace("-", "_") }
                 namespace = if (modulePath.isNotEmpty()) {
                     "com.brbx.$modulePath"
-                } else {
-                    "com.brbx"
-                }
+                } else "com.brbx"
 
                 compileSdk = 37
                 defaultConfig.minSdk = 28
@@ -30,13 +28,18 @@ class ComposeAndroidLibraryConventionPlugin : Plugin<Project> {
                     sourceCompatibility = JavaVersion.VERSION_17
                     targetCompatibility = JavaVersion.VERSION_17
                 }
-                buildFeatures { compose = true }
+
                 publishing {
                     singleVariant("release") {
                         withSourcesJar()
                     }
                 }
+
+                configureExtraConfiguration(this@with)
             }
         }
     }
+
+    protected open fun LibraryExtension.configureExtraConfiguration(project: Project) {}
+    protected open fun Project.applyExtraPlugins() {}
 }

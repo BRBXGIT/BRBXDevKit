@@ -94,4 +94,4 @@ android-library = { id = "com.android.library", version.ref = "agp" }
 # build-logic
 brbxdevkit-android-library = { id = "brbxdevkit.android.library" }
 brbxdevkit-compose-android-library = { id = "brbxdevkit.android.library.compose" }
-brbxdevkit-android-publish = { id = "brbxdevkit.android.publish" }
+brbxdevkit-maven-publish = { id = "brbxdevkit.maven.publish" }
