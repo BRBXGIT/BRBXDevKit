@@ -17,6 +17,7 @@ class MavenPublishConventionPlugin : Plugin<Project> {
             group = "com.github.BRBXGIT.BRBXDevKit"
             version = System.getenv("JITPACK_VERSION") ?: "1.0.44-LOCAL"
 
+            // Fix problem with .jar files on JitPack DO NOT DELETE
             tasks.withType(
                 org.gradle.api.publish.tasks.GenerateModuleMetadata::class.java
             ).configureEach {
