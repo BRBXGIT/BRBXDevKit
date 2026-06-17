@@ -1,14 +1,10 @@
 plugins {
-    // Kotlin jvm
-    alias(libs.plugins.jetbrains.kotlin.jvm)
-}
-
-kotlin {
-    jvmToolchain(jdkVersion = 17)
+    // Android library
+    alias(libs.plugins.brbxdevkit.android.library)
 }
 
 dependencies {
 
     // Lifecycle
-    implementation(libs.androidx.lifecycle.runtime.ktx)
+    api(libs.androidx.lifecycle.runtime.ktx)
 }
