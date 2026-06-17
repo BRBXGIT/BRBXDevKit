@@ -14,26 +14,23 @@ class MavenPublishConventionPlugin : Plugin<Project> {
         with(target) {
             pluginManager.apply("maven-publish")
 
+            group = "com.github.BRBXGIT.BRBXDevKit"
+            version = "1.0.45"
+
             extensions.configure<PublishingExtension> {
-                // Android library publishing
                 pluginManager.withPlugin("com.android.library") {
                     afterEvaluate {
                         publications.create<MavenPublication>("release") {
                             from(components["release"])
-                            groupId = "com.github.BRBXGIT.BRBXDevKit"
                             artifactId = project.name
-                            version = "1.0.44"
                         }
                     }
                 }
 
-                // Kotlin/java module publishing
                 pluginManager.withPlugin("org.jetbrains.kotlin.jvm") {
                     publications.create<MavenPublication>("java") {
                         from(components["java"])
-                        groupId = "com.github.BRBXGIT.BRBXDevKit"
                         artifactId = project.name
-                        version = "1.0.44"
                     }
                 }
             }
