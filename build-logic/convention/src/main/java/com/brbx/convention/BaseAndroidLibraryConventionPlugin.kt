@@ -32,6 +32,7 @@ abstract class BaseAndroidLibraryConventionPlugin : Plugin<Project> {
                 publishing {
                     singleVariant("release") {
                         withSourcesJar()
+                        withJavadocJar()
                     }
                 }
 

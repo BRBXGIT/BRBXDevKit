@@ -20,7 +20,7 @@ class MavenPublishConventionPlugin : Plugin<Project> {
                     afterEvaluate {
                         publications.create<MavenPublication>("release") {
                             from(components["release"])
-                            groupId = "com.github.brbxgit.brbxdevkit"
+                            groupId = "com.github.BRBXGIT.BRBXDevKit"
                             artifactId = project.name
                             version = "1.0.4"
                         }
@@ -31,7 +31,7 @@ class MavenPublishConventionPlugin : Plugin<Project> {
                 pluginManager.withPlugin("org.jetbrains.kotlin.jvm") {
                     publications.create<MavenPublication>("java") {
                         from(components["java"])
-                        groupId = "com.github.brbxgit.brbxdevkit"
+                        groupId = "com.github.BRBXGIT.BRBXDevKit"
                         artifactId = project.name
                         version = "1.0.4"
                     }
