@@ -52,8 +52,8 @@ dependencies {
 #### Module-specific implementation
 ```kotlin
 dependencies {
-    // Replace 'module-name' with: mvi, mvi-compose, ui-compose, coil-helpers, etc.
-    implementation("com.github.BRBXGIT.BRBXDevKit:mvi-compose:1.1.3")
+    // Replace 'module-name' with: mvi, mvi-compose, ui-compose, coil-helpers, coroutine-helpers
+    implementation("com.github.BRBXGIT.BRBXDevKit:module-name:1.1.3")
 }
 ```
 
