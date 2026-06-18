@@ -20,7 +20,6 @@ The core of BRBXDevKit is a robust **MVI (Model-View-Intent)** pattern that ensu
 One of the main features of BRBXDevKit is the use of **Intent Processors**. This allows you to:
 1.  **Decouple Logic**: Move complex business logic out of the ViewModel and into testable, focused classes.
 2.  **Clean ViewModels**: ViewModels become simple dispatchers that coordinate between State and Processors, preventing them from becoming "God Objects."
-3.  **Reusable Code**: Easily share processing logic across different screens or ViewModels.
 
 ---
 
