@@ -70,6 +70,7 @@ If you implement `mvi-compose`, it automatically implements `mvi` and `ui-compos
 graph TD
     mvi-compose[":mvi-compose"] --> mvi[":mvi"]
     mvi-compose --> ui-compose[":ui-compose"]
+    mvi-compose --> navigation-compose
     ui-compose --> compose
     coil-helpers[":coil-helpers"] --> coil
     coroutines-helpers[":coroutines-helpers"] --> lifecycle
