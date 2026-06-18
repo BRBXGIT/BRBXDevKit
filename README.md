@@ -131,7 +131,7 @@ class CounterProcessorImpl : CounterProcessor {
             MainIntent.CounterIntent.Increment -> {
                 viewModelScope.launch {
                     updateState { copy(count = count + 1) }
-                } // You have access to viewModel features in processors
+                } // You have access to viewModel features inside BrbxMviScope
             }
             MainIntent.CounterIntent.Decrement -> 
                 updateState { copy(count = count - 1) }
