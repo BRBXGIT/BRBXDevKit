@@ -72,7 +72,7 @@ graph TD
     mvi-compose --> ui-compose[":ui-compose"]
     ui-compose --> compose
     coil-helpers[":coil-helpers"] --> coil
-    coroutines-helpers[":coroutines-helpers"] -> lifecycle
+    coroutines-helpers[":coroutines-helpers"] --> lifecycle
 ```
 
  Module | Description                                                             |
