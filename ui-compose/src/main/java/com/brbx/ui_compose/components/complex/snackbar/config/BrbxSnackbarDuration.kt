@@ -15,6 +15,8 @@ sealed interface BrbxSnackbarDuration {
 
     data object Long : BrbxSnackbarDuration
 
+    data object Infinite : BrbxSnackbarDuration
+
     @JvmInline
     value class Custom(val millis: kotlin.Long) : BrbxSnackbarDuration
 }

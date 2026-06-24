@@ -69,11 +69,7 @@ private fun BrbxSnackbarHostImpl(
     LaunchedEffect(key1 = currentConfig) {
         if (currentConfig != null && currentConfig != displayedConfig) {
             displayedConfig = currentConfig
-            val duration = when (val dur = currentConfig.duration) {
-                is BrbxSnackbarDuration.Custom -> dur.millis
-                BrbxSnackbarDuration.Long -> 6000L
-                BrbxSnackbarDuration.Short -> 3000L
-            }
+            val duration = currentConfig.duration.asMillis()
             delay(duration.milliseconds)
             hostState.dismissCurrent()
         }
@@ -103,3 +99,11 @@ private fun BrbxSnackbarHostImpl(
         }
     }
 }
+
+private fun BrbxSnackbarDuration.asMillis(): Long =
+    when (this) {
+        is BrbxSnackbarDuration.Custom -> this.millis
+        BrbxSnackbarDuration.Infinite -> Long.MAX_VALUE
+        BrbxSnackbarDuration.Long -> 3000L
+        BrbxSnackbarDuration.Short -> 6000L
+    }
