@@ -40,7 +40,7 @@ dependencyResolutionManagement {
 ```
 
 ### 2. Add Dependencies
-The library is versioned at `1.1.3`.
+The library is versioned at `1.1.41`.
 
 #### Full implementation (All modules)
 ```kotlin
