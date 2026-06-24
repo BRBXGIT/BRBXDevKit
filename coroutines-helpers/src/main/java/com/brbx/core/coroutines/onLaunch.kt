@@ -8,6 +8,7 @@ internal typealias CoroutineAction = suspend CoroutineScope.() -> Unit
 internal typealias CoroutineFinally = () -> Unit
 internal typealias CoroutineError = Throwable.() -> Unit
 
+// TODO Make module kotlin library with kotlix coroutine library
 /**
  * An intermediate builder unit for the Brbx coroutine DSL.
  *
