@@ -40,13 +40,13 @@ abstract class BrbxMviViewModel<State, in Intent : Any, CommonEffect, LocalEffec
     // State & Effects
     // ---------------------------------------------------------------------------
 
-    protected val _state = MutableStateFlow(value = initialState)
+    private val _state = MutableStateFlow(value = initialState)
     open val state = _state.stateInLazily(initialValue = initialState)
 
-    protected val _commonEffects = MutableSharedFlow<CommonEffect>(replay = brbxEffectsReplay)
+    private val _commonEffects = MutableSharedFlow<CommonEffect>(replay = brbxEffectsReplay)
     open val commonEffects = _commonEffects.shareInLazily()
 
-    protected val _localEffects = MutableSharedFlow<LocalEffect>(replay = localEffectsReplay)
+    private val _localEffects = MutableSharedFlow<LocalEffect>(replay = localEffectsReplay)
     open val localEffects = _localEffects.shareInLazily()
 
     // ---------------------------------------------------------------------------
@@ -85,7 +85,7 @@ abstract class BrbxMviViewModel<State, in Intent : Any, CommonEffect, LocalEffec
         _localEffects.postEffect(effect)
     }
 
-    protected fun <T> MutableSharedFlow<T>.postEffect(effect: T) {
+    private fun <T> MutableSharedFlow<T>.postEffect(effect: T) {
         viewModelScope.launch { emit(value = effect) }
     }
 }
