@@ -12,6 +12,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 
+// TODO Add interface segregation for default appearances and custom
 /**
  * Defines the visual appearance and styling of the [BrbxSnackbar] component.
  * Allows flexible configuration of the snackbar's dimensions, colors, paddings, and typography.

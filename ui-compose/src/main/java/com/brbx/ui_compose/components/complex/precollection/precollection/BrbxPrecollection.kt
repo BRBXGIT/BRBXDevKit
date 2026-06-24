@@ -72,7 +72,7 @@ fun BrbxPrecollection(
 fun BrbxPrecollection(
     text: BrbxText,
     modifier: Modifier = Modifier,
-    leadingContent: @Composable () -> Unit = {},
+    trailingContent: @Composable () -> Unit = {},
     appearance: BrbxPrecollectionAppearance = BrbxPrecollectionAppearances.tertiary,
     enabled: Boolean = true,
     onClick: () -> Unit = {},
@@ -94,7 +94,7 @@ fun BrbxPrecollection(
                 .padding(end = appearance.defaultTextPaddingEnd())
         )
 
-        leadingContent()
+        trailingContent()
     }
 }
 
@@ -141,7 +141,7 @@ private fun BrbxPrecollectionPreview() {
     BrbxTheme(colorScheme = lightColorScheme()) {
         BrbxPrecollection(
             text = "Some long description, it's very long and can not be in one line so it will be on second".toBrbxText(),
-            leadingContent = {
+            trailingContent = {
                 BrbxIcon(OutlineSolar.Users.User)
             }
         )

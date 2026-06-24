@@ -38,7 +38,7 @@ internal inline fun BrbxPrecollectionAppearance(
     // Content
     crossinline contentPadding: @Composable () -> PaddingValues =
         { PaddingValues(horizontal = bDimens.micro5, vertical = bDimens.micro6) },
-    crossinline leadingContentColor: @Composable () -> Color = { mColors.onTertiary },
+    crossinline contentColor: @Composable () -> Color = { mColors.onTertiary },
 
     // Default Typography
     crossinline defaultTextStyle: @Composable () -> TextStyle =
@@ -56,8 +56,8 @@ internal inline fun BrbxPrecollectionAppearance(
     @Composable override fun containerBrush(): Brush = containerBrush()
     @Composable override fun containerRippleColor(): Color = containerRippleColor()
 
-    // Leading content
-    @Composable override fun contentColor(): Color = leadingContentColor()
+    // Content
+    @Composable override fun contentColor(): Color = contentColor()
     @Composable override fun contentPadding(): PaddingValues = contentPadding()
 
     // Default Typography
@@ -89,7 +89,7 @@ inline fun BrbxPrecollectionAppearance.copy(
     // Content
     crossinline contentPadding: @Composable () -> PaddingValues =
         { this.contentPadding() },
-    crossinline leadingContentColor: @Composable () -> Color =
+    crossinline contentColor: @Composable () -> Color =
         { this.contentColor() },
 
     // Default Typography
@@ -106,7 +106,7 @@ inline fun BrbxPrecollectionAppearance.copy(
 
     // Content
     @Composable override fun contentPadding(): PaddingValues = contentPadding()
-    @Composable override fun contentColor(): Color = leadingContentColor()
+    @Composable override fun contentColor(): Color = contentColor()
 
     // Default Typography
     @Composable override fun defaultTextStyle(): TextStyle = defaultTextStyle()
@@ -138,7 +138,7 @@ inline fun BrbxPrecollectionAppearance.rememberCopy(
     // Content
     crossinline contentPadding: @Composable () -> PaddingValues =
         { this.contentPadding() },
-    crossinline leadingContentColor: @Composable () -> Color =
+    crossinline contentColor: @Composable () -> Color =
         { this.contentColor() },
 
     // Default Typography
@@ -156,7 +156,7 @@ inline fun BrbxPrecollectionAppearance.rememberCopy(
         containerBrush = containerBrush,
         containerRippleColor = containerRippleColor,
         contentPadding = contentPadding,
-        leadingContentColor = leadingContentColor,
+        contentColor = contentColor,
         defaultTextStyle = defaultTextStyle,
         defaultTextMaxLines = defaultTextMaxLines,
         defaultTextOverflow = defaultTextOverflow,

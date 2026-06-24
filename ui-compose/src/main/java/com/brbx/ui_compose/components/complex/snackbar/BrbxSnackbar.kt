@@ -2,6 +2,7 @@ package com.brbx.ui_compose.components.complex.snackbar
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -26,88 +27,114 @@ import com.brbx.ui_compose.containers.simple.omni_swipeable_container.BrbxSwipeD
 import com.brbx.ui_compose.theme.BrbxTheme
 
 /**
- * A customizable Snackbar component designed to display brief, transient messages to the user.
- * * It supports multi-directional swipe-to-dismiss functionality (powered by [BrbxOmniSwipeableContainer])
- * and optional actionable buttons. The appearance and behavior are fully decoupled, allowing for
- * flexible styling and configuration.
+ * A customizable snackbar component used to display transient messages,
+ * supporting swipe-to-dismiss gestures and visual styling configurations.
  *
- * @param config The core data model ([BrbxSnackbarConfig]) containing the message text, optional action button details, and dismissibility state.
- * @param onDismiss A callback invoked when the Snackbar is dismissed. This triggers either through a successful swipe gesture or when the action button is clicked.
- * @param modifier The [Modifier] to be applied to the outermost layout of the Snackbar.
- * @param swipeConfig Configuration defining allowed swipe directions and thresholds. Defaults to [BrbxDefaultSwipeConfig].
- * @param appearance A styling interface ([BrbxSnackbarAppearance]) dictating the visual design (colors, typography, shapes, margins). Defaults to standard appearances.
+ * @param isDismissable True if the snackbar can be dismissed by the user, false otherwise.
+ * @param modifier The [Modifier] to be applied to the outer layout of this snackbar.
+ * @param onDismiss Lambda callback invoked when the snackbar is dismissed (e.g., via swipe).
+ * @param swipeConfig The configuration details determining swipe behavior, thresholds, and directions.
+ * @param appearance The design and styling configuration (colors, shapes, typography) for the snackbar.
+ * @param content The composable layout content to be rendered inside the snackbar, scoped to a [BoxScope].
  */
 @Composable
 fun BrbxSnackbar(
-    config: BrbxSnackbarConfig,
-    onDismiss: () -> Unit,
+    isDismissable: Boolean,
     modifier: Modifier = Modifier,
+    onDismiss: () -> Unit = {},
+    swipeConfig: BrbxSwipeConfig = BrbxDefaultSwipeConfig(),
+    appearance: BrbxSnackbarAppearance = BrbxSnackbarAppearances.default,
+    content: @Composable BoxScope.() -> Unit,
+) =
+    BrbxSnackbarImpl(
+        isDismissable = isDismissable,
+        swipeConfig = swipeConfig,
+        onDismiss = onDismiss,
+        appearance = appearance,
+        modifier = modifier,
+        content = content,
+    )
+
+@Composable
+fun BrbxSnackbar(
+    config: BrbxSnackbarConfig,
+    modifier: Modifier = Modifier,
+    onDismiss: () -> Unit = {},
     swipeConfig: BrbxSwipeConfig = BrbxDefaultSwipeConfig(),
     appearance: BrbxSnackbarAppearance = BrbxSnackbarAppearances.default,
 ) =
     BrbxSnackbarImpl(
         swipeConfig = swipeConfig,
-        snackbarConfig = config,
+        isDismissable = config.isDismissable,
         onDismiss = onDismiss,
         appearance = appearance,
         modifier = modifier,
-    )
+    ) { DefaultSnackbarContent(onDismiss, config, appearance) }
+
+@Composable
+private fun DefaultSnackbarContent(
+    onDismiss: () -> Unit,
+    config: BrbxSnackbarConfig,
+    appearance: BrbxSnackbarAppearance,
+) {
+    Surface(
+        modifier = Modifier.fillMaxWidth(),
+        shape = appearance.containerShape(),
+        color = Color.Transparent,
+        shadowElevation = appearance.containerElevation(),
+    ) {
+        Column(
+            verticalArrangement = Arrangement.spacedBy(appearance.contentVerticalSpacing()),
+            modifier = Modifier
+                .background(brush = appearance.containerBrush())
+                .fillMaxWidth()
+                .padding(paddingValues = appearance.contentPadding()),
+        ) {
+            Text(
+                text = config.text.asString(),
+                style = appearance.messageTextStyle(),
+                maxLines = appearance.messageMaxLines(),
+                overflow = appearance.messageOverflow(),
+            )
+
+            if (config.buttonText != null && config.onButtonClick != null) {
+                TextButton(
+                    modifier = Modifier.align(alignment = appearance.actionAlignment()),
+                    onClick = {
+                        config.onButtonClick?.invoke()
+                        onDismiss()
+                    },
+                ) {
+                    Text(
+                        text = config.buttonText!!.asString(),
+                        style = appearance.actionTextStyle(),
+                    )
+                }
+            }
+        }
+    }
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun BrbxSnackbarImpl(
     swipeConfig: BrbxSwipeConfig,
-    snackbarConfig: BrbxSnackbarConfig,
+    isDismissable: Boolean,
     onDismiss: () -> Unit,
     appearance: BrbxSnackbarAppearance,
     modifier: Modifier,
+    content: @Composable BoxScope.() -> Unit,
 ) {
     // TODO Add base swipe offset after which snackbar should be hidden
     BrbxOmniSwipeableContainer(
-        enabled = snackbarConfig.isDismissable,
+        enabled = isDismissable,
         revertAnimationSpec = appearance.revertAnimationSpec(),
         dismissAnimationSpec = appearance.dismissAnimationSpec(),
         modifier = modifier,
         config = swipeConfig,
         onSwiped = { onDismiss() },
-    ) {
-        Surface(
-            modifier = Modifier.fillMaxWidth(),
-            shape = appearance.containerShape(),
-            color = Color.Transparent,
-            shadowElevation = appearance.containerElevation(),
-        ) {
-            Column(
-                verticalArrangement = Arrangement.spacedBy(appearance.contentVerticalSpacing()),
-                modifier = Modifier
-                    .background(brush = appearance.containerBrush())
-                    .fillMaxWidth()
-                    .padding(paddingValues = appearance.contentPadding()),
-            ) {
-                Text(
-                    text = snackbarConfig.text.asString(),
-                    style = appearance.messageTextStyle(),
-                    maxLines = appearance.messageMaxLines(),
-                    overflow = appearance.messageOverflow(),
-                )
-
-                if (snackbarConfig.buttonText != null && snackbarConfig.onButtonClick != null) {
-                    TextButton(
-                        modifier = Modifier.align(alignment = appearance.actionAlignment()),
-                        onClick = {
-                            snackbarConfig.onButtonClick?.invoke()
-                            onDismiss()
-                        },
-                    ) {
-                        Text(
-                            text = snackbarConfig.buttonText!!.asString(),
-                            style = appearance.actionTextStyle(),
-                        )
-                    }
-                }
-            }
-        }
-    }
+        content = content,
+    )
 }
 
 @Preview
@@ -128,7 +155,7 @@ private fun BrbxSnackbarPreview() {
                     BrbxSwipeDirection.Up, BrbxSwipeDirection.Down,
                 )
                 override val swipeThreshold: Float = 300f
-            }
+            },
         )
     }
 }
