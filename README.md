@@ -129,9 +129,9 @@ class CounterProcessorImpl : CounterProcessor {
     override fun BrbxMviScope<MainState, BrbxEffect, Unit>.process(intent: MainIntent.CounterIntent) {
         when (intent) {
             MainIntent.CounterIntent.Increment -> {
-                viewModelScope.launch {
+                coroutineScope.launch {
                     updateState { copy(count = count + 1) }
-                } // You have access to viewModel features inside BrbxMviScope
+                } // You have access to viewModel features(like viewModelScope) inside BrbxMviScope
             }
             MainIntent.CounterIntent.Decrement -> 
                 updateState { copy(count = count - 1) }
