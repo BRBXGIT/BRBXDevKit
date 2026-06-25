@@ -1,6 +1,6 @@
 package com.brbx.ui_compose.components.complex.tile.tile
 
-import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Brush
@@ -10,6 +10,7 @@ import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import com.brbx.ui_compose.common.UnsafeAppearanceCopy
 import com.brbx.ui_compose.theme.bDimens
 import com.brbx.ui_compose.theme.bElevation
@@ -30,14 +31,14 @@ internal inline fun BrbxTileAppearance(
     // Container
     crossinline containerShape: @Composable () -> Shape =
         { bShapes.micro3 },
+    crossinline containerBorder: @Composable () -> BorderStroke =
+        { remember { BorderStroke(width = 0.dp, brush = SolidColor(value = Color.Transparent)) } },
     crossinline containerBrush: @Composable () -> Brush =
         { SolidColor(mColors.surfaceContainer) },
     crossinline containerContentPadding: @Composable () -> Dp =
         { bDimens.micro8 },
     crossinline containerElevation: @Composable () -> Dp =
         { bElevation.zero },
-    crossinline containerElevationPadding: @Composable () -> PaddingValues =
-        { PaddingValues(all = bDimens.zero) },
     crossinline containerElevationAmbientColor: @Composable () -> Color =
         { remember { Color.Transparent } },
     crossinline containerElevationSpotColor: @Composable () -> Color =
@@ -74,6 +75,9 @@ internal inline fun BrbxTileAppearance(
     override fun containerShape(): Shape = containerShape()
 
     @Composable
+    override fun containerBorder(): BorderStroke = containerBorder()
+
+    @Composable
     override fun containerBrush(): Brush = containerBrush()
 
     @Composable
@@ -81,9 +85,6 @@ internal inline fun BrbxTileAppearance(
 
     @Composable
     override fun containerElevation(): Dp = containerElevation()
-
-    @Composable
-    override fun containerElevationPadding(): PaddingValues = containerElevationPadding()
 
     @Composable
     override fun containerElevationAmbientColor(): Color = containerElevationAmbientColor()
@@ -140,14 +141,14 @@ inline fun BrbxTileAppearance.copy(
     // Container
     crossinline containerShape: @Composable () -> Shape =
         { this.containerShape() },
+    crossinline containerBorder: @Composable () -> BorderStroke =
+        { this.containerBorder() },
     crossinline containerBrush: @Composable () -> Brush =
         { this.containerBrush() },
     crossinline containerContentPadding: @Composable () -> Dp =
         { this.containerContentPadding() },
     crossinline containerElevation: @Composable () -> Dp =
         { this.containerElevation() },
-    crossinline containerElevationPadding: @Composable () -> PaddingValues =
-        { this.containerElevationPadding() },
     crossinline containerElevationAmbientColor: @Composable () -> Color =
         { this.containerElevationAmbientColor() },
     crossinline containerElevationSpotColor: @Composable () -> Color =
@@ -184,6 +185,9 @@ inline fun BrbxTileAppearance.copy(
     override fun containerShape(): Shape = containerShape()
 
     @Composable
+    override fun containerBorder(): BorderStroke = containerBorder()
+
+    @Composable
     override fun containerBrush(): Brush = containerBrush()
 
     @Composable
@@ -191,9 +195,6 @@ inline fun BrbxTileAppearance.copy(
 
     @Composable
     override fun containerElevation(): Dp = containerElevation()
-
-    @Composable
-    override fun containerElevationPadding(): PaddingValues = containerElevationPadding()
 
     @Composable
     override fun containerElevationAmbientColor(): Color = containerElevationAmbientColor()
@@ -251,14 +252,14 @@ inline fun BrbxTileAppearance.rememberCopy(
     // Container
     crossinline containerShape: @Composable () -> Shape =
         { this.containerShape() },
+    crossinline containerBorder: @Composable () -> BorderStroke =
+        { this.containerBorder() },
     crossinline containerBrush: @Composable () -> Brush =
         { this.containerBrush() },
     crossinline containerContentPadding: @Composable () -> Dp =
         { this.containerContentPadding() },
     crossinline containerElevation: @Composable () -> Dp =
         { this.containerElevation() },
-    crossinline containerElevationPadding: @Composable () -> PaddingValues =
-        { this.containerElevationPadding() },
     crossinline containerElevationAmbientColor: @Composable () -> Color =
         { this.containerElevationAmbientColor() },
     crossinline containerElevationSpotColor: @Composable () -> Color =
@@ -294,10 +295,10 @@ inline fun BrbxTileAppearance.rememberCopy(
 ): BrbxTileAppearance = remember {
     this.copy(
         containerShape = containerShape,
+        containerBorder = containerBorder,
         containerBrush = containerBrush,
         containerContentPadding = containerContentPadding,
         containerElevation = containerElevation,
-        containerElevationPadding = containerElevationPadding,
         containerElevationAmbientColor = containerElevationAmbientColor,
         containerElevationSpotColor = containerElevationSpotColor,
         containerRippleColor = containerRippleColor,

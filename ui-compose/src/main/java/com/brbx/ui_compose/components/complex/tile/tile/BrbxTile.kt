@@ -1,6 +1,7 @@
 package com.brbx.ui_compose.components.complex.tile.tile
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
@@ -147,7 +148,6 @@ private fun BrbxTileImpl(
 
     Box(
         modifier = modifier
-            .padding(paddingValues = appearance.containerElevationPadding())
             .shadow(
                 elevation = appearance.containerElevation(),
                 shape = appearance.containerShape(),
@@ -155,6 +155,7 @@ private fun BrbxTileImpl(
                 ambientColor = appearance.containerElevationAmbientColor(),
                 spotColor = appearance.containerElevationSpotColor(),
             )
+            .border(appearance.containerBorder())
             .clip(shape = appearance.containerShape())
             .background(brush = appearance.containerBrush())
             .combinedClickable(

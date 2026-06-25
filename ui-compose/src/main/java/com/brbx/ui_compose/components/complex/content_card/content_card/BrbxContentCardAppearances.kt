@@ -27,7 +27,6 @@ object BrbxContentCardAppearances {
         infoBackground = { SolidColor(value = mColors.primary) },
         titleColor = { mColors.onPrimary },
         descriptionColor = { mColors.onPrimary.copy(alpha = 0.8f) },
-        containerElevationPadding = { PaddingValues(all = bDimens.micro4) },
         containerElevation = { bElevation.small2 },
         containerElevationAmbientColor = { Color.Black },
         containerElevationSpotColor = { Color.Black },
@@ -43,7 +42,6 @@ object BrbxContentCardAppearances {
         infoBackground = { SolidColor(value = mColors.secondary) },
         titleColor = { mColors.onSecondary },
         descriptionColor = { mColors.onSecondary.copy(alpha = 0.8f) },
-        containerElevationPadding = { PaddingValues(all = bDimens.micro4) },
         containerElevation = { bElevation.small2 },
         containerElevationAmbientColor = { Color.Black },
         containerElevationSpotColor = { Color.Black },
@@ -52,7 +50,6 @@ object BrbxContentCardAppearances {
     val tertiary = BrbxContentCardAppearance()
 
     val tertiaryElevated = BrbxContentCardAppearance(
-        containerElevationPadding = { PaddingValues(all = bDimens.micro4) },
         containerElevation = { bElevation.small2 },
         containerElevationAmbientColor = { Color.Black },
         containerElevationSpotColor = { Color.Black },

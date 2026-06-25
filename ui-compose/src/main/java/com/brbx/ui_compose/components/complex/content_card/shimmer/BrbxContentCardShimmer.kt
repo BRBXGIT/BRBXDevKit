@@ -106,7 +106,6 @@ private fun BrbxContentCardShimmerImpl(
 ) {
     BrbxShimmerBlock(
         modifier
-            .padding(paddingValues = appearance.containerElevationPadding())
             .size(
                 width = appearance.containerWidth(),
                 height = appearance.containerHeight(),

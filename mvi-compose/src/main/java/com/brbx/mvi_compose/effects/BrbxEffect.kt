@@ -19,6 +19,8 @@ sealed interface BrbxEffect {
     @JvmInline
     value class ShowSnackbar(val config: BrbxSnackbarConfig) : BrbxEffect
 
+    data object DismissCurrentSnackbar : BrbxEffect
+
     // Toast
     data class ShowAndroidToast(val text: String, val length: Int = Toast.LENGTH_SHORT) : BrbxEffect
 

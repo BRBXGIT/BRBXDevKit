@@ -13,4 +13,6 @@ import com.brbx.ui_compose.components.complex.snackbar.config.BrbxSnackbarConfig
 interface BrbxSnackbarController {
 
     fun show(config: BrbxSnackbarConfig)
+
+    fun dismissCurrent()
 }

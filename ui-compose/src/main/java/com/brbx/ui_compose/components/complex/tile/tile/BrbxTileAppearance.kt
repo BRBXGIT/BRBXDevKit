@@ -1,6 +1,6 @@
 package com.brbx.ui_compose.components.complex.tile.tile
 
-import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.Brush
@@ -28,6 +28,12 @@ interface BrbxTileAppearance {
     fun containerShape(): Shape
 
     /**
+     * The border of the container
+     */
+    @Composable
+    fun containerBorder(): BorderStroke
+
+    /**
      * The background of the container. Using a [Brush] allows applying both
      * solid colors (SolidColor) and gradients.
      */
@@ -45,12 +51,6 @@ interface BrbxTileAppearance {
      */
     @Composable
     fun containerElevation(): Dp
-
-    /**
-     * The padding of the container elevation
-     */
-    @Composable
-    fun containerElevationPadding(): PaddingValues
 
     /**
      * The color used for the ambient shadow, which simulates diffuse, omnidirectional light.

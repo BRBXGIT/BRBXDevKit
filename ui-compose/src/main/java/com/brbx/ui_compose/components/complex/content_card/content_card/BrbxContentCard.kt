@@ -1,6 +1,7 @@
 package com.brbx.ui_compose.components.complex.content_card.content_card
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
@@ -140,7 +141,6 @@ private fun BrbxContentCardImpl(
 
     Box(
         modifier = modifier
-            .padding(paddingValues = appearance.containerElevationPadding())
             .size(
                 width = appearance.containerWidth(),
                 height = appearance.containerHeight(),
@@ -152,6 +152,7 @@ private fun BrbxContentCardImpl(
                 spotColor = appearance.containerElevationSpotColor(),
                 clip = false,
             )
+            .border(appearance.containerBorder())
             .clip(shape = appearance.containerShape())
             .background(brush = appearance.containerBackground())
             .combinedClickable(

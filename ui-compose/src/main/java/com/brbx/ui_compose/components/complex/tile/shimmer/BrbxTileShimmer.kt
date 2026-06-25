@@ -125,7 +125,6 @@ private fun BrbxTileShimmerImpl(
 ) {
     Box(
         modifier = modifier
-            .padding(paddingValues = appearance.containerElevationPadding())
             .shadow(
                 elevation = appearance.containerElevation(),
                 ambientColor = appearance.containerElevationAmbientColor(),

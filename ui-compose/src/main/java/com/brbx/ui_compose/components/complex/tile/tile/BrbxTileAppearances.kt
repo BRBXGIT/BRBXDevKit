@@ -1,9 +1,7 @@
 package com.brbx.ui_compose.components.complex.tile.tile
 
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.Color
-import com.brbx.ui_compose.theme.bDimens
 import com.brbx.ui_compose.theme.bElevation
 
 /**
@@ -18,7 +16,6 @@ object BrbxTileAppearances {
     val default = BrbxTileAppearance()
 
     val elevated = BrbxTileAppearance(
-        containerElevationPadding = { PaddingValues(vertical = bDimens.micro4) },
         containerElevation = { bElevation.small2 },
         containerElevationAmbientColor = { Color.Black },
         containerElevationSpotColor = { Color.Black },

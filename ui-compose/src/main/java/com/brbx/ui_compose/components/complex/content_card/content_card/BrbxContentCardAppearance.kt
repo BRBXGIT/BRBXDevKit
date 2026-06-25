@@ -1,5 +1,6 @@
 package com.brbx.ui_compose.components.complex.content_card.content_card
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
@@ -35,6 +36,12 @@ interface BrbxContentCardAppearance {
     fun containerHeight(): Dp
 
     /**
+     * The border of the card container.
+     */
+    @Composable
+    fun containerBorder(): BorderStroke
+
+    /**
      * The shape of the card's bounds (e.g., rounded corners).
      */
     @Composable
@@ -57,12 +64,6 @@ interface BrbxContentCardAppearance {
      */
     @Composable
     fun containerElevation(): Dp
-
-    /**
-     * The padding of the container elevation
-     */
-    @Composable
-    fun containerElevationPadding(): PaddingValues
 
     /**
      * The color used for the ambient shadow, which simulates diffuse, omnidirectional light.

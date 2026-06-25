@@ -31,7 +31,7 @@ internal object BrbxMotionTokens {
         const val Snappy = 0.65f
         const val Organic = 0.7f
         const val Subtle = 0.8f
-        const val NoBouncy = 1.0f
+        const val LowBouncy = 0.95f
     }
 
     object NonSpatial {

@@ -7,6 +7,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavController
 import com.brbx.ui_compose.containers.complex.snackbar_host.state.BrbxSnackbarController
 import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.launch
 
 @Composable
 internal fun BrbxMviEffectHandler(
@@ -32,7 +33,10 @@ private fun BrbxMviEffectHandlerImpl(
             when (effect) {
                 is BrbxEffect.IntentTo -> context.startActivity(effect.intent)
                 is BrbxEffect.Navigate<*> -> navController.navigate(effect.route)
-                is BrbxEffect.ShowSnackbar -> snackbarController.show(effect.config)
+                is BrbxEffect.ShowSnackbar -> launch {
+                    snackbarController.show(effect.config)
+                }
+                is BrbxEffect.DismissCurrentSnackbar -> snackbarController.dismissCurrent()
                 BrbxEffect.NavigateBack -> navController.navigateUp()
                 is BrbxEffect.ShowAndroidToast -> {
                     Toast.makeText(

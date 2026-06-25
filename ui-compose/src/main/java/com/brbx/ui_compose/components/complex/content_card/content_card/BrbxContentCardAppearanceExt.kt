@@ -1,5 +1,6 @@
 package com.brbx.ui_compose.components.complex.content_card.content_card
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -34,16 +35,16 @@ internal inline fun BrbxContentCardAppearance(
         { remember { 150.dp } },
     crossinline height: @Composable () -> Dp =
         { remember { 270.dp } },
+    crossinline containerBorder: @Composable () -> BorderStroke =
+        { remember { BorderStroke(width = 0.dp, brush = SolidColor(value = Color.Transparent)) } },
     crossinline containerShape: @Composable () -> Shape =
         { bShapes.micro3 },
     crossinline containerBackground: @Composable () -> Brush =
-        { SolidColor(mColors.surface) },
+        { SolidColor(value = mColors.surface) },
     crossinline containerRippleColor: @Composable () -> Color =
         { mColors.surface },
     crossinline containerElevation: @Composable () -> Dp =
         { bElevation.zero },
-    crossinline containerElevationPadding: @Composable () -> PaddingValues =
-        { PaddingValues(all = bDimens.zero) },
     crossinline containerElevationAmbientColor: @Composable () -> Color =
         { remember { Color.Transparent } },
     crossinline containerElevationSpotColor: @Composable () -> Color =
@@ -55,9 +56,9 @@ internal inline fun BrbxContentCardAppearance(
     crossinline infoSpacedBy: @Composable () -> Dp =
         { bDimens.micro2 },
     crossinline infoBackground: @Composable () -> Brush =
-        { SolidColor(mColors.tertiaryContainer) },
+        { SolidColor(value = mColors.tertiaryContainer) },
     crossinline infoContentPadding: @Composable () -> PaddingValues =
-        { PaddingValues(bDimens.micro4) },
+        { PaddingValues(all = bDimens.micro4) },
 
     // Title & Description
     crossinline titleColor: @Composable () -> Color =
@@ -85,6 +86,8 @@ internal inline fun BrbxContentCardAppearance(
         width()
     @Composable override fun containerHeight(): Dp =
         height()
+    @Composable override fun containerBorder(): BorderStroke =
+        containerBorder()
     @Composable override fun containerShape(): Shape =
         containerShape()
     @Composable override fun containerBackground(): Brush =
@@ -93,8 +96,6 @@ internal inline fun BrbxContentCardAppearance(
         containerRippleColor()
     @Composable override fun containerElevation(): Dp =
         containerElevation()
-    @Composable override fun containerElevationPadding(): PaddingValues =
-        containerElevationPadding()
     @Composable override fun containerElevationAmbientColor(): Color =
         containerElevationAmbientColor()
     @Composable override fun containerElevationSpotColor(): Color =
@@ -137,6 +138,8 @@ inline fun BrbxContentCardAppearance.copy(
         { this.containerWidth() },
     crossinline height: @Composable () -> Dp =
         { this.containerHeight() },
+    crossinline containerBorder: @Composable () -> BorderStroke =
+        { this.containerBorder() },
     crossinline containerShape: @Composable () -> Shape =
         { this.containerShape() },
     crossinline containerBackground: @Composable () -> Brush =
@@ -145,8 +148,6 @@ inline fun BrbxContentCardAppearance.copy(
         { this.containerRippleColor() },
     crossinline containerElevation: @Composable () -> Dp =
         { this.containerElevation() },
-    crossinline containerElevationPadding: @Composable () -> PaddingValues =
-        { this.containerElevationPadding() },
     crossinline containerElevationAmbientColor: @Composable () -> Color =
         { this.containerElevationAmbientColor() },
     crossinline containerElevationSpotColor: @Composable () -> Color =
@@ -182,6 +183,8 @@ inline fun BrbxContentCardAppearance.copy(
         width()
     @Composable override fun containerHeight(): Dp =
         height()
+    @Composable override fun containerBorder(): BorderStroke =
+        containerBorder()
     @Composable override fun containerShape(): Shape =
         containerShape()
     @Composable override fun containerBackground(): Brush =
@@ -190,8 +193,6 @@ inline fun BrbxContentCardAppearance.copy(
         containerRippleColor()
     @Composable override fun containerElevation(): Dp =
         containerElevation()
-    @Composable override fun containerElevationPadding(): PaddingValues =
-        containerElevationPadding()
     @Composable override fun containerElevationAmbientColor(): Color =
         containerElevationAmbientColor()
     @Composable override fun containerElevationSpotColor(): Color =
@@ -239,6 +240,8 @@ inline fun BrbxContentCardAppearance.rememberCopy(
         { this.containerWidth() },
     crossinline height: @Composable () -> Dp =
         { this.containerHeight() },
+    crossinline containerBorder: @Composable () -> BorderStroke =
+        { this.containerBorder() },
     crossinline containerShape: @Composable () -> Shape =
         { this.containerShape() },
     crossinline containerBackground: @Composable () -> Brush =
@@ -247,8 +250,6 @@ inline fun BrbxContentCardAppearance.rememberCopy(
         { this.containerRippleColor() },
     crossinline containerElevation: @Composable () -> Dp =
         { this.containerElevation() },
-    crossinline containerElevationPadding: @Composable () -> PaddingValues =
-        { this.containerElevationPadding() },
     crossinline containerElevationAmbientColor: @Composable () -> Color =
         { this.containerElevationAmbientColor() },
     crossinline containerElevationSpotColor: @Composable () -> Color =
@@ -286,11 +287,11 @@ inline fun BrbxContentCardAppearance.rememberCopy(
         this.copy(
             width = width,
             height = height,
+            containerBorder = containerBorder,
             containerShape = containerShape,
             containerBackground = containerBackground,
             containerRippleColor = containerRippleColor,
             containerElevation = containerElevation,
-            containerElevationPadding = containerElevationPadding,
             containerElevationAmbientColor = containerElevationAmbientColor,
             containerElevationSpotColor = containerElevationSpotColor,
             infoAlignment = infoAlignment,
