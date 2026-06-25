@@ -7,6 +7,7 @@ import com.brbx.mvi.coroutines.stateInLazily
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
@@ -54,7 +55,7 @@ abstract class BrbxMviViewModel<State, in Intent : Any, CommonEffect, LocalEffec
     // ---------------------------------------------------------------------------
 
     open val mviScope = object : BrbxMviScope<State, CommonEffect, LocalEffect> {
-        override val state: State get() = _state.value
+        override val state: StateFlow<State> get() = this@BrbxMviViewModel.state
 
         override val coroutineScope: CoroutineScope get() = viewModelScope
 
