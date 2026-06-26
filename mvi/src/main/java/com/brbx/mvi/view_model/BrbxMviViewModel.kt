@@ -4,10 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.brbx.mvi.coroutines.shareInLazily
 import com.brbx.mvi.coroutines.stateInLazily
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
@@ -23,6 +21,7 @@ import kotlinx.coroutines.launch
  * - **Common Effects:** App-wide events (e.g., global navigation, system-level snackbars).
  * - **Local Effects:** Screen-specific events (e.g., local dialogs, list scrolling, animations).
  *
+ * @param Scope The specific [BrbxMviScope] implementation providing context for operations.
  * @param State The immutable type representing the current state of the UI.
  * @param Intent The type representing user actions or events originating from the UI.
  * @param CommonEffect The type representing global or application-wide one-time side effects.
@@ -31,7 +30,13 @@ import kotlinx.coroutines.launch
  * @param brbxEffectsReplay The number of past [CommonEffect]s to replay to new subscribers. Defaults to 0.
  * @param localEffectsReplay The number of past [LocalEffect]s to replay to new subscribers. Defaults to 0.
  */
-abstract class BrbxMviViewModel<State, in Intent : Any, CommonEffect, LocalEffect>(
+abstract class BrbxMviViewModel<
+    Scope : BrbxMviScope<State, CommonEffect, LocalEffect>,
+    State,
+    in Intent : Any,
+    CommonEffect,
+    LocalEffect
+>(
     initialState: State,
     brbxEffectsReplay: Int = 0,
     localEffectsReplay: Int = 0,
@@ -41,36 +46,23 @@ abstract class BrbxMviViewModel<State, in Intent : Any, CommonEffect, LocalEffec
     // State & Effects
     // ---------------------------------------------------------------------------
 
-    protected val _state = MutableStateFlow(value = initialState)
+    private val _state = MutableStateFlow(value = initialState)
     open val state = _state.stateInLazily(initialValue = initialState)
+    protected fun updateState(transform: State.() -> State) {
+        _state.update(function = transform)
+    }
 
-    protected val _commonEffects = MutableSharedFlow<CommonEffect>(replay = brbxEffectsReplay)
+    private val _commonEffects = MutableSharedFlow<CommonEffect>(replay = brbxEffectsReplay)
     open val commonEffects = _commonEffects.shareInLazily()
 
-    protected val _localEffects = MutableSharedFlow<LocalEffect>(replay = localEffectsReplay)
+    private val _localEffects = MutableSharedFlow<LocalEffect>(replay = localEffectsReplay)
     open val localEffects = _localEffects.shareInLazily()
 
     // ---------------------------------------------------------------------------
     // MVI Scope
     // ---------------------------------------------------------------------------
 
-    open val mviScope = object : BrbxMviScope<State, CommonEffect, LocalEffect> {
-        override val state: StateFlow<State> get() = this@BrbxMviViewModel.state
-
-        override val coroutineScope: CoroutineScope get() = viewModelScope
-
-        override fun updateState(transform: State.() -> State) {
-            _state.update(function = transform)
-        }
-
-        override fun postCommonEffect(effect: CommonEffect) {
-            dispatchCommonEffect(effect)
-        }
-
-        override fun postLocalEffect(effect: LocalEffect) {
-            dispatchLocalEffect(effect)
-        }
-    }
+    abstract val mviScope: Scope
 
     // ---------------------------------------------------------------------------
     // Dispatch methods
