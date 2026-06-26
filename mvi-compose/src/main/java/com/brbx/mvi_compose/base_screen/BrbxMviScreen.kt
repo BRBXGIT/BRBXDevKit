@@ -9,12 +9,26 @@ import com.brbx.mvi_compose.effects.BrbxMviEffectHandler
 import com.brbx.ui_compose.containers.complex.snackbar_host.composition.LocalBrbxSnackbarHostState
 import com.brbx.ui_compose.containers.complex.snackbar_host.state.rememberBrbxSnackbarComponents
 
-
-// TODO KDoc
+/**
+ * A foundational Composable screen wrapper for the Brbx MVI architecture.
+ * * This component bridges the [BrbxMviViewModel] with the UI. It automatically handles
+ * common application-wide effects (such as navigation and snackbars) and provides
+ * convenient dispatcher functions to the [content] block for sending intents and effects
+ * back to the ViewModel.
+ *
+ * @param Intent The type representing user actions or UI events specific to this screen.
+ * @param LocalEffect The type representing single-fire UI effects specific to this screen.
+ * @param navController The [NavController] used to handle navigation events triggered by [BrbxEffect]s.
+ * @param viewModel The [BrbxMviViewModel] managing the state, intents, and effects for this screen.
+ * @param content The main UI content of the screen. It receives three dispatcher functions:
+ * - `dispatchIntent`: Used to send user actions ([Intent]) to the ViewModel.
+ * - `dispatchBrbxEffect`: Used to send common application-wide effects ([BrbxEffect]).
+ * - `dispatchLocalEffect`: Used to send screen-specific effects ([LocalEffect]).
+ */
 @Composable
-fun <State, Intent : Any, LocalEffect> BrbxMviScreen(
+fun <Intent : Any, LocalEffect> BrbxMviScreen(
     navController: NavController,
-    viewModel: BrbxMviViewModel<State, Intent, BrbxEffect, LocalEffect>,
+    viewModel: BrbxMviViewModel<* ,*, Intent, BrbxEffect, LocalEffect>,
     content: @Composable (
         dispatchIntent: (intent: Intent) -> Unit,
         dispatchBrbxEffect: (effect: BrbxEffect) -> Unit,
@@ -28,8 +42,8 @@ fun <State, Intent : Any, LocalEffect> BrbxMviScreen(
     )
 
 @Composable
-private fun <State, Intent : Any, LocalEffect> BrbxMviScreenImpl(
-    viewModel: BrbxMviViewModel<State, Intent, BrbxEffect, LocalEffect>,
+private fun <Intent : Any, LocalEffect> BrbxMviScreenImpl(
+    viewModel: BrbxMviViewModel<*, *, Intent, BrbxEffect, LocalEffect>,
     navController: NavController,
     content: @Composable (
         dispatchIntent: (intent: Intent) -> Unit,
