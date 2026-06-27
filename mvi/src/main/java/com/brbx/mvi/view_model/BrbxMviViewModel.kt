@@ -40,41 +40,41 @@ abstract class BrbxMviViewModel<
     initialState: State,
     brbxEffectsReplay: Int = 0,
     localEffectsReplay: Int = 0,
-) : ViewModel() {
+) : ViewModel(), BrbxMviViewModelContract<Scope, State, Intent, CommonEffect, LocalEffect> {
 
     // ---------------------------------------------------------------------------
     // State & Effects
     // ---------------------------------------------------------------------------
 
     private val _state = MutableStateFlow(value = initialState)
-    open val state = _state.stateInLazily(initialValue = initialState)
+    override val state = _state.stateInLazily(initialValue = initialState)
     protected fun updateState(transform: State.() -> State) {
         _state.update(function = transform)
     }
 
     private val _commonEffects = MutableSharedFlow<CommonEffect>(replay = brbxEffectsReplay)
-    open val commonEffects = _commonEffects.shareInLazily()
+    override val commonEffects = _commonEffects.shareInLazily()
 
     private val _localEffects = MutableSharedFlow<LocalEffect>(replay = localEffectsReplay)
-    open val localEffects = _localEffects.shareInLazily()
+    override val localEffects = _localEffects.shareInLazily()
 
     // ---------------------------------------------------------------------------
     // MVI Scope
     // ---------------------------------------------------------------------------
 
-    abstract val mviScope: Scope
+    abstract override val mviScope: Scope
 
     // ---------------------------------------------------------------------------
     // Dispatch methods
     // ---------------------------------------------------------------------------
 
-    open fun dispatchIntent(intent: Intent) {}
+    override fun dispatchIntent(intent: Intent) {}
 
-    open fun dispatchCommonEffect(effect: CommonEffect) {
+    override fun dispatchCommonEffect(effect: CommonEffect) {
         _commonEffects.postEffect(effect)
     }
 
-    open fun dispatchLocalEffect(effect: LocalEffect) {
+    override fun dispatchLocalEffect(effect: LocalEffect) {
         _localEffects.postEffect(effect)
     }
 
