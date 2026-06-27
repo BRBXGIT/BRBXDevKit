@@ -34,7 +34,7 @@ internal inline fun BrbxTileAppearance(
     crossinline containerBorder: @Composable () -> BorderStroke =
         { remember { BorderStroke(width = 0.dp, brush = SolidColor(value = Color.Transparent)) } },
     crossinline containerBrush: @Composable () -> Brush =
-        { SolidColor(mColors.surfaceContainer) },
+        { SolidColor(value = mColors.surfaceContainer) },
     crossinline containerContentPadding: @Composable () -> Dp =
         { bDimens.micro8 },
     crossinline containerElevation: @Composable () -> Dp =
@@ -49,7 +49,7 @@ internal inline fun BrbxTileAppearance(
     // Layout & Spacing
     crossinline horizontalSpacing: @Composable () -> Dp = { bDimens.micro8 },
     crossinline verticalSpacing: @Composable () -> Dp = { bDimens.micro1 },
-    crossinline contentColumnSpacing: @Composable () -> Dp = { bDimens.micro6 },
+    crossinline contentColumnSpacing: @Composable () -> Dp = { bDimens.micro8 },
 
     // Title & Description
     crossinline titleColor: @Composable () -> Color = { mColors.onSurface },
@@ -57,13 +57,13 @@ internal inline fun BrbxTileAppearance(
 
     // Default Typography
     crossinline defaultTitleStyle: @Composable () -> TextStyle =
-        { mTypography.bodyMedium },
+        { mTypography.bodyLarge },
     crossinline defaultTitleMaxLines: @Composable () -> Int =
         { remember { 1 } },
     crossinline defaultTitleOverflow: @Composable () -> TextOverflow =
         { remember { TextOverflow.Ellipsis } },
     crossinline defaultDescriptionStyle: @Composable () -> TextStyle =
-        { mTypography.labelMedium },
+        { mTypography.bodyMedium },
     crossinline defaultDescriptionMaxLines: @Composable () -> Int =
         { remember { 2 } },
     crossinline defaultDescriptionOverflow: @Composable () -> TextOverflow =
