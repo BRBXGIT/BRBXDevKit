@@ -56,7 +56,7 @@ internal inline fun BrbxContentCardAppearance(
     crossinline infoSpacedBy: @Composable () -> Dp =
         { bDimens.micro2 },
     crossinline infoBackground: @Composable () -> Brush =
-        { SolidColor(value = mColors.tertiaryContainer) },
+        { SolidColor(value = mColors.tertiary) },
     crossinline infoContentPadding: @Composable () -> PaddingValues =
         { PaddingValues(all = bDimens.micro4) },
 
