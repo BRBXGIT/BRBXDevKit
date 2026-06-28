@@ -31,7 +31,7 @@ internal inline fun BrbxPrecollectionAppearance(
     crossinline containerShape: @Composable () -> Shape =
         { bShapes.micro3 },
     crossinline containerBrush: @Composable () -> Brush =
-        { SolidColor(mColors.tertiary.copy(alpha = 0.8f)) },
+        { SolidColor(value = mColors.tertiary) },
     crossinline containerRippleColor: @Composable () -> Color =
         { mColors.surface },
 

@@ -14,13 +14,13 @@ import com.brbx.ui_compose.theme.mColors
 object BrbxPrecollectionAppearances {
 
     val primary = BrbxPrecollectionAppearance(
-        contentColor = { mColors.onPrimary.copy(alpha = 0.8f) },
-        containerBrush = { SolidColor(mColors.primary.copy(alpha = 0.8f)) },
+        contentColor = { mColors.onPrimary },
+        containerBrush = { SolidColor(value = mColors.primary) },
     )
 
     val secondary = BrbxPrecollectionAppearance(
-        contentColor = { mColors.onSecondary.copy(alpha = 0.8f) },
-        containerBrush = { SolidColor(mColors.secondary.copy(alpha = 0.8f)) },
+        contentColor = { mColors.onSecondary },
+        containerBrush = { SolidColor(value = mColors.secondary) },
     )
 
     val tertiary = BrbxPrecollectionAppearance()

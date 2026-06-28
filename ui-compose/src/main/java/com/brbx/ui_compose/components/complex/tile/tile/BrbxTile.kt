@@ -266,6 +266,21 @@ private fun BrbxTileAppearancePreviewWithBadge() {
                             )
                         }
                     },
+                    additionalContent = {
+                        BrbxPrecollection {
+                            Text(
+                                text = "Some long description, it's very long and can not rendered be in one line",
+                                style = mTypography.labelMedium,
+                                modifier = Modifier
+                                    .weight(1f, fill = false)
+                                    .padding(end = bDimens.micro4)
+                            )
+
+                            BrbxIcon(
+                                imageVector = OutlineSolar.Users.User,
+                            )
+                        }
+                    },
                     title = "Some title".toBrbxText(),
                     description = "Some long description, it's very long and can not rendered be in one line".toBrbxText(),
                 )
