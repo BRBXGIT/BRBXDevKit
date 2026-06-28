@@ -40,7 +40,7 @@ internal inline fun BrbxContentCardAppearance(
     crossinline containerShape: @Composable () -> Shape =
         { bShapes.micro3 },
     crossinline containerBackground: @Composable () -> Brush =
-        { SolidColor(value = mColors.surface) },
+        { SolidColor(value = mColors.surfaceContainerHigh) },
     crossinline containerRippleColor: @Composable () -> Color =
         { mColors.surface },
     crossinline containerElevation: @Composable () -> Dp =

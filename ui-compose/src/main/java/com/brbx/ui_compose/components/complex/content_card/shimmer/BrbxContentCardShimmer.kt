@@ -2,6 +2,7 @@ package com.brbx.ui_compose.components.complex.content_card.shimmer
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
@@ -49,6 +50,7 @@ import com.brbx.ui_compose.theme.bShapes
 fun BrbxContentCardShimmer(
     modifier: Modifier = Modifier,
     appearance: BrbxContentCardAppearance = BrbxContentCardAppearances.tertiary,
+    backgroundContent: @Composable BoxScope.() -> Unit = {},
     badge: @Composable BoxScope.() -> Unit = {},
     title: @Composable ColumnScope.() -> Unit,
     description: @Composable ColumnScope.() -> Unit,
@@ -58,6 +60,7 @@ fun BrbxContentCardShimmer(
         appearance = appearance,
         badge = badge,
         title = title,
+        backgroundContent = backgroundContent,
         description = description,
     )
 
@@ -65,12 +68,14 @@ fun BrbxContentCardShimmer(
 fun BrbxContentCardShimmer(
     modifier: Modifier = Modifier,
     appearance: BrbxContentCardAppearance = BrbxContentCardAppearances.tertiary,
+    backgroundContent: @Composable BoxScope.() -> Unit = {},
     badge: @Composable BoxScope.() -> Unit = {},
 ) {
     BrbxContentCardShimmerImpl(
         modifier = modifier,
         appearance = appearance,
         badge = badge,
+        backgroundContent = backgroundContent,
         title = {
             val height = appearance
                 .defaultTitleStyle()
@@ -100,11 +105,12 @@ fun BrbxContentCardShimmer(
 private fun BrbxContentCardShimmerImpl(
     modifier: Modifier,
     appearance: BrbxContentCardAppearance,
+    backgroundContent: @Composable BoxScope.() -> Unit,
     badge: @Composable BoxScope.() -> Unit,
     title: @Composable ColumnScope.() -> Unit,
     description: @Composable ColumnScope.() -> Unit,
 ) {
-    BrbxShimmerBlock(
+    Box(
         modifier
             .size(
                 width = appearance.containerWidth(),
@@ -120,6 +126,8 @@ private fun BrbxContentCardShimmerImpl(
             .clip(shape = appearance.containerShape())
             .background(brush = appearance.containerBackground())
     ) {
+        backgroundContent()
+
         badge()
 
         Column(
