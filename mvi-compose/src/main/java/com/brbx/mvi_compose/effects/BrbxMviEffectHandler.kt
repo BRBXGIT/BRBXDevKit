@@ -32,7 +32,7 @@ private fun BrbxMviEffectHandlerImpl(
         effects.collect { effect ->
             when (effect) {
                 is BrbxEffect.IntentTo -> context.startActivity(effect.intent)
-                is BrbxEffect.Navigate<*> -> navController.navigate(effect.route)
+                is BrbxEffect.Navigate -> navController.navigate(effect.route)
                 is BrbxEffect.ShowSnackbar -> launch {
                     snackbarController.show(effect.config)
                 }
