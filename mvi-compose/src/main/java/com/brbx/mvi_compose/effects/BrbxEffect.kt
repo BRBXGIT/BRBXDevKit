@@ -26,7 +26,7 @@ sealed interface BrbxEffect {
 
     // Navigation
     @JvmInline
-    value class Navigate<Destination : Any>(val route: Destination) : BrbxEffect
+    value class Navigate(val route: Any) : BrbxEffect
 
     data object NavigateBack : BrbxEffect
 

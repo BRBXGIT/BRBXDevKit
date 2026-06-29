@@ -40,8 +40,8 @@ internal inline fun BrbxSnackbarAppearance(
         { bElevation.small1 },
 
     // Layout & Spacing
-    crossinline contentVerticalSpacing: @Composable () -> Dp =
-        { bDimens.micro2 },
+    crossinline contentVerticalSpacingg: @Composable () -> Dp =
+        { bDimens.zero },
     crossinline contentPadding: @Composable () -> PaddingValues =
         { PaddingValues(vertical = bDimens.micro6, horizontal = bDimens.micro6) },
 
@@ -70,7 +70,7 @@ internal inline fun BrbxSnackbarAppearance(
     @Composable override fun containerElevation(): Dp = containerElevation()
 
     // Layout & Spacing
-    @Composable override fun contentVerticalSpacing(): Dp = contentVerticalSpacing()
+    @Composable override fun contentVerticalSpacing(): Dp = contentVerticalSpacingg()
     @Composable override fun contentPadding(): PaddingValues = contentPadding()
     @Composable override fun messageTextStyle(): TextStyle = messageTextStyle()
     @Composable override fun messageMaxLines(): Int = messageMaxLines()

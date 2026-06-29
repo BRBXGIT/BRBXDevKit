@@ -43,7 +43,7 @@ interface BrbxMotion : MotionScheme {
 
     /**
      * Playful animation with a noticeable bounce.
-     * Ideal for positive reinforcement (e.g., likes, badges, success states).
+     * Use for positive reinforcement (e.g., likes, badges, success states).
      */
     fun <T> bouncyEffectSpec(visibilityThreshold: T? = null): SpringSpec<T>
 
@@ -70,7 +70,7 @@ interface BrbxMotion : MotionScheme {
 
     /**
      * Animation for outgoing content.
-     * Fast and completely bounce-free to free up the UI space immediately.
+     * Fast and with little bounce to free up the UI space immediately.
      */
     fun <T> exitStructuralSpec(visibilityThreshold: T? = null): SpringSpec<T>
 
