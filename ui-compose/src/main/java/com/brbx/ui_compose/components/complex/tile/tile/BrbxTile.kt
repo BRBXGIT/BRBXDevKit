@@ -7,9 +7,13 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.LocalTextStyle
@@ -73,10 +77,10 @@ fun BrbxTile(
     onClick: () -> Unit = {},
     onLongClick: () -> Unit = {},
     onDoubleClick: () -> Unit = {},
-    additionalContent: @Composable () -> Unit = {},
+    additionalContent: @Composable ColumnScope.() -> Unit = {},
     description: @Composable () -> Unit = {},
-    trailingContent: @Composable () -> Unit,
-    title: @Composable () -> Unit,
+    trailingContent: @Composable RowScope.() -> Unit,
+    title: @Composable ColumnScope.() -> Unit,
 ) =
     BrbxTileImpl(
         modifier = modifier,
@@ -101,8 +105,8 @@ fun BrbxTile(
     onClick: () -> Unit = {},
     onLongClick: () -> Unit = {},
     onDoubleClick: () -> Unit = {},
-    additionalContent: @Composable () -> Unit = {},
-    trailingContent: @Composable () -> Unit,
+    additionalContent: @Composable ColumnScope.() -> Unit = {},
+    trailingContent: @Composable RowScope.() -> Unit,
 ) =
     BrbxTileImpl(
         modifier = modifier,
@@ -139,15 +143,16 @@ private fun BrbxTileImpl(
     onClick: () -> Unit,
     onLongClick: () -> Unit,
     onDoubleClick: () -> Unit,
-    additionalContent: @Composable () -> Unit,
-    trailingContent: @Composable () -> Unit,
-    title: @Composable () -> Unit,
+    additionalContent: @Composable ColumnScope.() -> Unit,
+    trailingContent: @Composable RowScope.() -> Unit,
+    title: @Composable ColumnScope.() -> Unit,
     description: @Composable () -> Unit,
 ) {
     val interactionSource = remember { MutableInteractionSource() }
 
     Box(
         modifier = modifier
+            .width(IntrinsicSize.Min)
             .shadow(
                 elevation = appearance.containerElevation(),
                 shape = appearance.containerShape(),
@@ -166,7 +171,6 @@ private fun BrbxTileImpl(
                 onLongClick = onLongClick,
                 onDoubleClick = onDoubleClick,
             ),
-        contentAlignment = Alignment.Center,
     ) {
         Column(
             modifier = Modifier.padding(all = appearance.containerContentPadding()),
@@ -214,7 +218,7 @@ private fun BrbxTileAppearancePreviewWithBadge() {
                 BrbxTile(
                     appearance = BrbxTileAppearances.elevated,
                     modifier = Modifier
-                        .fillMaxWidth()
+//                        .fillMaxWidth()
                         .padding(horizontal = bDimens.micro8),
                     trailingContent = {
                         BrbxContainerWithBadge(
@@ -233,11 +237,13 @@ private fun BrbxTileAppearancePreviewWithBadge() {
                         }
                     },
                     title = "Some title".toBrbxText(),
-                    description = "Some long description, it's very long and can not be in one line so it will be on second".toBrbxText(),
+                    description = "Some long description,".toBrbxText(),
                     additionalContent = {
-                        BrbxPrecollection {
+                        BrbxPrecollection(
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
                             Text(
-                                text = "Some long description, it's very long and can not rendered be in one line",
+                                text = "Some lSome long descr",
                                 style = mTypography.labelMedium,
                                 modifier = Modifier
                                     .weight(1f, fill = false)
@@ -267,7 +273,9 @@ private fun BrbxTileAppearancePreviewWithBadge() {
                         }
                     },
                     additionalContent = {
-                        BrbxPrecollection {
+                        BrbxPrecollection(
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
                             Text(
                                 text = "Some long description, it's very long and can not rendered be in one line",
                                 style = mTypography.labelMedium,

@@ -6,10 +6,12 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -112,10 +114,7 @@ private fun BrbxContentCardShimmerImpl(
 ) {
     Box(
         modifier
-            .size(
-                width = appearance.containerWidth(),
-                height = appearance.containerHeight(),
-            )
+            .width(IntrinsicSize.Min)
             .shadow(
                 elevation = appearance.containerElevation(),
                 shape = appearance.containerShape(),
@@ -149,6 +148,9 @@ private fun BrbxContentCardShimmerImpl(
 @Composable
 private fun BrbxContentCardShimmerPreview() {
     BrbxTheme(darkColorScheme()) {
-        BrbxContentCardShimmer()
+        BrbxContentCardShimmer(
+            modifier = Modifier
+                .size(150.dp, 270.dp)
+        )
     }
 }

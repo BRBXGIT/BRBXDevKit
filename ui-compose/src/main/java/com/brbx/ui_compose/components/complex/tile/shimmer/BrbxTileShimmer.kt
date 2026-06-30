@@ -4,11 +4,15 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Composable
@@ -55,10 +59,10 @@ import com.brbx.ui_compose.theme.mColors
 fun BrbxTileShimmer(
     modifier: Modifier = Modifier,
     appearance: BrbxTileAppearance = BrbxTileAppearances.default,
-    additionalContent: @Composable () -> Unit = {},
-    trailingContent: @Composable () -> Unit,
-    title: @Composable () -> Unit,
-    description: @Composable () -> Unit,
+    additionalContent: @Composable ColumnScope.() -> Unit = {},
+    trailingContent: @Composable RowScope.() -> Unit,
+    title: @Composable ColumnScope.() -> Unit,
+    description: @Composable ColumnScope.() -> Unit,
 ) =
     BrbxTileShimmerImpl(
         modifier = modifier,
@@ -73,8 +77,8 @@ fun BrbxTileShimmer(
 fun BrbxTileShimmer(
     modifier: Modifier = Modifier,
     appearance: BrbxTileAppearance = BrbxTileAppearances.default,
-    additionalContent: @Composable () -> Unit = {},
-    trailingContent: @Composable () -> Unit,
+    additionalContent: @Composable ColumnScope.() -> Unit = {},
+    trailingContent: @Composable RowScope.() -> Unit,
 ) {
     BrbxTileShimmerImpl(
         modifier = modifier,
@@ -118,13 +122,14 @@ fun BrbxTileShimmer(
 private fun BrbxTileShimmerImpl(
     modifier: Modifier = Modifier,
     appearance: BrbxTileAppearance,
-    additionalContent: @Composable () -> Unit,
-    trailingContent: @Composable () -> Unit,
-    title: @Composable () -> Unit,
-    description: @Composable () -> Unit,
+    additionalContent: @Composable ColumnScope.() -> Unit,
+    trailingContent: @Composable RowScope.() -> Unit,
+    title: @Composable ColumnScope.() -> Unit,
+    description: @Composable ColumnScope.() -> Unit,
 ) {
     Box(
         modifier = modifier
+            .width(IntrinsicSize.Min)
             .shadow(
                 elevation = appearance.containerElevation(),
                 ambientColor = appearance.containerElevationAmbientColor(),
@@ -175,6 +180,7 @@ private fun BrbxTileShimmerImpl(
 private fun BrbxTileShimmerPreview() {
     BrbxTheme(darkColorScheme()) {
         BrbxTileShimmer(
+            modifier = Modifier.fillMaxWidth(),
             trailingContent = {
                 BrbxContainerShimmer(
                     shimmerAppearance = BrbxShimmerBlockAppearances.default.rememberCopy(

@@ -31,10 +31,6 @@ import com.brbx.ui_compose.theme.mTypography
  */
 internal inline fun BrbxContentCardAppearance(
     // Container & Interaction
-    crossinline width: @Composable () -> Dp =
-        { remember { 150.dp } },
-    crossinline height: @Composable () -> Dp =
-        { remember { 270.dp } },
     crossinline containerBorder: @Composable () -> BorderStroke =
         { remember { BorderStroke(width = 0.dp, brush = SolidColor(value = Color.Transparent)) } },
     crossinline containerShape: @Composable () -> Shape =
@@ -82,10 +78,6 @@ internal inline fun BrbxContentCardAppearance(
 ): BrbxContentCardAppearance = object : BrbxContentCardAppearance {
 
     // Container & Interaction
-    @Composable override fun containerWidth(): Dp =
-        width()
-    @Composable override fun containerHeight(): Dp =
-        height()
     @Composable override fun containerBorder(): BorderStroke =
         containerBorder()
     @Composable override fun containerShape(): Shape =
@@ -134,10 +126,6 @@ internal inline fun BrbxContentCardAppearance(
 @UnsafeAppearanceCopy
 inline fun BrbxContentCardAppearance.copy(
     // Container & Interaction
-    crossinline width: @Composable () -> Dp =
-        { this.containerWidth() },
-    crossinline height: @Composable () -> Dp =
-        { this.containerHeight() },
     crossinline containerBorder: @Composable () -> BorderStroke =
         { this.containerBorder() },
     crossinline containerShape: @Composable () -> Shape =
@@ -179,10 +167,6 @@ inline fun BrbxContentCardAppearance.copy(
 ): BrbxContentCardAppearance = object : BrbxContentCardAppearance {
 
     // Container & Interaction
-    @Composable override fun containerWidth(): Dp =
-        width()
-    @Composable override fun containerHeight(): Dp =
-        height()
     @Composable override fun containerBorder(): BorderStroke =
         containerBorder()
     @Composable override fun containerShape(): Shape =
@@ -236,10 +220,6 @@ inline fun BrbxContentCardAppearance.copy(
 @Composable
 inline fun BrbxContentCardAppearance.rememberCopy(
     // Container & Interaction
-    crossinline width: @Composable () -> Dp =
-        { this.containerWidth() },
-    crossinline height: @Composable () -> Dp =
-        { this.containerHeight() },
     crossinline containerBorder: @Composable () -> BorderStroke =
         { this.containerBorder() },
     crossinline containerShape: @Composable () -> Shape =
@@ -285,8 +265,6 @@ inline fun BrbxContentCardAppearance.rememberCopy(
 ): BrbxContentCardAppearance =
     remember {
         this.copy(
-            width = width,
-            height = height,
             containerBorder = containerBorder,
             containerShape = containerShape,
             containerBackground = containerBackground,

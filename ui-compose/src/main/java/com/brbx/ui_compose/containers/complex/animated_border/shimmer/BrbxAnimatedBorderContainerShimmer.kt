@@ -10,7 +10,6 @@ import com.brbx.ui_compose.components.complex.shimmer.BrbxShimmerBlockAppearance
 import com.brbx.ui_compose.components.complex.shimmer.BrbxShimmerBlockAppearances
 import com.brbx.ui_compose.containers.complex.animated_border.animated_border.BrbxAnimatedBorderContainerAppearance
 import com.brbx.ui_compose.containers.complex.animated_border.animated_border.BrbxAnimatedBorderContainerAppearances
-import com.brbx.ui_compose.containers.complex.container.container_with_badge.BrbxContainerWithBadgeAppearance
 
 @Composable
 fun BrbxAnimatedBorderContainerShimmer(

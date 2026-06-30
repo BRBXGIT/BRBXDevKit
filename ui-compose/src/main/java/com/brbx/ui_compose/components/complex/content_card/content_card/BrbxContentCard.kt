@@ -9,13 +9,11 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.Text
@@ -28,11 +26,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.brbx.ui_compose.common.BrbxText
 import com.brbx.ui_compose.common.asString
 import com.brbx.ui_compose.common.toBrbxText
 import com.brbx.ui_compose.theme.BrbxTheme
-import com.brbx.ui_compose.theme.bDimens
 
 /**
  * An interactive, visually rich card component designed to display a background image
@@ -141,10 +139,7 @@ private fun BrbxContentCardImpl(
 
     Box(
         modifier = modifier
-            .size(
-                width = appearance.containerWidth(),
-                height = appearance.containerHeight(),
-            )
+            .width(IntrinsicSize.Min)
             .shadow(
                 elevation = appearance.containerElevation(),
                 shape = appearance.containerShape(),
@@ -197,22 +192,11 @@ private fun BrbxContentCardImpl(
 @Composable
 private fun BrbxContentCardMediumPreview() {
     BrbxTheme(colorScheme =  lightColorScheme()) {
-        val appearance = BrbxContentCardAppearances.tertiaryElevated
-        LazyVerticalGrid(
-            contentPadding = PaddingValues(all = bDimens.micro4),
-            modifier = Modifier.fillMaxSize(),
-            columns = GridCells.Adaptive(minSize = appearance.containerWidth()),
-            verticalArrangement = Arrangement.spacedBy(bDimens.micro4),
-            horizontalArrangement = Arrangement.spacedBy(bDimens.micro4),
-        ) {
-            items(count = 4) {
-                BrbxContentCard(
-                    title = "Title".toBrbxText(),
-                    description = "Description".toBrbxText(),
-                    appearance = appearance,
-                    backgroundContent = {}
-                )
-            }
-        }
+        BrbxContentCard(
+            modifier = Modifier.size(150.dp, 270.dp),
+            title = "Title".toBrbxText(),
+            description = "Description".toBrbxText(),
+            backgroundContent = {}
+        )
     }
 }

@@ -6,9 +6,11 @@ import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -94,13 +96,15 @@ private fun BrbxAnimatedBorderContainerImpl(
 
     Surface(
         onClick = onClick,
-        modifier = modifier.shadow(
-            elevation = appearance.shadowElevation(),
-            shape = shape,
-            clip = false,
-            ambientColor = appearance.containerElevationAmbientColor(),
-            spotColor = appearance.containerElevationSpotColor(),
-        ),
+        modifier = modifier
+            .width(IntrinsicSize.Min)
+            .shadow(
+                elevation = appearance.shadowElevation(),
+                shape = shape,
+                clip = false,
+                ambientColor = appearance.containerElevationAmbientColor(),
+                spotColor = appearance.containerElevationSpotColor(),
+            ),
         shape = shape,
         color = containerColor,
         enabled = enabled,
@@ -169,7 +173,8 @@ private fun BrbxAnimatedBorderContainerPreview() {
                 BrbxIcon(OutlineSolar.EssentionalUi.Cat)
 
                 Text(
-                    text = "This is cat"
+                    text = "This is cat",
+                    maxLines = 1,
                 )
             }
         }

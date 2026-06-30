@@ -72,7 +72,7 @@ fun BrbxPrecollection(
 fun BrbxPrecollection(
     text: BrbxText,
     modifier: Modifier = Modifier,
-    trailingContent: @Composable () -> Unit = {},
+    trailingContent: @Composable RowScope.() -> Unit = {},
     appearance: BrbxPrecollectionAppearance = BrbxPrecollectionAppearances.tertiary,
     enabled: Boolean = true,
     onClick: () -> Unit = {},
@@ -112,8 +112,8 @@ private fun BrbxPrecollectionImpl(
 
     Row(
         modifier = modifier
-            .clip(appearance.containerShape())
-            .background(appearance.containerBrush())
+            .clip(shape = appearance.containerShape())
+            .background(brush = appearance.containerBrush())
             .combinedClickable(
                 interactionSource = interactionSource,
                 indication = ripple(color = appearance.containerRippleColor()),

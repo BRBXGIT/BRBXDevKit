@@ -24,18 +24,6 @@ interface BrbxContentCardAppearance {
     // ---------------------------------------------------------------------------
 
     /**
-     * The container width.
-     */
-    @Composable
-    fun containerWidth(): Dp
-
-    /**
-     * The height of the card container.
-     */
-    @Composable
-    fun containerHeight(): Dp
-
-    /**
      * The border of the card container.
      */
     @Composable
