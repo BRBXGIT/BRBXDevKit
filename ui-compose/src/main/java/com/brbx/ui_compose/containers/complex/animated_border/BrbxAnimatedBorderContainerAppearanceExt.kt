@@ -82,7 +82,7 @@ internal inline fun BrbxAnimatedBorderContainerAppearance(
     crossinline innerBoxAlignment: @Composable () -> Alignment =
         { remember { Alignment.Center } },
     crossinline innerBoxPadding: @Composable () -> PaddingValues =
-        { PaddingValues(vertical = bDimens.micro4) },
+        { PaddingValues(vertical = bDimens.micro3) },
 ): BrbxAnimatedBorderContainerAppearance = object : BrbxAnimatedBorderContainerAppearance {
 
     // Container Styling
