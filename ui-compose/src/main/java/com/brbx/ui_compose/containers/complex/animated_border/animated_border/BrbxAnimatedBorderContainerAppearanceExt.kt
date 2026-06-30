@@ -1,4 +1,4 @@
-package com.brbx.ui_compose.containers.complex.animated_border
+package com.brbx.ui_compose.containers.complex.animated_border.animated_border
 
 import androidx.compose.animation.core.AnimationSpec
 import androidx.compose.animation.core.InfiniteRepeatableSpec
@@ -42,6 +42,10 @@ internal inline fun BrbxAnimatedBorderContainerAppearance(
         { bElevation.zero },
     crossinline shadowElevation: @Composable () -> Dp =
         { bElevation.zero },
+    crossinline containerElevationAmbientColor: @Composable () -> Color =
+        { remember { Color.Transparent } },
+    crossinline containerElevationSpotColor: @Composable () -> Color =
+        { remember { Color.Transparent } },
     crossinline border: @Composable () -> BorderStroke? =
         { remember { null } },
     crossinline interactionSource: @Composable () -> MutableInteractionSource? =
@@ -92,6 +96,8 @@ internal inline fun BrbxAnimatedBorderContainerAppearance(
     @Composable override fun contentColor(): Color = contentColor()
     @Composable override fun tonalElevation(): Dp = tonalElevation()
     @Composable override fun shadowElevation(): Dp = shadowElevation()
+    @Composable override fun containerElevationAmbientColor(): Color = containerElevationAmbientColor()
+    @Composable override fun containerElevationSpotColor(): Color = containerElevationSpotColor()
     @Composable override fun border(): BorderStroke? = border()
     @Composable override fun interactionSource(): MutableInteractionSource? = interactionSource()
 
@@ -136,6 +142,10 @@ inline fun BrbxAnimatedBorderContainerAppearance.copy(
         { this.tonalElevation() },
     crossinline shadowElevation: @Composable () -> Dp =
         { this.shadowElevation() },
+    crossinline containerElevationAmbientColor: @Composable () -> Color =
+        { this.containerElevationAmbientColor() },
+    crossinline containerElevationSpotColor: @Composable () -> Color =
+        { this.containerElevationSpotColor() },
     crossinline border: @Composable () -> BorderStroke? =
         { this.border() },
     crossinline interactionSource: @Composable () -> MutableInteractionSource? =
@@ -173,6 +183,8 @@ inline fun BrbxAnimatedBorderContainerAppearance.copy(
     @Composable override fun contentColor(): Color = contentColor()
     @Composable override fun tonalElevation(): Dp = tonalElevation()
     @Composable override fun shadowElevation(): Dp = shadowElevation()
+    @Composable override fun containerElevationAmbientColor(): Color = containerElevationAmbientColor()
+    @Composable override fun containerElevationSpotColor(): Color = containerElevationSpotColor()
     @Composable override fun border(): BorderStroke? = border()
     @Composable override fun interactionSource(): MutableInteractionSource? = interactionSource()
 
@@ -227,6 +239,10 @@ inline fun BrbxAnimatedBorderContainerAppearance.rememberCopy(
         { this.tonalElevation() },
     crossinline shadowElevation: @Composable () -> Dp =
         { this.shadowElevation() },
+    crossinline containerElevationAmbientColor: @Composable () -> Color =
+        { this.containerElevationAmbientColor() },
+    crossinline containerElevationSpotColor: @Composable () -> Color =
+        { this.containerElevationSpotColor() },
     crossinline border: @Composable () -> BorderStroke? =
         { this.border() },
     crossinline interactionSource: @Composable () -> MutableInteractionSource? =
@@ -265,6 +281,8 @@ inline fun BrbxAnimatedBorderContainerAppearance.rememberCopy(
         contentColor = contentColor,
         tonalElevation = tonalElevation,
         shadowElevation = shadowElevation,
+        containerElevationAmbientColor = containerElevationAmbientColor,
+        containerElevationSpotColor = containerElevationSpotColor,
         border = border,
         interactionSource = interactionSource,
         rotationInitialValue = rotationInitialValue,

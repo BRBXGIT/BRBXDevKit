@@ -1,4 +1,4 @@
-package com.brbx.ui_compose.containers.complex.animated_border
+package com.brbx.ui_compose.containers.complex.animated_border.animated_border
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.remember
@@ -14,7 +14,9 @@ object BrbxAnimatedBorderContainerAppearances {
     val default = BrbxAnimatedBorderContainerAppearance()
 
     val elevated = BrbxAnimatedBorderContainerAppearance(
-        shadowElevation = { bElevation.small2 }
+        shadowElevation = { bElevation.small2 },
+        containerElevationAmbientColor = { Color.Black },
+        containerElevationSpotColor = { Color.Black },
     )
 
     val rainbow = BrbxAnimatedBorderContainerAppearance(
@@ -34,6 +36,8 @@ object BrbxAnimatedBorderContainerAppearances {
 
     val rainbowElevated = BrbxAnimatedBorderContainerAppearance(
         shadowElevation = { bElevation.small2 },
+        containerElevationAmbientColor = { Color.Black },
+        containerElevationSpotColor = { Color.Black },
         borderColors = {
             remember {
                 listOf(

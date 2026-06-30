@@ -1,4 +1,4 @@
-package com.brbx.ui_compose.containers.complex.animated_border
+package com.brbx.ui_compose.containers.complex.animated_border.animated_border
 
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.animateFloatAsState
@@ -20,12 +20,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawWithContent
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.drawscope.rotate
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.brbx.ui_compose.components.simple.icon.BrbxIcon
 import com.brbx.ui_compose.theme.BrbxTheme
 import com.brbx.ui_compose.theme.bDimens
+import com.brbx.ui_compose.theme.bElevation
 import dev.chiksmedina.solar.OutlineSolar
 import dev.chiksmedina.solar.outline.EssentionalUi
 import dev.chiksmedina.solar.outline.essentionalui.Cat
@@ -91,13 +94,19 @@ private fun BrbxAnimatedBorderContainerImpl(
 
     Surface(
         onClick = onClick,
-        modifier = modifier,
+        modifier = modifier.shadow(
+            elevation = appearance.shadowElevation(),
+            shape = shape,
+            clip = false,
+            ambientColor = appearance.containerElevationAmbientColor(),
+            spotColor = appearance.containerElevationSpotColor(),
+        ),
         shape = shape,
         color = containerColor,
         enabled = enabled,
         contentColor = appearance.contentColor(),
         tonalElevation = appearance.tonalElevation(),
-        shadowElevation = appearance.shadowElevation(),
+        shadowElevation = 0.dp,
         border = appearance.border(),
         interactionSource = appearance.interactionSource(),
     ) {
@@ -107,7 +116,7 @@ private fun BrbxAnimatedBorderContainerImpl(
                 .clip(shape)
                 .drawWithContent {
                     if (alpha > 0f) {
-                        rotate(rotation) {
+                        rotate(degrees = rotation) {
                             drawCircle(
                                 brush = Brush.sweepGradient(borderColors.map { it.copy(alpha = alpha) }),
                                 radius = size.width,
@@ -140,13 +149,16 @@ private fun BrbxAnimatedBorderContainerImpl(
     }
 }
 
-@Preview
+@Preview(showSystemUi = true)
 @Composable
 private fun BrbxAnimatedBorderContainerPreview() {
     BrbxTheme(lightColorScheme()) {
         BrbxAnimatedBorderContainer(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bElevation.small2),
             showAnimation = true,
-            appearance = BrbxAnimatedBorderContainerAppearances.rainbow,
+            appearance = BrbxAnimatedBorderContainerAppearances.rainbowElevated,
         ) {
             Row(
                 horizontalArrangement = Arrangement.spacedBy(bDimens.micro8),

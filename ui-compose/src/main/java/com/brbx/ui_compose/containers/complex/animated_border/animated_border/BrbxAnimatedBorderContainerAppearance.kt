@@ -1,4 +1,4 @@
-package com.brbx.ui_compose.containers.complex.animated_border
+package com.brbx.ui_compose.containers.complex.animated_border.animated_border
 
 import androidx.compose.animation.core.AnimationSpec
 import androidx.compose.animation.core.InfiniteRepeatableSpec
@@ -59,6 +59,18 @@ interface BrbxAnimatedBorderContainerAppearance {
      */
     @Composable
     fun shadowElevation(): Dp
+
+    /**
+     * The color used for the ambient shadow, which simulates diffuse, omnidirectional light.
+     */
+    @Composable
+    fun containerElevationAmbientColor(): Color
+
+    /**
+     * The color used for the spot shadow, which simulates light from a specific, directional source.
+     */
+    @Composable
+    fun containerElevationSpotColor(): Color
 
     /**
      * The static border stroke of the container.
