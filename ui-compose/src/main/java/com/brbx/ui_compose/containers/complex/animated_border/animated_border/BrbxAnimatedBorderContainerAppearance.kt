@@ -11,6 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
 
 /**
@@ -159,4 +160,14 @@ interface BrbxAnimatedBorderContainerAppearance {
      */
     @Composable
     fun innerBoxPadding(): PaddingValues
+
+    // ---------------------------------------------------------------------------
+    // Typography
+    // ---------------------------------------------------------------------------
+
+    /**
+     * The text style used for the content inside the container.
+     */
+    @Composable
+    fun textStyle(): TextStyle
 }

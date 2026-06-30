@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.LocalContentColor
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.lightColorScheme
@@ -89,8 +90,6 @@ private fun BrbxAnimatedBorderContainerImpl(
 
     val shape = appearance.shape()
     val containerColor = appearance.containerColor()
-    val contentColor = appearance.contentColor()
-    val bordersSize = appearance.bordersSize()
     val borderColors = appearance.borderColors()
     val blendMode = appearance.borderBlendMode()
 
@@ -130,21 +129,21 @@ private fun BrbxAnimatedBorderContainerImpl(
                     }
                     drawContent()
                 }
-                .padding(all = bordersSize)
+                .padding(all = appearance.bordersSize())
         ) {
-            val innerBoxAlignment = appearance.innerBoxAlignment()
-            val innerBoxPadding = appearance.innerBoxPadding()
-
             Surface(
                 shape = shape,
                 color = containerColor,
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Box(
-                    contentAlignment = innerBoxAlignment,
-                    modifier = Modifier.padding(paddingValues = innerBoxPadding)
+                    contentAlignment = appearance.innerBoxAlignment(),
+                    modifier = Modifier.padding(paddingValues = appearance.innerBoxPadding())
                 ) {
-                    CompositionLocalProvider(LocalContentColor provides contentColor) {
+                    CompositionLocalProvider(
+                        LocalContentColor provides appearance.contentColor(),
+                        LocalTextStyle provides appearance.textStyle(),
+                    ) {
                         content()
                     }
                 }
@@ -170,7 +169,7 @@ private fun BrbxAnimatedBorderContainerPreview() {
                 modifier = Modifier
                     .align(Alignment.Center),
             ) {
-                BrbxIcon(OutlineSolar.EssentionalUi.Cat)
+                BrbxIcon(imageVector = OutlineSolar.EssentionalUi.Cat)
 
                 Text(
                     text = "This is cat",
