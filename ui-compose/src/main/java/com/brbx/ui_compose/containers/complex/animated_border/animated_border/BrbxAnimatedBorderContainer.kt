@@ -51,7 +51,7 @@ fun BrbxAnimatedBorderContainer(
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {},
     enabled: Boolean = true,
-    appearance: BrbxAnimatedBorderContainerAppearance = BrbxAnimatedBorderContainerAppearances.default,
+    appearance: BrbxAnimatedBorderContainerAppearance = BrbxAnimatedBorderContainerAppearances.primary,
     content: @Composable BoxScope.() -> Unit,
 ) =
     BrbxAnimatedBorderContainerImpl(
@@ -162,7 +162,7 @@ private fun BrbxAnimatedBorderContainerPreview() {
                 .fillMaxWidth()
                 .padding(bElevation.small2),
             showAnimation = true,
-            appearance = BrbxAnimatedBorderContainerAppearances.rainbowElevated,
+            appearance = BrbxAnimatedBorderContainerAppearances.primaryRainbowElevated,
         ) {
             Row(
                 horizontalArrangement = Arrangement.spacedBy(bDimens.micro8),
