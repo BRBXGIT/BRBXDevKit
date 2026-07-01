@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -129,7 +130,7 @@ private fun BrbxAnimatedBorderContainerImpl(
                     }
                     drawContent()
                 }
-                .padding(all = appearance.bordersSize())
+                .padding(all = appearance.bordersSize()) // Here
         ) {
             Surface(
                 shape = shape,
@@ -138,7 +139,6 @@ private fun BrbxAnimatedBorderContainerImpl(
             ) {
                 Box(
                     contentAlignment = appearance.innerBoxAlignment(),
-                    modifier = Modifier.padding(paddingValues = appearance.innerBoxPadding())
                 ) {
                     CompositionLocalProvider(
                         LocalContentColor provides appearance.contentColor(),
@@ -167,7 +167,8 @@ private fun BrbxAnimatedBorderContainerPreview() {
                 horizontalArrangement = Arrangement.spacedBy(bDimens.micro8),
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
-                    .align(Alignment.Center),
+                    .align(Alignment.Center)
+                    .padding(paddingValues = PaddingValues(all = bDimens.micro3)),
             ) {
                 BrbxIcon(imageVector = OutlineSolar.EssentionalUi.Cat)
 

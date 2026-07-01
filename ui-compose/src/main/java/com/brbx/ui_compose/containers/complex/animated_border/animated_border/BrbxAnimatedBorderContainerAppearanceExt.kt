@@ -8,7 +8,6 @@ import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -87,8 +86,6 @@ internal inline fun BrbxAnimatedBorderContainerAppearance(
     // Inner Layout & Spacing
     crossinline innerBoxAlignment: @Composable () -> Alignment =
         { remember { Alignment.Center } },
-    crossinline innerBoxPadding: @Composable () -> PaddingValues =
-        { PaddingValues(vertical = bDimens.micro3) },
 
     // Typography
     crossinline textStyle: @Composable () -> TextStyle = { mTypography.labelLarge },
@@ -125,7 +122,6 @@ internal inline fun BrbxAnimatedBorderContainerAppearance(
 
     // Inner Layout & Spacing
     @Composable override fun innerBoxAlignment(): Alignment = innerBoxAlignment()
-    @Composable override fun innerBoxPadding(): PaddingValues = innerBoxPadding()
 
     // Typography
     @Composable override fun textStyle(): TextStyle = textStyle()
@@ -181,7 +177,6 @@ inline fun BrbxAnimatedBorderContainerAppearance.copy(
 
     // Inner Layout & Spacing
     crossinline innerBoxAlignment: @Composable () -> Alignment = { this.innerBoxAlignment() },
-    crossinline innerBoxPadding: @Composable () -> PaddingValues = { this.innerBoxPadding() },
 
     // Typography
     crossinline textStyle: @Composable () -> TextStyle = { this.textStyle() },
@@ -215,7 +210,6 @@ inline fun BrbxAnimatedBorderContainerAppearance.copy(
 
     // Inner Layout & Spacing
     @Composable override fun innerBoxAlignment(): Alignment = innerBoxAlignment()
-    @Composable override fun innerBoxPadding(): PaddingValues = innerBoxPadding()
 
     // Typography
     @Composable override fun textStyle(): TextStyle = textStyle()
@@ -285,8 +279,6 @@ inline fun BrbxAnimatedBorderContainerAppearance.rememberCopy(
     // Inner Layout & Spacing
     crossinline innerBoxAlignment: @Composable () -> Alignment =
         { this.innerBoxAlignment() },
-    crossinline innerBoxPadding: @Composable () -> PaddingValues =
-        { this.innerBoxPadding() },
 
     // Typography
     crossinline textStyle: @Composable () -> TextStyle = { this.textStyle() },
@@ -311,7 +303,6 @@ inline fun BrbxAnimatedBorderContainerAppearance.rememberCopy(
         borderColors = borderColors,
         borderBlendMode = borderBlendMode,
         innerBoxAlignment = innerBoxAlignment,
-        innerBoxPadding = innerBoxPadding,
         textStyle = textStyle,
     )
 }

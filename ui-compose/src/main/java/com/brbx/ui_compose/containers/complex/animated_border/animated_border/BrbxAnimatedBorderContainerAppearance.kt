@@ -4,7 +4,6 @@ import androidx.compose.animation.core.AnimationSpec
 import androidx.compose.animation.core.InfiniteRepeatableSpec
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.Alignment
@@ -154,12 +153,6 @@ interface BrbxAnimatedBorderContainerAppearance {
      */
     @Composable
     fun innerBoxAlignment(): Alignment
-
-    /**
-     * The vertical padding of the inner box.
-     */
-    @Composable
-    fun innerBoxPadding(): PaddingValues
 
     // ---------------------------------------------------------------------------
     // Typography
