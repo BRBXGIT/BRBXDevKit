@@ -6,12 +6,10 @@ import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
-import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.Surface
@@ -97,7 +95,6 @@ private fun BrbxAnimatedBorderContainerImpl(
     Surface(
         onClick = onClick,
         modifier = modifier
-            .width(IntrinsicSize.Min)
             .shadow(
                 elevation = appearance.shadowElevation(),
                 shape = shape,
@@ -116,36 +113,38 @@ private fun BrbxAnimatedBorderContainerImpl(
     ) {
         Box(
             modifier = Modifier
-                .fillMaxWidth()
                 .clip(shape)
                 .drawWithContent {
                     if (alpha > 0f) {
                         rotate(degrees = rotation) {
                             drawCircle(
                                 brush = Brush.sweepGradient(borderColors.map { it.copy(alpha = alpha) }),
-                                radius = size.width,
+                                radius = size.maxDimension,
                                 blendMode = blendMode
                             )
                         }
                     }
                     drawContent()
-                }
-                .padding(all = appearance.bordersSize()) // Here
+                },
+            contentAlignment = appearance.innerBoxAlignment(),
         ) {
             Surface(
                 shape = shape,
                 color = containerColor,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .matchParentSize()
+                    .padding(all = appearance.bordersSize())
+            ) {}
+
+            Box(
+                modifier = Modifier.padding(all = appearance.bordersSize()),
+                contentAlignment = appearance.innerBoxAlignment(),
             ) {
-                Box(
-                    contentAlignment = appearance.innerBoxAlignment(),
+                CompositionLocalProvider(
+                    LocalContentColor provides appearance.contentColor(),
+                    LocalTextStyle provides appearance.textStyle(),
                 ) {
-                    CompositionLocalProvider(
-                        LocalContentColor provides appearance.contentColor(),
-                        LocalTextStyle provides appearance.textStyle(),
-                    ) {
-                        content()
-                    }
+                    content()
                 }
             }
         }
