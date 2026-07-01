@@ -8,12 +8,10 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
-import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.LocalTextStyle
@@ -152,7 +150,6 @@ private fun BrbxTileImpl(
 
     Box(
         modifier = modifier
-            .width(IntrinsicSize.Min)
             .shadow(
                 elevation = appearance.containerElevation(),
                 shape = appearance.containerShape(),
@@ -177,7 +174,6 @@ private fun BrbxTileImpl(
             verticalArrangement = Arrangement.spacedBy(appearance.contentColumnSpacing()),
         ) {
             Row(
-                modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(appearance.horizontalSpacing()),
             ) {
@@ -218,7 +214,6 @@ private fun BrbxTileAppearancePreviewWithBadge() {
                 BrbxTile(
                     appearance = BrbxTileAppearances.elevated,
                     modifier = Modifier
-//                        .fillMaxWidth()
                         .padding(horizontal = bDimens.micro8),
                     trailingContent = {
                         BrbxContainerWithBadge(
@@ -239,9 +234,7 @@ private fun BrbxTileAppearancePreviewWithBadge() {
                     title = "Some title".toBrbxText(),
                     description = "Some long description,".toBrbxText(),
                     additionalContent = {
-                        BrbxPrecollection(
-                            modifier = Modifier.fillMaxWidth()
-                        ) {
+                        BrbxPrecollection {
                             Text(
                                 text = "Some lSome long descr",
                                 style = mTypography.labelMedium,
@@ -274,7 +267,7 @@ private fun BrbxTileAppearancePreviewWithBadge() {
                     },
                     additionalContent = {
                         BrbxPrecollection(
-                            modifier = Modifier.fillMaxWidth()
+                            modifier = Modifier.fillMaxWidth(),
                         ) {
                             Text(
                                 text = "Some long description, it's very long and can not rendered be in one line",

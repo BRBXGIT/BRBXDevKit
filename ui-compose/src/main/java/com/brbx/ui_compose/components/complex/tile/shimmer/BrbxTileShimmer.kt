@@ -5,14 +5,12 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
-import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Composable
@@ -129,7 +127,6 @@ private fun BrbxTileShimmerImpl(
 ) {
     Box(
         modifier = modifier
-            .width(IntrinsicSize.Min)
             .shadow(
                 elevation = appearance.containerElevation(),
                 ambientColor = appearance.containerElevationAmbientColor(),
@@ -148,13 +145,11 @@ private fun BrbxTileShimmerImpl(
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(appearance.horizontalSpacing()),
-                modifier = Modifier.fillMaxWidth()
             ) {
                 trailingContent()
 
                 Column(
                     verticalArrangement = Arrangement.spacedBy(appearance.verticalSpacing()),
-                    modifier = Modifier.fillMaxWidth()
                 ) {
                     CompositionLocalProvider(
                         LocalTextStyle provides appearance.defaultTitleStyle(),

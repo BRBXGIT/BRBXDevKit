@@ -6,16 +6,15 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
-import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -112,9 +111,13 @@ private fun BrbxContentCardShimmerImpl(
     title: @Composable ColumnScope.() -> Unit,
     description: @Composable ColumnScope.() -> Unit,
 ) {
+    val textContent: @Composable ColumnScope.() -> Unit = {
+        title()
+        description()
+    }
+
     Box(
         modifier
-            .width(IntrinsicSize.Min)
             .shadow(
                 elevation = appearance.containerElevation(),
                 shape = appearance.containerShape(),
@@ -133,13 +136,21 @@ private fun BrbxContentCardShimmerImpl(
             verticalArrangement = Arrangement.spacedBy(appearance.infoSpacedBy()),
             modifier = Modifier
                 .align(alignment = appearance.infoAlignment())
+                .padding(paddingValues = appearance.infoContentPadding())
+                .drawWithContent { /* Skip drawing */ },
+        ) {
+            textContent()
+        }
+
+        Column(
+            verticalArrangement = Arrangement.spacedBy(appearance.infoSpacedBy()),
+            modifier = Modifier
+                .align(alignment = appearance.infoAlignment())
                 .fillMaxWidth()
                 .background(brush = appearance.infoBackground())
                 .padding(paddingValues = appearance.infoContentPadding())
         ) {
-            title()
-
-            description()
+            textContent()
         }
     }
 }

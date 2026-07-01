@@ -9,11 +9,9 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
-import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.Text
@@ -24,6 +22,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -137,9 +136,24 @@ private fun BrbxContentCardImpl(
 ) {
     val interactionSource = remember { MutableInteractionSource() }
 
+    val textContent: @Composable ColumnScope.() -> Unit = {
+        CompositionLocalProvider(
+            LocalContentColor provides appearance.titleColor(),
+            LocalTextStyle provides appearance.defaultTitleStyle(),
+        ) {
+            title()
+        }
+
+        CompositionLocalProvider(
+            LocalContentColor provides appearance.descriptionColor(),
+            LocalTextStyle provides appearance.defaultDescriptionStyle(),
+        ) {
+            description()
+        }
+    }
+
     Box(
         modifier = modifier
-            .width(IntrinsicSize.Min)
             .shadow(
                 elevation = appearance.containerElevation(),
                 shape = appearance.containerShape(),
@@ -160,29 +174,28 @@ private fun BrbxContentCardImpl(
             ),
     ) {
         backgroundContent()
-
         badge()
 
         Column(
             verticalArrangement = Arrangement.spacedBy(appearance.infoSpacedBy()),
             modifier = Modifier
                 .align(alignment = appearance.infoAlignment())
-                .fillMaxWidth()
-                .background(brush = appearance.infoBackground())
-                .padding(paddingValues = appearance.infoContentPadding()),
+                .padding(paddingValues = appearance.infoContentPadding())
+                .drawWithContent { /* Skip drawing */ },
         ) {
-            CompositionLocalProvider(
-                LocalContentColor provides appearance.titleColor(),
-                LocalTextStyle provides appearance.defaultTitleStyle(),
-            ) {
-                title()
-            }
+            textContent()
+        }
 
-            CompositionLocalProvider(
-                LocalContentColor provides appearance.descriptionColor(),
-                LocalTextStyle provides appearance.defaultDescriptionStyle(),
+        Box(modifier = Modifier.matchParentSize()) {
+            Column(
+                verticalArrangement = Arrangement.spacedBy(appearance.infoSpacedBy()),
+                modifier = Modifier
+                    .align(alignment = appearance.infoAlignment())
+                    .fillMaxWidth()
+                    .background(brush = appearance.infoBackground())
+                    .padding(paddingValues = appearance.infoContentPadding()),
             ) {
-                description()
+                textContent()
             }
         }
     }
