@@ -1,6 +1,8 @@
 package com.brbx.ui_compose.containers.complex.scaffold
 
 import androidx.compose.animation.Crossfade
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -47,6 +49,7 @@ import kotlin.time.Duration.Companion.milliseconds
  * fab positioning, and the crossfade animation specifications.
  * @param isError Determines whether the [errorContent] should be displayed. Only active
  * when [isShimmering] is false.
+ * @param onShimmeringFinished Callback which will be triggered when shimmer animation ends.
  * @param topBar Top app bar of the screen, typically containing the screen title or navigation.
  * @param bottomBar Bottom bar of the screen, typically a bottom navigation component.
  * @param snackbarHost Component to host and display snackbars.
@@ -64,6 +67,7 @@ fun BrbxShimmerScaffold(
     modifier: Modifier = Modifier,
     appearance: BrbxShimmerScaffoldAppearance = BrbxShimmerScaffoldAppearances.default,
     isError: Boolean = false,
+    onShimmeringFinished: () -> Unit = {},
     topBar: @Composable () -> Unit = {},
     bottomBar: @Composable () -> Unit = {},
     snackbarHost: @Composable () -> Unit = {},
@@ -77,6 +81,7 @@ fun BrbxShimmerScaffold(
         modifier = modifier,
         appearance = appearance,
         isError = isError,
+        onShimmeringFinished = onShimmeringFinished,
         topBar = topBar,
         bottomBar = bottomBar,
         snackbarHost = snackbarHost,
@@ -92,6 +97,7 @@ private fun BrbxShimmerScaffoldImpl(
     modifier: Modifier,
     appearance: BrbxShimmerScaffoldAppearance,
     isError: Boolean,
+    onShimmeringFinished: () -> Unit,
     topBar: @Composable () -> Unit,
     bottomBar: @Composable () -> Unit,
     snackbarHost: @Composable () -> Unit,
@@ -100,6 +106,15 @@ private fun BrbxShimmerScaffoldImpl(
     shimmerContent: @Composable (PaddingValues) -> Unit,
     content: @Composable (PaddingValues) -> Unit,
 ) {
+    val transition = updateTransition(targetState = isShimmering, label = "Shimmer crossfade")
+
+    LaunchedEffect(key1 = transition.currentState) {
+        if (transition.currentState == transition.targetState && !transition.currentState) {
+            onShimmeringFinished()
+        }
+    }
+
+    @OptIn(ExperimentalAnimationApi::class)
     Scaffold(
         modifier = modifier,
         topBar = topBar,
@@ -111,10 +126,8 @@ private fun BrbxShimmerScaffoldImpl(
         contentColor = appearance.contentColor(),
         contentWindowInsets = appearance.contentWindowInsets(),
     ) { paddingValues ->
-        Crossfade(
-            targetState = isShimmering,
+        transition.Crossfade(
             animationSpec = appearance.crossfadeAnimationSpec(),
-            label = "Shimmer crossfade",
         ) { targetIsShimmering ->
             if (targetIsShimmering) {
                 shimmerContent(paddingValues)
