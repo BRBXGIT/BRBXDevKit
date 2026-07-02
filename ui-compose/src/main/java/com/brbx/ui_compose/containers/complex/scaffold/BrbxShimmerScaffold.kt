@@ -67,7 +67,7 @@ fun BrbxShimmerScaffold(
     modifier: Modifier = Modifier,
     appearance: BrbxShimmerScaffoldAppearance = BrbxShimmerScaffoldAppearances.default,
     isError: Boolean = false,
-    onShimmeringFinished: () -> Unit = {},
+    onShimmeringFinished: (isError: Boolean) -> Unit = {},
     topBar: @Composable () -> Unit = {},
     bottomBar: @Composable () -> Unit = {},
     snackbarHost: @Composable () -> Unit = {},
@@ -91,13 +91,15 @@ fun BrbxShimmerScaffold(
         shimmerContent = shimmerContent,
     )
 
+private enum class BrbxScaffoldState { Shimmer, Error, Content }
+
 @Composable
 private fun BrbxShimmerScaffoldImpl(
     isShimmering: Boolean,
     modifier: Modifier,
     appearance: BrbxShimmerScaffoldAppearance,
     isError: Boolean,
-    onShimmeringFinished: () -> Unit,
+    onShimmeringFinished: (isError: Boolean) -> Unit,
     topBar: @Composable () -> Unit,
     bottomBar: @Composable () -> Unit,
     snackbarHost: @Composable () -> Unit,
@@ -106,11 +108,17 @@ private fun BrbxShimmerScaffoldImpl(
     shimmerContent: @Composable (PaddingValues) -> Unit,
     content: @Composable (PaddingValues) -> Unit,
 ) {
-    val transition = updateTransition(targetState = isShimmering, label = "Shimmer crossfade")
+    val targetState = when {
+        isShimmering -> BrbxScaffoldState.Shimmer
+        isError -> BrbxScaffoldState.Error
+        else -> BrbxScaffoldState.Content
+    }
+
+    val transition = updateTransition(targetState = targetState, label = "Screen state crossfade")
 
     LaunchedEffect(key1 = transition.currentState) {
-        if (transition.currentState == transition.targetState && !transition.currentState) {
-            onShimmeringFinished()
+        if (transition.currentState == transition.targetState && transition.currentState != BrbxScaffoldState.Shimmer) {
+            onShimmeringFinished(isError)
         }
     }
 
@@ -128,15 +136,11 @@ private fun BrbxShimmerScaffoldImpl(
     ) { paddingValues ->
         transition.Crossfade(
             animationSpec = appearance.crossfadeAnimationSpec(),
-        ) { targetIsShimmering ->
-            if (targetIsShimmering) {
-                shimmerContent(paddingValues)
-            } else {
-                if (errorContent != {} && isError) {
-                    errorContent(paddingValues)
-                } else {
-                    content(paddingValues)
-                }
+        ) { state ->
+            when (state) {
+                BrbxScaffoldState.Shimmer -> shimmerContent(paddingValues)
+                BrbxScaffoldState.Error -> errorContent(paddingValues)
+                BrbxScaffoldState.Content -> content(paddingValues)
             }
         }
     }
