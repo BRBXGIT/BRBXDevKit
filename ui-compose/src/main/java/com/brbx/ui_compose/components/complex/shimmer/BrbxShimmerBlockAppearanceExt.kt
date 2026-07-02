@@ -5,6 +5,7 @@ import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.StartOffset
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
 import com.brbx.ui_compose.common.UnsafeAppearanceCopy
 import com.brbx.ui_compose.theme.bIntensityTokens
@@ -32,7 +33,10 @@ internal inline fun BrbxShimmerBlockAppearance(
         { remember { StartOffset(offsetMillis = 0) } },
 
     // Colors
-    crossinline containerColorr: @Composable () -> Color = { mColors.surfaceContainer },
+    crossinline containerColor: @Composable () -> Color = { mColors.surfaceContainer },
+
+    // Layout
+    crossinline contentAlignment: @Composable () -> Alignment = { remember { Alignment.Center } },
 ): BrbxShimmerBlockAppearance = object : BrbxShimmerBlockAppearance {
 
     // Animation
@@ -43,7 +47,10 @@ internal inline fun BrbxShimmerBlockAppearance(
     @Composable override fun initialStartOffset(): StartOffset = initialStartOffset()
 
     // Colors
-    @Composable override fun containerColor(): Color = containerColorr()
+    @Composable override fun containerColor(): Color = containerColor()
+
+    // Layout
+    @Composable override fun contentAlignment(): Alignment = contentAlignment()
 }
 
 /**
@@ -70,6 +77,9 @@ inline fun BrbxShimmerBlockAppearance.copy(
 
     // Colors
     crossinline containerColor: @Composable () -> Color = { this.containerColor() },
+
+    // Layout
+    crossinline contentAlignment: @Composable () -> Alignment = { this.contentAlignment() },
 ): BrbxShimmerBlockAppearance = object : BrbxShimmerBlockAppearance {
 
     // Animation
@@ -81,6 +91,9 @@ inline fun BrbxShimmerBlockAppearance.copy(
 
     // Colors
     @Composable override fun containerColor(): Color = containerColor()
+
+    // Layout
+    @Composable override fun contentAlignment(): Alignment = contentAlignment()
 }
 
 /**
@@ -113,6 +126,9 @@ inline fun BrbxShimmerBlockAppearance.rememberCopy(
 
     // Colors
     crossinline containerColor: @Composable () -> Color = { this.containerColor() },
+
+    // Layout
+    crossinline contentAlignment: @Composable () -> Alignment = { this.contentAlignment() },
 ): BrbxShimmerBlockAppearance =
     remember {
         this.copy(
@@ -122,5 +138,6 @@ inline fun BrbxShimmerBlockAppearance.rememberCopy(
             animationSpec = animationSpec,
             initialStartOffset = initialStartOffset,
             containerColor = containerColor,
+            contentAlignment = contentAlignment,
         )
     }

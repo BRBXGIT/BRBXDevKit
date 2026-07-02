@@ -64,6 +64,7 @@ private fun BrbxShimmerBlockImpl(
         modifier = modifier.background(
             color = appearance.containerColor().copy(alpha = alpha)
         ),
+        contentAlignment = appearance.contentAlignment(),
         content = content,
     )
 }

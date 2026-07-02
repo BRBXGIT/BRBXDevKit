@@ -5,6 +5,7 @@ import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.StartOffset
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
 
 /**
@@ -62,4 +63,14 @@ interface BrbxShimmerBlockAppearance {
      */
     @Composable
     fun containerColor(): Color
+
+    // ---------------------------------------------------------------------------
+    // Layout
+    // ---------------------------------------------------------------------------
+
+    /**
+     * The alignment of the content inside the shimmer block.
+     */
+    @Composable
+    fun contentAlignment(): Alignment
 }
