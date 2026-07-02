@@ -55,8 +55,13 @@ private fun BrbxAnimatedBorderContainerShimmerImpl(
                 color = appearance.containerColor(),
             ),
         appearance = shimmerAppearance,
-        content = content,
-    )
+    ) {
+        Box(
+            modifier = Modifier.padding(all = appearance.bordersSize()),
+            contentAlignment = appearance.innerBoxAlignment(),
+            content = content,
+        )
+    }
 }
 
 @Preview(showSystemUi = true)
