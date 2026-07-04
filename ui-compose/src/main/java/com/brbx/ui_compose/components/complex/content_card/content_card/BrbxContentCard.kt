@@ -161,7 +161,7 @@ private fun BrbxContentCardImpl(
                 spotColor = appearance.containerElevationSpotColor(),
                 clip = false,
             )
-            .border(appearance.containerBorder())
+            .border(appearance.containerBorder(), shape = appearance.containerShape())
             .clip(shape = appearance.containerShape())
             .background(brush = appearance.containerBackground())
             .combinedClickable(
