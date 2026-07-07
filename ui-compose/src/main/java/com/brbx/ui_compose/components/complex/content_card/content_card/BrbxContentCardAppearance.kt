@@ -48,6 +48,12 @@ interface BrbxContentCardAppearance {
     fun containerRippleColor(): Color
 
     /**
+     * Enable vibration on long click.
+     */
+    @Composable
+    fun hapticFeedbackEnabled(): Boolean
+
+    /**
      * The elevation (depth) of the container, which controls the size and intensity of the shadow.
      */
     @Composable

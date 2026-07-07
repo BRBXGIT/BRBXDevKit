@@ -39,6 +39,8 @@ internal inline fun BrbxContentCardAppearance(
         { SolidColor(value = mColors.surfaceContainerHigh) },
     crossinline containerRippleColor: @Composable () -> Color =
         { mColors.surface },
+    crossinline hapticFeedbackEnabled: @Composable () -> Boolean =
+        { remember { true } },
     crossinline containerElevation: @Composable () -> Dp =
         { bElevation.zero },
     crossinline containerElevationAmbientColor: @Composable () -> Color =
@@ -86,6 +88,8 @@ internal inline fun BrbxContentCardAppearance(
         containerBackground()
     @Composable override fun containerRippleColor(): Color =
         containerRippleColor()
+    @Composable override fun hapticFeedbackEnabled(): Boolean =
+        hapticFeedbackEnabled()
     @Composable override fun containerElevation(): Dp =
         containerElevation()
     @Composable override fun containerElevationAmbientColor(): Color =
@@ -134,6 +138,8 @@ inline fun BrbxContentCardAppearance.copy(
         { this.containerBackground() },
     crossinline containerRippleColor: @Composable () -> Color =
         { this.containerRippleColor() },
+    crossinline hapticFeedbackEnabled: @Composable () -> Boolean =
+        { this.hapticFeedbackEnabled() },
     crossinline containerElevation: @Composable () -> Dp =
         { this.containerElevation() },
     crossinline containerElevationAmbientColor: @Composable () -> Color =
@@ -175,6 +181,8 @@ inline fun BrbxContentCardAppearance.copy(
         containerBackground()
     @Composable override fun containerRippleColor(): Color =
         containerRippleColor()
+    @Composable override fun hapticFeedbackEnabled(): Boolean =
+        hapticFeedbackEnabled()
     @Composable override fun containerElevation(): Dp =
         containerElevation()
     @Composable override fun containerElevationAmbientColor(): Color =
@@ -228,6 +236,8 @@ inline fun BrbxContentCardAppearance.rememberCopy(
         { this.containerBackground() },
     crossinline containerRippleColor: @Composable () -> Color =
         { this.containerRippleColor() },
+    crossinline hapticFeedbackEnabled: @Composable () -> Boolean =
+        { this.hapticFeedbackEnabled() },
     crossinline containerElevation: @Composable () -> Dp =
         { this.containerElevation() },
     crossinline containerElevationAmbientColor: @Composable () -> Color =
@@ -269,6 +279,7 @@ inline fun BrbxContentCardAppearance.rememberCopy(
             containerShape = containerShape,
             containerBackground = containerBackground,
             containerRippleColor = containerRippleColor,
+            hapticFeedbackEnabled = hapticFeedbackEnabled,
             containerElevation = containerElevation,
             containerElevationAmbientColor = containerElevationAmbientColor,
             containerElevationSpotColor = containerElevationSpotColor,
