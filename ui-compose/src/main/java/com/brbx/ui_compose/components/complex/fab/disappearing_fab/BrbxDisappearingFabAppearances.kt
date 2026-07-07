@@ -1,4 +1,4 @@
-package com.brbx.ui_compose.components.complex.disappearing_fab
+package com.brbx.ui_compose.components.complex.fab.disappearing_fab
 
 import androidx.compose.runtime.Immutable
 
