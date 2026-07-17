@@ -1,4 +1,4 @@
-package com.brbx.ui_compose.components.complex.snackbar
+package com.brbx.ui_compose.components.complex.snackbar.snackbar.appearance
 
 import androidx.compose.animation.core.AnimationSpec
 import androidx.compose.foundation.layout.PaddingValues
@@ -22,9 +22,9 @@ import com.brbx.ui_compose.theme.mColors
 import com.brbx.ui_compose.theme.mTypography
 
 /**
- * Creates a new instance of [BrbxSnackbarAppearance] with the provided properties.
+ * Creates a new instance of [BrbxInfoSnackbarAppearance] with the provided properties.
  */
-internal inline fun BrbxSnackbarAppearance(
+internal inline fun BrbxInfoSnackbarAppearance(
     // Animation
     crossinline dismissAnimationSpec: @Composable () -> AnimationSpec<Offset> =
         { bMotion.exitStructuralSpec() },
@@ -40,7 +40,7 @@ internal inline fun BrbxSnackbarAppearance(
         { bElevation.small1 },
 
     // Layout & Spacing
-    crossinline contentVerticalSpacingg: @Composable () -> Dp =
+    crossinline contentVerticalSpacing: @Composable () -> Dp =
         { bDimens.zero },
     crossinline contentPadding: @Composable () -> PaddingValues =
         { PaddingValues(vertical = bDimens.micro6, horizontal = bDimens.micro6) },
@@ -58,7 +58,7 @@ internal inline fun BrbxSnackbarAppearance(
         { remember { Alignment.End } },
     crossinline actionTextStyle: @Composable () -> TextStyle =
         { mTypography.labelLarge.copy(fontWeight = FontWeight.W600) },
-): BrbxSnackbarAppearance = object : BrbxSnackbarAppearance {
+): BrbxInfoSnackbarAppearance = object : BrbxInfoSnackbarAppearance {
 
     // Animation
     @Composable override fun dismissAnimationSpec(): AnimationSpec<Offset> = dismissAnimationSpec()
@@ -70,7 +70,7 @@ internal inline fun BrbxSnackbarAppearance(
     @Composable override fun containerElevation(): Dp = containerElevation()
 
     // Layout & Spacing
-    @Composable override fun contentVerticalSpacing(): Dp = contentVerticalSpacingg()
+    @Composable override fun contentVerticalSpacing(): Dp = contentVerticalSpacing()
     @Composable override fun contentPadding(): PaddingValues = contentPadding()
     @Composable override fun messageTextStyle(): TextStyle = messageTextStyle()
     @Composable override fun messageMaxLines(): Int = messageMaxLines()
@@ -82,11 +82,11 @@ internal inline fun BrbxSnackbarAppearance(
 }
 
 /**
- * Creates a new [BrbxSnackbarAppearance] by copying properties from the
+ * Creates a new [BrbxInfoSnackbarAppearance] by copying properties from the
  * current instance.
  */
 @UnsafeAppearanceCopy
-inline fun BrbxSnackbarAppearance.copy(
+inline fun BrbxInfoSnackbarAppearance.copy(
     // Animation
     crossinline dismissAnimationSpec: @Composable () -> AnimationSpec<Offset> =
         { this.dismissAnimationSpec() },
@@ -120,7 +120,7 @@ inline fun BrbxSnackbarAppearance.copy(
         { this.actionAlignment() },
     crossinline actionTextStyle: @Composable () -> TextStyle =
         { this.actionTextStyle() },
-): BrbxSnackbarAppearance = object : BrbxSnackbarAppearance {
+): BrbxInfoSnackbarAppearance = object : BrbxInfoSnackbarAppearance {
 
     // Animation
     @Composable override fun dismissAnimationSpec(): AnimationSpec<Offset> = dismissAnimationSpec()
@@ -146,12 +146,12 @@ inline fun BrbxSnackbarAppearance.copy(
 }
 
 /**
- * Creates a memoized copy of the [BrbxSnackbarAppearance] with specified
+ * Creates a memoized copy of the [BrbxInfoSnackbarAppearance] with specified
  * overrides.
  *
  * **Why you should use [rememberCopy]?**
  * 1. **Performance:** Recomposition can happen frequently. [remember] ensures
- * that a new [BrbxSnackbarAppearance] object is not instantiated on every frame,
+ * that a new [BrbxInfoSnackbarAppearance] object is not instantiated on every frame,
  * preventing unnecessary object allocations.
  * 2. **Stability:** It preserves the instance across recompositions as long as
  * the inputs (parameters) remain the same, which helps Jetpack Compose skip
@@ -162,7 +162,7 @@ inline fun BrbxSnackbarAppearance.copy(
  */
 @OptIn(UnsafeAppearanceCopy::class)
 @Composable
-inline fun BrbxSnackbarAppearance.rememberCopy(
+inline fun BrbxInfoSnackbarAppearance.rememberCopy(
     // Animation
     crossinline dismissAnimationSpec: @Composable () -> AnimationSpec<Offset> =
         { this.dismissAnimationSpec() },
@@ -196,7 +196,7 @@ inline fun BrbxSnackbarAppearance.rememberCopy(
         { this.actionAlignment() },
     crossinline actionTextStyle: @Composable () -> TextStyle =
         { this.actionTextStyle() },
-): BrbxSnackbarAppearance = remember {
+): BrbxInfoSnackbarAppearance = remember {
     this.copy(
         dismissAnimationSpec = dismissAnimationSpec,
         revertAnimationSpec = revertAnimationSpec,

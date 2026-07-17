@@ -5,46 +5,60 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
-import com.brbx.ui_compose.components.complex.snackbar.config.BrbxSnackbarConfig
+import com.brbx.ui_compose.components.complex.snackbar.common.BrbxSnackbarConfig
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.update
 
-/**
- * The default implementation of [BrbxSnackbarHostState] and [BrbxSnackbarController].
- * * This class uses a Kotlin Coroutines [Channel] to manage a queue of snackbars.
- * It ensures that multiple rapid calls to [show] do not overlap, but instead
- * display sequentially, waiting for the previous snackbar to be dismissed (either
- * through timeout, user swipe, or action click) and fully animated out before
- * showing the next one.
- */
 @Stable
 internal class DefaultBrbxSnackbarHostState : BrbxSnackbarController, BrbxSnackbarHostState {
 
     override var currentSnackbar by mutableStateOf<BrbxSnackbarConfig?>(null)
         private set
 
-    private val queue = Channel<BrbxSnackbarConfig>(capacity = Channel.UNLIMITED)
+    private val queueFlow = MutableStateFlow<List<BrbxSnackbarConfig>>(emptyList())
 
     private val exitAnimationSignal = Channel<Unit>(Channel.CONFLATED)
 
     override fun show(config: BrbxSnackbarConfig) {
-        queue.trySend(element = config)
+        queueFlow.update { currentQueue -> currentQueue + config }
     }
 
     override fun dismissCurrent() {
         currentSnackbar = null
     }
 
+    override fun removeById(id: Any) {
+        if (currentSnackbar?.id == id) {
+            dismissCurrent()
+        }
+        queueFlow.update { currentQueue -> currentQueue.filterNot { it.id == id } }
+    }
+
     override fun onExitAnimationFinished() {
-        exitAnimationSignal.trySend(element = Unit)
+        exitAnimationSignal.trySend(Unit)
     }
 
     override suspend fun observeQueue() {
-        for (config in queue) {
-            exitAnimationSignal.tryReceive()
-            currentSnackbar = config
-            snapshotFlow { currentSnackbar }.first { it == null }
-            exitAnimationSignal.receive()
+        while (true) {
+            queueFlow.first { it.isNotEmpty() }
+
+            var next: BrbxSnackbarConfig? = null
+            queueFlow.update { currentQueue ->
+                next = currentQueue.firstOrNull()
+                if (next != null) currentQueue.drop(1) else currentQueue
+            }
+
+            if (next != null) {
+                exitAnimationSignal.tryReceive()
+
+                currentSnackbar = next
+
+                snapshotFlow { currentSnackbar }.first { it == null }
+
+                exitAnimationSignal.receive()
+            }
         }
     }
 }

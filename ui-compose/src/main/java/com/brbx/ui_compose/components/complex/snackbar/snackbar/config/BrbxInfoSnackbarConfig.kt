@@ -1,7 +1,9 @@
-package com.brbx.ui_compose.components.complex.snackbar.config
+package com.brbx.ui_compose.components.complex.snackbar.snackbar.config
 
 import androidx.compose.runtime.Immutable
 import com.brbx.ui_compose.common.BrbxText
+import com.brbx.ui_compose.components.complex.snackbar.common.BrbxSnackbarConfig
+import com.brbx.ui_compose.components.complex.snackbar.common.BrbxSnackbarDuration
 
 /**
  * Defines the configuration parameters for displaying a Snackbar within the Brbx design system.
@@ -12,11 +14,8 @@ import com.brbx.ui_compose.common.BrbxText
  * resource handling.
  */
 @Immutable
-interface BrbxSnackbarConfig {
+interface BrbxInfoSnackbarConfig : BrbxSnackbarConfig {
 
-    val text: BrbxText
-    val duration: BrbxSnackbarDuration
-    val isDismissable: Boolean
     val buttonText: BrbxText?
     val onButtonClick: (() -> Unit)?
 }

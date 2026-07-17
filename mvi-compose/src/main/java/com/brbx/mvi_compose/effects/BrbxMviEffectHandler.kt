@@ -37,13 +37,14 @@ private fun BrbxMviEffectHandlerImpl(
                     snackbarController.show(effect.config)
                 }
                 is BrbxEffect.DismissCurrentSnackbar -> snackbarController.dismissCurrent()
+                is BrbxEffect.RemoveSnackbarById -> snackbarController.removeById(effect.id)
                 BrbxEffect.NavigateBack -> navController.navigateUp()
                 is BrbxEffect.ShowAndroidToast -> {
                     Toast.makeText(
                         context,
                         effect.text,
                         effect.length,
-                    )
+                    ).show()
                 }
             }
         }

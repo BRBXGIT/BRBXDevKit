@@ -1,4 +1,4 @@
-package com.brbx.ui_compose.components.complex.snackbar
+package com.brbx.ui_compose.components.complex.snackbar.snackbar
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -18,8 +18,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.brbx.ui_compose.common.BrbxText
 import com.brbx.ui_compose.common.asString
 import com.brbx.ui_compose.common.toBrbxText
-import com.brbx.ui_compose.components.complex.snackbar.config.BrbxSnackbarConfig
-import com.brbx.ui_compose.components.complex.snackbar.config.BrbxSnackbarDuration
+import com.brbx.ui_compose.components.complex.snackbar.snackbar.appearance.BrbxInfoSnackbarAppearance
+import com.brbx.ui_compose.components.complex.snackbar.snackbar.appearance.BrbxInfoSnackbarAppearances
+import com.brbx.ui_compose.components.complex.snackbar.snackbar.config.BrbxInfoSnackbarConfig
+import com.brbx.ui_compose.components.complex.snackbar.common.BrbxSnackbarDuration
 import com.brbx.ui_compose.containers.simple.omni_swipeable_container.BrbxDefaultSwipeConfig
 import com.brbx.ui_compose.containers.simple.omni_swipeable_container.BrbxOmniSwipeableContainer
 import com.brbx.ui_compose.containers.simple.omni_swipeable_container.BrbxSwipeConfig
@@ -38,12 +40,12 @@ import com.brbx.ui_compose.theme.BrbxTheme
  * @param content The composable layout content to be rendered inside the snackbar, scoped to a [BoxScope].
  */
 @Composable
-fun BrbxSnackbar(
+fun BrbxInfoSnackbar(
     isDismissable: Boolean,
     modifier: Modifier = Modifier,
     onDismiss: () -> Unit = {},
     swipeConfig: BrbxSwipeConfig = BrbxDefaultSwipeConfig(),
-    appearance: BrbxSnackbarAppearance = BrbxSnackbarAppearances.default,
+    appearance: BrbxInfoSnackbarAppearance = BrbxInfoSnackbarAppearances.default,
     content: @Composable BoxScope.() -> Unit,
 ) =
     BrbxSnackbarImpl(
@@ -56,12 +58,12 @@ fun BrbxSnackbar(
     )
 
 @Composable
-fun BrbxSnackbar(
-    config: BrbxSnackbarConfig,
+fun BrbxInfoSnackbar(
+    config: BrbxInfoSnackbarConfig,
     modifier: Modifier = Modifier,
     onDismiss: () -> Unit = {},
     swipeConfig: BrbxSwipeConfig = BrbxDefaultSwipeConfig(),
-    appearance: BrbxSnackbarAppearance = BrbxSnackbarAppearances.default,
+    appearance: BrbxInfoSnackbarAppearance = BrbxInfoSnackbarAppearances.default,
 ) =
     BrbxSnackbarImpl(
         swipeConfig = swipeConfig,
@@ -74,8 +76,8 @@ fun BrbxSnackbar(
 @Composable
 private fun DefaultSnackbarContent(
     onDismiss: () -> Unit,
-    config: BrbxSnackbarConfig,
-    appearance: BrbxSnackbarAppearance,
+    config: BrbxInfoSnackbarConfig,
+    appearance: BrbxInfoSnackbarAppearance,
 ) {
     Surface(
         modifier = Modifier.fillMaxWidth(),
@@ -121,7 +123,7 @@ private fun BrbxSnackbarImpl(
     swipeConfig: BrbxSwipeConfig,
     isDismissable: Boolean,
     onDismiss: () -> Unit,
-    appearance: BrbxSnackbarAppearance,
+    appearance: BrbxInfoSnackbarAppearance,
     modifier: Modifier,
     content: @Composable BoxScope.() -> Unit,
 ) {
@@ -141,8 +143,8 @@ private fun BrbxSnackbarImpl(
 @Composable
 private fun BrbxSnackbarPreview() {
     BrbxTheme(lightColorScheme()) {
-        BrbxSnackbar(
-            config = object : BrbxSnackbarConfig {
+        BrbxInfoSnackbar(
+            config = object : BrbxInfoSnackbarConfig {
                 override val text: BrbxText = "Some text balblba again aging blablbb fdsdfj againg text gagi".toBrbxText()
                 override val duration: BrbxSnackbarDuration = BrbxSnackbarDuration.Short
                 override val isDismissable: Boolean = false

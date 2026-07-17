@@ -1,9 +1,9 @@
-package com.brbx.ui_compose.components.complex.snackbar.config
+package com.brbx.ui_compose.components.complex.snackbar.common
 
 import androidx.compose.runtime.Immutable
 
 /**
- * Defines the duration for which a [BrbxSnackbar] remains visible on the screen
+ * Defines the duration for which a [com.brbx.ui_compose.components.complex.snackbar.snackbar.BrbxInfoSnackbar] remains visible on the screen
  * before automatically dismissing.
  *
  * As a sealed interface, it provides a closed set of possible durations,

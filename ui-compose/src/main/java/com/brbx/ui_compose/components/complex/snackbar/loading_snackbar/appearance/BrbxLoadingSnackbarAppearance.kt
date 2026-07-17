@@ -1,4 +1,4 @@
-package com.brbx.ui_compose.components.complex.snackbar
+package com.brbx.ui_compose.components.complex.snackbar.loading_snackbar.appearance
 
 import androidx.compose.animation.core.AnimationSpec
 import androidx.compose.foundation.layout.PaddingValues
@@ -7,18 +7,18 @@ import androidx.compose.runtime.Immutable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 
-// TODO Add interface segregation for default appearances and custom
 /**
- * Defines the visual appearance and styling of the [BrbxSnackbar] component.
+ * Defines the visual appearance and styling of the [com.brbx.ui_compose.components.complex.snackbar.loading_snackbar.BrbxLoadingSnackbar] component.
  * Allows flexible configuration of the snackbar's dimensions, colors, paddings, and typography.
  */
 @Immutable
-interface BrbxSnackbarAppearance {
+interface BrbxLoadingSnackbarAppearance {
 
     // ---------------------------------------------------------------------------
     // Animation
@@ -63,16 +63,22 @@ interface BrbxSnackbarAppearance {
     // ---------------------------------------------------------------------------
 
     /**
-     * The vertical spacing between the text and the action button inside the snackbar.
+     * The horizontal spacing between the text and the loading indicator inside the snackbar.
      */
     @Composable
-    fun contentVerticalSpacing(): Dp
+    fun contentHorizontalSpacing(): Dp
 
     /**
      * The internal padding of the snackbar (distance from bounds to its content).
      */
     @Composable
     fun contentPadding(): PaddingValues
+
+    /**
+     * The vertical alignment of the content inside the snackbar row.
+     */
+    @Composable
+    fun contentVerticalAlignment(): Alignment.Vertical
 
     // ---------------------------------------------------------------------------
     // Message Typography
@@ -97,18 +103,18 @@ interface BrbxSnackbarAppearance {
     fun messageOverflow(): TextOverflow
 
     // ---------------------------------------------------------------------------
-    // Action Button
+    // Loading Indicator
     // ---------------------------------------------------------------------------
 
     /**
-     * The horizontal alignment of the action button.
+     * The size of the loading indicator.
      */
     @Composable
-    fun actionAlignment(): Alignment.Horizontal
+    fun indicatorSize(): Dp
 
     /**
-     * The text style of the action button.
+     * The color of the loading indicator.
      */
     @Composable
-    fun actionTextStyle(): TextStyle
+    fun indicatorColor(): Color
 }
