@@ -145,6 +145,7 @@ private fun BrbxSnackbarPreview() {
     BrbxTheme(lightColorScheme()) {
         BrbxInfoSnackbar(
             config = object : BrbxInfoSnackbarConfig {
+                override val id: Any = ""
                 override val text: BrbxText = "Some text balblba again aging blablbb fdsdfj againg text gagi".toBrbxText()
                 override val duration: BrbxSnackbarDuration = BrbxSnackbarDuration.Short
                 override val isDismissable: Boolean = false

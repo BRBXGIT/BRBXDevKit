@@ -11,6 +11,18 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.update
 
+/**
+ * Default implementation of [BrbxSnackbarController] and [BrbxSnackbarHostState].
+ *
+ * This state holder manages the lifecycle, queuing, and sequential display of snackbars.
+ * It maintains a queue of pending [BrbxSnackbarConfig]s and coordinates with the Compose UI
+ * to ensure that only one snackbar is shown at a time.
+ *
+ * It acts as an orchestrator between the business logic (which requests snackbars to be shown)
+ * and the UI (which displays them). It specifically guarantees that the next snackbar in the
+ * queue will not be displayed until the current one is dismissed and its exit animation has
+ * explicitly finished.
+ */
 @Stable
 internal class DefaultBrbxSnackbarHostState : BrbxSnackbarController, BrbxSnackbarHostState {
 
