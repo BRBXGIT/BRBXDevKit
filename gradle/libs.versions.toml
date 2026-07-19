@@ -9,13 +9,13 @@ agp = "9.2.0"
 coreKtx = "1.19.0"
 
 # Lifecycle
-lifecycleRuntimeKtx = "2.11.0-rc01"
+lifecycleRuntimeKtx = "2.11.0"
 
 # Compose
-composeBom = "2026.05.01"
+composeBom = "2026.06.01"
 activityCompose = "1.13.0"
-material3Android = "1.5.0-alpha21"
-animationGraphics = "1.11.2"
+material3Android = "1.5.0-alpha24"
+animationGraphics = "1.11.4"
 
 # Navigation
 composeNavigation = "2.9.8"
