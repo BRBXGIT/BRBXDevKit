@@ -1,3 +1,5 @@
+[![](https://jitpack.io/v/BRBXGIT/BRBXDevKit.svg)](https://jitpack.io/#BRBXGIT/BRBXDevKit)
+
 # BRBXDevKit
 
 [![](https://jitpack.io/v/BRBXGIT/BRBXDevKit.svg)](https://jitpack.io/#BRBXGIT/BRBXDevKit)
