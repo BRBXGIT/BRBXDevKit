@@ -1,24 +1,35 @@
 package com.brbx.ui_compose.containers.complex.animated_border.shimmer
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.material3.lightColorScheme
+import androidx.compose.material3.LocalContentColor
+import androidx.compose.material3.LocalTextStyle
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.brbx.ui_compose.components.complex.shimmer.BrbxShimmerBlock
 import com.brbx.ui_compose.components.complex.shimmer.BrbxShimmerBlockAppearance
 import com.brbx.ui_compose.components.complex.shimmer.BrbxShimmerBlockAppearances
+import com.brbx.ui_compose.containers.complex.animated_border.animated_border.BrbxAnimatedBorderContainer
 import com.brbx.ui_compose.containers.complex.animated_border.animated_border.BrbxAnimatedBorderContainerAppearance
 import com.brbx.ui_compose.containers.complex.animated_border.animated_border.BrbxAnimatedBorderContainerAppearances
-import com.brbx.ui_compose.theme.BrbxTheme
 
+/**
+ * A shimmer placeholder for the [BrbxAnimatedBorderContainer].
+ *
+ * This component mimics the structure and appearance of the animated border container
+ * while displaying a pulsing loading effect.
+ *
+ * @param modifier The modifier to be applied to the container.
+ * @param appearance The visual appearance configuration, typically matching the target container.
+ * @param shimmerAppearance The configuration for the pulsing shimmer effect.
+ * @param content The content to be displayed inside the shimmer block.
+ */
 @Composable
 fun BrbxAnimatedBorderContainerShimmer(
     modifier: Modifier = Modifier,
@@ -41,41 +52,44 @@ private fun BrbxAnimatedBorderContainerShimmerImpl(
     shimmerAppearance: BrbxShimmerBlockAppearance,
     content: @Composable BoxScope.() -> Unit,
 ) {
-    BrbxShimmerBlock(
+    val shape = appearance.shape()
+    val containerColor = appearance.containerColor()
+
+    Surface(
         modifier = modifier
             .shadow(
                 elevation = appearance.shadowElevation(),
+                shape = shape,
                 clip = false,
-                spotColor = appearance.containerElevationSpotColor(),
                 ambientColor = appearance.containerElevationAmbientColor(),
-                shape = appearance.shape(),
-            )
-            .clip(shape = appearance.shape())
-            .background(
-                color = appearance.containerColor(),
+                spotColor = appearance.containerElevationSpotColor(),
             ),
-        appearance = shimmerAppearance,
+        shape = shape,
+        color = containerColor,
+        tonalElevation = appearance.tonalElevation(),
+        shadowElevation = 0.dp,
+        contentColor = appearance.contentColor(),
     ) {
         Box(
-            modifier = Modifier.padding(all = appearance.bordersSize()),
+            modifier = Modifier.clip(shape = shape),
             contentAlignment = appearance.innerBoxAlignment(),
-            content = content,
-        )
-    }
-}
-
-@Preview(showSystemUi = true)
-@Composable
-private fun BrbxAnimatedBorderContainerShimmerPreview() {
-    BrbxTheme(lightColorScheme()) {
-        BrbxAnimatedBorderContainerShimmer(
-            modifier = Modifier.padding(30.dp),
-            appearance = BrbxAnimatedBorderContainerAppearances.primaryRainbowElevated,
         ) {
-            Box(
-                modifier = Modifier
-                    .size(100.dp)
+            BrbxShimmerBlock(
+                modifier = Modifier.matchParentSize(),
+                appearance = shimmerAppearance,
             )
+
+            Box(
+                modifier = Modifier.padding(all = appearance.bordersSize()),
+                contentAlignment = appearance.innerBoxAlignment(),
+            ) {
+                CompositionLocalProvider(
+                    LocalContentColor provides appearance.contentColor(),
+                    LocalTextStyle provides appearance.textStyle(),
+                ) {
+                    content()
+                }
+            }
         }
     }
 }
