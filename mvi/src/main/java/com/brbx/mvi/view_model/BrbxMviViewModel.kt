@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.brbx.mvi.coroutines.shareInLazily
 import com.brbx.mvi.coroutines.stateInLazily
+import com.brbx.mvi.processor.BrbxIntentProcessorContract
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
@@ -33,7 +34,7 @@ import kotlinx.coroutines.launch
 abstract class BrbxMviViewModel<
     Scope : BrbxMviScope<State, CommonEffect, LocalEffect>,
     State,
-    in Intent : Any,
+    Intent : Any,
     CommonEffect,
     LocalEffect
 >(
@@ -48,7 +49,7 @@ abstract class BrbxMviViewModel<
 
     private val _state = MutableStateFlow(value = initialState)
     override val state = _state.stateInLazily(initialValue = initialState)
-    protected fun updateState(transform: State.() -> State) {
+    protected open fun updateState(transform: State.() -> State) {
         _state.update(function = transform)
     }
 
@@ -80,5 +81,16 @@ abstract class BrbxMviViewModel<
 
     private fun <T> MutableSharedFlow<T>.postEffect(effect: T) {
         viewModelScope.launch { emit(value = effect) }
+    }
+
+    // ---------------------------------------------------------------------------
+    // Processors methods
+    // ---------------------------------------------------------------------------
+
+    protected operator fun BrbxIntentProcessorContract<
+        Scope, State, Intent,
+        CommonEffect, LocalEffect
+    >.invoke(intent: Intent) {
+        mviScope.process(intent)
     }
 }
