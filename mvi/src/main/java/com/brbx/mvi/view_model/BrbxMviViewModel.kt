@@ -91,6 +91,7 @@ abstract class BrbxMviViewModel<
         Scope, State, Intent,
         CommonEffect, LocalEffect
     >.invoke(intent: Intent) {
-        mviScope.process(intent)
+        attachScope(mviScope)
+        process(intent)
     }
 }

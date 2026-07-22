@@ -21,14 +21,9 @@ interface BrbxIntentProcessorContract<
     CommonEffect,
     LocalEffect
 > {
+    val scope: Scope
 
-    /**
-     * Executes the business logic associated with the given [intent].
-     *
-     * This function operates as an extension on the provided [Scope], granting it type-safe,
-     * direct access to state reading, state mutation, and effect dispatching capabilities.
-     *
-     * @param intent The user action or event to process.
-     */
-    fun Scope.process(intent: Intent)
+    fun attachScope(scope: Scope)
+
+    fun process(intent: Intent)
 }
