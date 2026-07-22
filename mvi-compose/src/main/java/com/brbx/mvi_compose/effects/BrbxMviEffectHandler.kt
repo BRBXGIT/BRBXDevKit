@@ -6,26 +6,30 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavController
 import com.brbx.ui_compose.containers.complex.snackbar_host.state.BrbxSnackbarController
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.launch
 
 @Composable
 internal fun BrbxMviEffectHandler(
-    effects: SharedFlow<BrbxEffect>,
+    effects: SharedFlow<BrbxCommonEffect>,
     snackbarController: BrbxSnackbarController,
     navController: NavController,
+    onCustomEffect: suspend CoroutineScope.(effect: BrbxCommonEffect) -> Unit,
 ) =
     BrbxMviEffectHandlerImpl(
         effects = effects,
         snackbarController = snackbarController,
         navController = navController,
+        onCustomEffect = onCustomEffect,
     )
 
 @Composable
 private fun BrbxMviEffectHandlerImpl(
-    effects: SharedFlow<BrbxEffect>,
+    effects: SharedFlow<BrbxCommonEffect>,
     snackbarController: BrbxSnackbarController,
     navController: NavController,
+    onCustomEffect: suspend CoroutineScope.(effect: BrbxCommonEffect) -> Unit,
 ) {
     val context = LocalContext.current
     LaunchedEffect(key1 = effects) {
@@ -46,6 +50,7 @@ private fun BrbxMviEffectHandlerImpl(
                         effect.length,
                     ).show()
                 }
+                else -> onCustomEffect(effect)
             }
         }
     }

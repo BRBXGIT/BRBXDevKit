@@ -30,7 +30,7 @@ interface BrbxMviViewModelContract<
 
     val mviScope: Scope
 
-    fun dispatchIntent(intent: Intent) {}
+    fun dispatchIntent(intent: Intent)
 
     fun dispatchCommonEffect(effect: CommonEffect)
 

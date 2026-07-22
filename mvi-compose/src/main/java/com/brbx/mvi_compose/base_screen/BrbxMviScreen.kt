@@ -4,10 +4,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.navigation.NavController
 import com.brbx.mvi.view_model.BrbxMviViewModel
+import com.brbx.mvi_compose.effects.BrbxCommonEffect
 import com.brbx.mvi_compose.effects.BrbxEffect
 import com.brbx.mvi_compose.effects.BrbxMviEffectHandler
 import com.brbx.ui_compose.containers.complex.snackbar_host.composition.LocalBrbxSnackbarHostState
 import com.brbx.ui_compose.containers.complex.snackbar_host.state.rememberBrbxSnackbarComponents
+import kotlinx.coroutines.CoroutineScope
 
 /**
  * A foundational Composable screen wrapper for the Brbx MVI architecture.
@@ -28,10 +30,11 @@ import com.brbx.ui_compose.containers.complex.snackbar_host.state.rememberBrbxSn
 @Composable
 fun <Intent : Any, LocalEffect> BrbxMviScreen(
     navController: NavController,
-    viewModel: BrbxMviViewModel<* ,*, Intent, BrbxEffect, LocalEffect>,
+    viewModel: BrbxMviViewModel<* ,*, Intent, BrbxCommonEffect, LocalEffect>,
+    onCustomEffect: suspend CoroutineScope.(effect: BrbxCommonEffect) -> Unit = {},
     content: @Composable (
         dispatchIntent: (intent: Intent) -> Unit,
-        dispatchBrbxEffect: (effect: BrbxEffect) -> Unit,
+        dispatchCommonEffect: (effect: BrbxCommonEffect) -> Unit,
         dispatchLocalEffect: (effect: LocalEffect) -> Unit,
     ) -> Unit,
 ) =
@@ -39,15 +42,17 @@ fun <Intent : Any, LocalEffect> BrbxMviScreen(
         viewModel = viewModel,
         navController = navController,
         content = content,
+        onCustomEffect = onCustomEffect,
     )
 
 @Composable
 private fun <Intent : Any, LocalEffect> BrbxMviScreenImpl(
-    viewModel: BrbxMviViewModel<*, *, Intent, BrbxEffect, LocalEffect>,
+    viewModel: BrbxMviViewModel<*, *, Intent, BrbxCommonEffect, LocalEffect>,
     navController: NavController,
+    onCustomEffect: suspend CoroutineScope.(effect: BrbxCommonEffect) -> Unit,
     content: @Composable (
         dispatchIntent: (intent: Intent) -> Unit,
-        dispatchBrbxEffect: (effect: BrbxEffect) -> Unit,
+        dispatchCommonEffect: (effect: BrbxCommonEffect) -> Unit,
         dispatchLocalEffect: (effect: LocalEffect) -> Unit,
     ) -> Unit,
 ) {
@@ -56,6 +61,7 @@ private fun <Intent : Any, LocalEffect> BrbxMviScreenImpl(
         effects = viewModel.commonEffects,
         snackbarController = snackbarComponents.controller,
         navController = navController,
+        onCustomEffect = onCustomEffect,
     )
 
     CompositionLocalProvider(

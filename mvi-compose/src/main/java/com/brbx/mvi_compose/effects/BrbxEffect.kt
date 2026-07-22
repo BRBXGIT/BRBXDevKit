@@ -13,7 +13,7 @@ import com.brbx.ui_compose.components.complex.snackbar.common.BrbxSnackbarConfig
  * (snackbars, toasts), triggering navigation, or launching external intents.
  */
 @Immutable
-sealed interface BrbxEffect {
+sealed interface BrbxEffect : BrbxCommonEffect {
 
     // Snackbars
     @JvmInline
