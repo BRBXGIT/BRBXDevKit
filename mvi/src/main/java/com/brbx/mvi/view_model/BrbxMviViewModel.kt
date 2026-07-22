@@ -87,10 +87,10 @@ abstract class BrbxMviViewModel<
     // Processors methods
     // ---------------------------------------------------------------------------
 
-    protected operator fun BrbxIntentProcessorContract<
-        Scope, State, Intent,
+    protected operator fun <PIntent : Any> BrbxIntentProcessorContract<
+        Scope, State, PIntent,
         CommonEffect, LocalEffect
-    >.invoke(intent: Intent) {
+    >.invoke(intent: PIntent) {
         attachScope(mviScope)
         process(intent)
     }
