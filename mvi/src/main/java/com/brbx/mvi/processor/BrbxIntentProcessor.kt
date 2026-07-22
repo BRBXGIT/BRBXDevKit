@@ -5,7 +5,7 @@ import com.brbx.mvi.view_model.BrbxMviScope
 abstract class BrbxIntentProcessor<
     Scope : BrbxMviScope<State, CommonEffect, LocalEffect>,
     State,
-    Intent : Any,
+    in Intent : Any,
     CommonEffect,
     LocalEffect
 > : BrbxIntentProcessorContract<Scope, State, Intent, CommonEffect, LocalEffect> {
